@@ -57,6 +57,18 @@ class LoginForm extends StatelessWidget {
                         _password = value;
                       }),
                       const SizedBox(
+                        height: kMicroVerticalSpacer,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, kResetPasswordRoute);
+                        },
+                        child: const Text(
+                          'Mot de passe oublié',
+                          style: kSmallLinkGreenText,
+                        ),
+                      ),
+                      const SizedBox(
                         height: kSmallHorizontalSpacer*5,
                       ),
                       Button(
@@ -88,28 +100,18 @@ class LoginForm extends StatelessWidget {
                               }
                             }
                           }),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, kRegisterRoute);
-                            },
-                            child: const Text(
-                              'Créer un compte',
-                              style: kBasicTextStyle,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, kResetPasswordRoute);
-                            },
-                            child: const Text(
-                              'Mot de passe oublié',
-                              style: kBasicTextStyle,
-                            ),
-                          ),
-                        ],
+                      const SizedBox(
+                        height: kMicroVerticalSpacer,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, kRegisterRoute);
+                        },
+                        child: const Text(
+                          'Créer un compte',
+                          style: kSmallLinkGreenText,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),

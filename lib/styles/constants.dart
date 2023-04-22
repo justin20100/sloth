@@ -19,6 +19,7 @@ const double kBigVerticalSpacer = 30;
 const double kNormalVerticalSpacer = 20;
 const double kSmallVerticalSpacer = 10;
 const double kMicroVerticalSpacer = 5;
+
 // Horizontal spacer
 const double kBigHorizontalSpacer = 30;
 const double kNormalHorizontalSpacer = 20;
@@ -53,6 +54,12 @@ const kLabelGreenText = TextStyle(
   fontWeight: FontWeight.bold,
   color: kColorGreen,
   decoration: TextDecoration.none,
+);
+const kSmallLinkGreenText = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 14.0,
+  color: kColorGreen,
+  decoration: TextDecoration.underline,
 );
 
 
