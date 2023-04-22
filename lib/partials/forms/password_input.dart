@@ -11,9 +11,7 @@ class PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: kBoxDecoration,
-      child: TextInput(
+      return TextInput(
         hintText: "Mot2passe",
         keyboardType: TextInputType.visiblePassword,
         validator: (value) {
@@ -25,7 +23,6 @@ class PasswordInput extends StatelessWidget {
         },
         obscureText: true,
         onChanged: onChanged,
-      ),
-    );
+      );
   }
 }

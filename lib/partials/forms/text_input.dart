@@ -4,16 +4,15 @@ import '../../styles/constants.dart';
 
 @immutable
 class TextInput extends StatelessWidget {
-  const TextInput(
-      {
-      this.hintText = "",
-      this.keyboardType = TextInputType.text,
-      required this.validator,
-      this.obscureText = false,
-      this.autofocus = false,
-      this.onChanged,
-      this.value,
-      Key? key})
+  const TextInput({
+    this.hintText = "",
+    this.keyboardType = TextInputType.text,
+    required this.validator,
+    this.obscureText = false,
+    this.autofocus = false,
+    this.onChanged,
+    this.value,
+    Key? key})
       : super(key: key);
   final String hintText;
   final bool obscureText;
@@ -35,11 +34,18 @@ class TextInput extends StatelessWidget {
       cursorColor: kMainTextColor,
       style: kBasicTextStyle,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(kSmallVerticalSpacer),
-        hintText: hintText,
-        isDense: true,
-        border: InputBorder.none,
-      ),
-    );
+          contentPadding: EdgeInsets.all(kSmallVerticalSpacer),
+          hintText: hintText,
+          isDense: true,
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: kColorGreen,
+            ),
+            borderRadius: BorderRadius.circular(7),
+          ),
+          errorStyle: TextStyle(),
+      fillColor: kColorWhite,
+      filled: true,
+    ),);
   }
 }
