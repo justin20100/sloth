@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/text_input.dart';
 
 @immutable
-class UserNameInput extends StatelessWidget {
+class FirstNameInput extends StatelessWidget {
   final ValueChanged<String>? onChanged;
-
-  const UserNameInput({this.onChanged, Key? key}) : super(key: key);
+  const FirstNameInput({this.onChanged, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +13,9 @@ class UserNameInput extends StatelessWidget {
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Le nom d’utilisateur doit être renseigné.';
+          return 'Le prénom doit etre doit être renseigné.';
         } else if (value.length < 2) {
-          return 'Le nom d’utilisateur doit contenir au moins 2 caractères.';
+          return 'Le prénom doit contenir au moins 2 caractères.';
         }
       },
       onChanged: onChanged,

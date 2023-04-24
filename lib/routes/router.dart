@@ -2,15 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 
-import '../screens/auth/login_form.dart';
-import '../screens/auth/register_form.dart';
-import '../screens/auth/reset_password_form.dart';
+import '../views/auth/login_form.dart';
+import '../views/auth/registerMore_form.dart';
+import '../views/auth/register_form.dart';
+import '../views/auth/reset_password_form.dart';
 
-import '../screens/home.dart';
+import '../views/home.dart';
 
 Map<String, WidgetBuilder> router = {
   kHomeRoute: (context) =>  const Home(),
-  kRegisterRoute: (context) => const RegisterForm(),
+  kRegisterRoute: (context) => RegisterForm(),
+  kRegisterMoreRoute: (context) => RegisterMoreForm(),
   kLoginRoute: (context) => LoginForm(),
   kResetPasswordRoute: (context) => const ResetPasswordForm(),
 };

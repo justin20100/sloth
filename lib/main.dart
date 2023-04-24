@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/router.dart';
 import 'package:sloth/routes/routes.dart';
-import 'package:sloth/screens/error.dart';
+import 'package:sloth/views/error.dart';
 import 'package:sloth/styles/constants.dart';
 import 'firebase_options.dart';
 

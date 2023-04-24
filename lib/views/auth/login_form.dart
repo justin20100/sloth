@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
                   Image(
                   image: AssetImage('assets/img/logo.png'),
                   ),
-                  Text('Inscrivez-vous ci dessous.', style: kBigGreenText, textAlign: TextAlign.center),
+                  Text('Sloth est prêt a vous aider a nouveau !', style: kBigGreenText, textAlign: TextAlign.center),
                 ],
               ),
               Form(
