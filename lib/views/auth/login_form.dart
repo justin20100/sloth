@@ -20,110 +20,128 @@ class LoginForm extends StatelessWidget {
     return Scaffold(
       backgroundColor: kColorCream,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: kNormalHorizontalSpacer*2, right: kNormalHorizontalSpacer*2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: const [
-                  Image(
-                  image: AssetImage('assets/img/logo.png'),
+          child: Padding(
+              padding: const EdgeInsets.only(
+                  left: kNormalHorizontalSpacer * 2,
+                  right: kNormalHorizontalSpacer * 2),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  // Logo et texte
+                  Column(
+                    children: const [
+                      Image(
+                        image: AssetImage('assets/img/logo.png'),
+                      ),
+                      Text('Sloth est prêt a vous aider a nouveau !',
+                          style: kBigGreenText, textAlign: TextAlign.center),
+                    ],
                   ),
-                  Text('Sloth est prêt a vous aider a nouveau !', style: kBigGreenText, textAlign: TextAlign.center),
-                ],
-              ),
-              Form(
-                key: _loginFormKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Votre email", style: kLabelGreenText,),
-                      const SizedBox(
-                         height: kSmallHorizontalSpacer,
-                       ),
-                      EmailInput(
-                        onChanged: (value) {
-                          _email = value;
-                        },
-                      ),
-                      const SizedBox(
-                        height: kNormalHorizontalSpacer,
-                      ),
-                      const Text("Votre mot de passe", style: kLabelGreenText,),
-                      const SizedBox(
-                        height: kSmallHorizontalSpacer,
-                      ),
-                      PasswordInput(onChanged: (value) {
-                        _password = value;
-                      }),
-                      const SizedBox(
-                        height: kMicroVerticalSpacer,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, kResetPasswordRoute);
-                        },
-                        child: const Text(
-                          'Mot de passe oublié',
-                          style: kSmallLinkGreenText,
+
+                  // Formulaire de connection
+                  Form(
+                    key: _loginFormKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Email
+                        const Text(
+                          "Votre email",
+                          style: kLabelGreenText,
                         ),
-                      ),
-                      const SizedBox(
-                        height: kSmallHorizontalSpacer*5,
-                      ),
-                      Center(
-                        child: Button(
-                            label: "Se connecter",
-                            onPressed: () async {
-                              if (_loginFormKey.currentState != null &&
-                                  _loginFormKey.currentState!.validate()) {
-                                try {
-                                  await FirebaseAuth.instance
-                                      .signInWithEmailAndPassword(
-                                      email: _email, password: _password)
-                                      .then((value) {
+                        const SizedBox(
+                          height: kSmallHorizontalSpacer,
+                        ),
+                        EmailInput(
+                          onChanged: (value) {
+                            _email = value;
+                          },
+                        ),
+                        const SizedBox(
+                          height: kNormalHorizontalSpacer,
+                        ),
+
+                        // Mot de passe
+                        const Text(
+                          "Votre mot de passe",
+                          style: kLabelGreenText,
+                        ),
+                        const SizedBox(
+                          height: kSmallHorizontalSpacer,
+                        ),
+                        PasswordInput(onChanged: (value) {
+                          _password = value;
+                        }),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, kResetPasswordRoute);
+                          },
+                          child: const Text(
+                            'Mot de passe oublié',
+                            style: kSmallLinkGreenText,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: kSmallHorizontalSpacer * 5,
+                        ),
+
+                        // Bouton
+                        Center(
+                          child: Button(
+                              label: "Se connecter",
+                              onPressed: () async {
+                                if (_loginFormKey.currentState != null &&
+                                    _loginFormKey.currentState!.validate()) {
+                                  try {
+                                    await FirebaseAuth.instance
+                                        .signInWithEmailAndPassword(
+                                            email: _email, password: _password)
+                                        .then((value) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                'Bonjour ${FirebaseAuth.instance.currentUser!.email}')),
+                                      );
+                                      Navigator.pushNamed(context, kHomeRoute);
+                                    });
+                                  } on FirebaseAuthException catch (e) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                           content: Text(
-                                              'Bonjour ${FirebaseAuth.instance.currentUser!.email}')),
+                                            errors[e.code]!,
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.redAccent),
                                     );
-                                    Navigator.pushNamed(context, kHomeRoute);
-                                  });
-                                } on FirebaseAuthException catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                          errors[e.code]!,
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        backgroundColor: Colors.redAccent),
-                                  );
+                                  }
                                 }
-                              }
-                            }),
-                      ),
-                      const SizedBox(
-                        height: kMicroVerticalSpacer,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, kRegisterRoute);
-                        },
-                        child: const Text(
-                          'Créer un compte',
-                          style: kSmallLinkGreenText,
-                          textAlign: TextAlign.center,
+                              }),
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: kMicroVerticalSpacer,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, kRegisterRoute);
+                          },
+                          child: const Text(
+                            'Créer un compte',
+                            style: kSmallLinkGreenText,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-              ),
-            ],
-          )
-        )
-      ),
+                ],
+              ))),
     );
   }
 }

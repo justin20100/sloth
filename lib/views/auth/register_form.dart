@@ -31,6 +31,8 @@ class _RegisterFormState extends State<RegisterForm> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+
+                  // Logo plus Texte
                   Column(
                     children: const [
                       Image(
@@ -39,13 +41,15 @@ class _RegisterFormState extends State<RegisterForm> {
                       Text('Inscrivez vous ci dessous.', style: kBigGreenText, textAlign: TextAlign.center),
                     ],
                   ),
+
+                  // Formulaire d'enregistrement
                   Form(
                     key: _registerFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // email
+                        // Email
                         const Text("Votre email", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
@@ -59,7 +63,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           height: kNormalHorizontalSpacer,
                         ),
 
-                        // mot de passe
+                        // Mot de passe
                         const Text("Votre mot de passe", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
@@ -74,7 +78,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           height: kNormalHorizontalSpacer,
                         ),
 
-                        // confirmation du mot de passe
+                        // Confirmation du mot de passe
                         const Text("Confirmation du mot de passe", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
@@ -83,6 +87,8 @@ class _RegisterFormState extends State<RegisterForm> {
                         const SizedBox(
                           height: kNormalHorizontalSpacer,
                         ),
+
+                        // Bouton
                         Center(
                           child: Button(
                               label: 'Etape suivante',
@@ -95,6 +101,8 @@ class _RegisterFormState extends State<RegisterForm> {
                         const SizedBox(
                           height: kMicroVerticalSpacer,
                         ),
+
+                        // Lien vers la pas de connection
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, kLoginRoute);

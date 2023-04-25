@@ -1,88 +1,92 @@
+import 'dart:ffi';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../models/error_firebase_auth.dart';
 import '../../partials/forms/email_input.dart';
-import '../../routes/router.dart';
+import '../../partials/forms/password_input.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
-class ResetPasswordForm extends StatefulWidget {
-  const ResetPasswordForm({Key? key}) : super(key: key);
-
-  @override
-  State<ResetPasswordForm> createState() => _ResetPasswordFormState();
-}
-
-class _ResetPasswordFormState extends State<ResetPasswordForm> {
+class ResetPasswordForm extends StatelessWidget {
+  ResetPasswordForm({Key? key}) : super(key: key);
   final _resetPasswordFormKey = GlobalKey<FormState>();
+  String _email = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kColorCream,
       body: SafeArea(
-        child: Form(
-          key: _resetPasswordFormKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kSmallHorizontalSpacer,
-              vertical: 0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                      top: kSmallVerticalSpacer * 3, bottom: kSmallVerticalSpacer / 2),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: kSmallVerticalSpacer / 2,
-                    horizontal: kSmallHorizontalSpacer,
-                  ),
-                  decoration: BoxDecoration(
-                      color: kColorBlack,
-                      boxShadow: kBoxShadowItem,
-                      borderRadius: kBorderRadiusItem),
-                  child: Column(
+              padding: const EdgeInsets.only(
+                  left: kNormalHorizontalSpacer * 2,
+                  right: kNormalHorizontalSpacer * 2),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  // Logo et texte
+                  Column(
                     children: const [
-                      EmailInput(),
+                      Image(
+                        image: AssetImage('assets/img/logo.png'),
+                      ),
+                      Text('Un mail de reinitialisation du mot de passe vous sera envoyer.',
+                          style: kBigGreenText, textAlign: TextAlign.center),
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, kRegisterRoute);
-                      },
-                      child: const Text(
-                        'Créer un compte',
-                        style: kBasicTextStyle,
-                      ),
+
+                  // Formulaire de connection
+                  Form(
+                    key: _resetPasswordFormKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        // Email
+                        const Text(
+                          "Votre email",
+                          style: kLabelGreenText,
+                        ),
+                        const SizedBox(
+                          height: kSmallHorizontalSpacer,
+                        ),
+                        EmailInput(
+                          onChanged: (value) {
+                            _email = value;
+                          },
+                        ),
+                        const SizedBox(
+                          height: kNormalHorizontalSpacer,
+                        ),
+
+                        // Bouton
+                        Center(
+                          child: Button(
+                              label: "Recevoir un mail",
+                              onPressed: () async {}),
+                        ),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, kRegisterRoute);
+                          },
+                          child: const Text(
+                            'Créer un compte',
+                            style: kSmallLinkGreenText,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, kLoginRoute);
-                      },
-                      child: const Text(
-                        'Se connecter',
-                        style: kBasicTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: kSmallVerticalSpacer * 2,
-                ),
-                Button(
-                    label: 'Envoyer email de réinitialisation',
-                    onPressed: () {
-                      goHome(formKey: _resetPasswordFormKey, context: context);
-                    })
-              ],
-            ),
-          ),
-        ),
-      ),
+                  ),
+                ],
+              ))),
     );
   }
 }

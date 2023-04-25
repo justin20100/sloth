@@ -14,7 +14,7 @@ Map<String, WidgetBuilder> router = {
   kRegisterRoute: (context) => RegisterForm(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
   kLoginRoute: (context) => LoginForm(),
-  kResetPasswordRoute: (context) => const ResetPasswordForm(),
+  kResetPasswordRoute: (context) => ResetPasswordForm(),
 };
 
 
