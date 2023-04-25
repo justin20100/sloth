@@ -11,26 +11,28 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: 400.0,
-        padding: const EdgeInsets.only(top: kSmallVerticalSpacer, bottom: kSmallVerticalSpacer),
-        decoration: BoxDecoration(
-            color: kColorGreen,
-            boxShadow: kBoxShadowItem,
-            borderRadius: kBorderRadiusItem
-        ),
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontFamily: 'Inter',
-            color: kColorWhite,
-            decoration: TextDecoration.none,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(7),
+      child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                color: kColorGreen,
+              ),
+            ),
           ),
-        ),
+          TextButton(
+            style: TextButton.styleFrom(
+              alignment: Alignment.center,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+              textStyle: kBasicTextStyle,
+            ),
+            onPressed: onPressed,
+            child: Text(label),
+          ),
+        ],
       ),
     );
   }

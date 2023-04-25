@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../models/error_firebase_auth.dart';
@@ -71,35 +73,37 @@ class LoginForm extends StatelessWidget {
                       const SizedBox(
                         height: kSmallHorizontalSpacer*5,
                       ),
-                      Button(
-                          label: 'Se connecter',
-                          onPressed: () async {
-                            if (_loginFormKey.currentState != null &&
-                                _loginFormKey.currentState!.validate()) {
-                              try {
-                                await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                    email: _email, password: _password)
-                                    .then((value) {
+                      Center(
+                        child: Button(
+                            label: "Se connecter",
+                            onPressed: () async {
+                              if (_loginFormKey.currentState != null &&
+                                  _loginFormKey.currentState!.validate()) {
+                                try {
+                                  await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                      email: _email, password: _password)
+                                      .then((value) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              'Bonjour ${FirebaseAuth.instance.currentUser!.email}')),
+                                    );
+                                    Navigator.pushNamed(context, kHomeRoute);
+                                  });
+                                } on FirebaseAuthException catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(
-                                            'Bonjour ${FirebaseAuth.instance.currentUser!.email}')),
+                                          errors[e.code]!,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        backgroundColor: Colors.redAccent),
                                   );
-                                  Navigator.pushNamed(context, kHomeRoute);
-                                });
-                              } on FirebaseAuthException catch (e) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                        errors[e.code]!,
-                                        style: const TextStyle(color: Colors.white),
-                                      ),
-                                      backgroundColor: Colors.redAccent),
-                                );
+                                }
                               }
-                            }
-                          }),
+                            }),
+                      ),
                       const SizedBox(
                         height: kMicroVerticalSpacer,
                       ),

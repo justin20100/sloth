@@ -18,7 +18,7 @@ class PasswordInput extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return 'Vous avez oublié de remplir votre mot de passe.';
           } else if (value.length <= 10) {
-            return 'Le mot de passe doit contenir au moins 10 caractères, 1 chiffre et 1 majuscule.';
+            return 'On demande 10 caractères, 1 chiffre et 1 majuscule.';
           }
         },
         obscureText: true,

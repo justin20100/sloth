@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/validatedPassword_input.dart';
 import '../../partials/forms/email_input.dart';
@@ -81,13 +83,15 @@ class _RegisterFormState extends State<RegisterForm> {
                         const SizedBox(
                           height: kNormalHorizontalSpacer,
                         ),
-                        Button(
-                            label: 'Etape suivante',
-                            onPressed: () {
-                              if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
-                                Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': _email, 'password': _password }  );
-                              }
-                            }),
+                        Center(
+                          child: Button(
+                              label: 'Etape suivante',
+                              onPressed: () {
+                                if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
+                                  Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': _email, 'password': _password }  );
+                                }
+                              }),
+                        ),
                         const SizedBox(
                           height: kMicroVerticalSpacer,
                         ),
