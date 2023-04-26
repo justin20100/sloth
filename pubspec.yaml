@@ -36,7 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.4.2
   firebase_core: ^2.10.0
+  cloud_firestore:
   email_validator: ^2.1.17
+  introduction_screen: ^3.1.8
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +65,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/img/logo.png
+    - assets/img/slothLogo.jpg
+    - assets/img/calendar.jpg
+    - assets/img/symptomes.jpg
+    - assets/img/objectifs.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

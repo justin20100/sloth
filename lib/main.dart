@@ -7,7 +7,7 @@ import 'package:sloth/views/error.dart';
 import 'package:sloth/styles/constants.dart';
 import 'firebase_options.dart';
 
-void main() {
+void main() async{
   runApp(MyApp());
 }
 
@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             initialRoute: FirebaseAuth.instance.currentUser == null
-                ? kLoginRoute
+                ? kIntroductionRoute
                 : kHomeRoute,
             routes: router,
             theme: ThemeData(
-                fontFamily: 'Inter', backgroundColor: kMainBackgroundColor),
+                fontFamily: 'Inter', backgroundColor: kColorCream),
           );
         }
         return const ErrorScreen();

@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
-import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sloth/partials/forms/resetp_email_input.dart';
 import '../../models/error_firebase_auth.dart';
-import '../../partials/forms/email_input.dart';
-import '../../partials/forms/password_input.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
@@ -38,7 +35,7 @@ class ResetPasswordForm extends StatelessWidget {
                     ],
                   ),
 
-                  // Formulaire de connection
+                  // Formulaire de reinitialisation du mot de passe
                   Form(
                     key: _resetPasswordFormKey,
                     child: Column(
@@ -54,7 +51,7 @@ class ResetPasswordForm extends StatelessWidget {
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),
-                        EmailInput(
+                        ResetPEmailInput(
                           onChanged: (value) {
                             _email = value;
                           },
@@ -67,17 +64,36 @@ class ResetPasswordForm extends StatelessWidget {
                         Center(
                           child: Button(
                               label: "Recevoir un mail",
-                              onPressed: () async {}),
+                              onPressed: () async {
+                                if (_resetPasswordFormKey.currentState != null &&
+                                    _resetPasswordFormKey.currentState!.validate()) {
+                                  try {
+                                    await FirebaseAuth.instance.sendPasswordResetEmail(email: _email).then((value) {
+                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("L'email de reinitialisation du mot de passe a été envoyé")),);
+                                      Navigator.pushNamed(context, kLoginRoute);
+                                    });
+                                  } on FirebaseAuthException catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                            errors[e.code]!,
+                                            style: const TextStyle(color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.redAccent),
+                                    );
+                                  }
+                                }
+                              }),
                         ),
                         const SizedBox(
                           height: kMicroVerticalSpacer,
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, kRegisterRoute);
+                            Navigator.pushNamed(context, kLoginRoute);
                           },
                           child: const Text(
-                            'Créer un compte',
+                            'Se connecter',
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),
