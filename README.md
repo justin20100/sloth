@@ -1,6 +1,6 @@
 # sloth
 
-A new Flutter project.
+A mobile app
 
 ## Getting Started
 
