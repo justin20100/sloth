@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/auth/intersection.dart';
+import 'package:sloth/views/auth/registerTraits_form.dart';
 
 import '../views/auth/login_form.dart';
 import '../views/auth/registerMore_form.dart';
@@ -18,6 +19,7 @@ Map<String, WidgetBuilder> router = {
   kIntersectionRoute: (context) => Intersection(),
   kRegisterRoute: (context) => RegisterForm(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
+  kRegisteTraitsRoute: (context) => RegisterTraitsForm(),
   kLoginRoute: (context) => LoginForm(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
   kHomeRoute: (context) =>  const Home(),

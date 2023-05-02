@@ -1,20 +1,13 @@
-import 'dart:ffi';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/firstname_input.dart';
 import 'package:sloth/partials/forms/lastname_input.dart';
 import 'package:sloth/partials/forms/phone_input.dart';
-import '../../models/error_firebase_auth.dart';
-import '../../partials/forms/email_input.dart';
-import '../../partials/forms/password_input.dart';
-import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
 class RegisterMoreForm extends StatelessWidget {
   RegisterMoreForm({Key? key}) : super(key: key);
-  final _registerFormKey = GlobalKey<FormState>();
+  final _registerMoreFormKey = GlobalKey<FormState>();
   String _firstname = "";
   String _lastname = "";
   String _phone = "";
@@ -37,7 +30,7 @@ class RegisterMoreForm extends StatelessWidget {
                     ],
                   ),
                   Form(
-                    key: _registerFormKey,
+                    key: _registerMoreFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +79,7 @@ class RegisterMoreForm extends StatelessWidget {
                           child: Button(
                             label: 'Etape suivante',
                             onPressed: () {
-                              if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
+                              if (_registerMoreFormKey.currentState != null && _registerMoreFormKey.currentState!.validate()) {
                                 print(arguments);
                                 //Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': arguments['email'] , 'password': arguments['password']}  );
                               }
