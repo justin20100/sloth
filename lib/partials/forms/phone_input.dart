@@ -12,7 +12,9 @@ class PhoneInput extends StatelessWidget {
     return TextInput(
       hintText: '0000000000',
       keyboardType: TextInputType.phone,
-      validator: (value) {return "";},
+      validator: (value) {
+        return null;
+      },
       onChanged: onChanged,
     );
   }

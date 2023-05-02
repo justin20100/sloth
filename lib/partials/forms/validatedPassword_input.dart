@@ -16,8 +16,9 @@ class ValidatedPasswordInput extends StatelessWidget {
         hintText: "Mot2passe",
         keyboardType: TextInputType.visiblePassword,
         validator: (value) {
-          print(value);
-          print(password);
+          if(value == null || value.isEmpty){
+            return 'Vous avez oublié de confirmer votre mot de passe';
+          }
           if (value != password) {
             return 'Recopier correctement votre mot de passe';
           }

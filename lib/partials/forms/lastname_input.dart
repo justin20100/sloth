@@ -10,7 +10,7 @@ class LastNameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextInput(
-      hintText: 'unique.name',
+      hintText: 'Dubois',
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value == null || value.isEmpty) {

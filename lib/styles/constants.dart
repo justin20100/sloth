@@ -59,7 +59,7 @@ const kSmallLinkGreenText = TextStyle(
   fontFamily: 'Inter',
   fontSize: 14.0,
   color: kColorGreen,
-  decoration: TextDecoration.underline,
+  decoration: TextDecoration.none,
 );
 
 

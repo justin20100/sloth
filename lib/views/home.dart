@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sloth/routes/routes.dart';
+import 'package:sloth/tools/button.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,10 +24,19 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: Text('heyyyyy'),),
+        child: Column(
+          children: [
+            Text("lalala home ${FirebaseAuth.instance.currentUser!.email}"),
+            Button(label:'deconnection', onPressed: () async =>{
+              await FirebaseAuth.instance.signOut(),
+              Navigator.pushNamed(context, kIntersectionRoute),
+            }),
+          ],
+        )
+      ),
     );
   }
 }

@@ -9,7 +9,7 @@ class FirstNameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextInput(
-      hintText: 'unique.name',
+      hintText: 'Julien',
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value == null || value.isEmpty) {

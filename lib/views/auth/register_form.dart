@@ -50,7 +50,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Email
-                        const Text("Votre email", style: kLabelGreenText,),
+                        const Text("Email", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),
@@ -64,7 +64,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         ),
 
                         // Mot de passe
-                        const Text("Votre mot de passe", style: kLabelGreenText,),
+                        const Text("Mot de passe", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),

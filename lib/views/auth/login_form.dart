@@ -48,7 +48,7 @@ class LoginForm extends StatelessWidget {
                       children: [
                         // Email
                         const Text(
-                          "Votre email",
+                          "Email",
                           style: kLabelGreenText,
                         ),
                         const SizedBox(
@@ -65,7 +65,7 @@ class LoginForm extends StatelessWidget {
 
                         // Mot de passe
                         const Text(
-                          "Votre mot de passe",
+                          "Mot de passe",
                           style: kLabelGreenText,
                         ),
                         const SizedBox(

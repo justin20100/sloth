@@ -18,10 +18,11 @@ class RegisterMoreForm extends StatelessWidget {
   String _firstname = "";
   String _lastname = "";
   String _phone = "";
-  String _status = "";
+
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: kColorCream,
       body: SafeArea(
@@ -41,7 +42,9 @@ class RegisterMoreForm extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Votre email", style: kLabelGreenText,),
+
+                        // Prénom
+                        const Text("Prénom", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),
@@ -53,7 +56,9 @@ class RegisterMoreForm extends StatelessWidget {
                         const SizedBox(
                           height: kNormalHorizontalSpacer,
                         ),
-                        const Text("Votre mot de passe", style: kLabelGreenText,),
+
+                        // Nom
+                        const Text("Nom", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),
@@ -63,7 +68,9 @@ class RegisterMoreForm extends StatelessWidget {
                         const SizedBox(
                           height: kNormalHorizontalSpacer,
                         ),
-                        const Text("Votre mot de passe", style: kLabelGreenText,),
+
+                        // Numéro de téléphone facultatif
+                        const Text("Numéro de téléhone (facultatif)", style: kLabelGreenText,),
                         const SizedBox(
                           height: kSmallHorizontalSpacer,
                         ),
@@ -71,25 +78,31 @@ class RegisterMoreForm extends StatelessWidget {
                           _phone = value;
                         }),
                         const SizedBox(
-                          height: kMicroVerticalSpacer,
+                          height: kNormalHorizontalSpacer,
                         ),
-                        Button(
+
+                        // Button
+                        Center(
+                          child: Button(
                             label: 'Etape suivante',
                             onPressed: () {
-                              if (_registerFormKey.currentState != null &&
-                                  _registerFormKey.currentState!.validate()) {
-                                Navigator.pushNamed(context, kRegisterMoreRoute);
+                              if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
+                                print(arguments);
+                                //Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': arguments['email'] , 'password': arguments['password']}  );
                               }
                             }),
+                        ),
                         const SizedBox(
                           height: kMicroVerticalSpacer,
                         ),
+
+                        // Redirection sur connection
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, kLoginRoute);
+                            Navigator.pop(context);
                           },
                           child: const Text(
-                            'Se connecter',
+                            'retour',
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),
