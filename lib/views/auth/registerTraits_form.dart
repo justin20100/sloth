@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
-import '../../data/echelleTraits_datas.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
-class RegisterTraitsForm extends StatelessWidget {
+class RegisterTraitsForm extends StatefulWidget {
   RegisterTraitsForm({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterTraitsForm> createState() => _RegisterTraitsFormState();
+}
+
+class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
   final _registerTraitsFormKey = GlobalKey<FormState>();
 
+  int _q1 = 0;
+  bool q1c1 = false;
+  bool q1c2 = false;
+  bool q1c3 = false;
+  bool q1c4 = false;
+  int _q2 = 0;
+  bool q2c1 = false;
+  bool q2c2 = false;
+  bool q2c3 = false;
+  bool q2c4 = false;
+  int _q3 = 0;
+  bool q3c1 = false;
+  bool q3c2 = false;
+  bool q3c3 = false;
+  bool q3c4 = false;
+  int _q4 = 0;
+  bool q4c1 = false;
+  bool q4c2 = false;
+  bool q4c3 = false;
+  bool q4c4 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +52,123 @@ class RegisterTraitsForm extends StatelessWidget {
       backgroundColor: kColorCream,
       body: SafeArea(
           child: Padding(
-              padding: const EdgeInsets.only(left: kNormalHorizontalSpacer*2, right: kNormalHorizontalSpacer*2),
+              padding: const EdgeInsets.only(left: kNormalHorizontalSpacer, right: kNormalHorizontalSpacer),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Form(
                     key: _registerTraitsFormKey,
                     child: Column(
-                      children: echelleTraitsDatas.map((element){
-                        return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Question 1
+                        const Text(
+                          "Assis à lire",
+                          style: kLabelGreenText,
+                        ),
+                        const SizedBox(
+                          height: kSmallHorizontalSpacer,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(element.label)
+                            Container(
+                              width: 65,
+                              height: 80,
+                              decoration: kBoxDecoration,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('Jamais',style:kCheckboxText, softWrap: true ),
+                                  Checkbox(
+                                      value: q1c1,
+                                      onChanged: (bool? value) {
+                                        _q1 = 1;
+                                        setState(() {
+                                          q1c4 = false;
+                                          q1c2 = false;
+                                          q1c3 = false;
+                                          q1c1 = value!;
+                                        });
+                                      })
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 65,
+                              height: 80,
+                              decoration: kBoxDecoration,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('Peu de chance',style:kCheckboxText,softWrap: true ,textAlign: TextAlign.center ),
+                                  Checkbox(
+                                      value: q1c2,
+                                      onChanged: (bool? value) {
+                                        _q1 = 2;
+                                        setState(() {
+                                          q1c1 = false;
+                                          q1c4 = false;
+                                          q1c3 = false;
+                                          q1c2 = value!;
+                                        });
+                                      })
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 65,
+                              height: 80,
+                              decoration: kBoxDecoration,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('Chance modérée',style:kCheckboxText,softWrap: true ,textAlign: TextAlign.center),
+                                  Checkbox(
+                                      value: q1c3,
+                                      onChanged: (bool? value) {
+                                        _q1 = 3;
+                                        setState(() {
+                                          q1c1 = false;
+                                          q1c2 = false;
+                                          q1c4 = false;
+                                          q1c3 = value!;
+                                        });
+                                      })
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 65,
+                              height: 80,
+                              decoration: kBoxDecoration,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('Forte chance',style:kCheckboxText,softWrap: true, textAlign: TextAlign.center),
+                                  Checkbox(
+                                      value: q1c4,
+                                      onChanged: (bool? value) {
+                                        _q1 = 4;
+                                        setState(() {
+                                          q1c1 = false;
+                                          q1c2 = false;
+                                          q1c3 = false;
+                                          q1c4 = value!;
+                                        });
+                                      })
+                                ],
+                              ),
+                            )
                           ],
-                        );
-                      }).toList(),
+                        ),
+                        const SizedBox(
+                          height: kNormalHorizontalSpacer,
+                        ),
+                      ]
                     ),
                   ),
                   Align(

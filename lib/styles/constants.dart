@@ -61,6 +61,12 @@ const kSmallLinkGreenText = TextStyle(
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
+const kCheckboxText = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 12.0,
+  color: kColorBlack,
+  decoration: TextDecoration.none,
+);
 
 
 const kTitleH1Style = TextStyle(
