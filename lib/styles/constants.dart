@@ -15,9 +15,9 @@ const kMainTextColor = kColorGrey;
 const kLabelColor = kMainTextColor;
 
 // vertical spacer
-const double kBigVerticalSpacer = 30;
-const double kNormalVerticalSpacer = 20;
-const double kSmallVerticalSpacer = 10;
+const double kBigVerticalSpacer = 35;
+const double kNormalVerticalSpacer = 25;
+const double kSmallVerticalSpacer = 15;
 const double kMicroVerticalSpacer = 5;
 
 // Horizontal spacer
