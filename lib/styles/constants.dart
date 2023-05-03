@@ -78,6 +78,14 @@ const kTitleH1Style = TextStyle(
 );
 const kBasicTextStyle = TextStyle(
   fontSize: 16.0,
+  height: 1.3,
+  fontFamily: 'Inter',
+  color: kColorBlack,
+  decoration: TextDecoration.none,
+);
+const k18BasicTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1.4,
   fontFamily: 'Inter',
   color: kColorBlack,
   decoration: TextDecoration.none,
