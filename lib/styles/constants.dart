@@ -51,6 +51,7 @@ const kBigGreenText = TextStyle(
 const kLabelGreenText = TextStyle(
   fontFamily: 'Inter',
   fontSize: 16.0,
+  height: 1.3,
   fontWeight: FontWeight.bold,
   color: kColorGreen,
   decoration: TextDecoration.none,
