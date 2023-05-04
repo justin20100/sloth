@@ -6,6 +6,7 @@ import 'package:sloth/views/auth/registerTraits_form.dart';
 
 import '../views/auth/login_form.dart';
 import '../views/auth/registerMore_form.dart';
+import '../views/auth/registerObjectifs_form.dart';
 import '../views/auth/register_form.dart';
 import '../views/auth/reset_password_form.dart';
 
@@ -19,7 +20,8 @@ Map<String, WidgetBuilder> router = {
   kIntersectionRoute: (context) => Intersection(),
   kRegisterRoute: (context) => RegisterForm(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
-  kRegisteTraitsRoute: (context) => RegisterTraitsForm(),
+  kRegisterTraitsRoute: (context) => RegisterTraitsForm(),
+  kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
   kLoginRoute: (context) => LoginForm(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
   kHomeRoute: (context) =>  const Home(),

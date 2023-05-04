@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
@@ -55,7 +56,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
 
   @override
   Widget build(BuildContext context) {
-    //final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
 
       appBar: AppBar(
@@ -1347,7 +1348,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             )
                           ],
                         ),
-                        const SizedBox(height: kNormalVerticalSpacer,),
+                        const SizedBox(height: kBigVerticalSpacer,),
                       ]
                   ),
                 ),
@@ -1357,10 +1358,25 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                       label: 'Derniere etape',
                       onPressed: () {
                         if (_registerTraitsFormKey.currentState != null && _registerTraitsFormKey.currentState!.validate()) {
-                          //Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': arguments['email'] , 'password': arguments['password']}  );
+                          Navigator.pushNamed(context, kRegisterObjectifsRoute, arguments: {
+                            'email': arguments['email'],
+                            'password': arguments['password'],
+                            'firstname': arguments['firstname'],
+                            'lastname':arguments['lastname'],
+                            'phone':arguments['phone'],
+                            'q1':_q1,
+                            'q2':_q2,
+                            'q3':_q3,
+                            'q4':_q4,
+                            'q5':_q5,
+                            'q6':_q6,
+                            'q7':_q7,
+                            'q8':_q8,
+                          });
                         }
                       }),
                 ),
+                const SizedBox(height: kBigVerticalSpacer,),
               ],
             )
         ),

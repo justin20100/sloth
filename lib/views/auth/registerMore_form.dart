@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/firstname_input.dart';
 import 'package:sloth/partials/forms/lastname_input.dart';
 import 'package:sloth/partials/forms/phone_input.dart';
+import 'package:sloth/routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
@@ -80,8 +81,7 @@ class RegisterMoreForm extends StatelessWidget {
                             label: 'Etape suivante',
                             onPressed: () {
                               if (_registerMoreFormKey.currentState != null && _registerMoreFormKey.currentState!.validate()) {
-                                print(arguments);
-                                //Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': arguments['email'] , 'password': arguments['password']}  );
+                                Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: { 'email': arguments['email'] , 'password': arguments['password'], 'firstname': _firstname, 'lastname':_lastname, 'phone':_phone??''}  );
                               }
                             }),
                         ),

@@ -6,7 +6,8 @@ const String kIntersectionRoute = '/intersection';
 const String kLoginRoute = '/login';
 const String kRegisterRoute = '/register';
 const String kRegisterMoreRoute = '/registerMore';
-const String kRegisteTraitsRoute = '/registerTraits';
+const String kRegisterTraitsRoute = '/registerTraits';
+const String kRegisterObjectifsRoute = '/registerObjectifs';
 const String kResetPasswordRoute = '/resetPassword';
 const String kError = '/error';
 // pages
