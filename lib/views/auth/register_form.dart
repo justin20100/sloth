@@ -25,101 +25,104 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kColorCream,
-      body: SafeArea(
-          child: Padding(
-              padding: const EdgeInsets.only(left: kNormalHorizontalSpacer*2, right: kNormalHorizontalSpacer*2),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+      body: SingleChildScrollView(
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Padding(
+                padding: const EdgeInsets.only(left: kNormalHorizontalSpacer*2, right: kNormalHorizontalSpacer*2),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
 
-                  // Logo plus Texte
-                  Column(
-                    children: const [
-                      Image(
-                        image: AssetImage('assets/img/logo.png'),
-                      ),
-                      Text('Inscrivez vous ci dessous.', style: kBigGreenText, textAlign: TextAlign.center),
-                    ],
-                  ),
-
-                  // Formulaire d'enregistrement
-                  Form(
-                    key: _registerFormKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Email
-                        const Text("Email", style: kLabelGreenText,),
-                        const SizedBox(
-                          height: kSmallHorizontalSpacer,
+                    // Logo plus Texte
+                    Column(
+                      children: const [
+                        Image(
+                          image: AssetImage('assets/img/logo.png'),
                         ),
-                        EmailInput(
-                          onChanged: (value) {
-                            _email = value;
-                          },
-                        ),
-                        const SizedBox(
-                          height: kNormalHorizontalSpacer,
-                        ),
-
-                        // Mot de passe
-                        const Text("Mot de passe", style: kLabelGreenText,),
-                        const SizedBox(
-                          height: kSmallHorizontalSpacer,
-                        ),
-                        PasswordInput(onChanged: (value) {
-                          _password = value;
-                          setState(() {
-                            _password;
-                          });
-                        }),
-                        const SizedBox(
-                          height: kNormalHorizontalSpacer,
-                        ),
-
-                        // Confirmation du mot de passe
-                        const Text("Confirmation du mot de passe", style: kLabelGreenText,),
-                        const SizedBox(
-                          height: kSmallHorizontalSpacer,
-                        ),
-                        ValidatedPasswordInput(password: _password, onChanged: (value) {_validated_password = value;}),
-                        const SizedBox(
-                          height: kNormalHorizontalSpacer,
-                        ),
-
-                        // Bouton
-                        Center(
-                          child: Button(
-                              label: 'Etape suivante',
-                              onPressed: () {
-                                if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
-                                  Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': _email, 'password': _password }  );
-                                }
-                              }),
-                        ),
-                        const SizedBox(
-                          height: kMicroVerticalSpacer,
-                        ),
-
-                        // Lien vers la pas de connection
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, kLoginRoute);
-                          },
-                          child: const Text(
-                            'Se connecter',
-                            style: kSmallLinkGreenText,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+                        Text('Inscrivez vous ci dessous.', style: kBigGreenText, textAlign: TextAlign.center),
                       ],
                     ),
-                  ),
-                ],
-              )
-          )
-      ),
+
+                    // Formulaire d'enregistrement
+                    Form(
+                      key: _registerFormKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Email
+                          const Text("Email", style: kLabelGreenText,),
+                          const SizedBox(
+                            height: kSmallHorizontalSpacer,
+                          ),
+                          EmailInput(
+                            onChanged: (value) {
+                              _email = value;
+                            },
+                          ),
+                          const SizedBox(
+                            height: kNormalHorizontalSpacer,
+                          ),
+
+                          // Mot de passe
+                          const Text("Mot de passe", style: kLabelGreenText,),
+                          const SizedBox(
+                            height: kSmallHorizontalSpacer,
+                          ),
+                          PasswordInput(onChanged: (value) {
+                            _password = value;
+                            setState(() {
+                              _password;
+                            });
+                          }),
+                          const SizedBox(
+                            height: kNormalHorizontalSpacer,
+                          ),
+
+                          // Confirmation du mot de passe
+                          const Text("Confirmation du mot de passe", style: kLabelGreenText,),
+                          const SizedBox(
+                            height: kSmallHorizontalSpacer,
+                          ),
+                          ValidatedPasswordInput(password: _password, onChanged: (value) {_validated_password = value;}),
+                          const SizedBox(
+                            height: kNormalHorizontalSpacer,
+                          ),
+
+                          // Bouton
+                          Center(
+                            child: Button(
+                                label: 'Etape suivante',
+                                onPressed: () {
+                                  if (_registerFormKey.currentState != null && _registerFormKey.currentState!.validate()) {
+                                    Navigator.pushNamed(context, kRegisterMoreRoute, arguments: { 'email': _email, 'password': _password }  );
+                                  }
+                                }),
+                          ),
+                          const SizedBox(
+                            height: kMicroVerticalSpacer*2,
+                          ),
+
+                          // Lien vers la pas de connection
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, kLoginRoute);
+                            },
+                            child: const Text(
+                              'Se connecter',
+                              style: kSmallLinkGreenText,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+            )
+        ),
+      )
     );
   }
 }

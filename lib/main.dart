@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             initialRoute: FirebaseAuth.instance.currentUser == null
-                ? kLoginRoute
+                ? kIntroductionRoute
                 : kHomeRoute,
             routes: router,
             theme: ThemeData(

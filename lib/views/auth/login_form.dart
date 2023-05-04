@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../models/error_firebase_auth.dart';
@@ -133,7 +131,7 @@ class LoginForm extends StatelessWidget {
                                   }),
                             ),
                             const SizedBox(
-                              height: kMicroVerticalSpacer,
+                              height: kMicroVerticalSpacer*2,
                             ),
                             GestureDetector(
                               onTap: () {

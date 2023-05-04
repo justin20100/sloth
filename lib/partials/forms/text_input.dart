@@ -43,6 +43,11 @@ class TextInput extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(7),
           ),
+          focusColor: kColorYellow,
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: kColorYellow,
+              )),
           errorStyle: TextStyle(),
       fillColor: kColorWhite,
       filled: true,
