@@ -73,26 +73,39 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         left: kSmallHorizontalSpacer,
                         right: kSmallHorizontalSpacer,
                         top: kSmallVerticalSpacer),
-                    child: TableCalendar(
-                      locale: 'fr_FR',
-                      firstDay: kFirstDay,
-                      lastDay: kLastDay,
-                      focusedDay: _focusedDay,
-                      calendarFormat: CalendarFormat.week,
-                      startingDayOfWeek: StartingDayOfWeek.monday,
-                      headerVisible: false,
-                      selectedDayPredicate: (day) {
-                        return isSameDay(_selectedDay, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        }
-                      },
-                    ),
+                    child: Column(
+                      children: [
+                        Center(child: Text(getTheDate(),style: kDateTextStyle,)),
+                        const SizedBox(height: kSmallVerticalSpacer,),
+                        TableCalendar(
+                          calendarStyle: const CalendarStyle(
+                            cellPadding: EdgeInsets.all(10),
+                          ),
+                          daysOfWeekStyle: const DaysOfWeekStyle(
+                            weekdayStyle: kDaysCalendarTextStyle,
+                            weekendStyle: kWeekendCalendarTextStyle,
+                          ),
+                          locale: 'fr_FR',
+                          firstDay: kFirstDay,
+                          lastDay: kLastDay,
+                          focusedDay: _focusedDay,
+                          calendarFormat: CalendarFormat.week,
+                          startingDayOfWeek: StartingDayOfWeek.monday,
+                          headerVisible: false,
+                          selectedDayPredicate: (day) {
+                            return isSameDay(_selectedDay, day);
+                          },
+                          onDaySelected: (selectedDay, focusedDay) {
+                            if (!isSameDay(_selectedDay, selectedDay)) {
+                              setState(() {
+                                _selectedDay = selectedDay;
+                                _focusedDay = focusedDay;
+                              });
+                            }
+                          },
+                        ),
+                      ],
+                    )
                   ),
                 ),
               ),
@@ -178,7 +191,7 @@ class CustomSliverPersistentHeaderDelegate
 
   @override
   double get maxExtent =>
-      100; // Définissez ici la hauteur maximale souhaitée pour votre en-tête
+      140; // Définissez ici la hauteur maximale souhaitée pour votre en-tête
 
   @override
   double get minExtent =>
