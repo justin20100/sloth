@@ -12,7 +12,6 @@ class Introduction extends StatefulWidget {
 }
 
 class _IntroductionState extends State<Introduction> {
-  // 1. Define a `GlobalKey` as part of the parent widget's state
   final _introKey = GlobalKey<IntroductionScreenState>();
   String _status = 'Waiting...';
 

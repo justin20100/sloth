@@ -12,3 +12,5 @@ const String kResetPasswordRoute = '/resetPassword';
 const String kError = '/error';
 // pages
 const String kHomeRoute = '/';
+// Notifications
+const String kNotificationsRoute = '/notifications';

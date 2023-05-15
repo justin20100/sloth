@@ -12,6 +12,7 @@ import '../views/auth/reset_password_form.dart';
 
 import '../views/home.dart';
 import '../views/introduction.dart';
+import '../views/pages/notifications.dart';
 
 Map<String, WidgetBuilder> router = {
   //introduction
@@ -24,7 +25,10 @@ Map<String, WidgetBuilder> router = {
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
   kLoginRoute: (context) => LoginForm(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
+  // Pages
   kHomeRoute: (context) =>  const Home(),
+  // Notifications
+  kNotificationsRoute: (context) => const Notifications(),
 };
 
 
