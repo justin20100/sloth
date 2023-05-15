@@ -91,3 +91,7 @@ const k18BasicTextStyle = TextStyle(
   color: kColorBlack,
   decoration: TextDecoration.none,
 );
+
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
