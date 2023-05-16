@@ -97,6 +97,13 @@ const kDaysCalendarTextStyle = TextStyle(
   color: kColorYellow,
   decoration: TextDecoration.none,
 );
+const kNumberDaysCalendarTextStyle = TextStyle(
+  fontSize: 15.0,
+  height: 1,
+  fontFamily: 'Inter',
+  color: kColorGrey,
+  decoration: TextDecoration.none,
+);
 const kDateTextStyle = TextStyle(
   fontSize: 20.0,
   height: 1,
@@ -105,19 +112,11 @@ const kDateTextStyle = TextStyle(
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
-const kWeekendCalendarTextStyle = TextStyle(
-  fontSize: 16.0,
-  height: 1,
-  fontFamily: 'Inter',
-  fontWeight: FontWeight.bold,
-  color: kColorGreen,
-  decoration: TextDecoration.none,
-);
 
+// Dates
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
-
 String getTheDate() {
   String day = '';
   String month = '';
