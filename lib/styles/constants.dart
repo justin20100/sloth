@@ -147,6 +147,14 @@ const kBurgerMenuSmallTextStyle = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
+const kheadingPageTextStyle = TextStyle(
+  fontSize: 24.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorDarkGreen,
+  decoration: TextDecoration.none,
+);
 
 // Dates
 final kToday = DateTime.now();

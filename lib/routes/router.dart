@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/auth/intersection.dart';
 import 'package:sloth/views/auth/registerTraits_form.dart';
+import 'package:sloth/views/pages/calendar.dart';
 
 import '../views/auth/login_form.dart';
 import '../views/auth/registerMore_form.dart';
@@ -29,6 +30,8 @@ Map<String, WidgetBuilder> router = {
   kHomeRoute: (context) =>  const Home(),
   // Notifications
   kNotificationsRoute: (context) => const Notifications(),
+  // Calendar
+  kCalendarRoute: (context) => const Calendar(),
 };
 
 

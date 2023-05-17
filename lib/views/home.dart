@@ -67,61 +67,118 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
             SliverPersistentHeader(
               pinned: true,
               delegate: CustomSliverPersistentHeaderDelegate(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: kColorCream,
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(45),
-                          bottomRight: Radius.circular(45)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.4),
-                          blurRadius: 6,
-                          offset: const Offset(0, 0),
-                        ),
-                      ]),
-                  child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: kSmallHorizontalSpacer * 3,
-                          right: kSmallHorizontalSpacer * 3,
-                          top: kSmallVerticalSpacer),
-                      child: Column(
-                        children: [
-                          // Date of the day
-                          Center(
-                              child: Text(
-                            getTheDate(),
-                            style: kDateTextStyle,
-                          )),
-                          const SizedBox(
-                            height: kSmallVerticalSpacer,
+                child: GestureDetector(
+                  onTap: () => {Navigator.pushNamed(context, kCalendarRoute)},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: kColorCream,
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(35),
+                            bottomRight: Radius.circular(35)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.4),
+                            blurRadius: 6,
+                            offset: const Offset(0, 0),
                           ),
-                          // Week calendar
-                          TableCalendar(
-                            rowHeight: 60,
-                            daysOfWeekStyle: const DaysOfWeekStyle(
-                              weekdayStyle: kDaysCalendarTextStyle,
-                              weekendStyle: kDaysCalendarTextStyle,
+                        ]),
+                    child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: kSmallHorizontalSpacer * 3,
+                            right: kSmallHorizontalSpacer * 3,
+                            top: kSmallVerticalSpacer),
+                        child: Column(
+                          children: [
+                            // Date of the day
+                            Center(
+                                child: Text(
+                              getTheDate(),
+                              style: kDateTextStyle,
+                            )),
+                            const SizedBox(
+                              height: kSmallVerticalSpacer,
                             ),
-                            calendarStyle: CalendarStyle(
-                              defaultTextStyle: kNumberDaysCalendarTextStyle,
-                              weekendTextStyle: kNumberDaysCalendarTextStyle,
-                              todayDecoration: BoxDecoration(
-                                color: kColorGreen,
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(10),
+                            // Week calendar
+                            TableCalendar(
+                              rowHeight: 60,
+                              daysOfWeekStyle: const DaysOfWeekStyle(
+                                weekdayStyle: kDaysCalendarTextStyle,
+                                weekendStyle: kDaysCalendarTextStyle,
                               ),
+                              calendarStyle: CalendarStyle(
+                                defaultTextStyle: kNumberDaysCalendarTextStyle,
+                                weekendTextStyle: kNumberDaysCalendarTextStyle,
+                                todayDecoration: BoxDecoration(
+                                  color: kColorGreen,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              locale: 'fr_FR',
+                              firstDay: kFirstDay,
+                              lastDay: kLastDay,
+                              focusedDay: _focusedDay,
+                              calendarFormat: CalendarFormat.week,
+                              startingDayOfWeek: StartingDayOfWeek.monday,
+                              headerVisible: false,
+                              calendarBuilders: CalendarBuilders(
+                                  todayBuilder: (context, day, e) {
+                                return GestureDetector(
+                                  onTap: () => {
+                                    Navigator.pushNamed(context, kCalendarRoute)
+                                  },
+                                  child: Container(
+                                    width: 35,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              day.day.toString(),
+                                              style:
+                                                  kNumberDaysCalendarTextStyle,
+                                            ),
+                                          ],
+                                        ),
+                                        Positioned(
+                                          bottom: 7,
+                                          child: Container(
+                                            width: 35,
+                                            height: 7,
+                                            decoration: BoxDecoration(
+                                              color: kColorGreen,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }, defaultBuilder: (context, day, e) {
+                                return GestureDetector(
+                                  onTap: () => {
+                                    Navigator.pushNamed(context, kCalendarRoute)
+                                  },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        day.day.toString(),
+                                        style: kNumberDaysCalendarTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
                             ),
-                            locale: 'fr_FR',
-                            firstDay: kFirstDay,
-                            lastDay: kLastDay,
-                            focusedDay: _focusedDay,
-                            calendarFormat: CalendarFormat.week,
-                            startingDayOfWeek: StartingDayOfWeek.monday,
-                            headerVisible: false,
-                          ),
-                        ],
-                      )),
+                          ],
+                        )),
+                  ),
                 ),
               ),
             ),

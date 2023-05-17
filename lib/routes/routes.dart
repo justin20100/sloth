@@ -14,3 +14,5 @@ const String kError = '/error';
 const String kHomeRoute = '/';
 // Notifications
 const String kNotificationsRoute = '/notifications';
+// Calendar
+const String kCalendarRoute = '/calendar';

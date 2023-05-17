@@ -4,8 +4,7 @@ class UserModel {
   final CollectionReference usersRef =
       FirebaseFirestore.instance.collection('users');
 
-  Future<void> createUser(String firstname, String lastname, String email,
-      String phone, Map traits, Map objectifs, String user_id) {
+  Future<void> createUser(String firstname, String lastname, String email, String phone, Map traits, Map objectifs, String user_id) {
     return usersRef
         .add({
           'firstname': firstname,
@@ -21,6 +20,7 @@ class UserModel {
   }
 
   Future<Map<String, dynamic>> getUserFullName(String id) async {
+
     try {
       final querySnapshot = await usersRef
           .where('user_id', isEqualTo: id)
