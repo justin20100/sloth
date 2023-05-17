@@ -133,6 +133,20 @@ const kHomeBoxesTextStyle = TextStyle(
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
+const kBurgerMenuTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1,
+  fontFamily: 'Inter',
+  color: kColorGrey,
+  decoration: TextDecoration.none,
+);
+const kBurgerMenuSmallTextStyle = TextStyle(
+  fontSize: 14.0,
+  height: 1,
+  fontFamily: 'Inter',
+  color: kColorDarkGreen,
+  decoration: TextDecoration.none,
+);
 
 // Dates
 final kToday = DateTime.now();

@@ -5,6 +5,9 @@ import 'package:sloth/tools/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import '../partials/burgerMenu/burgerMenu.dart';
+import '../partials/burgerMenu/sideBar.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,8 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomePageState extends State<Home> with TickerProviderStateMixin {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  final DateTime _focusedDay = DateTime.now();
 
   @override
   void initState() {
@@ -31,6 +33,14 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kColorCream,
+        drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          child: const Drawer(
+            child: SidebarScreen(),
+          ),
+        ),
         body: CustomScrollView(
           slivers: [
             // Navbar
@@ -39,18 +49,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
               toolbarHeight: 90,
               backgroundColor: kColorCream,
               elevation: 0,
-              leading: GestureDetector(
-                onTap: () =>
-                    {Navigator.pushNamed(context, kNotificationsRoute)},
-                child: const Padding(
-                  padding: EdgeInsets.only(left: kSmallHorizontalSpacer),
-                  child: Icon(
-                    Icons.menu_rounded,
-                    color: kColorGreen,
-                    size: 40,
-                  ),
-                ),
-              ),
+              leading: const BurgerMenu(),
               title: Image.asset('assets/img/slothLogo.jpg', width: 210),
               actions: [
                 GestureDetector(
@@ -70,21 +69,25 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
               delegate: CustomSliverPersistentHeaderDelegate(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: kColorCream,
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(45),bottomRight: Radius.circular(45)),
-                    boxShadow: [BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
-                      blurRadius: 6,
-                      offset: const Offset(0, 0),
-                    ),]
-                  ),
+                      color: kColorCream,
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(45),
+                          bottomRight: Radius.circular(45)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.4),
+                          blurRadius: 6,
+                          offset: const Offset(0, 0),
+                        ),
+                      ]),
                   child: Padding(
                       padding: const EdgeInsets.only(
-                          left: kSmallHorizontalSpacer*3,
-                          right: kSmallHorizontalSpacer*3,
+                          left: kSmallHorizontalSpacer * 3,
+                          right: kSmallHorizontalSpacer * 3,
                           top: kSmallVerticalSpacer),
                       child: Column(
                         children: [
+                          // Date of the day
                           Center(
                               child: Text(
                             getTheDate(),
@@ -93,6 +96,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           const SizedBox(
                             height: kSmallVerticalSpacer,
                           ),
+                          // Week calendar
                           TableCalendar(
                             rowHeight: 60,
                             daysOfWeekStyle: const DaysOfWeekStyle(
@@ -115,17 +119,6 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             calendarFormat: CalendarFormat.week,
                             startingDayOfWeek: StartingDayOfWeek.monday,
                             headerVisible: false,
-                            selectedDayPredicate: (day) {
-                              return isSameDay(_selectedDay, day);
-                            },
-                            onDaySelected: (selectedDay, focusedDay) {
-                              if (!isSameDay(_selectedDay, selectedDay)) {
-                                setState(() {
-                                  _selectedDay = selectedDay;
-                                  _focusedDay = focusedDay;
-                                });
-                              }
-                            },
                           ),
                         ],
                       )),
@@ -134,84 +127,143 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
             ),
             // Boxes
             SliverFillRemaining(
-                  child: ListView(
-                    padding: const EdgeInsets.only(left: kNormalHorizontalSpacer,right: kNormalHorizontalSpacer,top: kNormalVerticalSpacer),
-                    children: [
-                      // Day rapport box
-                      Container(
-                        decoration: kHomeBoxDecoration,
-                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
-                        child: Column(
-                          children: [
-                            const Text('Le rapport de la journée est disponible.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
-                            const SizedBox(height: kMicroVerticalSpacer*3,),
-                            Center(
-                              child: Button(label:'Remplir', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
-                              ),
-                            )
-                          ],
+              child: ListView(
+                padding: const EdgeInsets.only(
+                    left: kNormalHorizontalSpacer,
+                    right: kNormalHorizontalSpacer,
+                    top: kNormalVerticalSpacer),
+                children: [
+                  // Day rapport box
+                  Container(
+                    decoration: kHomeBoxDecoration,
+                    padding: const EdgeInsets.only(
+                        top: kNormalVerticalSpacer,
+                        right: kNormalHorizontalSpacer,
+                        bottom: kNormalVerticalSpacer,
+                        left: kNormalHorizontalSpacer),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Le rapport de la journée est disponible.',
+                          style: kHomeBoxesTextStyle,
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                      const SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      // Week rapport box
-                      Container(
-                        decoration: kHomeBoxDecoration,
-                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
-                        child: Column(
-                          children: [
-                            const Text('Le rapport hebdomadaire est disponible.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
-                            const SizedBox(height: kMicroVerticalSpacer*3,),
-                            Center(
-                              child: Button(label:'Remplir', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
-                              ),
-                            )
-                          ],
+                        const SizedBox(
+                          height: kMicroVerticalSpacer * 3,
                         ),
-                      ),
-                      const SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      // Symptomes box
-                      Container(
-                        decoration: kHomeBoxDecoration,
-                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
-                        child: Column(
-                          children: [
-                            const Text('Vous vous sentez mal ? identifiez vos symptômes.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
-                            const SizedBox(height: kMicroVerticalSpacer*3,),
-                            Center(
-                              child: Button(label:'identifier', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      // Articles box
-                      Container(
-                        decoration: kHomeBoxDecoration,
-                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
-                        child: Column(
-                          children: [
-                            const Text('Vous voulez en savoir plus sur la fatigue cognitive ?', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
-                            const SizedBox(height: kMicroVerticalSpacer*3,),
-                            Center(
-                              child: Button(label:'Voir les articles', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: kNormalVerticalSpacer,
-                      ),
-                    ],
+                        Center(
+                          child: Button(
+                            label: 'Remplir',
+                            onPressed: () {
+                              Navigator.pushNamed(context, kHomeRoute);
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-              )
+                  const SizedBox(
+                    height: kSmallVerticalSpacer,
+                  ),
+                  // Week rapport box
+                  Container(
+                    decoration: kHomeBoxDecoration,
+                    padding: const EdgeInsets.only(
+                        top: kNormalVerticalSpacer,
+                        right: kNormalHorizontalSpacer,
+                        bottom: kNormalVerticalSpacer,
+                        left: kNormalHorizontalSpacer),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Le rapport hebdomadaire est disponible.',
+                          style: kHomeBoxesTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer * 3,
+                        ),
+                        Center(
+                          child: Button(
+                            label: 'Remplir',
+                            onPressed: () {
+                              Navigator.pushNamed(context, kHomeRoute);
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: kSmallVerticalSpacer,
+                  ),
+                  // Symptomes box
+                  Container(
+                    decoration: kHomeBoxDecoration,
+                    padding: const EdgeInsets.only(
+                        top: kNormalVerticalSpacer,
+                        right: kNormalHorizontalSpacer,
+                        bottom: kNormalVerticalSpacer,
+                        left: kNormalHorizontalSpacer),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Vous vous sentez mal ? identifiez vos symptômes.',
+                          style: kHomeBoxesTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer * 3,
+                        ),
+                        Center(
+                          child: Button(
+                            label: 'identifier',
+                            onPressed: () {
+                              Navigator.pushNamed(context, kHomeRoute);
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: kSmallVerticalSpacer,
+                  ),
+                  // Articles box
+                  Container(
+                    decoration: kHomeBoxDecoration,
+                    padding: const EdgeInsets.only(
+                        top: kNormalVerticalSpacer,
+                        right: kNormalHorizontalSpacer,
+                        bottom: kNormalVerticalSpacer,
+                        left: kNormalHorizontalSpacer),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Vous voulez en savoir plus sur la fatigue cognitive ?',
+                          style: kHomeBoxesTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer * 3,
+                        ),
+                        Center(
+                          child: Button(
+                            label: 'Voir les articles',
+                            onPressed: () {
+                              Navigator.pushNamed(context, kHomeRoute);
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: kNormalVerticalSpacer,
+                  ),
+                ],
+              ),
+            )
           ],
         ));
   }

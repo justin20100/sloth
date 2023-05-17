@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/img/logo.png
     - assets/img/slothLogo.jpg
+    - assets/img/logoBM.jpg
     - assets/img/calendar.jpg
     - assets/img/symptomes.jpg
     - assets/img/objectifs.jpg
