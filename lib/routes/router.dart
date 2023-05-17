@@ -8,7 +8,7 @@ import '../views/auth/login_form.dart';
 import '../views/auth/registerMore_form.dart';
 import '../views/auth/registerObjectifs_form.dart';
 import '../views/auth/register_form.dart';
-import '../views/auth/reset_password_form.dart';
+import '../views/auth/resetPassword_form.dart';
 
 import '../views/home.dart';
 import '../views/introduction.dart';

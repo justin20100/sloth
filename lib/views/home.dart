@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/styles/constants.dart';
+import 'package:sloth/tools/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -32,6 +33,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
         backgroundColor: kColorCream,
         body: CustomScrollView(
           slivers: [
+            // Navbar
             SliverAppBar(
               pinned: true,
               toolbarHeight: 90,
@@ -62,6 +64,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                 ),
               ],
             ),
+            // header Week calendar
             SliverPersistentHeader(
               pinned: true,
               delegate: CustomSliverPersistentHeaderDelegate(
@@ -129,72 +132,86 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                 ),
               ),
             ),
+            // Boxes
             SliverFillRemaining(
-              child: Padding(
-                padding: const EdgeInsets.only(left: kNormalHorizontalSpacer,right: kNormalHorizontalSpacer),
                   child: ListView(
-                    padding: const EdgeInsets.only(top: kNormalVerticalSpacer),
+                    padding: const EdgeInsets.only(left: kNormalHorizontalSpacer,right: kNormalHorizontalSpacer,top: kNormalVerticalSpacer),
                     children: [
+                      // Day rapport box
                       Container(
-                        color: kColorWhite,
-                        height: 100,
+                        decoration: kHomeBoxDecoration,
+                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
+                        child: Column(
+                          children: [
+                            const Text('Le rapport de la journée est disponible.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
+                            const SizedBox(height: kMicroVerticalSpacer*3,),
+                            Center(
+                              child: Button(label:'Remplir', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: kSmallVerticalSpacer,
                       ),
+                      // Week rapport box
                       Container(
-                        color: kColorWhite,
-                        height: 100,
+                        decoration: kHomeBoxDecoration,
+                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
+                        child: Column(
+                          children: [
+                            const Text('Le rapport hebdomadaire est disponible.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
+                            const SizedBox(height: kMicroVerticalSpacer*3,),
+                            Center(
+                              child: Button(label:'Remplir', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: kSmallVerticalSpacer,
                       ),
+                      // Symptomes box
                       Container(
-                        color: kColorWhite,
-                        height: 100,
+                        decoration: kHomeBoxDecoration,
+                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
+                        child: Column(
+                          children: [
+                            const Text('Vous vous sentez mal ? identifiez vos symptômes.', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
+                            const SizedBox(height: kMicroVerticalSpacer*3,),
+                            Center(
+                              child: Button(label:'identifier', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: kSmallVerticalSpacer,
                       ),
+                      // Articles box
                       Container(
-                        color: kColorWhite,
-                        height: 100,
+                        decoration: kHomeBoxDecoration,
+                        padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer, bottom:kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
+                        child: Column(
+                          children: [
+                            const Text('Vous voulez en savoir plus sur la fatigue cognitive ?', style: kHomeBoxesTextStyle,textAlign: TextAlign.center,),
+                            const SizedBox(height: kMicroVerticalSpacer*3,),
+                            Center(
+                              child: Button(label:'Voir les articles', onPressed: () {Navigator.pushNamed(context, kHomeRoute);},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      Container(
-                        color: kColorWhite,
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      Container(
-                        color: kColorWhite,
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      Container(
-                        color: kColorWhite,
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
-                      Container(
-                        color: kColorWhite,
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: kSmallVerticalSpacer,
+                      const SizedBox(
+                        height: kNormalVerticalSpacer,
                       ),
                     ],
                   ),
               )
-            ),
           ],
         ));
   }

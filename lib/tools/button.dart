@@ -27,7 +27,7 @@ class Button extends StatelessWidget {
               alignment: Alignment.center,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-              textStyle: kBasicTextStyle,
+              textStyle: kButtonTextStyle,
             ),
             onPressed: onPressed,
             child: Text(label),

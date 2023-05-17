@@ -37,7 +37,13 @@ List<BoxShadow> kBoxShadowItem = [
 final kBoxDecoration = BoxDecoration(
     color: kColorWhite,
     boxShadow: kBoxShadowItem,
-    borderRadius: kBorderRadiusItem);
+    borderRadius: kBorderRadiusItem
+);
+final kHomeBoxDecoration = BoxDecoration(
+    color: kColorWhite,
+    boxShadow: kBoxShadowItem,
+    borderRadius: const BorderRadius.all(Radius.circular(13))
+);
 
 // Text Styles
 const kBigGreenText = TextStyle(
@@ -45,6 +51,13 @@ const kBigGreenText = TextStyle(
   fontSize: 24.0,
   fontWeight: FontWeight.bold,
   color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+const kButtonTextStyle = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 16.0,
+  fontWeight: FontWeight.bold,
+  color: kColorWhite,
   decoration: TextDecoration.none,
 );
 const kLabelGreenText = TextStyle(
@@ -107,6 +120,14 @@ const kNumberDaysCalendarTextStyle = TextStyle(
 const kDateTextStyle = TextStyle(
   fontSize: 20.0,
   height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+const kHomeBoxesTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1.3,
   fontFamily: 'Inter',
   fontWeight: FontWeight.bold,
   color: kColorGreen,
