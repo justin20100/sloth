@@ -22,7 +22,9 @@ class UserModel {
 
   Future<Map<String, dynamic>> getUserFullName(String id) async {
     try {
-      final querySnapshot = await usersRef.where('user_id', isEqualTo: id).get();
+      final querySnapshot = await usersRef
+          .where('user_id', isEqualTo: id)
+          .get(const GetOptions(source: Source.serverAndCache));
       if (querySnapshot.size > 0) {
         final userData = querySnapshot.docs.first.data() as Map<String, dynamic>;
         return {
@@ -37,5 +39,4 @@ class UserModel {
       return {};
     }
   }
-
 }
