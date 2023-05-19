@@ -10,49 +10,53 @@ import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
 class Intersection extends StatelessWidget {
-  Intersection({Key? key}) : super(key: key);
+  const Intersection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kColorCream,
-      body: SafeArea(
-          child: Padding(
-              padding: const EdgeInsets.only(
-                  left: kNormalHorizontalSpacer,
-                  right: kNormalHorizontalSpacer),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Image(
-                    image: AssetImage('assets/img/slothLogo.jpg'),
-                  ),
-                  const Text("C'est maintenant que tout commence ou continue.",
-                      style: kBigGreenText, textAlign: TextAlign.center
-                  ),
-                  Column(
-                    children: [
-                      Center(
-                        child: Button(
-                          label: "S'inscrire",
-                          onPressed: () {
-                            Navigator.pushNamed(context, kRegisterRoute);
-                          },
+    return WillPopScope(
+      onWillPop: () async => !(Navigator.of(context).userGestureInProgress),
+      child: Scaffold(
+        backgroundColor: kColorCream,
+        body: SafeArea(
+            child: Padding(
+                padding: const EdgeInsets.only(
+                    left: kNormalHorizontalSpacer,
+                    right: kNormalHorizontalSpacer),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Image(
+                      image: AssetImage('assets/img/slothLogo.jpg'),
+                    ),
+                    const Text(
+                        "C'est maintenant que tout commence ou continue.",
+                        style: kBigGreenText,
+                        textAlign: TextAlign.center),
+                    Column(
+                      children: [
+                        Center(
+                          child: Button(
+                            label: "S'inscrire",
+                            onPressed: () {
+                              Navigator.pushNamed(context, kRegisterRoute);
+                            },
+                          ),
                         ),
-                      ),
-                      SizedBox(height: kNormalVerticalSpacer),
-                      Center(
-                        child: Button(
-                          label: "Se connecter",
-                          onPressed: () {
-                            Navigator.pushNamed(context, kLoginRoute);
-                          },
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ))),
+                        SizedBox(height: kNormalVerticalSpacer),
+                        Center(
+                          child: Button(
+                            label: "Se connecter",
+                            onPressed: () {
+                              Navigator.pushNamed(context, kLoginRoute);
+                            },
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ))),
+      ),
     );
   }
 }

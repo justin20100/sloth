@@ -40,7 +40,8 @@ class _SidebarScreenState extends State<SidebarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return WillPopScope(onWillPop: () async => !(Navigator.of(context).userGestureInProgress),
+    child: Container(
       decoration: const BoxDecoration(
         color: kColorCream,
       ),
@@ -66,7 +67,6 @@ class _SidebarScreenState extends State<SidebarScreen> {
               const Text('Articles', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
               // Part 2
-
               const Text('Chronologie', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Statistiques', style: kBurgerMenuTextStyle,),
@@ -75,7 +75,10 @@ class _SidebarScreenState extends State<SidebarScreen> {
               const SizedBox(height: kSmallVerticalSpacer,),
               const Spacer(),
               // Part 3
-              const Text('Compte', style: kBurgerMenuTextStyle,),
+              GestureDetector(
+                onTap: ()=>{Navigator.pushNamed(context, kProfileRoute)},
+                child: const Text('Compte', style: kBurgerMenuTextStyle,),
+              ),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Paramètres', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
@@ -83,6 +86,7 @@ class _SidebarScreenState extends State<SidebarScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 }

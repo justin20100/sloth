@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
                 ? kIntroductionRoute
                 : kHomeRoute,
             routes: router,
-            theme: ThemeData(
-                fontFamily: 'Inter', backgroundColor: kColorCream),
+            theme: ThemeData(fontFamily: 'Inter'),
           );
         }
         return const ErrorScreen();

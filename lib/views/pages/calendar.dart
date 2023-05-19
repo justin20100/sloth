@@ -23,7 +23,7 @@ class _CalendarState extends State<Calendar> {
         elevation: 2,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
+            bottom: Radius.circular(30),
           ),
         ),
         toolbarHeight: 80,

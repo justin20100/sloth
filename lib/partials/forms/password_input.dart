@@ -12,7 +12,7 @@ class PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       return TextInput(
-        hintText: "Mot2passe",
+        hintText: "Motdepasse",
         keyboardType: TextInputType.visiblePassword,
         validator: (value) {
           if (value == null || value.isEmpty) {

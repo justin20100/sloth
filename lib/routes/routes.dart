@@ -9,6 +9,7 @@ const String kRegisterMoreRoute = '/registerMore';
 const String kRegisterTraitsRoute = '/registerTraits';
 const String kRegisterObjectifsRoute = '/registerObjectifs';
 const String kResetPasswordRoute = '/resetPassword';
+const String kProfileRoute = '/profile';
 const String kError = '/error';
 // pages
 const String kHomeRoute = '/';
@@ -16,3 +17,5 @@ const String kHomeRoute = '/';
 const String kNotificationsRoute = '/notifications';
 // Calendar
 const String kCalendarRoute = '/calendar';
+// Events
+const String kDReportRoute = '/dreport';

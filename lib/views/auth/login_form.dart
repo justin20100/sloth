@@ -19,7 +19,7 @@ class LoginForm extends StatelessWidget {
         backgroundColor: kColorCream,
         body: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height,
               child: Padding(
                   padding: const EdgeInsets.only(
                       left: kNormalHorizontalSpacer * 2,
@@ -38,7 +38,6 @@ class LoginForm extends StatelessWidget {
                               textAlign: TextAlign.center),
                         ],
                       ),
-
                       // Formulaire de connection
                       Form(
                         key: _loginFormKey,
@@ -96,23 +95,11 @@ class LoginForm extends StatelessWidget {
                               child: Button(
                                   label: "Se connecter",
                                   onPressed: () async {
-                                    if (_loginFormKey.currentState != null &&
-                                        _loginFormKey.currentState!
-                                            .validate()) {
+                                    if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                       try {
-                                        await FirebaseAuth.instance
-                                            .signInWithEmailAndPassword(
-                                            email: _email,
-                                            password: _password)
-                                            .then((value) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                content: Text(
-                                                    'Bonjour ${FirebaseAuth.instance.currentUser!.email}')),
-                                          );
-                                          Navigator.pushNamed(
-                                              context, kHomeRoute);
+                                        await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Bonjour ${FirebaseAuth.instance.currentUser!.email}')),);
+                                          Navigator.pushNamed(context, kHomeRoute);
                                         });
                                       } on FirebaseAuthException catch (e) {
                                         ScaffoldMessenger.of(context)
@@ -124,14 +111,14 @@ class LoginForm extends StatelessWidget {
                                                     color: Colors.white),
                                               ),
                                               backgroundColor:
-                                              Colors.redAccent),
+                                                  Colors.redAccent),
                                         );
                                       }
                                     }
                                   }),
                             ),
                             const SizedBox(
-                              height: kMicroVerticalSpacer*2,
+                              height: kMicroVerticalSpacer * 2,
                             ),
                             GestureDetector(
                               onTap: () {
@@ -151,8 +138,3 @@ class LoginForm extends StatelessWidget {
         ));
   }
 }
-
-
-
-
-

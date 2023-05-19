@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/auth/intersection.dart';
+import 'package:sloth/views/auth/profile.dart';
 import 'package:sloth/views/auth/registerTraits_form.dart';
+import 'package:sloth/views/events/dreport_form.dart';
 import 'package:sloth/views/pages/calendar.dart';
 
 import '../views/auth/login_form.dart';
@@ -26,12 +28,15 @@ Map<String, WidgetBuilder> router = {
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
   kLoginRoute: (context) => LoginForm(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
+  kResetPasswordRoute: (context) => ResetPasswordForm(),
+  kProfileRoute: (context) => Profile(),
   // Pages
   kHomeRoute: (context) =>  const Home(),
-  // Notifications
   kNotificationsRoute: (context) => const Notifications(),
-  // Calendar
   kCalendarRoute: (context) => const Calendar(),
+  // Events
+  kDReportRoute: (context) => DReportForm(),
+
 };
 
 

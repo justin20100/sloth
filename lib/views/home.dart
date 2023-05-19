@@ -212,7 +212,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           child: Button(
                             label: 'Remplir',
                             onPressed: () {
-                              Navigator.pushNamed(context, kHomeRoute);
+                              Navigator.pushNamed(context, kDReportRoute);
                             },
                           ),
                         )
