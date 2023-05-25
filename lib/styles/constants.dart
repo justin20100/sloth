@@ -102,6 +102,13 @@ const k18BasicTextStyle = TextStyle(
   color: kColorBlack,
   decoration: TextDecoration.none,
 );
+const k16BasicTextStyle = TextStyle(
+  fontSize: 16.0,
+  height: 1.4,
+  fontFamily: 'Inter',
+  color: kColorBlack,
+  decoration: TextDecoration.none,
+);
 const kDaysCalendarTextStyle = TextStyle(
   fontSize: 16.0,
   height: 1,
