@@ -13,9 +13,9 @@ class FirstNameInput extends StatelessWidget {
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Le prénom doit etre doit être renseigné.';
+          return 'Ce champ ne peut pas être vide';
         } else if (value.length < 2) {
-          return 'Le prénom doit contenir au moins 2 caractères.';
+          return 'Ce champ doit contenir au moins 2 caractères';
         }
       },
       onChanged: onChanged,

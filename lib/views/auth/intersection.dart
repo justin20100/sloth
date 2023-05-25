@@ -43,7 +43,7 @@ class Intersection extends StatelessWidget {
                             },
                           ),
                         ),
-                        SizedBox(height: kNormalVerticalSpacer),
+                        const SizedBox(height: kNormalVerticalSpacer),
                         Center(
                           child: Button(
                             label: "Se connecter",

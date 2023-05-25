@@ -17,10 +17,10 @@ class ValidatedPasswordInput extends StatelessWidget {
         keyboardType: TextInputType.visiblePassword,
         validator: (value) {
           if(value == null || value.isEmpty){
-            return 'Vous avez oublié de confirmer votre mot de passe';
+            return 'Ce champ ne peut pas être vide';
           }
           if (value != password) {
-            return 'Recopier correctement votre mot de passe';
+            return 'Vérifiez vos mots de passe';
           }
         },
         obscureText: true,

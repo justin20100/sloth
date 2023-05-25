@@ -10,7 +10,7 @@ class PhoneInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextInput(
-      hintText: '0000000000',
+      hintText: '04 40 25 36 45',
       keyboardType: TextInputType.phone,
       validator: (value) {
         return null;

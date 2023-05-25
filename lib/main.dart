@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:sloth/routes/router.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/error.dart';
-import 'package:sloth/styles/constants.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             initialRoute: FirebaseAuth.instance.currentUser == null
                 ? kIntroductionRoute
-                : kHomeRoute,
+                : kResetPasswordRoute,
             routes: router,
             theme: ThemeData(fontFamily: 'Inter'),
           );

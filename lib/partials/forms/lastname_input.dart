@@ -14,9 +14,9 @@ class LastNameInput extends StatelessWidget {
       keyboardType: TextInputType.text,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Le nom doit etre doit être renseigné.';
+          return 'Ce champ ne peut pas être vide';
         } else if (value.length < 2) {
-          return 'Le nom doit contenir au moins 2 caractères.';
+          return 'Ce champ doit contenir au moins 2 caractères.';
         }
       },
       onChanged: onChanged,

@@ -25,17 +25,11 @@ class ResetPEmailInput extends StatelessWidget {
       hintText: 'exemple@mail.com',
       keyboardType: TextInputType.emailAddress,
       validator: (value)  {
-/*
-        final emailList = FirebaseAuth.instance.fetchSignInMethodsForEmail(value!);
-*/
         if (value == null || value.isEmpty) {
-          return 'Vous avez oublié de remplir votre email';
+          return 'Ce champ ne peut pas être vide';
         } else if (!EmailValidator.validate(value)) {
-          return "L'adresse mail doit être valide";
+          return "Ceci n'est pas un email valide";
         }
-        /*else if (await checkIfEmailInUse(value)){
-        return "Cette email n'est pas associée a un compte Sloth.";
-        }*/
       },
       onChanged: onChanged,
     );

@@ -16,9 +16,9 @@ class PasswordInput extends StatelessWidget {
         keyboardType: TextInputType.visiblePassword,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Vous avez oublié de remplir votre mot de passe.';
+            return 'Ce champ ne peut pas être vide';
           } else if (value.length <= 10) {
-            return 'On demande 10 caractères, 1 chiffre et 1 majuscule.';
+            return 'On demande 10 caractères';
           }
         },
         obscureText: true,

@@ -15,9 +15,9 @@ class EmailInput extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Vous avez oublié de remplir votre email';
+          return 'Ce champ ne peut pas être vide';
         } else if (!EmailValidator.validate(value)) {
-          return "L'adresse mail doit être valide";
+          return "Ceci n'est pas un email valide";
         }
       },
       onChanged: onChanged,
