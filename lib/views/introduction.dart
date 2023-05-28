@@ -38,7 +38,7 @@ class _IntroductionState extends State<Introduction> {
       pages: [
         PageViewModel(
           title: "Bienvenue sur Sloth !",
-          body: "",
+          body: "Sloth permet de faire des autoévaluations de votre ressenti quotidien par rapport à votre fatigue cognitive, de vous informer sur cette fatigue, ...",
           image: const Image(
             image: AssetImage('assets/img/slothLogo.jpg'),
           ),
@@ -47,8 +47,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Structurez votre quotidien pour réduire votre fatigue cognitive.",
-          body: "",
+          title: "Structurez vos analyse pour réduire votre fatigue cognitive",
+          body: "Des rapports seront disponibles chaque jour en début de soirée pour évaluer vos ressentis de la journée",
           image: const Image(
             image: AssetImage('assets/img/calendar.jpg'),
           ),
@@ -57,8 +57,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Fixez vous des objectifs a accomplir.",
-          body: "",
+          title: "Fixez vous des objectifs a accomplir",
+          body: "Choisissez vos objectifs pendant votre inscription et nous vous aiderons à les réaliser",
           image: const Image(
             image: AssetImage('assets/img/objectifs.jpg'),
           ),
@@ -67,8 +67,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Analysez vos symptômes rapidement.",
-          body: "",
+          title: "Analysez vos symptômes rapidement",
+          body: "Recevez des informations sur les symptômes que vous ressentez",
           image: const Image(
             image: AssetImage('assets/img/symptomes.jpg'),
           ),
