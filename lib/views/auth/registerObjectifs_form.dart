@@ -47,7 +47,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                   ),
                   const Text(
                     'Objectifs',
-                    style: kBigGreenText,
+                    style: kBigLabelTextStyle,
                   ),
                   const SizedBox(
                     height: kBigVerticalSpacer,

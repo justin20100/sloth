@@ -40,7 +40,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         Image(
                           image: AssetImage('assets/img/logo.png'),
                         ),
-                        Text('Inscrivez vous ci dessous.', style: kBigGreenText, textAlign: TextAlign.center),
+                        Text('Inscrivez vous ci dessous.', style: kBigLabelTextStyle, textAlign: TextAlign.center),
                       ],
                     ),
 

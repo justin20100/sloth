@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             initialRoute: FirebaseAuth.instance.currentUser == null
                 ? kIntroductionRoute
-                : kHomeRoute,
+                : kDReportRoute,
             routes: router,
             theme: ThemeData(fontFamily: 'Inter'),
           );

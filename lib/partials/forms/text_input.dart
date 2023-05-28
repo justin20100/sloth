@@ -32,9 +32,9 @@ class TextInput extends StatelessWidget {
       obscureText: obscureText,
       autofocus: autofocus,
       cursorColor: kMainTextColor,
-      style: kBasicTextStyle,
+      style: k16BasicTextStyle,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(kSmallVerticalSpacer),
+          contentPadding: const EdgeInsets.all(kSmallVerticalSpacer),
           hintText: hintText,
           isDense: true,
           border: OutlineInputBorder(

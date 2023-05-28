@@ -33,7 +33,7 @@ class ResetPasswordForm extends StatelessWidget {
                         ),
                         Text(
                             'Recevoir un mail de réinitialisation du mot de passe.',
-                            style: kBigGreenText,
+                            style: kBigLabelTextStyle,
                             textAlign: TextAlign.center),
                       ],
                     ),

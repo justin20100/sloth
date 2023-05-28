@@ -8,7 +8,7 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(body: Center(child: Text("Nous avons un problème de connexion", style: kBasicTextStyle,))),
+      home: Scaffold(body: Center(child: Text("Nous avons un problème de connexion", style: k16BasicTextStyle,))),
     );
   }
 }

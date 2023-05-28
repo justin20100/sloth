@@ -32,7 +32,7 @@ class _CalendarState extends State<Calendar> {
           onTap: ()=>{Navigator.pop(context)},
           child: const Icon( Icons.arrow_back_ios_new_rounded , color: kColorGreen,),
         ),
-        title: const Text('Calendrier', style: kheadingPageTextStyle,),
+        title: const Text('Calendrier', style: kAppBarTextStyle,),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kSmallHorizontalSpacer * 3,),

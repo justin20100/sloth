@@ -45,19 +45,22 @@ final kHomeBoxDecoration = BoxDecoration(
     borderRadius: const BorderRadius.all(Radius.circular(13))
 );
 
-// Text Styles
-const kBigGreenText = TextStyle(
-  fontFamily: 'Inter',
-  fontSize: 24.0,
-  fontWeight: FontWeight.bold,
-  color: kColorGreen,
-  decoration: TextDecoration.none,
-);
+
+// ------------- Text Styles
+// Forms
 const kButtonTextStyle = TextStyle(
   fontFamily: 'Inter',
   fontSize: 16.0,
   fontWeight: FontWeight.bold,
   color: kColorWhite,
+  decoration: TextDecoration.none,
+);
+const kBigLabelTextStyle = TextStyle(
+  fontSize: 20.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
 const kLabelGreenText = TextStyle(
@@ -80,7 +83,6 @@ const kCheckboxText = TextStyle(
   color: kColorBlack,
   decoration: TextDecoration.none,
 );
-
 const kTitleH1Style = TextStyle(
   fontSize: 24.0,
   fontFamily: 'Inter',
@@ -88,9 +90,26 @@ const kTitleH1Style = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
-const kBasicTextStyle = TextStyle(
+//Calendar
+const kNumberDaysCalendarTextStyle = TextStyle(
+  fontSize: 15.0,
+  height: 1,
+  fontFamily: 'Inter',
+  color: kColorGrey,
+  decoration: TextDecoration.none,
+);
+const kDaysCalendarTextStyle = TextStyle(
   fontSize: 16.0,
-  height: 1.3,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorYellow,
+  decoration: TextDecoration.none,
+);
+// Basic Text
+const k16BasicTextStyle = TextStyle(
+  fontSize: 16.0,
+  height: 1.4,
   fontFamily: 'Inter',
   color: kColorBlack,
   decoration: TextDecoration.none,
@@ -102,44 +121,7 @@ const k18BasicTextStyle = TextStyle(
   color: kColorBlack,
   decoration: TextDecoration.none,
 );
-const k16BasicTextStyle = TextStyle(
-  fontSize: 16.0,
-  height: 1.4,
-  fontFamily: 'Inter',
-  color: kColorBlack,
-  decoration: TextDecoration.none,
-);
-const kDaysCalendarTextStyle = TextStyle(
-  fontSize: 16.0,
-  height: 1,
-  fontFamily: 'Inter',
-  fontWeight: FontWeight.bold,
-  color: kColorYellow,
-  decoration: TextDecoration.none,
-);
-const kNumberDaysCalendarTextStyle = TextStyle(
-  fontSize: 15.0,
-  height: 1,
-  fontFamily: 'Inter',
-  color: kColorGrey,
-  decoration: TextDecoration.none,
-);
-const kDateTextStyle = TextStyle(
-  fontSize: 20.0,
-  height: 1,
-  fontFamily: 'Inter',
-  fontWeight: FontWeight.bold,
-  color: kColorGreen,
-  decoration: TextDecoration.none,
-);
-const kHomeBoxesTextStyle = TextStyle(
-  fontSize: 18.0,
-  height: 1.3,
-  fontFamily: 'Inter',
-  fontWeight: FontWeight.bold,
-  color: kColorGreen,
-  decoration: TextDecoration.none,
-);
+// Burger menu
 const kBurgerMenuTextStyle = TextStyle(
   fontSize: 18.0,
   height: 1,
@@ -154,7 +136,8 @@ const kBurgerMenuSmallTextStyle = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
-const kheadingPageTextStyle = TextStyle(
+// AppBar
+const kAppBarTextStyle = TextStyle(
   fontSize: 24.0,
   height: 1,
   fontFamily: 'Inter',
@@ -163,7 +146,36 @@ const kheadingPageTextStyle = TextStyle(
   decoration: TextDecoration.none,
 );
 
-// Dates
+// Home - page
+const kHomeBoxesTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1.3,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+const kDateTextStyle = TextStyle(
+  fontSize: 20.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+// Introduction - page
+const kIntroTitleTextStyle = TextStyle(
+  fontSize: 20.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorDarkGreen,
+  decoration: TextDecoration.none,
+);
+
+
+
+// ------------- Dates Functions
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
@@ -172,64 +184,107 @@ String getTheDate() {
   String month = '';
   switch (kToday.weekday) {
     case 1:
-      day = 'Lundi';
+      day = 'lundi';
       break;
     case 2:
-      day = 'Mardi';
+      day = 'mardi';
       break;
     case 3:
-      day = 'Mercredi';
+      day = 'mercredi';
       break;
     case 4:
-      day = 'Jeudi';
+      day = 'jeudi';
       break;
     case 5:
-      day = 'Vendredi';
+      day = 'vendredi';
       break;
     case 6:
-      day = 'Samedi';
+      day = 'samedi';
       break;
     case 7:
-      day = 'Dimanche';
+      day = 'dimanche';
       break;
   }
   switch (kToday.month) {
     case 1:
-      month = 'Janvier';
+      month = 'janvier';
       break;
     case 2:
-      month = 'Février';
+      month = 'février';
       break;
     case 3:
-      month = 'Mars';
+      month = 'mars';
       break;
     case 4:
-      month = 'Avril';
+      month = 'avril';
       break;
     case 5:
-      month = 'Mai';
+      month = 'mai';
       break;
     case 6:
-      month = 'Juin';
+      month = 'juin';
       break;
     case 7:
-      month = 'Juillet';
+      month = 'juillet';
       break;
     case 8:
-      month = 'Aout';
+      month = 'aout';
       break;
     case 9:
-      month = 'Septembre';
+      month = 'septembre';
       break;
     case 10:
-      month = 'Octobre';
+      month = 'octobre';
       break;
     case 11:
-      month = 'Novembre';
+      month = 'novembre';
       break;
     case 12:
-      month = 'Decembre';
+      month = 'decembre';
       break;
   }
   return day+' '+kToday.day.toString()+' '+month;
+}
+String getTheDateNM() {
+  String day = '';
+  String month = '';
+  switch (kToday.month) {
+    case 1:
+      month = 'janvier';
+      break;
+    case 2:
+      month = 'février';
+      break;
+    case 3:
+      month = 'mars';
+      break;
+    case 4:
+      month = 'avril';
+      break;
+    case 5:
+      month = 'mai';
+      break;
+    case 6:
+      month = 'juin';
+      break;
+    case 7:
+      month = 'juillet';
+      break;
+    case 8:
+      month = 'aout';
+      break;
+    case 9:
+      month = 'septembre';
+      break;
+    case 10:
+      month = 'octobre';
+      break;
+    case 11:
+      month = 'novembre';
+      break;
+    case 12:
+      month = 'decembre';
+      break;
+  }
+  return '${kToday.day} $month';
 }

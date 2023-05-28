@@ -24,7 +24,7 @@ class Profile extends StatelessWidget {
           onTap: ()=>{Navigator.pop(context)},
           child: const Icon( Icons.arrow_back_ios_new_rounded , color: kColorGreen,),
         ),
-        title: const Text('Profile', style: kheadingPageTextStyle,),
+        title: const Text('Profile', style: kAppBarTextStyle,),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

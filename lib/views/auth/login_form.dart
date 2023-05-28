@@ -45,7 +45,7 @@ class LoginForm extends StatelessWidget {
                             image: AssetImage('assets/img/logo.png'),
                           ),
                           Text('Sloth est prêt a vous aider a nouveau !',
-                              style: kBigGreenText,
+                              style: kBigLabelTextStyle,
                               textAlign: TextAlign.center),
                         ],
                       ),
@@ -112,7 +112,7 @@ class LoginForm extends StatelessWidget {
                                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                               backgroundColor:kColorGreen,
                                               duration: Duration(seconds: 15),
-                                              content: Text('Bonjour, nous sommes content de vous revoir a nouveau.', style: TextStyle(color: kColorWhite),)
+                                              content: Text('Bonjour, nous sommes content de vous voir a nouveau sur Sloth.', style: TextStyle(color: kColorWhite, fontFamily: 'Inter'),)
                                           ),);
                                           Navigator.pushNamed(context, kHomeRoute);
                                         });

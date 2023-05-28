@@ -201,7 +201,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     child: Column(
                       children: [
                         const Text(
-                          'Le rapport de la journée est disponible.',
+                          'Remplicez votre rapport de la journée',
                           style: kHomeBoxesTextStyle,
                           textAlign: TextAlign.center,
                         ),

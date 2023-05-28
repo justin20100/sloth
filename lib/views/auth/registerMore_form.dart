@@ -33,7 +33,7 @@ class RegisterMoreForm extends StatelessWidget {
                       children: const [
                         Text(
                             'Nous avons encore besoins de quelques informations.',
-                            style: kBigGreenText,
+                            style: kBigLabelTextStyle,
                             textAlign: TextAlign.center),
                       ],
                     ),

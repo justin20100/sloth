@@ -31,7 +31,7 @@ class Intersection extends StatelessWidget {
                     ),
                     const Text(
                         "C'est maintenant que tout commence ou continue.",
-                        style: kBigGreenText,
+                        style: kBigLabelTextStyle,
                         textAlign: TextAlign.center),
                     Column(
                       children: [

@@ -71,7 +71,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
-                    const Text('Echelle de traits', style: kBigGreenText,),
+                    const Text('Echelle de traits', style: kBigLabelTextStyle,),
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
