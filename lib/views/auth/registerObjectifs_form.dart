@@ -29,7 +29,8 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
 
   @override
   Widget build(BuildContext context) {
-    //final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
         backgroundColor: kColorCream,
         body: SafeArea(
@@ -44,7 +45,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
-                  const Text('Objectifs', style: kBigGreenText,),
+                  const Text(
+                    'Objectifs',
+                    style: kBigGreenText,
+                  ),
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
@@ -255,38 +259,51 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                           null &&
                                       _registerObjectifsFormKey.currentState!
                                           .validate()) {
-                                    //await FirebaseAuth.instance.createUserWithEmailAndPassword(email: arguments['email'], password: arguments['password']);
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: arguments['email'],
+                                            password: arguments['password']);
                                     final user_id =
                                         FirebaseAuth.instance.currentUser!.uid;
-                                    /*_userModel.createUser(
-                                    arguments['firstname'],
-                                    arguments['lastname'],
-                                    arguments['email'],
-                                    arguments['phone'],
-                                    {
-                                      'q1': arguments['q1'],
-                                      'q2': arguments['q2'],
-                                      'q3': arguments['q3'],
-                                      'q4': arguments['q4'],
-                                      'q5': arguments['q5'],
-                                      'q6': arguments['q6'],
-                                      'q7': arguments['q7'],
-                                      'q8': arguments['q8'],
-                                    },
-                                    {
-                                      'o1': o1,
-                                      'o2': o2,
-                                      'o3': o3,
-                                      'o4': o4,
-                                      'o5': o5,
-                                      'o6': o6,
-                                      'o7': o7,
-                                      'o8': o8,
-                                      'o9': o9,
-                                      'o10': o10,
-                                    },
-                                    user_id,
-                                );*/
+                                    _userModel.createUser(
+                                      arguments['firstname'],
+                                      arguments['lastname'],
+                                      arguments['email'],
+                                      arguments['phone'],
+                                      {
+                                        'q1': arguments['q1'],
+                                        'q2': arguments['q2'],
+                                        'q3': arguments['q3'],
+                                        'q4': arguments['q4'],
+                                        'q5': arguments['q5'],
+                                        'q6': arguments['q6'],
+                                        'q7': arguments['q7'],
+                                        'q8': arguments['q8'],
+                                      },
+                                      {
+                                        'o1': o1,
+                                        'o2': o2,
+                                        'o3': o3,
+                                        'o4': o4,
+                                        'o5': o5,
+                                        'o6': o6,
+                                        'o7': o7,
+                                        'o8': o8,
+                                        'o9': o9,
+                                        'o10': o10,
+                                      },
+                                      user_id,
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          duration: Duration(seconds: 15),
+                                          backgroundColor: kColorGreen,
+                                          content: Text(
+                                            'Bonjour et bienvenue sur Sloth. Vous pouvez maintenant commencer a remplir Vos rapports quotidiens',
+                                            style:
+                                                TextStyle(color: kColorWhite),
+                                          )),
+                                    );
                                     Navigator.pushNamed(context, kHomeRoute);
                                   }
                                 }),

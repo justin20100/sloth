@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../models/UserModel.dart';
 import '../../models/error_firebase_auth.dart';
 import '../../partials/forms/email_input.dart';
 import '../../partials/forms/password_input.dart';
@@ -8,10 +10,19 @@ import '../../styles/constants.dart';
 import '../../tools/button.dart';
 
 class LoginForm extends StatelessWidget {
+  final UserModel _userModel = UserModel();
+
   LoginForm({Key? key}) : super(key: key);
   final _loginFormKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
+  late Map user = {};
+
+  Future<void> getUser() async {
+    final user_id = FirebaseAuth.instance.currentUser!.uid;
+    user = await _userModel.getUserFullName(user_id);
+    setState(){user;};
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +109,11 @@ class LoginForm extends StatelessWidget {
                                     if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                       try {
                                         await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Bonjour ${FirebaseAuth.instance.currentUser!.email}')),);
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              backgroundColor:kColorGreen,
+                                              duration: Duration(seconds: 15),
+                                              content: Text('Bonjour, nous sommes content de vous revoir a nouveau.', style: TextStyle(color: kColorWhite),)
+                                          ),);
                                           Navigator.pushNamed(context, kHomeRoute);
                                         });
                                       } on FirebaseAuthException catch (e) {
