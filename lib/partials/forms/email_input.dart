@@ -11,6 +11,7 @@ class EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextInput(
+      autofocus: true,
       hintText: 'exemple@mail.com',
       keyboardType: TextInputType.emailAddress,
       validator: (value) {

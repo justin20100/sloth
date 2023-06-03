@@ -96,16 +96,20 @@ class _DReportFormState extends State<DReportForm> {
               color: kColorGreen,
             ),
           ),
-          title: Text(
-            getTheDateNM(),
-            style: kAppBarTextStyle,
-          ),
+          title: Column(children: [
+            Text(
+              getTheDateNM(),
+              style: kAppBarTextStyle,
+            ),
+            SizedBox(height: 5,),
+            Text('Rapport quotidien',style: TextStyle(fontSize: 12, color: kColorGreen, fontWeight: FontWeight.bold),),
+          ],)
         ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-                left: kNormalHorizontalSpacer * 2,
-                right: kNormalHorizontalSpacer * 2),
+                left: kNormalHorizontalSpacer,
+                right: kNormalHorizontalSpacer),
             child: Form(
               key: _dReportFormKey,
               child: Column(
@@ -114,7 +118,7 @@ class _DReportFormState extends State<DReportForm> {
                   const SizedBox(height: kNormalVerticalSpacer),
                   //Text intro
                   const Text(
-                    'Comme chaque jour ce formulaire représente votre ressenti sur la journée que vous venez de passer.',
+                    'Comme chaque jour ce formulaire représente votre ressenti sur la journée que vous venez de passer. Remplissez ce rapport avec précaution.',
                     style: k16BasicTextStyle,
                   ),
                   const SizedBox(height: kNormalVerticalSpacer),
@@ -155,7 +159,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // Sleep
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Heure de couché",
@@ -192,7 +196,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // Sleep evaluation
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Comment évaluriez-vous votre sommeil ?",
@@ -219,16 +223,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _sleepevaluation,
@@ -245,7 +247,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // Niveau de fatigue cognitive
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Comment évaluriez-vous votre niveau de fatigue cognitive",
@@ -272,16 +274,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _cognitiveevaluation,
@@ -298,7 +298,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // Niveau de fatigue physique
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Comment évaluriez-vous votre niveau de fatigue physique",
@@ -325,16 +325,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _physiqueevaluation,
@@ -351,7 +349,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // More infos
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Autres informations (sieste, activité spéciale, consommation d'alcool ou de boisson énergisante,...) ",
@@ -385,7 +383,7 @@ class _DReportFormState extends State<DReportForm> {
                     ),
                   ),
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
 
                   // En generale
@@ -393,7 +391,6 @@ class _DReportFormState extends State<DReportForm> {
                     "De manière générale",
                     style: kLabelGreenText,
                   ),
-
                   // Motivation
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -416,16 +413,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
                           const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _motivation,
@@ -439,7 +434,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // Euphoria
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -462,16 +456,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _euphoria,
@@ -485,7 +477,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // State
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -508,16 +499,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _state,
@@ -531,7 +520,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // Mood
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -554,16 +542,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _mood,
@@ -577,7 +563,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // Stress
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -600,16 +585,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _stress,
@@ -623,7 +606,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // Anxiety
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -646,16 +628,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _anxiety,
@@ -669,7 +649,6 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-
                   // Fatigue
                   const SizedBox(
                     height: kNormalVerticalSpacer,
@@ -692,16 +671,14 @@ class _DReportFormState extends State<DReportForm> {
                       overlayColor: Colors.blue.withOpacity(0.3),
                       trackHeight: 6.0,
                       thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 10.0,
+                        enabledThumbRadius: 12.0,
                         elevation: 1.0,
-                        pressedElevation: 50.0,
+                        pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
-                      // Rendre les divisions inactives transparentes
-                      activeTickMarkColor: Colors
-                          .transparent, // Rendre les divisions actives transparentes
+                      activeTickMarkColor: Colors.transparent,
                     ),
                     child: Slider(
                       value: _fatigue,
@@ -718,7 +695,7 @@ class _DReportFormState extends State<DReportForm> {
 
                   // Sleep
                   const SizedBox(
-                    height: kNormalVerticalSpacer,
+                    height: kBigVerticalSpacer,
                   ),
                   const Text(
                     "Veuillez choisir le niveau correspondant à votre ressenti immédiat à l'aide du barème suivant",
