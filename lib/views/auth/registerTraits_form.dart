@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import '../../styles/constants.dart';
@@ -54,9 +56,41 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
   bool q8c3 = false;
   bool q8c4 = false;
 
+  resetIfChoiceCancel(bool c1,bool c2,bool c3, bool c4, String question){
+    if(c1 == false && c2 == false && c3 == false && c4 == false){
+      switch (question) {
+        case "q1":
+          _q1=0;
+          break;
+        case "q2":
+          _q2=0;
+          break;
+        case "q3":
+          _q3=0;
+          break;
+        case "q4":
+          _q4=0;
+          break;
+        case "q5":
+          _q5=0;
+          break;
+        case "q6":
+          _q6=0;
+          break;
+        case "q7":
+          _q7=0;
+          break;
+        case "q8":
+          _q8=0;
+          break;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
         backgroundColor: kColorCream,
         body: SafeArea(
@@ -71,7 +105,10 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
-                    const Text('Echelle de traits', style: kBigLabelTextStyle,),
+                    const Text(
+                      'Echelle de traits',
+                      style: kBigLabelTextStyle,
+                    ),
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
@@ -209,6 +246,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q1c2 = false;
                                                 q1c3 = false;
                                                 q1c1 = value!;
+                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
                                               });
                                             }),
                                       )
@@ -255,6 +293,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q1c4 = false;
                                                 q1c3 = false;
                                                 q1c2 = value!;
+                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                                _q1;
                                               });
                                             }),
                                       )
@@ -301,6 +341,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q1c2 = false;
                                                 q1c4 = false;
                                                 q1c3 = value!;
+                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                                _q1;
                                               });
                                             }),
                                       )
@@ -347,6 +389,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q1c2 = false;
                                                 q1c3 = false;
                                                 q1c4 = value!;
+                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
                                               });
                                             }),
                                       )
@@ -411,6 +454,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q2c2 = false;
                                                 q2c3 = false;
                                                 q2c1 = value!;
+                                                resetIfChoiceCancel(q2c1, q2c2, q2c3, q2c4, "q2");
                                               });
                                             }),
                                       )
@@ -457,6 +501,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q2c4 = false;
                                                 q2c3 = false;
                                                 q2c2 = value!;
+                                                resetIfChoiceCancel(q2c1, q2c2, q2c3, q2c4, "q2");
                                               });
                                             }),
                                       )
@@ -503,6 +548,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q2c2 = false;
                                                 q2c4 = false;
                                                 q2c3 = value!;
+                                                resetIfChoiceCancel(q2c1, q2c2, q2c3, q2c4, "q2");
                                               });
                                             }),
                                       )
@@ -549,6 +595,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q2c2 = false;
                                                 q2c3 = false;
                                                 q2c4 = value!;
+                                                resetIfChoiceCancel(q2c1, q2c2, q2c3, q2c4, "q2");
                                               });
                                             }),
                                       )
@@ -613,6 +660,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q3c2 = false;
                                                 q3c3 = false;
                                                 q3c1 = value!;
+                                                resetIfChoiceCancel(q3c1, q3c2, q3c3, q3c4, "q3");
                                               });
                                             }),
                                       )
@@ -659,6 +707,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q3c4 = false;
                                                 q3c3 = false;
                                                 q3c2 = value!;
+                                                resetIfChoiceCancel(q3c1, q3c2, q3c3, q3c4, "q3");
                                               });
                                             }),
                                       )
@@ -705,6 +754,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q3c2 = false;
                                                 q3c4 = false;
                                                 q3c3 = value!;
+                                                resetIfChoiceCancel(q3c1, q3c2, q3c3, q3c4, "q3");
                                               });
                                             }),
                                       )
@@ -751,6 +801,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q3c2 = false;
                                                 q3c3 = false;
                                                 q3c4 = value!;
+                                                resetIfChoiceCancel(q3c1, q3c2, q3c3, q3c4, "q3");
                                               });
                                             }),
                                       )
@@ -815,6 +866,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q4c2 = false;
                                                 q4c3 = false;
                                                 q4c1 = value!;
+                                                resetIfChoiceCancel(q4c1, q4c2, q4c3, q4c4, "q4");
                                               });
                                             }),
                                       )
@@ -861,6 +913,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q4c4 = false;
                                                 q4c3 = false;
                                                 q4c2 = value!;
+                                                resetIfChoiceCancel(q4c1, q4c2, q4c3, q4c4, "q4");
                                               });
                                             }),
                                       )
@@ -907,6 +960,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q4c2 = false;
                                                 q4c4 = false;
                                                 q4c3 = value!;
+                                                resetIfChoiceCancel(q4c1, q4c2, q4c3, q4c4, "q4");
                                               });
                                             }),
                                       )
@@ -953,6 +1007,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q4c2 = false;
                                                 q4c3 = false;
                                                 q4c4 = value!;
+                                                resetIfChoiceCancel(q4c1, q4c2, q4c3, q4c4, "q4");
                                               });
                                             }),
                                       )
@@ -1017,6 +1072,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q5c2 = false;
                                                 q5c3 = false;
                                                 q5c1 = value!;
+                                                resetIfChoiceCancel(q5c1, q5c2, q5c3, q5c4, "q5");
                                               });
                                             }),
                                       )
@@ -1063,6 +1119,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q5c4 = false;
                                                 q5c3 = false;
                                                 q5c2 = value!;
+                                                resetIfChoiceCancel(q5c1, q5c2, q5c3, q5c4, "q5");
                                               });
                                             }),
                                       )
@@ -1109,6 +1166,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q5c2 = false;
                                                 q5c4 = false;
                                                 q5c3 = value!;
+                                                resetIfChoiceCancel(q5c1, q5c2, q5c3, q5c4, "q5");
                                               });
                                             }),
                                       )
@@ -1155,6 +1213,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q5c2 = false;
                                                 q5c3 = false;
                                                 q5c4 = value!;
+                                                resetIfChoiceCancel(q5c1, q5c2, q5c3, q5c4, "q5");
                                               });
                                             }),
                                       )
@@ -1219,6 +1278,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q6c2 = false;
                                                 q6c3 = false;
                                                 q6c1 = value!;
+                                                resetIfChoiceCancel(q6c1, q6c2, q6c3, q6c4, "q6");
                                               });
                                             }),
                                       )
@@ -1265,6 +1325,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q6c4 = false;
                                                 q6c3 = false;
                                                 q6c2 = value!;
+                                                resetIfChoiceCancel(q6c1, q6c2, q6c3, q6c4, "q6");
                                               });
                                             }),
                                       )
@@ -1311,6 +1372,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q6c2 = false;
                                                 q6c4 = false;
                                                 q6c3 = value!;
+                                                resetIfChoiceCancel(q6c1, q6c2, q6c3, q6c4, "q6");
                                               });
                                             }),
                                       )
@@ -1357,6 +1419,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q6c2 = false;
                                                 q6c3 = false;
                                                 q6c4 = value!;
+                                                resetIfChoiceCancel(q6c1, q6c2, q6c3, q6c4, "q6");
                                               });
                                             }),
                                       )
@@ -1421,6 +1484,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q7c2 = false;
                                                 q7c3 = false;
                                                 q7c1 = value!;
+                                                resetIfChoiceCancel(q7c1, q7c2, q7c3, q7c4, "q7");
                                               });
                                             }),
                                       )
@@ -1467,6 +1531,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q7c4 = false;
                                                 q7c3 = false;
                                                 q7c2 = value!;
+                                                resetIfChoiceCancel(q7c1, q7c2, q7c3, q7c4, "q7");
                                               });
                                             }),
                                       )
@@ -1513,6 +1578,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q7c2 = false;
                                                 q7c4 = false;
                                                 q7c3 = value!;
+                                                resetIfChoiceCancel(q7c1, q7c2, q7c3, q7c4, "q7");
                                               });
                                             }),
                                       )
@@ -1559,6 +1625,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q7c2 = false;
                                                 q7c3 = false;
                                                 q7c4 = value!;
+                                                resetIfChoiceCancel(q7c1, q7c2, q7c3, q7c4, "q7");
                                               });
                                             }),
                                       )
@@ -1623,6 +1690,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q8c2 = false;
                                                 q8c3 = false;
                                                 q8c1 = value!;
+                                                resetIfChoiceCancel(q8c1, q8c2, q8c3, q8c4, "q8");
                                               });
                                             }),
                                       )
@@ -1669,6 +1737,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q8c4 = false;
                                                 q8c3 = false;
                                                 q8c2 = value!;
+                                                resetIfChoiceCancel(q8c1, q8c2, q8c3, q8c4, "q8");
                                               });
                                             }),
                                       )
@@ -1715,6 +1784,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q8c2 = false;
                                                 q8c4 = false;
                                                 q8c3 = value!;
+                                                resetIfChoiceCancel(q8c1, q8c2, q8c3, q8c4, "q8");
                                               });
                                             }),
                                       )
@@ -1761,6 +1831,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                                 q8c2 = false;
                                                 q8c3 = false;
                                                 q8c4 = value!;
+                                                resetIfChoiceCancel(q8c1, q8c2, q8c3, q8c4, "q8");
                                               });
                                             }),
                                       )
@@ -1774,37 +1845,69 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
                           ]),
                     ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Button(
-                          label: 'Dernière étape',
-                          onPressed: () {
-                            if (_registerTraitsFormKey.currentState != null &&
-                                _registerTraitsFormKey.currentState!
-                                    .validate()) {
-                              Navigator.pushNamed(
-                                  context, kRegisterObjectifsRoute,
-                                  arguments: {
-                                    'email': arguments['email'],
-                                    'password': arguments['password'],
-                                    'firstname': arguments['firstname'],
-                                    'lastname':arguments['lastname'],
-                                    'phone':arguments['phone'],
-                                    'q1': _q1,
-                                    'q2': _q2,
-                                    'q3': _q3,
-                                    'q4': _q4,
-                                    'q5': _q5,
-                                    'q6': _q6,
-                                    'q7': _q7,
-                                    'q8': _q8,
-                                  });
-                            }
-                          }),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'Précédent',
+                            style: kSmallLinkGreenText,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Button(
+                            label: 'Ètape suivante',
+                            onPressed: () {
+                              if(
+                              _q1!=0 &&
+                              _q2!=0 &&
+                              _q3!=0 &&
+                              _q4!=0 &&
+                              _q5!=0 &&
+                              _q6!=0 &&
+                              _q7!=0 &&
+                              _q8!=0
+                              ){
+                                if (_registerTraitsFormKey.currentState != null &&
+                                    _registerTraitsFormKey.currentState!
+                                        .validate()) {
+                                  Navigator.pushNamed(
+                                      context, kRegisterObjectifsRoute,
+                                      arguments: {
+                                        'email': arguments['email'],
+                                        'password': arguments['password'],
+                                        'firstname': arguments['firstname'],
+                                        'lastname':arguments['lastname'],
+                                        'phone':arguments['phone'],
+                                        'q1': _q1,
+                                        'q2': _q2,
+                                        'q3': _q3,
+                                        'q4': _q4,
+                                        'q5': _q5,
+                                        'q6': _q6,
+                                        'q7': _q7,
+                                        'q8': _q8,
+                                      });
+                                }
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      duration: Duration(seconds: 15),
+                                      backgroundColor: kColorRed,
+                                      content: Text("Il semblerait que vous n'avez pas répondu à toutes les questions.",style: TextStyle(color: kColorWhite)),
+                                    )
+                                );
+
+                              }
+
+
+                            }),
+                      ],
                     ),
-                    const SizedBox(
-                      height: kBigVerticalSpacer,
-                    ),
+                    SizedBox(height: kBigVerticalSpacer,)
                   ],
                 )),
           ),

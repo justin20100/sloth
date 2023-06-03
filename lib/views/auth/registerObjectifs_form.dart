@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/models/UserModel.dart';
@@ -26,11 +28,20 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
   bool o8 = false;
   bool o9 = false;
   bool o10 = false;
+  int _selectedCount = 0;
+
+  Type updateSelectedCount(value){
+    if(value==true){
+      _selectedCount ++;
+    }else{
+      _selectedCount --;
+    }
+    return Null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
         backgroundColor: kColorCream,
         body: SafeArea(
@@ -55,6 +66,8 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                   const Text(
                       "Qu'est ce que vous aimeriez accomplir avec Sloth ? Quels sont vos objectifs ? Cochez les objectifs qui correspondent aux votres.",
                       style: k16BasicTextStyle),
+                  const SizedBox(height: kSmallVerticalSpacer,),
+                  _selectedCount<2 ? Text('Il vous faut sélectionner encore ${2-_selectedCount} objectifs minimum.', style: k16BasicTextStyle,) : Text("Vous avez sélectionné assez d'objectifs pour continuer.", style: k16BasicTextStyle,),
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
@@ -94,7 +107,9 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                         width: 1, color: kColorGreen),
                               ),
                               onChanged: (bool? value) {
+                                updateSelectedCount(value);
                                 setState(() {
+                                  _selectedCount;
                                   o1 = value!;
                                 });
                               },
@@ -132,7 +147,9 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                         width: 1, color: kColorGreen),
                               ),
                               onChanged: (bool? value) {
+                                  updateSelectedCount(value);
                                 setState(() {
+                                  _selectedCount;
                                   o2 = value!;
                                 });
                               },
@@ -168,7 +185,9 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                         width: 1, color: kColorGreen),
                               ),
                               onChanged: (bool? value) {
+                                updateSelectedCount(value);
                                 setState(() {
+                                  _selectedCount;
                                   o3 = value!;
                                 });
                               },
@@ -204,7 +223,9 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                         width: 1, color: kColorGreen),
                               ),
                               onChanged: (bool? value) {
+                                updateSelectedCount(value);
                                 setState(() {
+                                  _selectedCount;
                                   o4 = value!;
                                 });
                               },
@@ -240,7 +261,9 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                         width: 1, color: kColorGreen),
                               ),
                               onChanged: (bool? value) {
+                                updateSelectedCount(value);
                                 setState(() {
+                                  _selectedCount;
                                   o5 = value!;
                                 });
                               },
@@ -249,67 +272,78 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                           const SizedBox(
                             height: kBigVerticalSpacer,
                           ),
-                          // Button
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: Button(
-                                label: 'Terminer',
-                                onPressed: () async {
-                                  if (_registerObjectifsFormKey.currentState !=
-                                          null &&
-                                      _registerObjectifsFormKey.currentState!
-                                          .validate()) {
-                                    await FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
-                                            email: arguments['email'],
-                                            password: arguments['password']);
-                                    final user_id =
-                                        FirebaseAuth.instance.currentUser!.uid;
-                                    _userModel.createUser(
-                                      arguments['firstname'],
-                                      arguments['lastname'],
-                                      arguments['email'],
-                                      arguments['phone'],
-                                      {
-                                        'q1': arguments['q1'],
-                                        'q2': arguments['q2'],
-                                        'q3': arguments['q3'],
-                                        'q4': arguments['q4'],
-                                        'q5': arguments['q5'],
-                                        'q6': arguments['q6'],
-                                        'q7': arguments['q7'],
-                                        'q8': arguments['q8'],
-                                      },
-                                      {
-                                        'o1': o1,
-                                        'o2': o2,
-                                        'o3': o3,
-                                        'o4': o4,
-                                        'o5': o5,
-                                        'o6': o6,
-                                        'o7': o7,
-                                        'o8': o8,
-                                        'o9': o9,
-                                        'o10': o10,
-                                      },
-                                      user_id,
-                                    );
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          duration: Duration(seconds: 15),
-                                          backgroundColor: kColorGreen,
-                                          content: Text(
-                                            'Bonjour et bienvenue sur Sloth. Vous pouvez maintenant commencer a remplir Vos rapports quotidiens',
-                                            style:
-                                                TextStyle(color: kColorWhite),
-                                          )),
-                                    );
-                                    Navigator.pushNamed(context, kHomeRoute);
-                                  }
-                                }),
-                          ),
                         ],
                       )),
+                  // Button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Précédent',
+                          style: kSmallLinkGreenText,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Button(
+                          label: 'Terminer',
+                          onPressed: () async {
+                            if (_registerObjectifsFormKey.currentState != null &&
+                                _registerObjectifsFormKey.currentState!
+                                    .validate() && _selectedCount>2) {
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                  email: arguments['email'],
+                                  password: arguments['password']);
+                              final user_id =
+                                  FirebaseAuth.instance.currentUser!.uid;
+                              _userModel.createUser(
+                                arguments['firstname'],
+                                arguments['lastname'],
+                                arguments['email'],
+                                arguments['phone'],
+                                {
+                                  'q1': arguments['q1'],
+                                  'q2': arguments['q2'],
+                                  'q3': arguments['q3'],
+                                  'q4': arguments['q4'],
+                                  'q5': arguments['q5'],
+                                  'q6': arguments['q6'],
+                                  'q7': arguments['q7'],
+                                  'q8': arguments['q8'],
+                                },
+                                {
+                                  'o1': o1,
+                                  'o2': o2,
+                                  'o3': o3,
+                                  'o4': o4,
+                                  'o5': o5,
+                                  'o6': o6,
+                                  'o7': o7,
+                                  'o8': o8,
+                                  'o9': o9,
+                                  'o10': o10,
+                                },
+                                user_id,
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    duration: Duration(seconds: 15),
+                                    backgroundColor: kColorGreen,
+                                    content: Text(
+                                      'Bonjour et bienvenue sur Sloth. Vous pouvez maintenant commencer a remplir Vos rapports quotidiens',
+                                      style: TextStyle(color: kColorWhite),
+                                    )),
+                              );
+                              Navigator.pushNamed(context, kHomeRoute);
+                            }
+                          }),
+                    ],
+                  ),
+                  SizedBox(height: kBigVerticalSpacer,)
                 ],
               ),
             ),

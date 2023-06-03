@@ -20,8 +20,8 @@ class ResetPasswordForm extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Padding(
                 padding: const EdgeInsets.only(
-                    left: kNormalHorizontalSpacer * 2,
-                    right: kNormalHorizontalSpacer * 2),
+                    left: kNormalHorizontalSpacer,
+                    right: kNormalHorizontalSpacer),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -61,59 +61,61 @@ class ResetPasswordForm extends StatelessWidget {
                           const SizedBox(
                             height: kBigVerticalSpacer * 2,
                           ),
-
-                          // Bouton
-                          Center(
-                            child: Button(
-                                label: "Recevoir un mail",
-                                onPressed: () async {
-                                  if (_resetPasswordFormKey.currentState !=
-                                          null &&
-                                      _resetPasswordFormKey.currentState!
-                                          .validate()) {
-                                    try {
-                                      await FirebaseAuth.instance
-                                          .sendPasswordResetEmail(email: _email)
-                                          .then((value) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          const SnackBar(
-                                              content: Text(
-                                                  "L'email de reinitialisation du mot de passe a été envoyé")),
-                                        );
-                                        Navigator.pushNamed(
-                                            context, kLoginRoute);
-                                      });
-                                    } on FirebaseAuthException catch (e) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                            content: Text(
-                                              errors[e.code]!,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            backgroundColor: Colors.redAccent),
-                                      );
-                                    }
-                                  }
-                                }),
-                          ),
-                          const SizedBox(
-                            height: kMicroVerticalSpacer,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, kLoginRoute);
-                            },
-                            child: const Text(
-                              'Se connecter',
-                              style: kSmallLinkGreenText,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
                         ],
                       ),
+                    ),
+                    // Bouton
+                    Column(
+                      children: [
+                        Center(
+                          child: Button(
+                              label: "Recevoir un mail",
+                              onPressed: () async {
+                                if (_resetPasswordFormKey.currentState !=
+                                    null &&
+                                    _resetPasswordFormKey.currentState!
+                                        .validate()) {
+                                  try {
+                                    await FirebaseAuth.instance
+                                        .sendPasswordResetEmail(email: _email)
+                                        .then((value) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text("L'email de reinitialisation du mot de passe a été envoyé")),
+                                      );
+                                      Navigator.pushNamed(
+                                          context, kLoginRoute);
+                                    });
+                                  } on FirebaseAuthException catch (e) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                            errors[e.code]!,
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.redAccent),
+                                    );
+                                  }
+                                }
+                              }),
+                        ),
+                        const SizedBox(
+                          height: kMicroVerticalSpacer*2,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context, kLoginRoute);
+                          },
+                          child: const Text(
+                            'Retour',
+                            style: kSmallLinkGreenText,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ))),

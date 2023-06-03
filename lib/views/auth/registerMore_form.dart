@@ -15,8 +15,7 @@ class RegisterMoreForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: kColorCream,
       body: SingleChildScrollView(
@@ -24,13 +23,16 @@ class RegisterMoreForm extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Padding(
                 padding: const EdgeInsets.only(
-                    left: kNormalHorizontalSpacer * 2,
-                    right: kNormalHorizontalSpacer * 2),
+                    left: kNormalHorizontalSpacer,
+                    right: kNormalHorizontalSpacer),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: const [
+                        Image(
+                          image: AssetImage('assets/img/logo.png'),
+                        ),
                         Text(
                             'Nous avons encore besoins de quelques informations.',
                             style: kBigLabelTextStyle,
@@ -89,13 +91,26 @@ class RegisterMoreForm extends StatelessWidget {
                           const SizedBox(
                             height: kNormalHorizontalSpacer,
                           ),
-
-                          // Button
-                          Center(
-                            child: Button(
-                                label: 'Etape suivante',
-                                onPressed: () {
-                                  if (_registerMoreFormKey.currentState !=
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'Retour',
+                            style: kSmallLinkGreenText,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Button(
+                            label: 'Etape suivante',
+                            onPressed: () {
+                              if (_registerMoreFormKey.currentState !=
                                           null &&
                                       _registerMoreFormKey.currentState!
                                           .validate()) {
@@ -109,26 +124,9 @@ class RegisterMoreForm extends StatelessWidget {
                                           'phone': _phone ?? ''
                                         });
                                   }
-                                }),
-                          ),
-                          const SizedBox(
-                            height: kMicroVerticalSpacer,
-                          ),
-
-                          // Redirection sur connection
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                              'Retour',
-                              style: kSmallLinkGreenText,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                            }),
+                      ],
+                    )
                   ],
                 ))),
       ),

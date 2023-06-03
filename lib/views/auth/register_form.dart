@@ -30,11 +30,15 @@ class _RegisterFormState extends State<RegisterForm> {
         backgroundColor: kColorCream,
         body: SingleChildScrollView(
           child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height,
               child: Padding(
                   padding: const EdgeInsets.only(
-                      left: kNormalHorizontalSpacer * 2,
-                      right: kNormalHorizontalSpacer * 2),
+                      left: kNormalHorizontalSpacer,
+                      right: kNormalHorizontalSpacer,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -121,21 +125,28 @@ class _RegisterFormState extends State<RegisterForm> {
                                   },
                                   builder: (FormFieldState<bool> field) {
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
                                       children: [
                                         Checkbox(
                                           activeColor: kColorGreen,
                                           checkColor: kColorYellow,
-                                          side: MaterialStateBorderSide.resolveWith(
-                                                (states) => BorderSide(
-                                              width: 1.4,
-                                              color: field.hasError ? kColorRed : kColorGreen,
-                                            ),
+                                          side: MaterialStateBorderSide
+                                              .resolveWith(
+                                                (states) =>
+                                                BorderSide(
+                                                  width: 1.4,
+                                                  color: field.hasError
+                                                      ? kColorRed
+                                                      : kColorGreen,
+                                                ),
                                           ),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4),
+                                            borderRadius: BorderRadius.circular(
+                                                4),
                                           ),
-                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          materialTapTargetSize: MaterialTapTargetSize
+                                              .shrinkWrap,
                                           value: _dataUsageAccepted,
                                           onChanged: (value) {
                                             setState(() {
@@ -151,66 +162,64 @@ class _RegisterFormState extends State<RegisterForm> {
                                 Expanded(
                                   child: RichText(
                                       text: TextSpan(
-                                    text: "Accepter les ",
-                                    style: k12BasicTextStyle,
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text:
+                                        text: "Accepter les ",
+                                        style: k12BasicTextStyle,
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text:
                                             "conditions d'utilisation des données",
-                                        style: const TextStyle(
-                                          color: kColorGreen,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            Navigator.pushNamed(
-                                                context, kDataUsageRoute);
-                                          },
-                                      ),
-                                    ],
-                                  )),
+                                            style: const TextStyle(
+                                              color: kColorGreen,
+                                              decoration: TextDecoration
+                                                  .underline,
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.pushNamed(
+                                                    context, kDataUsageRoute);
+                                              },
+                                          ),
+                                        ],
+                                      )),
                                 ),
                               ],
                             ),
-
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
-                            ),
-                            // Bouton
-                            Center(
-                              child: Button(
-                                  label: 'Etape suivante',
-                                  onPressed: () {
-                                    if (_registerFormKey.currentState != null &&
-                                        _registerFormKey.currentState!
-                                            .validate()) {
-                                      Navigator.pushNamed(
-                                          context, kRegisterMoreRoute,
-                                          arguments: {
-                                            'email': _email,
-                                            'password': _password
-                                          });
-                                    }
-                                  }),
-                            ),
-                            const SizedBox(
-                              height: kMicroVerticalSpacer * 2,
-                            ),
-
-                            // Lien vers la pas de connection
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, kLoginRoute);
-                              },
-                              child: const Text(
-                                'Se connecter',
-                                style: kSmallLinkGreenText,
-                                textAlign: TextAlign.center,
-                              ),
                             ),
                           ],
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, kLoginRoute);
+                            },
+                            child: const Text(
+                              'Se connecter',
+                              style: kSmallLinkGreenText,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Button(
+                              label: 'Etape suivante',
+                              onPressed: () {
+                                if (_registerFormKey.currentState !=
+                                    null &&
+                                    _registerFormKey.currentState!
+                                        .validate()) {
+                                  Navigator.pushNamed(
+                                      context, kRegisterMoreRoute,
+                                      arguments: {
+                                        'email': _email,
+                                        'password': _password
+                                      });
+                                }
+                              }),
+                        ],
+                      )
                     ],
                   ))),
         ));

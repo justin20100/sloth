@@ -33,8 +33,8 @@ class LoginForm extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               child: Padding(
                   padding: const EdgeInsets.only(
-                      left: kNormalHorizontalSpacer * 2,
-                      right: kNormalHorizontalSpacer * 2),
+                      left: kNormalHorizontalSpacer,
+                      right: kNormalHorizontalSpacer),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -85,7 +85,7 @@ class LoginForm extends StatelessWidget {
                               _password = value;
                             }),
                             const SizedBox(
-                              height: kMicroVerticalSpacer,
+                              height: kMicroVerticalSpacer*2,
                             ),
                             GestureDetector(
                               onTap: () {
@@ -97,56 +97,52 @@ class LoginForm extends StatelessWidget {
                                 style: kSmallLinkGreenText,
                               ),
                             ),
-                            const SizedBox(
-                              height: kSmallHorizontalSpacer * 5,
-                            ),
-
-                            // Bouton
-                            Center(
-                              child: Button(
-                                  label: "Se connecter",
-                                  onPressed: () async {
-                                    if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
-                                      try {
-                                        await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                              backgroundColor:kColorGreen,
-                                              duration: Duration(seconds: 15),
-                                              content: Text('Bonjour, nous sommes content de vous voir a nouveau sur Sloth.', style: TextStyle(color: kColorWhite, fontFamily: 'Inter'),)
-                                          ),);
-                                          Navigator.pushNamed(context, kHomeRoute);
-                                        });
-                                      } on FirebaseAuthException catch (e) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                              content: Text(
-                                                errors[e.code]!,
-                                                style: const TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor:
-                                                  Colors.redAccent),
-                                        );
-                                      }
-                                    }
-                                  }),
-                            ),
-                            const SizedBox(
-                              height: kMicroVerticalSpacer * 2,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, kRegisterRoute);
-                              },
-                              child: const Text(
-                                'Créer un compte',
-                                style: kSmallLinkGreenText,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
                           ],
                         ),
+                      ),
+                      // Bouton
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, kRegisterRoute);
+                            },
+                            child: const Text(
+                              'Créer un compte',
+                              style: kSmallLinkGreenText,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Button(
+                              label: "Se connecter",
+                              onPressed: () async {
+                                if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
+                                  try {
+                                    await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
+                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                          backgroundColor:kColorGreen,
+                                          duration: Duration(seconds: 15),
+                                          content: Text('Bonjour, nous sommes content de vous voir a nouveau sur Sloth.', style: TextStyle(color: kColorWhite, fontFamily: 'Inter'),)
+                                      ),);
+                                      Navigator.pushNamed(context, kHomeRoute);
+                                    });
+                                  } on FirebaseAuthException catch (e) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                            errors[e.code]!,
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          backgroundColor:
+                                          Colors.redAccent),
+                                    );
+                                  }
+                                }
+                              }),
+                        ],
                       ),
                     ],
                   ))),

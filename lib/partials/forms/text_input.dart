@@ -32,7 +32,7 @@ class TextInput extends StatelessWidget {
       obscureText: obscureText,
       autofocus: autofocus,
       cursorColor: kMainTextColor,
-      style: k16BasicTextStyle,
+      style: k14BasicTextStyle,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(kSmallVerticalSpacer),
           hintText: hintText,
@@ -44,11 +44,18 @@ class TextInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
           ),
           focusColor: kColorYellow,
-          focusedBorder: const OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: kColorYellow,
-              )),
-          errorStyle: TextStyle(),
+              ),
+            borderRadius: BorderRadius.circular(7),
+          ),
+          errorStyle: TextStyle(
+            fontSize: 12,
+            color: kColorRed,
+            height: 0.6,
+
+          ),
       fillColor: kColorWhite,
       filled: true,
     ),);

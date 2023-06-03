@@ -58,10 +58,10 @@ const kButtonTextStyle = TextStyle(
 );
 const kBigLabelTextStyle = TextStyle(
   fontSize: 20.0,
-  height: 1,
+  height: 1.4,
   fontFamily: 'Inter',
   fontWeight: FontWeight.bold,
-  color: kColorDarkGreen,
+  color: kColorGreen,
   decoration: TextDecoration.none,
 );
 const kLabelGreenText = TextStyle(
@@ -76,7 +76,7 @@ const kSmallLinkGreenText = TextStyle(
   fontFamily: 'Inter',
   fontSize: 14.0,
   color: kColorGreen,
-  decoration: TextDecoration.none,
+  decoration: TextDecoration.underline,
 );
 const kCheckboxText = TextStyle(
   fontFamily: 'Inter',
