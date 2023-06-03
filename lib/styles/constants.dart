@@ -8,6 +8,7 @@ const kColorCream = Color(0xFFFFFAF3);
 const kColorGrey = Color(0xFF3A3A3A);
 const kColorBlack = Color(0xFF000000);
 const kColorWhite = Color(0xFFFFFFFF);
+const kColorRed = Color(0xFFFF0000);
 
 // Text color
 const kMainBackgroundColor = kColorCream;
@@ -107,6 +108,20 @@ const kDaysCalendarTextStyle = TextStyle(
   decoration: TextDecoration.none,
 );
 // Basic Text
+const k12BasicTextStyle = TextStyle(
+  fontSize: 12.0,
+  height: 1.2,
+  fontFamily: 'Inter',
+  color: kColorBlack,
+  decoration: TextDecoration.none,
+);
+const k14BasicTextStyle = TextStyle(
+  fontSize: 14.0,
+  height: 1.2,
+  fontFamily: 'Inter',
+  color: kColorBlack,
+  decoration: TextDecoration.none,
+);
 const k16BasicTextStyle = TextStyle(
   fontSize: 16.0,
   height: 1.4,
@@ -119,6 +134,15 @@ const k18BasicTextStyle = TextStyle(
   height: 1.4,
   fontFamily: 'Inter',
   color: kColorBlack,
+  decoration: TextDecoration.none,
+);
+// Basic Title
+const kh2BasicTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1.4,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
   decoration: TextDecoration.none,
 );
 // Burger menu

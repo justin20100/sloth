@@ -5,6 +5,7 @@ const String kIntroductionRoute = '/introduction';
 const String kIntersectionRoute = '/intersection';
 const String kLoginRoute = '/login';
 const String kRegisterRoute = '/register';
+const String kDataUsageRoute = '/dataUsage';
 const String kRegisterMoreRoute = '/registerMore';
 const String kRegisterTraitsRoute = '/registerTraits';
 const String kRegisterObjectifsRoute = '/registerObjectifs';

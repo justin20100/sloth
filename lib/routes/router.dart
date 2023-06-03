@@ -7,6 +7,7 @@ import 'package:sloth/views/auth/registerTraits_form.dart';
 import 'package:sloth/views/events/dreport_form.dart';
 import 'package:sloth/views/pages/calendar.dart';
 
+import '../views/auth/dataUsage.dart';
 import '../views/auth/login_form.dart';
 import '../views/auth/registerMore_form.dart';
 import '../views/auth/registerObjectifs_form.dart';
@@ -23,6 +24,7 @@ Map<String, WidgetBuilder> router = {
   //auth
   kIntersectionRoute: (context) => Intersection(),
   kRegisterRoute: (context) => RegisterForm(),
+  kDataUsageRoute: (context) => DataUsage(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
   kRegisterTraitsRoute: (context) => RegisterTraitsForm(),
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
