@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/models/EventsModel.dart';
+import 'package:sloth/tools/functions.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
@@ -12,6 +14,7 @@ class DReportForm extends StatefulWidget {
 }
 
 class _DReportFormState extends State<DReportForm> {
+  final EventsModel _eventsModel = EventsModel();
   TextEditingController _WakeUpController = TextEditingController();
   TextEditingController _SleepController = TextEditingController();
   final _dReportFormKey = GlobalKey<FormState>();
@@ -26,8 +29,11 @@ class _DReportFormState extends State<DReportForm> {
   late double _stress = 2.5;
   late double _anxiety = 2.5;
   late double _fatigue = 2.5;
+  late DateTime _sleep;
+  late DateTime _wakeup;
   String? _fellingLevel;
-
+  bool _checkformdone = false;
+  String user_id ="";
   List<String> feelingLevelList = [
     'Extrêmement éveillé : 1',
     'Très éveillé : 2',
@@ -48,6 +54,7 @@ class _DReportFormState extends State<DReportForm> {
     );
 
     if (pickedTime != null) {
+      _wakeup = DateTime(kToday.year, kToday.month, kToday.day, pickedTime.hour, pickedTime.minute);
       // Format the selected time as desired
       String formattedTime = pickedTime.format(context);
       setState(() {
@@ -63,6 +70,7 @@ class _DReportFormState extends State<DReportForm> {
     );
 
     if (pickedTime != null) {
+      _sleep = DateTime(kToday.year, kToday.month, kToday.day, pickedTime.hour, pickedTime.minute);;
       // Format the selected time as desired
       String formattedTime = pickedTime.format(context);
       setState(() {
@@ -73,6 +81,7 @@ class _DReportFormState extends State<DReportForm> {
 
   @override
   void initState() {
+    user_id = getUserID();
     super.initState();
   }
 
@@ -737,6 +746,60 @@ class _DReportFormState extends State<DReportForm> {
                     ),
                   ),
 
+                  // check form done
+                  const SizedBox(
+                    height: kBigVerticalSpacer,
+                  ),
+                  Row(
+                    children: [
+                      FormField<bool>(
+                        validator: (value) {
+                          if (_checkformdone == false) {
+                            return 'Required.';
+                          }
+                        },
+                        builder: (FormFieldState<bool> field) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment
+                                .start,
+                            children: [
+                              Checkbox(
+                                activeColor: kColorGreen,
+                                checkColor: kColorYellow,
+                                side: MaterialStateBorderSide
+                                    .resolveWith(
+                                      (states) =>
+                                      BorderSide(
+                                        width: 1.4,
+                                        color: field.hasError
+                                            ? kColorRed
+                                            : kColorGreen,
+                                      ),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      4),
+                                ),
+                                materialTapTargetSize: MaterialTapTargetSize
+                                    .shrinkWrap,
+                                value: _checkformdone,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _checkformdone = value!;
+                                    field.didChange(value);
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                      const Expanded(
+                          child: Text("Je valide avoir bien rempli le formulaire avec attention", style: kLabelGreenText,)
+                      )
+                    ],
+                  ),
+
                   // Button
                   SizedBox(
                     height: kBigVerticalSpacer,
@@ -748,6 +811,7 @@ class _DReportFormState extends State<DReportForm> {
                         onPressed: () {
                           if (_dReportFormKey.currentState != null &&
                               _dReportFormKey.currentState!.validate()) {
+                            _eventsModel.createDReport(kToday, _anxiety, _cognitiveevaluation, _euphoria, _mood, _moreinfos, _motivation, _physiqueevaluation, _sleep, _sleepevaluation, _state, _stress, _wakeup, user_id);
                             Navigator.pushNamed(context, kHomeRoute);
                           }
                         }),
