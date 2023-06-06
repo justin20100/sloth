@@ -71,7 +71,7 @@ class _SidebarScreenState extends State<SidebarScreen> {
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Statistiques', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
-              const Text('(Tuteur) ou (Tutorat)', style: kBurgerMenuTextStyle,),
+              const Text('Slotheurs zone', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Spacer(),
               // Part 3

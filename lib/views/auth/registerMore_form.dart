@@ -34,7 +34,7 @@ class RegisterMoreForm extends StatelessWidget {
                           image: AssetImage('assets/img/logo.png'),
                         ),
                         Text(
-                            'Nous avons encore besoins de quelques informations.',
+                            'Nous avons encore besoins de quelques informations',
                             style: kBigLabelTextStyle,
                             textAlign: TextAlign.center),
                       ],
@@ -79,7 +79,7 @@ class RegisterMoreForm extends StatelessWidget {
 
                           // Numéro de téléphone facultatif
                           const Text(
-                            "Numéro de téléhone (facultatif)",
+                            "Numéro de téléphone (facultatif)",
                             style: kLabelGreenText,
                           ),
                           const SizedBox(
@@ -102,13 +102,13 @@ class RegisterMoreForm extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           child: const Text(
-                            'Retour',
+                            'Précédent',
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Button(
-                            label: 'Etape suivante',
+                            label: 'Ètape suivante',
                             onPressed: () {
                               if (_registerMoreFormKey.currentState !=
                                           null &&

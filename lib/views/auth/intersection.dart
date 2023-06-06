@@ -30,7 +30,7 @@ class Intersection extends StatelessWidget {
                       image: AssetImage('assets/img/slothLogo.jpg'),
                     ),
                     const Text(
-                        "C'est maintenant que tout commence ou continue.",
+                        "C'est maintenant que tout commence ou continue",
                         style: kBigLabelTextStyle,
                         textAlign: TextAlign.center),
                     Column(

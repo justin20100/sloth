@@ -40,6 +40,9 @@ final kBoxDecoration = BoxDecoration(
     boxShadow: kBoxShadowItem,
     borderRadius: kBorderRadiusItem
 );
+final kSnackbarBoxDecoration = BoxDecoration(
+    color: kColorGreen,
+);
 final kHomeBoxDecoration = BoxDecoration(
     color: kColorWhite,
     boxShadow: kBoxShadowItem,

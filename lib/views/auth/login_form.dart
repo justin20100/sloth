@@ -120,11 +120,29 @@ class LoginForm extends StatelessWidget {
                                 if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                   try {
                                     await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                          backgroundColor:kColorGreen,
-                                          duration: Duration(seconds: 15),
-                                          content: Text('Bonjour, nous sommes content de vous voir a nouveau sur Sloth.', style: TextStyle(color: kColorWhite, fontFamily: 'Inter'),)
-                                      ),);
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            elevation: 20,
+                                            duration: const Duration(seconds: 15),
+                                            backgroundColor: kColorGreen,
+                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(35), topRight:Radius.circular(35))),
+                                            content: Container(
+                                              color: kColorGreen,
+                                                child: Column(
+                                                  children: const [
+                                                    Image(
+                                                      image: AssetImage('assets/img/logowhite.png'),
+                                                    ),
+                                                    SizedBox(height: kSmallVerticalSpacer,),
+                                                    Text(
+                                                      'Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.',
+                                                      style: TextStyle(color: kColorWhite, fontSize: 16, height: 1.5),
+                                                    ),
+                                                    SizedBox(height: kNormalVerticalSpacer,),
+                                                  ],
+                                                )
+                                            )),
+                                      );
                                       Navigator.pushNamed(context, kHomeRoute);
                                     });
                                   } on FirebaseAuthException catch (e) {

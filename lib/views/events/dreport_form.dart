@@ -15,8 +15,8 @@ class DReportForm extends StatefulWidget {
 
 class _DReportFormState extends State<DReportForm> {
   final EventsModel _eventsModel = EventsModel();
-  TextEditingController _WakeUpController = TextEditingController();
-  TextEditingController _SleepController = TextEditingController();
+  final TextEditingController _WakeUpController = TextEditingController();
+  final TextEditingController _SleepController = TextEditingController();
   final _dReportFormKey = GlobalKey<FormState>();
   late double _sleepevaluation = 2.5;
   late double _cognitiveevaluation = 2.5;
@@ -54,8 +54,7 @@ class _DReportFormState extends State<DReportForm> {
     );
 
     if (pickedTime != null) {
-      _wakeup = DateTime(kToday.year, kToday.month, kToday.day, pickedTime.hour, pickedTime.minute);
-      // Format the selected time as desired
+      _wakeup = DateTime(kToday.year, kToday.month, kToday.day-1, pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
         _WakeUpController.text = formattedTime;
@@ -70,8 +69,7 @@ class _DReportFormState extends State<DReportForm> {
     );
 
     if (pickedTime != null) {
-      _sleep = DateTime(kToday.year, kToday.month, kToday.day, pickedTime.hour, pickedTime.minute);;
-      // Format the selected time as desired
+      _sleep = DateTime(kToday.year, kToday.month, kToday.day-1, pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
         _SleepController.text = formattedTime;
@@ -127,7 +125,7 @@ class _DReportFormState extends State<DReportForm> {
                   const SizedBox(height: kNormalVerticalSpacer),
                   //Text intro
                   const Text(
-                    'Comme chaque jour ce formulaire représente votre ressenti sur la journée que vous venez de passer. Remplissez ce rapport avec précaution.',
+                    "Comme chaque jour ce formulaire représente votre ressenti sur votre journée d'hier. Remplissez ce rapport avec précaution.",
                     style: k16BasicTextStyle,
                   ),
                   const SizedBox(height: kNormalVerticalSpacer),

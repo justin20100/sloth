@@ -18,9 +18,19 @@ class Home extends StatefulWidget {
 class _HomePageState extends State<Home> with TickerProviderStateMixin {
   final DateTime _focusedDay = DateTime.now();
 
+/*  bool checkIfDreportDisplay(){
+
+    if (0<kToday.hour && kToday.hour>12 && ){
+      return true
+    }else{
+      return false
+    }
+  }*/
+
   @override
   void initState() {
     super.initState();
+
     initializeDateFormatting();
   }
 
@@ -233,7 +243,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     child: Column(
                       children: [
                         const Text(
-                          'Le rapport hebdomadaire est disponible.',
+                          'Le rapport hebdomadaire a été calculé pour vous',
                           style: kHomeBoxesTextStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -242,7 +252,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         ),
                         Center(
                           child: Button(
-                            label: 'Remplir',
+                            label: 'Consulter',
                             onPressed: () {
                               Navigator.pushNamed(context, kHomeRoute);
                             },
@@ -339,12 +349,10 @@ class CustomSliverPersistentHeaderDelegate
   }
 
   @override
-  double get maxExtent =>
-      150; // Définissez ici la hauteur maximale souhaitée pour votre en-tête
+  double get maxExtent => 150;
 
   @override
-  double get minExtent =>
-      10; // Définissez ici la hauteur minimale souhaitée pour votre en-tête
+  double get minExtent => 10;
 
   @override
   bool shouldRebuild(CustomSliverPersistentHeaderDelegate oldDelegate) {

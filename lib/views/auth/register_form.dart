@@ -48,7 +48,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           Image(
                             image: AssetImage('assets/img/logo.png'),
                           ),
-                          Text('Inscrivez vous ci dessous.',
+                          Text('Inscrivez vous ci dessous',
                               style: kBigLabelTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -204,7 +204,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             ),
                           ),
                           Button(
-                              label: 'Etape suivante',
+                              label: 'Ètape suivante',
                               onPressed: () {
                                 if (_registerFormKey.currentState !=
                                     null &&

@@ -293,7 +293,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                           onPressed: () async {
                             if (_registerObjectifsFormKey.currentState != null &&
                                 _registerObjectifsFormKey.currentState!
-                                    .validate() && _selectedCount>2) {
+                                    .validate() && _selectedCount>=2) {
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                   email: arguments['email'],
@@ -330,12 +330,26 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                 user_id,
                               );
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    duration: Duration(seconds: 15),
+                                SnackBar(
+                                    elevation: 20,
+                                    duration: const Duration(seconds: 15),
                                     backgroundColor: kColorGreen,
-                                    content: Text(
-                                      'Bonjour et bienvenue sur Sloth. Vous pouvez maintenant commencer a remplir Vos rapports quotidiens',
-                                      style: TextStyle(color: kColorWhite),
+                                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(35), topRight:Radius.circular(35))),
+                                    content: Container(
+                                        color: kColorGreen,
+                                        child: Column(
+                                          children: const [
+                                            Image(
+                                              image: AssetImage('assets/img/logowhite.png'),
+                                            ),
+                                            SizedBox(height: kSmallVerticalSpacer,),
+                                            Text(
+                                              'Bonjour et bienvenue sur Sloth. Vos rapports quotidiens à remplir seront disponibles sur cette page chaque matin pour évaluer la veille. Nous espérons vous aider un maximum.',
+                                              style: TextStyle(color: kColorWhite, fontSize: 16, height: 1.5),
+                                            ),
+                                            SizedBox(height: kNormalVerticalSpacer,),
+                                          ],
+                                        )
                                     )),
                               );
                               Navigator.pushNamed(context, kHomeRoute);
