@@ -5,6 +5,7 @@ import 'package:sloth/routes/router.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/error.dart';
 import 'firebase_options.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async{
   runApp(MyApp());
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             initialRoute: FirebaseAuth.instance.currentUser == null
                 ? kIntroductionRoute
                 : kHomeRoute,
