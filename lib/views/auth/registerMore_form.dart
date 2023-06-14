@@ -5,6 +5,7 @@ import 'package:sloth/partials/forms/phone_input.dart';
 import 'package:sloth/routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterMoreForm extends StatelessWidget {
   RegisterMoreForm({Key? key}) : super(key: key);
@@ -29,12 +30,12 @@ class RegisterMoreForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
-                      children: const [
+                      children: [
                         Image(
                           image: AssetImage('assets/img/logo.png'),
                         ),
                         Text(
-                            'Nous avons encore besoins de quelques informations',
+                            AppLocalizations.of(context)!.registerMore__introText,
                             style: kBigLabelTextStyle,
                             textAlign: TextAlign.center),
                       ],
@@ -46,8 +47,8 @@ class RegisterMoreForm extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           // Prénom
-                          const Text(
-                            "Prénom",
+                          Text(
+                            AppLocalizations.of(context)!.registerMore__firstNameLabel,
                             style: kLabelGreenText,
                           ),
                           const SizedBox(
@@ -63,8 +64,8 @@ class RegisterMoreForm extends StatelessWidget {
                           ),
 
                           // Nom
-                          const Text(
-                            "Nom",
+                          Text(
+                            AppLocalizations.of(context)!.registerMore__lastNameLabel,
                             style: kLabelGreenText,
                           ),
                           const SizedBox(
@@ -78,8 +79,8 @@ class RegisterMoreForm extends StatelessWidget {
                           ),
 
                           // Numéro de téléphone facultatif
-                          const Text(
-                            "Numéro de téléphone (facultatif)",
+                          Text(
+                            AppLocalizations.of(context)!.registerMore__phoneLabel,
                             style: kLabelGreenText,
                           ),
                           const SizedBox(
@@ -101,14 +102,14 @@ class RegisterMoreForm extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: const Text(
-                            'Précédent',
+                          child: Text(
+                            AppLocalizations.of(context)!.registerMore__backButton,
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Button(
-                            label: 'Ètape suivante',
+                            label: AppLocalizations.of(context)!.registerMore__button,
                             onPressed: () {
                               if (_registerMoreFormKey.currentState !=
                                           null &&

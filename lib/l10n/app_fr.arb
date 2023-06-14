@@ -28,5 +28,12 @@
     "register__dataUsagePart1": "Accepter les ",
     "register__dataUsagePart2": "conditions d'utilisation des données",
     "register__loginButton": "Se connecter",
-    "register__button": "Ètape suivante"
+    "register__button": "Ètape suivante",
+
+    "registerMore__introText": "Nous avons encore besoins de quelques informations",
+    "registerMore__firstNameLabel": "Prénom",
+    "registerMore__lastNameLabel": "Nom",
+    "registerMore__phoneLabel": "Numéro de téléphone (facultatif)",
+    "registerMore__backButton": "Précédent",
+    "registerMore__button": "Ètape suivante"
 }
