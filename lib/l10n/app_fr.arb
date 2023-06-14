@@ -1,3 +1,32 @@
-{
-    "test": "Ceci est un test"
+﻿{
+    "introduction__title1": "Welcome to Sloth",
+    "introduction__body1": "Autoévaluez votre ressenti de fatigue cognitive au quotidien, tenez-vous informé sur cette fatigue et partagez vos rapports quotidiens avec une personne de confiance",
+    "introduction__title2": "Structurez vos analyses pour réduire votre fatigue cognitive",
+    "introduction__body2": "Un rapport sera disponible tous les matins pour évaluer la veille",
+    "introduction__title3": "Fixez vous des objectifs à accomplir",
+    "introduction__body3": "Choisissez vos objectifs pendant votre inscription et nous vous aiderons à les réaliser",
+    "introduction__title4": "Analysez vos symptômes rapidement",
+    "introduction__body4": "Une analyse de symptômes est disponible par jour pour en savoir plus sur les éventuels symptômes que vos ressentez",
+    "introduction__skipb": "Passer",
+    "introduction__doneb": "Continuer",
+
+    "intersection__introText": "C'est maintenant que tout commence ou continue",
+    "intersection__registerButton": "S'inscrire",
+    "intersection__loginButton": "Se connecter",
+
+    "login__introText": "Sloth est prêt a vous aider a nouveau !",
+    "login__emailLabel": "Email",
+    "login__mdpLabel": "Mot de passe",
+    "login__forgotMdpButton": "Mot de passe oublié",
+    "login__registerButton": "Créer un compte",
+    "login__button": "Se connecter",
+
+    "register__introText": "Inscrivez vous ci-dessous",
+    "register__emailLabel": "Email",
+    "register__mdpLabel": "Mot de passe",
+    "register__mdpValidationLabel": "Confirmation du mot de passe",
+    "register__dataUsagePart1": "Accepter les ",
+    "register__dataUsagePart2": "conditions d'utilisation des données",
+    "register__loginButton": "Se connecter",
+    "register__button": "Ètape suivante"
 }

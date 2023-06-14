@@ -7,6 +7,7 @@ import '../../partials/forms/password_input.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
@@ -44,11 +45,11 @@ class _RegisterFormState extends State<RegisterForm> {
                     children: [
                       // Logo plus Texte
                       Column(
-                        children: const [
-                          Image(
+                        children: [
+                          const Image(
                             image: AssetImage('assets/img/logo.png'),
                           ),
-                          Text('Inscrivez vous ci dessous',
+                          Text(AppLocalizations.of(context)!.register__introText,
                               style: kBigLabelTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -62,8 +63,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // Email
-                            const Text(
-                              "Email",
+                            Text(
+                              AppLocalizations.of(context)!.register__emailLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -79,8 +80,8 @@ class _RegisterFormState extends State<RegisterForm> {
                             ),
 
                             // Mot de passe
-                            const Text(
-                              "Mot de passe",
+                            Text(
+                              AppLocalizations.of(context)!.register__mdpLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -97,8 +98,8 @@ class _RegisterFormState extends State<RegisterForm> {
                             ),
 
                             // Confirmation du mot de passe
-                            const Text(
-                              "Confirmation du mot de passe",
+                            Text(
+                              AppLocalizations.of(context)!.register__mdpValidationLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -114,7 +115,6 @@ class _RegisterFormState extends State<RegisterForm> {
                             ),
 
                             // Checkbox data infos
-
                             Row(
                               children: [
                                 FormField<bool>(
@@ -125,8 +125,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                   },
                                   builder: (FormFieldState<bool> field) {
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Checkbox(
                                           activeColor: kColorGreen,
@@ -162,12 +161,12 @@ class _RegisterFormState extends State<RegisterForm> {
                                 Expanded(
                                   child: RichText(
                                       text: TextSpan(
-                                        text: "Accepter les ",
+                                        text: AppLocalizations.of(context)!.register__dataUsagePart1,
                                         style: k12BasicTextStyle,
                                         children: <TextSpan>[
                                           TextSpan(
                                             text:
-                                            "conditions d'utilisation des données",
+                                            AppLocalizations.of(context)!.register__dataUsagePart2,
                                             style: const TextStyle(
                                               color: kColorGreen,
                                               decoration: TextDecoration
@@ -197,14 +196,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             onTap: () {
                               Navigator.pushNamed(context, kLoginRoute);
                             },
-                            child: const Text(
-                              'Se connecter',
+                            child: Text(
+                              AppLocalizations.of(context)!.register__loginButton,
                               style: kSmallLinkGreenText,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Button(
-                              label: 'Ètape suivante',
+                              label: AppLocalizations.of(context)!.register__button,
                               onPressed: () {
                                 if (_registerFormKey.currentState !=
                                     null &&

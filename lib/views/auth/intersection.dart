@@ -8,6 +8,7 @@ import '../../partials/forms/password_input.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Intersection extends StatelessWidget {
   const Intersection({Key? key}) : super(key: key);
@@ -29,15 +30,15 @@ class Intersection extends StatelessWidget {
                     const Image(
                       image: AssetImage('assets/img/slothLogo.jpg'),
                     ),
-                    const Text(
-                        "C'est maintenant que tout commence ou continue",
+                    Text(
+                        AppLocalizations.of(context)!.intersection__introText,
                         style: kBigLabelTextStyle,
                         textAlign: TextAlign.center),
                     Column(
                       children: [
                         Center(
                           child: Button(
-                            label: "S'inscrire",
+                            label: AppLocalizations.of(context)!.intersection__registerButton,
                             onPressed: () {
                               Navigator.pushNamed(context, kRegisterRoute);
                             },
@@ -46,7 +47,7 @@ class Intersection extends StatelessWidget {
                         const SizedBox(height: kNormalVerticalSpacer),
                         Center(
                           child: Button(
-                            label: "Se connecter",
+                            label: AppLocalizations.of(context)!.intersection__loginButton,
                             onPressed: () {
                               Navigator.pushNamed(context, kLoginRoute);
                             },

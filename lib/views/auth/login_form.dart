@@ -8,6 +8,7 @@ import '../../partials/forms/password_input.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatelessWidget {
   final UserModel _userModel = UserModel();
@@ -40,11 +41,11 @@ class LoginForm extends StatelessWidget {
                     children: [
                       // Logo et texte
                       Column(
-                        children: const [
-                          Image(
+                        children: [
+                          const Image(
                             image: AssetImage('assets/img/logo.png'),
                           ),
-                          Text('Sloth est prêt a vous aider a nouveau !',
+                          Text(AppLocalizations.of(context)!.login__introText,
                               style: kBigLabelTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -57,8 +58,8 @@ class LoginForm extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // Email
-                            const Text(
-                              "Email",
+                            Text(
+                              AppLocalizations.of(context)!.login__emailLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -74,8 +75,8 @@ class LoginForm extends StatelessWidget {
                             ),
 
                             // Mot de passe
-                            const Text(
-                              "Mot de passe",
+                            Text(
+                              AppLocalizations.of(context)!.login__mdpLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -92,8 +93,8 @@ class LoginForm extends StatelessWidget {
                                 Navigator.pushNamed(
                                     context, kResetPasswordRoute);
                               },
-                              child: const Text(
-                                'Mot de passe oublié',
+                              child: Text(
+                                AppLocalizations.of(context)!.login__forgotMdpButton,
                                 style: kSmallLinkGreenText,
                               ),
                             ),
@@ -108,14 +109,14 @@ class LoginForm extends StatelessWidget {
                             onTap: () {
                               Navigator.pushNamed(context, kRegisterRoute);
                             },
-                            child: const Text(
-                              'Créer un compte',
+                            child: Text(
+                              AppLocalizations.of(context)!.login__registerButton,
                               style: kSmallLinkGreenText,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Button(
-                              label: "Se connecter",
+                              label: AppLocalizations.of(context)!.login__button,
                               onPressed: () async {
                                 if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                   try {

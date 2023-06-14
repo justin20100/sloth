@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import '../routes/routes.dart';
 import '../styles/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({super.key});
@@ -22,11 +23,11 @@ class _IntroductionState extends State<Introduction> {
       bodyPadding: const EdgeInsets.all(kSmallVerticalSpacer),
       // buttons
       showSkipButton: true,
-      skip: const Text("Passer", style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
+      skip: Text(AppLocalizations.of(context)!.introduction__skipb, style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
       showNextButton: true,
       next: const Icon(Icons.arrow_forward_rounded, color: kColorGreen,),
       showDoneButton: true,
-      done: const Text("Continuer", style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
+      done: Text(AppLocalizations.of(context)!.introduction__doneb, style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
       onDone: ()=>{Navigator.pushNamed(context, kIntersectionRoute)},
       // Indicator
       showBottomPart: true,
@@ -37,8 +38,8 @@ class _IntroductionState extends State<Introduction> {
       key: _introKey,
       pages: [
         PageViewModel(
-          title: "Bienvenue sur Sloth !",
-          body: "Autoévaluez votre ressenti de fatigue cognitive au quotidien, tenez-vous informé sur cette fatigue et partagez vos rapports quotidiens avec une personne de confiance",
+          title: AppLocalizations.of(context)!.introduction__title1,
+          body: AppLocalizations.of(context)!.introduction__body1,
           image: const Image(
             image: AssetImage('assets/img/slothLogo.jpg'),
           ),
@@ -48,8 +49,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Structurez vos analyses pour réduire votre fatigue cognitive",
-          body: "Un rapport sera disponible tous les matins pour évaluer la veille",
+          title: AppLocalizations.of(context)!.introduction__title2,
+          body: AppLocalizations.of(context)!.introduction__body2,
           image: const Image(
             image: AssetImage('assets/img/calendar.jpg'),
           ),
@@ -59,8 +60,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Fixez vous des objectifs à accomplir",
-          body: "Choisissez vos objectifs pendant votre inscription et nous vous aiderons à les réaliser",
+          title: AppLocalizations.of(context)!.introduction__title3,
+          body: AppLocalizations.of(context)!.introduction__body3,
           image: const Image(
             image: AssetImage('assets/img/objectifs.jpg'),
           ),
@@ -70,8 +71,8 @@ class _IntroductionState extends State<Introduction> {
           ),
         ),
         PageViewModel(
-          title: "Analysez vos symptômes rapidement",
-          body: "Une analyse de symptômes est disponible par jour pour en savoir plus sur les éventuels symptômes que vos ressentez",
+          title: AppLocalizations.of(context)!.introduction__title4,
+          body: AppLocalizations.of(context)!.introduction__body4,
           image: const Image(
             image: AssetImage('assets/img/symptomes.jpg'),
           ),
