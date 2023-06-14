@@ -35,5 +35,23 @@
     "registerMore__lastNameLabel": "Nom",
     "registerMore__phoneLabel": "Numéro de téléphone (facultatif)",
     "registerMore__backButton": "Précédent",
-    "registerMore__button": "Ètape suivante"
+    "registerMore__button": "Ètape suivante",
+
+    "registerTraits__title": "Echelle de traits",
+    "registerTraits__introText1": "La fatigue c'est important pour nous. On aimerait donc savoir son implication dans votre vie de tous les jours !",
+    "registerTraits__introText2": "De façon générale, quelle est la probabilité de vous assoupir (vous laisser aller doucement au sommeil, vous endormir à moitié) lors des situations suivantes ?",
+    "registerTraits__option1": "Jamais",
+    "registerTraits__option2": "Peu de chance",
+    "registerTraits__option3": "Chance modérée",
+    "registerTraits__option4": "Forte chance",
+    "registerTraits__question1": "Assis à lire",
+    "registerTraits__question2": "Assis à regarder la télévision",
+    "registerTraits__question3": "Assis inactif dans un lieu public (cinéma, théatre, réunion)",
+    "registerTraits__question4": "Assis comme passager d'une voiture (ou d'un transport en commun) roulant depuis plus d'une heure sans interruption",
+    "registerTraits__question5": "Allongé dans l'après-midi lorsque les circonstances le permettent",
+    "registerTraits__question6": "Assis à parler avec quelqu'un",
+    "registerTraits__question7": "Assis au calme après un repas sans alcool",
+    "registerTraits__question8": "Dans une voiture arrêtée dans le trafic ou au feu rouge",
+    "registerTraits__backButton": "Précédent",
+    "registerTraits__button": "Ètape suivante"
 }

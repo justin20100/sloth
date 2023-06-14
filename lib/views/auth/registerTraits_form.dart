@@ -1,9 +1,9 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterTraitsForm extends StatefulWidget {
   RegisterTraitsForm({Key? key}) : super(key: key);
@@ -105,26 +105,26 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
-                    const Text(
-                      'Echelle de traits',
+                    Text(
+                      AppLocalizations.of(context)!.registerTraits__title,
                       style: kBigLabelTextStyle,
                     ),
                     const SizedBox(
                       height: kBigVerticalSpacer,
                     ),
-                    const Text(
-                        "La fatigue c'est important pour nous. On aimerait donc savoir son implication dans votre vie de tous les jours !",
+                    Text(
+                        AppLocalizations.of(context)!.registerTraits__introText1,
                         style: k16BasicTextStyle),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
-                    const Text(
-                        "De façon générale, quelle est la probabilité de vous assoupir (vous laisser aller doucement au sommeil, vous endormir à moitié) lors des situations suivantes? ",
+                    Text(
+                        AppLocalizations.of(context)!.registerTraits__introText2,
                         style: k16BasicTextStyle),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
-                    Row(children: const [
+                    Row(children: [
                       Text(
                         "\u2022",
                         style: k16BasicTextStyle,
@@ -133,13 +133,13 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
-                        child: Text("jamais", style: k16BasicTextStyle), //text
+                        child: Text(AppLocalizations.of(context)!.registerTraits__option1, style: k16BasicTextStyle), //text
                       )
                     ]),
                     const SizedBox(
                       height: kMicroVerticalSpacer / 2,
                     ),
-                    Row(children: const [
+                    Row(children: [
                       Text(
                         "\u2022",
                         style: k16BasicTextStyle,
@@ -148,14 +148,14 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
-                        child: Text("Peu de chance",
+                        child: Text(AppLocalizations.of(context)!.registerTraits__option2,
                             style: k16BasicTextStyle), //text
                       )
                     ]),
                     const SizedBox(
                       height: kMicroVerticalSpacer / 2,
                     ),
-                    Row(children: const [
+                    Row(children: [
                       Text(
                         "\u2022",
                         style: k16BasicTextStyle,
@@ -164,14 +164,14 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
-                        child: Text("Chance modérée",
+                        child: Text(AppLocalizations.of(context)!.registerTraits__option3,
                             style: k16BasicTextStyle), //text
                       )
                     ]),
                     const SizedBox(
                       height: kMicroVerticalSpacer / 2,
                     ),
-                    Row(children: const [
+                    Row(children: [
                       Text(
                         "\u2022",
                         style: k16BasicTextStyle,
@@ -180,7 +180,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
-                        child: Text("Forte chance",
+                        child: Text(AppLocalizations.of(context)!.registerTraits__option4,
                             style: k16BasicTextStyle), //text
                       )
                     ]),
@@ -195,8 +195,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Question 1
-                            const Text(
-                              "Assis à lire",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question1,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -218,7 +218,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -266,7 +266,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -314,7 +314,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -362,7 +362,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -403,8 +403,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 2
-                            const Text(
-                              "Assis à regarder la télévision",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question2,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -426,7 +426,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -474,7 +474,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -521,7 +521,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -568,7 +568,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -609,8 +609,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 3
-                            const Text(
-                              "Assis inactif dans un lieu public (cinéma, théatre, réunion)",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question3,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -632,7 +632,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -680,7 +680,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -727,7 +727,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -774,7 +774,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -815,8 +815,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 4
-                            const Text(
-                              "Assis comme passager d'une voiture (ou d'un transport en commun) roulant depuis plus d'une heure sans interruption",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question4,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -838,7 +838,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -886,7 +886,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -933,7 +933,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -980,7 +980,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1021,8 +1021,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 5
-                            const Text(
-                              "Allongé dans l'après-midi lorsque les circonstances le permettent",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question5,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -1044,7 +1044,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -1092,7 +1092,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1139,7 +1139,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1186,7 +1186,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1227,8 +1227,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 6
-                            const Text(
-                              "Assis à parler avec quelqu'un)",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question6,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -1250,7 +1250,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -1298,7 +1298,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1345,7 +1345,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1392,7 +1392,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1433,8 +1433,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 7
-                            const Text(
-                              "Assis au calme après un repas sans alcool",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question7,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -1456,7 +1456,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -1504,7 +1504,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1551,7 +1551,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1598,7 +1598,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1639,8 +1639,8 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             ),
 
                             // Question 8
-                            const Text(
-                              "Dans une voiture arrêtée dans le trafic ou au feu rouge",
+                            Text(
+                              AppLocalizations.of(context)!.registerTraits__question8,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -1662,7 +1662,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Jamais',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
                                           style: kCheckboxText, softWrap: true),
                                       const SizedBox(
                                         height: 10,
@@ -1710,7 +1710,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Peu de chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1757,7 +1757,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Chance modérée',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1804,7 +1804,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text('Forte chance',
+                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
                                           style: kCheckboxText,
                                           softWrap: true,
                                           textAlign: TextAlign.center),
@@ -1852,14 +1852,14 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: const Text(
-                            'Précédent',
+                          child: Text(
+                            AppLocalizations.of(context)!.registerTraits__backButton,
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Button(
-                            label: 'Ètape suivante',
+                            label: AppLocalizations.of(context)!.registerTraits__button,
                             onPressed: () {
                               if(
                               _q1!=0 &&
