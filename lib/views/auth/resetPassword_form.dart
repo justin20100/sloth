@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/resetp_email_input.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../models/error_firebase_auth.dart';
 import '../../routes/routes.dart';
 import '../../styles/constants.dart';
@@ -27,12 +28,12 @@ class ResetPasswordForm extends StatelessWidget {
                   children: [
                     // Logo et texte
                     Column(
-                      children: const [
+                      children: [
                         Image(
                           image: AssetImage('assets/img/logo.png'),
                         ),
                         Text(
-                            'Recevoir un mail de réinitialisation du mot de passe.',
+                            AppLocalizations.of(context)!.resetPassword__introText,
                             style: kBigLabelTextStyle,
                             textAlign: TextAlign.center),
                       ],
@@ -46,8 +47,8 @@ class ResetPasswordForm extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           // Email
-                          const Text(
-                            "Votre email",
+                          Text(
+                            AppLocalizations.of(context)!.resetPassword__emailLabel,
                             style: kLabelGreenText,
                           ),
                           const SizedBox(
@@ -69,7 +70,7 @@ class ResetPasswordForm extends StatelessWidget {
                       children: [
                         Center(
                           child: Button(
-                              label: "Recevoir un mail",
+                              label: AppLocalizations.of(context)!.resetPassword__button,
                               onPressed: () async {
                                 if (_resetPasswordFormKey.currentState !=
                                     null &&
@@ -109,8 +110,8 @@ class ResetPasswordForm extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context, kLoginRoute);
                           },
-                          child: const Text(
-                            'Retour',
+                          child: Text(
+                            AppLocalizations.of(context)!.resetPassword__backButton,
                             style: kSmallLinkGreenText,
                             textAlign: TextAlign.center,
                           ),

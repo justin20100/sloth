@@ -21,6 +21,11 @@
     "login__registerButton": "Créer un compte",
     "login__button": "Se connecter",
 
+    "resetPassword__introText": "Recevoir un mail de réinitialisation du mot de passe",
+    "resetPassword__emailLabel": "Votre email",
+    "resetPassword__button": "Recevoir un mail",
+    "resetPassword__backButton": "Retour",
+
     "register__introText": "Inscrivez vous ci-dessous",
     "register__emailLabel": "Email",
     "register__mdpLabel": "Mot de passe",
