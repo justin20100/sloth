@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sloth/partials/forms/loginPassword_input.dart';
 import '../../models/UserModel.dart';
 import '../../models/error_firebase_auth.dart';
 import '../../partials/forms/email_input.dart';
@@ -82,9 +83,7 @@ class LoginForm extends StatelessWidget {
                             const SizedBox(
                               height: kSmallHorizontalSpacer,
                             ),
-                            PasswordInput(onChanged: (value) {
-                              _password = value;
-                            }),
+                            LoginPasswordInput(onChanged: (value) {_password = value;}, email:_email, password:_password),
                             const SizedBox(
                               height: kMicroVerticalSpacer*2,
                             ),
@@ -130,7 +129,7 @@ class LoginForm extends StatelessWidget {
                                             content: Container(
                                               color: kColorGreen,
                                                 child: Column(
-                                                  children: const [
+                                                  children: [
                                                     Image(
                                                       image: AssetImage('assets/img/logowhite.png'),
                                                     ),

@@ -29,7 +29,7 @@ class ResetPasswordForm extends StatelessWidget {
                     // Logo et texte
                     Column(
                       children: [
-                        Image(
+                        const Image(
                           image: AssetImage('assets/img/logo.png'),
                         ),
                         Text(
