@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterTraitsForm extends StatefulWidget {

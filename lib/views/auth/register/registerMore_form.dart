@@ -3,8 +3,8 @@ import 'package:sloth/partials/forms/firstname_input.dart';
 import 'package:sloth/partials/forms/lastname_input.dart';
 import 'package:sloth/partials/forms/phone_input.dart';
 import 'package:sloth/routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterMoreForm extends StatelessWidget {

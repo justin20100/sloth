@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/resetp_email_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../models/error_firebase_auth.dart';
-import '../../routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../models/error_firebase_auth.dart';
+import '../../../routes/routes.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 
 class ResetPasswordForm extends StatelessWidget {
   ResetPasswordForm({Key? key}) : super(key: key);

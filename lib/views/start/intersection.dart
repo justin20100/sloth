@@ -2,12 +2,12 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../models/error_firebase_auth.dart';
-import '../../partials/forms/email_input.dart';
-import '../../partials/forms/password_input.dart';
-import '../../routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../models/error_firebase_auth.dart';
+import '../../../partials/forms/email_input.dart';
+import '../../../partials/forms/password_input.dart';
+import '../../../routes/routes.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Intersection extends StatelessWidget {

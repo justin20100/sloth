@@ -2,11 +2,11 @@ import 'dart:ffi';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/validatedPassword_input.dart';
-import '../../partials/forms/email_input.dart';
-import '../../partials/forms/password_input.dart';
-import '../../routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../partials/forms/email_input.dart';
+import '../../../partials/forms/password_input.dart';
+import '../../../routes/routes.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterForm extends StatefulWidget {

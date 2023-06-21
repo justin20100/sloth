@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/models/UserModel.dart';
 import 'package:sloth/routes/routes.dart';
-import '../../styles/constants.dart';
-import '../../tools/button.dart';
+import '../../../styles/constants.dart';
+import '../../../tools/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterObjectifsForm extends StatefulWidget {

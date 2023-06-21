@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/styles/constants.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../routes/routes.dart';
+import '../routes/routes.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
