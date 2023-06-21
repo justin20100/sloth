@@ -1,12 +1,11 @@
 import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/models/UserModel.dart';
 import 'package:sloth/routes/routes.dart';
-
 import '../../styles/constants.dart';
 import '../../tools/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterObjectifsForm extends StatefulWidget {
   RegisterObjectifsForm({Key? key}) : super(key: key);
@@ -56,18 +55,18 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
-                  const Text(
-                    'Objectifs',
+                  Text(
+                    AppLocalizations.of(context)!.registerObjectifs__title,
                     style: kBigLabelTextStyle,
                   ),
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
-                  const Text(
-                      "Qu'est ce que vous aimeriez accomplir avec Sloth ? Quels sont vos objectifs ? Cochez les objectifs qui correspondent aux votres.",
+                  Text(
+                      AppLocalizations.of(context)!.registerObjectifs__introText1,
                       style: k16BasicTextStyle),
                   const SizedBox(height: kSmallVerticalSpacer,),
-                  _selectedCount<2 ? Text('Il vous faut sélectionner encore ${2-_selectedCount} objectifs minimum.', style: k16BasicTextStyle,) : Text("Vous avez sélectionné assez d'objectifs pour continuer.", style: k16BasicTextStyle,),
+                  _selectedCount<2 ? Text(AppLocalizations.of(context)!.registerObjectifs__introText2, style: k16BasicTextStyle,) : Text(AppLocalizations.of(context)!.registerObjectifs__introText2Valid, style: k16BasicTextStyle,),
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
@@ -282,14 +281,14 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
-                          'Précédent',
+                        child: Text(
+                          AppLocalizations.of(context)!.registerObjectifs__backButton,
                           style: kSmallLinkGreenText,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Button(
-                          label: 'Terminer',
+                          label: AppLocalizations.of(context)!.registerObjectifs__button,
                           onPressed: () async {
                             if (_registerObjectifsFormKey.currentState != null &&
                                 _registerObjectifsFormKey.currentState!

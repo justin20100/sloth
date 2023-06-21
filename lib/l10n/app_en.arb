@@ -58,5 +58,12 @@
     "registerTraits__question7": "Assis au calme après un repas sans alcool",
     "registerTraits__question8": "Dans une voiture arrêtée dans le trafic ou au feu rouge",
     "registerTraits__backButton": "Précédent",
-    "registerTraits__button": "Ètape suivante"
+    "registerTraits__button": "Ètape suivante",
+
+    "registerObjectifs__title": "Objectifs",
+    "registerObjectifs__introText1": "Qu'est ce que vous aimeriez accomplir avec Sloth ? Quels sont vos objectifs ? Cochez les objectifs qui correspondent aux votres.",
+    "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
+    "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
+    "registerObjectifs__backButton": "Précédent",
+    "registerObjectifs__button": "Terminer"
 }
