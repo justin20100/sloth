@@ -12,45 +12,34 @@ import '../views/auth/register/registerMore_form.dart';
 import '../views/auth/register/registerObjectifs_form.dart';
 import '../views/auth/register/register_form.dart';
 import '../views/auth/login/resetPassword_form.dart';
-
 import '../views/home.dart';
 import '../views/start/introduction.dart';
 import '../views/notifications.dart';
 
 Map<String, WidgetBuilder> router = {
-  //introduction
+  // start
   kIntroductionRoute: (context) => Introduction(),
-  //auth
   kIntersectionRoute: (context) => Intersection(),
+
+  // auth - register
   kRegisterRoute: (context) => RegisterForm(),
-  kDataUsageRoute: (context) => DataUsage(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
   kRegisterTraitsRoute: (context) => RegisterTraitsForm(),
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
+
+  // auth - login
   kLoginRoute: (context) => LoginForm(),
-  kResetPasswordRoute: (context) => ResetPasswordForm(),
+  kDataUsageRoute: (context) => DataUsage(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
   kProfileRoute: (context) => Profile(),
-  // Pages
+
+  // events
+  kDReportRoute: (context) => DReportForm(),
+
+  // views
   kHomeRoute: (context) =>  const Home(),
   kNotificationsRoute: (context) => const Notifications(),
   kCalendarRoute: (context) => const Calendar(),
-  // Events
-  kDReportRoute: (context) => DReportForm(),
+
 
 };
-
-
-
-goHome({formKey, context}) {
-  if (formKey.currentState != null &&
-      formKey.currentState!.validate()) {
-    if (kDebugMode) {
-      Navigator.pushNamed(context, kHomeRoute);
-    } else {
-      if (kDebugMode) {
-        print('KO');
-      }
-    }
-  }
-}
