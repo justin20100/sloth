@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/partials/forms/firstname_input.dart';
-import 'package:sloth/partials/forms/lastname_input.dart';
-import 'package:sloth/partials/forms/phone_input.dart';
+import 'package:sloth/partials/forms/register/firstname_input.dart';
+import 'package:sloth/partials/forms/register/lastname_input.dart';
+import 'package:sloth/partials/forms/register/phone_input.dart';
 import 'package:sloth/routes/routes.dart';
 import '../../../styles/constants.dart';
 import '../../../tools/button.dart';
@@ -25,13 +25,14 @@ class RegisterMoreForm extends StatelessWidget {
             child: Padding(
                 padding: const EdgeInsets.only(
                     left: kNormalHorizontalSpacer,
-                    right: kNormalHorizontalSpacer),
+                    right: kNormalHorizontalSpacer
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
-                        Image(
+                        const Image(
                           image: AssetImage('assets/img/logo.png'),
                         ),
                         Text(

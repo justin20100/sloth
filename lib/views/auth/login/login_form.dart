@@ -1,7 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sloth/partials/forms/loginPassword_input.dart';
+import 'package:sloth/partials/forms/login/loginPassword_input.dart';
 import '../../../models/UserModel.dart';
 import '../../../models/error_firebase_auth.dart';
 import '../../../partials/forms/email_input.dart';
@@ -31,6 +31,7 @@ class LoginForm extends StatelessWidget {
     return Scaffold(
         backgroundColor: kColorCream,
         body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Container(
               height: MediaQuery.of(context).size.height,
               child: Padding(

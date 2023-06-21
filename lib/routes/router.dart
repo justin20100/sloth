@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/views/start/intersection.dart';
@@ -40,6 +39,4 @@ Map<String, WidgetBuilder> router = {
   kHomeRoute: (context) =>  const Home(),
   kNotificationsRoute: (context) => const Notifications(),
   kCalendarRoute: (context) => const Calendar(),
-
-
 };

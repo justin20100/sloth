@@ -22,7 +22,6 @@ class _RegisterFormState extends State<RegisterForm> {
   String _email = "";
   String _validated_password = "";
   bool _dataUsageAccepted = false;
-
   get recognizer => null;
 
   @override
@@ -30,11 +29,9 @@ class _RegisterFormState extends State<RegisterForm> {
     return Scaffold(
         backgroundColor: kColorCream,
         body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               child: Padding(
                   padding: const EdgeInsets.only(
                       left: kNormalHorizontalSpacer,
@@ -43,7 +40,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // Logo plus Texte
+                      // Logo and text
                       Column(
                         children: [
                           const Image(
@@ -55,7 +52,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         ],
                       ),
 
-                      // Formulaire d'enregistrement
+                      // Register form
                       Form(
                         key: _registerFormKey,
                         child: Column(
