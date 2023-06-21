@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/partials/home/homeBloc.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/styles/constants.dart';
 import 'package:sloth/tools/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../partials/burgerMenu/burgerMenu.dart';
 import '../partials/burgerMenu/sideBar.dart';
@@ -201,34 +203,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     top: kNormalVerticalSpacer),
                 children: [
                   // Day rapport box
-                  Container(
-                    decoration: kHomeBoxDecoration,
-                    padding: const EdgeInsets.only(
-                        top: kNormalVerticalSpacer,
-                        right: kNormalHorizontalSpacer,
-                        bottom: kNormalVerticalSpacer,
-                        left: kNormalHorizontalSpacer),
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Remplissez votre rapport de la journée',
-                          style: kHomeBoxesTextStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                          height: kMicroVerticalSpacer * 3,
-                        ),
-                        Center(
-                          child: Button(
-                            label: 'Remplir',
-                            onPressed: () {
-                              Navigator.pushNamed(context, kDReportRoute);
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  HomeBloc(text: AppLocalizations.of(context)!.home__boxDRepport),
                   const SizedBox(
                     height: kSmallVerticalSpacer,
                   ),

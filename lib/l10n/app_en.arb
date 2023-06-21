@@ -65,5 +65,15 @@
     "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
     "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
     "registerObjectifs__backButton": "Précédent",
-    "registerObjectifs__button": "Terminer"
+    "registerObjectifs__button": "Terminer",
+
+    "home__date" : "mercredi 21 juin",
+    "home__boxDRepport" : "Remplissez votre rapport de la journée",
+    "home__boxDRepportButton" : "Remplir",
+    "home__boxWRepport" : "La rapport hebdomadaire a été calculé pour vous",
+    "home__boxWRepportButton" : "Consulter",
+    "home__boxSymptomes" : "Vous vous sentez vraiment mal? Identifiez vos symptomes",
+    "home__boxSymptomesButton" : "Identifier",
+    "home__boxArticles" : "Découvrez nos articles sur la fatigue cognitive",
+    "home__boxArticlesButton" : "Voir les articles"
 }
