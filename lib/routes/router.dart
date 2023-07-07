@@ -17,26 +17,26 @@ import '../views/notifications.dart';
 
 Map<String, WidgetBuilder> router = {
   // start
-  kIntroductionRoute: (context) => Introduction(),
-  kIntersectionRoute: (context) => Intersection(),
+  kIntroductionRoute: (context) => const Introduction(),
+  kIntersectionRoute: (context) => const Intersection(),
 
   // auth - register
-  kRegisterRoute: (context) => RegisterForm(),
+  kRegisterRoute: (context) => const RegisterForm(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
   kRegisterTraitsRoute: (context) => RegisterTraitsForm(),
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
 
   // auth - login
   kLoginRoute: (context) => LoginForm(),
-  kDataUsageRoute: (context) => DataUsage(),
+  kDataUsageRoute: (context) => const DataUsage(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
-  kProfileRoute: (context) => Profile(),
+  kProfileRoute: (context) => const Profile(),
 
   // events
-  kDReportRoute: (context) => DReportForm(),
+  kDReportRoute: (context) => const DReportForm(),
 
   // views
-  kHomeRoute: (context) =>  const Home(),
+  kHomeRoute: (context) => const Home(),
   kNotificationsRoute: (context) => const Notifications(),
   kCalendarRoute: (context) => const Calendar(),
 };

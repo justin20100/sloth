@@ -1,0 +1,16 @@
+{
+    "explorer.compactFolders": false,
+    "notebook.compactView": true,
+    "editor.wordWrap": "on",
+    "editor.fastScrollSensitivity": 5,
+    "editor.language.brackets": [
+
+    ],
+    "editor.language.colorizedBracketPairs": [
+    
+    ],
+    "editor.scrollbar.horizontalScrollbarSize": 5,
+    "editor.scrollbar.verticalScrollbarSize": 5,
+    "editor.smoothScrolling": false,
+    "editor.wordWrapColumn": 80
+}

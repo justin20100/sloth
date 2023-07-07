@@ -13,7 +13,7 @@ class Introduction extends StatefulWidget {
 
 class _IntroductionState extends State<Introduction> {
   final _introKey = GlobalKey<IntroductionScreenState>();
-  String _status = 'Waiting...';
+  final String _status = 'Waiting...';
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,31 @@ class _IntroductionState extends State<Introduction> {
       bodyPadding: const EdgeInsets.all(kSmallVerticalSpacer),
       // buttons
       showSkipButton: true,
-      skip: Text(AppLocalizations.of(context)!.introduction__skipb, style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
+      skip: Text(
+        AppLocalizations.of(context)!.introduction__skipb,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontFamily: 'Inter',
+          color: kColorGreen,
+          decoration: TextDecoration.none,
+        ),
+      ),
       showNextButton: true,
-      next: const Icon(Icons.arrow_forward_rounded, color: kColorGreen,),
+      next: const Icon(
+        Icons.arrow_forward_rounded,
+        color: kColorGreen,
+      ),
       showDoneButton: true,
-      done: Text(AppLocalizations.of(context)!.introduction__doneb, style: TextStyle(fontSize: 16.0, fontFamily: 'Inter', color: kColorGreen, decoration: TextDecoration.none,),),
-      onDone: ()=>{Navigator.pushNamed(context, kIntersectionRoute)},
+      done: Text(
+        AppLocalizations.of(context)!.introduction__doneb,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontFamily: 'Inter',
+          color: kColorGreen,
+          decoration: TextDecoration.none,
+        ),
+      ),
+      onDone: () => {Navigator.pushNamed(context, kIntersectionRoute)},
       // Indicator
       showBottomPart: true,
       dotsDecorator: const DotsDecorator(
@@ -44,8 +63,19 @@ class _IntroductionState extends State<Introduction> {
             image: AssetImage('assets/img/slothLogo.jpg'),
           ),
           decoration: const PageDecoration(
-            titleTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 24.0, fontWeight: FontWeight.bold, color: kColorGreen, decoration: TextDecoration.none,),
-            bodyTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 16.0, color: kColorGreen, decoration: TextDecoration.none, height: 1.5),
+            titleTextStyle: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: kColorGreen,
+              decoration: TextDecoration.none,
+            ),
+            bodyTextStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                color: kColorGreen,
+                decoration: TextDecoration.none,
+                height: 1.5),
           ),
         ),
         PageViewModel(
@@ -55,8 +85,19 @@ class _IntroductionState extends State<Introduction> {
             image: AssetImage('assets/img/calendar.jpg'),
           ),
           decoration: const PageDecoration(
-            titleTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 24.0, fontWeight: FontWeight.bold, color: kColorGreen, decoration: TextDecoration.none,),
-            bodyTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 16.0, color: kColorGreen, decoration: TextDecoration.none, height: 1.5),
+            titleTextStyle: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: kColorGreen,
+              decoration: TextDecoration.none,
+            ),
+            bodyTextStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                color: kColorGreen,
+                decoration: TextDecoration.none,
+                height: 1.5),
           ),
         ),
         PageViewModel(
@@ -66,8 +107,19 @@ class _IntroductionState extends State<Introduction> {
             image: AssetImage('assets/img/objectifs.jpg'),
           ),
           decoration: const PageDecoration(
-            titleTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 24.0, fontWeight: FontWeight.bold, color: kColorGreen, decoration: TextDecoration.none,),
-            bodyTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 16.0, color: kColorGreen, decoration: TextDecoration.none, height: 1.5),
+            titleTextStyle: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: kColorGreen,
+              decoration: TextDecoration.none,
+            ),
+            bodyTextStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                color: kColorGreen,
+                decoration: TextDecoration.none,
+                height: 1.5),
           ),
         ),
         PageViewModel(
@@ -77,8 +129,19 @@ class _IntroductionState extends State<Introduction> {
             image: AssetImage('assets/img/symptomes.jpg'),
           ),
           decoration: const PageDecoration(
-            titleTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 24.0, fontWeight: FontWeight.bold, color: kColorGreen, decoration: TextDecoration.none,),
-            bodyTextStyle: TextStyle(fontFamily: 'Inter', fontSize: 16.0, color: kColorGreen, decoration: TextDecoration.none, height: 1.5),
+            titleTextStyle: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: kColorGreen,
+              decoration: TextDecoration.none,
+            ),
+            bodyTextStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                color: kColorGreen,
+                decoration: TextDecoration.none,
+                height: 1.5),
           ),
         ),
       ],

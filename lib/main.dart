@@ -7,7 +7,7 @@ import 'package:sloth/views/error.dart';
 import 'firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() async{
+void main() async {
   runApp(MyApp());
 }
 
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+      future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(

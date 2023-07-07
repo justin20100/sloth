@@ -203,7 +203,8 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     top: kNormalVerticalSpacer),
                 children: [
                   // Day rapport box
-                  HomeBloc(text: AppLocalizations.of(context)!.home__boxDRepport),
+                  HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxDRepport),
                   const SizedBox(
                     height: kSmallVerticalSpacer,
                   ),

@@ -26,7 +26,8 @@ class Button extends StatelessWidget {
             style: TextButton.styleFrom(
               alignment: Alignment.center,
               foregroundColor: Colors.white,
-              padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+              padding: const EdgeInsets.only(
+                  top: 10, bottom: 10, left: 15, right: 15),
               textStyle: kButtonTextStyle,
             ),
             onPressed: onPressed,
