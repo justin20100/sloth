@@ -12,5 +12,10 @@
     "editor.scrollbar.horizontalScrollbarSize": 5,
     "editor.scrollbar.verticalScrollbarSize": 5,
     "editor.smoothScrolling": false,
-    "editor.wordWrapColumn": 80
+    "editor.wordWrapColumn": 80,
+    "[dart]": {
+        "editor.tabSize": 2
+    },
+    "editor.detectIndentation": true,
+    "editor.autoIndent": "full"
 }

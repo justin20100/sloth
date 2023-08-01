@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/tools/button.dart';
 import '../../styles/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -10,32 +11,54 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kColorCream,
-      appBar: AppBar(
-        elevation: 2,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+        backgroundColor: kColorCream,
+        appBar: AppBar(
+          elevation: 2,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
+          toolbarHeight: 80,
+          backgroundColor: kColorCream,
+          leading: GestureDetector(
+            onTap: () => {Navigator.pop(context)},
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: kColorGreen,
+            ),
+          ),
+          title: const Text(
+            'Profile',
+            style: kAppBarTextStyle,
           ),
         ),
-        toolbarHeight: 80,
-        backgroundColor: kColorCream,
-        leading: GestureDetector(
-          onTap: ()=>{Navigator.pop(context)},
-          child: const Icon( Icons.arrow_back_ios_new_rounded , color: kColorGreen,),
-        ),
-        title: const Text('Profile', style: kAppBarTextStyle,),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(child:Button(label: 'Déconnection', onPressed: ()=>{
-            FirebaseAuth.instance.signOut(),
-            Navigator.popAndPushNamed(context, kIntersectionRoute),
-          })),
-        ],
-      )
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+                child: Button(
+                    label: 'Déconnection',
+                    onPressed: () => {
+                      FirebaseAuth.instance.signOut(),
+                      Navigator.popAndPushNamed(
+                          context, kIntersectionRoute),
+                    })
+            ),
+            SizedBox(height: 100,),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, kChangePasswordRoute);
+              },
+              child: Text(
+                AppLocalizations.of(context)!.profile__linkPassword,
+                style: kSmallLinkGreenText,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        )
     );
   }
 }

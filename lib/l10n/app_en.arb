@@ -67,6 +67,11 @@
     "registerObjectifs__backButton": "Précédent",
     "registerObjectifs__button": "Terminer",
 
+    "profile__linkPassword":"Changer le mot de passe",
+
+    "changePassword__label":"Votre nouveau mot de passe",
+    "changePassword__labelValidation":"Recopiez votre nouveau mot de passe",
+
     "home__date" : "mercredi 21 juin",
     "home__boxDRepport" : "Remplissez votre rapport de la journée",
     "home__boxDRepportButton" : "Remplir",

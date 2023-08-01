@@ -10,7 +10,9 @@ const String kRegisterMoreRoute = '/registerMore';
 const String kRegisterTraitsRoute = '/registerTraits';
 const String kRegisterObjectifsRoute = '/registerObjectifs';
 const String kResetPasswordRoute = '/resetPassword';
+// profil
 const String kProfileRoute = '/profile';
+const String kChangePasswordRoute = '/changePassword';
 const String kError = '/error';
 // pages
 const String kHomeRoute = '/';

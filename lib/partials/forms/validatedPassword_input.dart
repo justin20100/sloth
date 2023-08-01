@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/text_input.dart';
 
-import '../../styles/constants.dart';
-
 @immutable
 class ValidatedPasswordInput extends StatelessWidget {
   final ValueChanged<String>? onChanged;

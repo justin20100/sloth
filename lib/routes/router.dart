@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
+import 'package:sloth/views/auth/update/changePassword__form.dart';
 import 'package:sloth/views/start/intersection.dart';
 import 'package:sloth/views/auth/profile.dart';
 import 'package:sloth/views/auth/register/registerTraits_form.dart';
@@ -30,7 +31,10 @@ Map<String, WidgetBuilder> router = {
   kLoginRoute: (context) => LoginForm(),
   kDataUsageRoute: (context) => const DataUsage(),
   kResetPasswordRoute: (context) => ResetPasswordForm(),
+
+  // profil
   kProfileRoute: (context) => const Profile(),
+  kChangePasswordRoute: (context) => ChangePasswordForm(),
 
   // events
   kDReportRoute: (context) => const DReportForm(),

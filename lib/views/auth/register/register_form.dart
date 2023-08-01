@@ -34,8 +34,8 @@ class _RegisterFormState extends State<RegisterForm> {
               height: MediaQuery.of(context).size.height,
               child: Padding(
                   padding: const EdgeInsets.only(
-                      left: kNormalHorizontalSpacer,
-                      right: kNormalHorizontalSpacer,
+                    left: kNormalHorizontalSpacer,
+                    right: kNormalHorizontalSpacer,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,7 +46,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           const Image(
                             image: AssetImage('assets/img/logo.png'),
                           ),
-                          Text(AppLocalizations.of(context)!.register__introText,
+                          Text(
+                              AppLocalizations.of(context)!.register__introText,
                               style: kBigLabelTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -61,7 +62,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           children: [
                             // Email
                             Text(
-                              AppLocalizations.of(context)!.register__emailLabel,
+                              AppLocalizations.of(context)!
+                                  .register__emailLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -96,7 +98,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
                             // Confirmation du mot de passe
                             Text(
-                              AppLocalizations.of(context)!.register__mdpValidationLabel,
+                              AppLocalizations.of(context)!
+                                  .register__mdpValidationLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -122,27 +125,27 @@ class _RegisterFormState extends State<RegisterForm> {
                                   },
                                   builder: (FormFieldState<bool> field) {
                                     return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Checkbox(
                                           activeColor: kColorGreen,
                                           checkColor: kColorYellow,
                                           side: MaterialStateBorderSide
                                               .resolveWith(
-                                                (states) =>
-                                                BorderSide(
-                                                  width: 1.4,
-                                                  color: field.hasError
-                                                      ? kColorRed
-                                                      : kColorGreen,
-                                                ),
+                                            (states) => BorderSide(
+                                              width: 1.4,
+                                              color: field.hasError
+                                                  ? kColorRed
+                                                  : kColorGreen,
+                                            ),
                                           ),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                4),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
                                           ),
-                                          materialTapTargetSize: MaterialTapTargetSize
-                                              .shrinkWrap,
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
                                           value: _dataUsageAccepted,
                                           onChanged: (value) {
                                             setState(() {
@@ -158,25 +161,25 @@ class _RegisterFormState extends State<RegisterForm> {
                                 Expanded(
                                   child: RichText(
                                       text: TextSpan(
-                                        text: AppLocalizations.of(context)!.register__dataUsagePart1,
-                                        style: k12BasicTextStyle,
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text:
-                                            AppLocalizations.of(context)!.register__dataUsagePart2,
-                                            style: const TextStyle(
-                                              color: kColorGreen,
-                                              decoration: TextDecoration
-                                                  .underline,
-                                            ),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.pushNamed(
-                                                    context, kDataUsageRoute);
-                                              },
-                                          ),
-                                        ],
-                                      )),
+                                    text: AppLocalizations.of(context)!
+                                        .register__dataUsagePart1,
+                                    style: k12BasicTextStyle,
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .register__dataUsagePart2,
+                                        style: const TextStyle(
+                                          color: kColorGreen,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.pushNamed(
+                                                context, kDataUsageRoute);
+                                          },
+                                      ),
+                                    ],
+                                  )),
                                 ),
                               ],
                             ),
@@ -194,24 +197,23 @@ class _RegisterFormState extends State<RegisterForm> {
                               Navigator.pushNamed(context, kLoginRoute);
                             },
                             child: Text(
-                              AppLocalizations.of(context)!.register__loginButton,
+                              AppLocalizations.of(context)!
+                                  .register__loginButton,
                               style: kSmallLinkGreenText,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Button(
-                              label: AppLocalizations.of(context)!.register__button,
+                              label: AppLocalizations.of(context)!
+                                  .register__button,
                               onPressed: () {
-                                if (_registerFormKey.currentState !=
-                                    null &&
-                                    _registerFormKey.currentState!
-                                        .validate()) {
+                                if (_registerFormKey.currentState != null &&
+                                    _registerFormKey.currentState!.validate()) {
                                   Navigator.pushNamed(
-                                      context, kRegisterMoreRoute,
-                                      arguments: {
-                                        'email': _email,
-                                        'password': _password
-                                      });
+                                      context, kRegisterMoreRoute, arguments: {
+                                    'email': _email,
+                                    'password': _password
+                                  });
                                 }
                               }),
                         ],
