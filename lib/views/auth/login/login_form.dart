@@ -129,7 +129,7 @@ class LoginForm extends StatelessWidget {
                                             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(35), topRight:Radius.circular(35))),
                                             content: Container(
                                               color: kColorGreen,
-                                                child: Column(
+                                                child: const Column(
                                                   children: [
                                                     Image(
                                                       image: AssetImage('assets/img/logowhite.png'),

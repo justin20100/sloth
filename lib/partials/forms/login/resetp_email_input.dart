@@ -11,7 +11,8 @@ class ResetPEmailInput extends StatelessWidget {
   const ResetPEmailInput({this.onChanged, Key? key}) : super(key: key);
 
   Future<bool> checkIfEmailInUse(String emailAddress) async {
-    final list = await FirebaseAuth.instance.fetchSignInMethodsForEmail(emailAddress);
+    final list =
+        await FirebaseAuth.instance.fetchSignInMethodsForEmail(emailAddress);
     if (list.isNotEmpty) {
       return true;
     } else {
@@ -24,7 +25,7 @@ class ResetPEmailInput extends StatelessWidget {
     return TextInput(
       hintText: 'exemple@mail.com',
       keyboardType: TextInputType.emailAddress,
-      validator: (value)  {
+      validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ce champ ne peut pas être vide';
         } else if (!EmailValidator.validate(value)) {

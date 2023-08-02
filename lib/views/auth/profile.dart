@@ -37,17 +37,7 @@ class Profile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-                child: Button(
-                    label: 'Déconnection',
-                    onPressed: () => {
-                      FirebaseAuth.instance.signOut(),
-                      Navigator.popAndPushNamed(
-                          context, kIntersectionRoute),
-                    })
-            ),
-            SizedBox(height: 100,),
-            GestureDetector(
+          GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, kChangePasswordRoute);
               },
@@ -56,6 +46,16 @@ class Profile extends StatelessWidget {
                 style: kSmallLinkGreenText,
                 textAlign: TextAlign.center,
               ),
+            ),
+            const SizedBox(height: kSmallVerticalSpacer),
+            Center(
+                child: Button(
+                    label: 'Déconnection',
+                    onPressed: () => {
+                      FirebaseAuth.instance.signOut(),
+                      Navigator.popAndPushNamed(
+                          context, kIntersectionRoute),
+                    })
             ),
           ],
         )

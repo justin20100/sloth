@@ -288,18 +288,15 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                         ),
                       ),
                       Button(
-                          label: AppLocalizations.of(context)!.registerObjectifs__button,
-                          onPressed: () async {
-                            if (_registerObjectifsFormKey.currentState != null &&
-                                _registerObjectifsFormKey.currentState!
-                                    .validate() && _selectedCount>=2) {
-                              await FirebaseAuth.instance
-                                  .createUserWithEmailAndPassword(
-                                  email: arguments['email'],
-                                  password: arguments['password']);
-                              final user_id =
-                                  FirebaseAuth.instance.currentUser!.uid;
-                              _userModel.createUser(
+                        label: AppLocalizations.of(context)!.registerObjectifs__button,
+                        onPressed: () async {
+                          if (_registerObjectifsFormKey.currentState != null &&
+                              _registerObjectifsFormKey.currentState!.validate() &&
+                              _selectedCount >= 2) {
+                            try {
+                              await _userModel.addUserToFirebaseAuth(arguments['email'], arguments['password']);
+                              final user_id = FirebaseAuth.instance.currentUser!.uid;
+                              await _userModel.addUserToFirestore(
                                 arguments['firstname'],
                                 arguments['lastname'],
                                 arguments['email'],
@@ -336,8 +333,8 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(35), topRight:Radius.circular(35))),
                                     content: Container(
                                         color: kColorGreen,
-                                        child: Column(
-                                          children: const [
+                                        child: const Column(
+                                          children: [
                                             Image(
                                               image: AssetImage('assets/img/logowhite.png'),
                                             ),
@@ -352,8 +349,17 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                     )),
                               );
                               Navigator.pushNamed(context, kHomeRoute);
+                            } catch (error) {
+                              // Gérer les erreurs potentielles ici.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Erreur lors de la création du compte. Vérifiez votre connexion a internet.'),
+                                ),
+                              );
                             }
-                          }),
+                          }
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(height: kBigVerticalSpacer,)
