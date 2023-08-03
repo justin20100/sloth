@@ -123,7 +123,8 @@ class LoginForm extends StatelessWidget {
                                 if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                   try {
                                     await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-                                      Navigator.pushNamed(context, kHomeRoute).whenComplete(() => WelcomeSnackbar.show(context, 'Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.'));
+                                      Navigator.pushNamed(context, kHomeRoute);
+                                      WelcomeSnackbar.show(context, 'Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.');
                                     });
                                   } on FirebaseAuthException catch (e) {
                                     ErrorSnackbar.show(context, errors[e.code]!);
