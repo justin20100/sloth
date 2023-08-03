@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/routes/routes.dart';
 import 'package:sloth/tools/button.dart';
+import 'package:spring/spring.dart';
 import '../../styles/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class Profile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          GestureDetector(
+            GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, kChangePasswordRoute);
               },
@@ -49,16 +50,15 @@ class Profile extends StatelessWidget {
             ),
             const SizedBox(height: kSmallVerticalSpacer),
             Center(
-                child: Button(
-                    label: 'Déconnection',
-                    onPressed: () => {
-                      FirebaseAuth.instance.signOut(),
-                      Navigator.popAndPushNamed(
-                          context, kIntersectionRoute),
-                    })
+                  child: Button(
+                      label: 'Déconnection',
+                      onPressed: () => {
+                            FirebaseAuth.instance.signOut(),
+                            Navigator.popAndPushNamed(
+                                context, kIntersectionRoute),
+                          })
             ),
           ],
-        )
-    );
+        ));
   }
 }

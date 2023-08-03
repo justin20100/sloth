@@ -33,7 +33,7 @@ Map<String, WidgetBuilder> router = {
   kResetPasswordRoute: (context) => ResetPasswordForm(),
 
   // profil
-  kProfileRoute: (context) => const Profile(),
+  kProfileRoute: (context) => Profile(),
   kChangePasswordRoute: (context) => ChangePasswordForm(),
 
   // events

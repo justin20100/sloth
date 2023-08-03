@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/partials/forms/login/loginPassword_input.dart';
+import 'package:sloth/partials/snackbars/errorSnackbar.dart';
+import 'package:sloth/partials/snackbars/welcomeSnackbar.dart';
 import '../../../models/UserModel.dart';
 import '../../../models/error_firebase_auth.dart';
 import '../../../partials/forms/email_input.dart';
@@ -121,43 +123,10 @@ class LoginForm extends StatelessWidget {
                                 if (_loginFormKey.currentState != null && _loginFormKey.currentState!.validate()) {
                                   try {
                                     await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password).then((value) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            elevation: 20,
-                                            duration: const Duration(seconds: 15),
-                                            backgroundColor: kColorGreen,
-                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(35), topRight:Radius.circular(35))),
-                                            content: Container(
-                                              color: kColorGreen,
-                                                child: const Column(
-                                                  children: [
-                                                    Image(
-                                                      image: AssetImage('assets/img/logowhite.png'),
-                                                    ),
-                                                    SizedBox(height: kSmallVerticalSpacer,),
-                                                    Text(
-                                                      'Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.',
-                                                      style: TextStyle(color: kColorWhite, fontSize: 16, height: 1.5),
-                                                    ),
-                                                    SizedBox(height: kNormalVerticalSpacer,),
-                                                  ],
-                                                )
-                                            )),
-                                      );
-                                      Navigator.pushNamed(context, kHomeRoute);
+                                      Navigator.pushNamed(context, kHomeRoute).whenComplete(() => WelcomeSnackbar.show(context, 'Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.'));
                                     });
                                   } on FirebaseAuthException catch (e) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                            errors[e.code]!,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                          backgroundColor:
-                                          Colors.redAccent),
-                                    );
+                                    ErrorSnackbar.show(context, errors[e.code]!);
                                   }
                                 }
                               }),

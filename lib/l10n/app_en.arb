@@ -65,6 +65,8 @@
     "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
     "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
     "registerObjectifs__backButton": "Précédent",
+    "registerObjectifs__welcomeMessage": "Bonjour et bienvenue sur Sloth. Vos rapports quotidiens à remplir seront disponibles sur cette page chaque matin pour évaluer la veille. Nous espérons vous aider un maximum.",
+    "registerObjectifs__internetError": "Vérifiez votre connection a internet.",
     "registerObjectifs__button": "Terminer",
 
     "profile__linkPassword":"Changer le mot de passe",
