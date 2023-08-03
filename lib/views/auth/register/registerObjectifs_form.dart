@@ -353,6 +353,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                               // Gérer les erreurs potentielles ici.
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
+                                  backgroundColor: kColorRed,
                                   content: Text('Erreur lors de la création du compte. Vérifiez votre connexion a internet.'),
                                 ),
                               );
