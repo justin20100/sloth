@@ -2,12 +2,12 @@ import 'dart:ffi';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sloth/src/features/authentification/views/widgets/registerPassword_input.dart';
+import 'package:sloth/src/features/authentification/views/widgets/registerValidatePassword_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:sloth/src/widgets/forms/email_input.dart';
-import 'package:sloth/src/widgets/forms/password_input.dart';
-import 'package:sloth/src/widgets/forms/validatedPassword_input.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
@@ -22,6 +22,7 @@ class _RegisterFormState extends State<RegisterForm> {
   String _email = "";
   String _validated_password = "";
   bool _dataUsageAccepted = false;
+
   get recognizer => null;
 
   @override
@@ -86,12 +87,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             const SizedBox(
                               height: kSmallHorizontalSpacer,
                             ),
-                            PasswordInput(onChanged: (value) {
-                              _password = value;
-                              setState(() {
-                                _password;
-                              });
-                            }),
+                            RegisterPasswordInput(
+                                onChanged: (value) {
+                                  _password = value;
+                                  setState(() {
+                                    _password;
+                                  });
+                                },
+                                password: _password),
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
                             ),
@@ -105,11 +108,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             const SizedBox(
                               height: kSmallHorizontalSpacer,
                             ),
-                            ValidatedPasswordInput(
-                                password: _password,
+                            RegisterValidatePasswordInput(
                                 onChanged: (value) {
                                   _validated_password = value;
-                                }),
+                                  setState(() {
+                                    _password;
+                                    _validated_password;
+                                  });
+                                }, password: _password),
                             const SizedBox(
                               height: kSmallVerticalSpacer,
                             ),
@@ -174,7 +180,9 @@ class _RegisterFormState extends State<RegisterForm> {
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Navigator.pushNamed(context, kDataUsageRoute);},
+                                            Navigator.pushNamed(
+                                                context, kDataUsageRoute);
+                                          },
                                       ),
                                     ],
                                   )),
