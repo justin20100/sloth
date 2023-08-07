@@ -207,7 +207,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // Week rapport box
-                    const HomeBlock(
+                    const HomeBloc(
                       text: 'Le rapport hebdomadaire a été calculé pour vous',
                       buttonText: 'Consulter',
                       route: kHomeRoute,
@@ -217,7 +217,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // Articles box
-                    const HomeBlock(
+                    const HomeBloc(
                       text: 'Vous voulez en savoir plus sur la fatigue cognitive ?',
                       buttonText: 'Voir les articles',
                       route: kHomeRoute,

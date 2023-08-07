@@ -3,8 +3,8 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 
-class HomeBlock extends StatelessWidget {
-  const HomeBlock({Key? key,required this.text, required this.buttonText , required this.route}) : super(key: key);
+class HomeBloc extends StatelessWidget {
+  const HomeBloc({Key? key,required this.text, required this.buttonText , required this.route}) : super(key: key);
   final String text;
   final String buttonText;
   final String route;
