@@ -134,31 +134,31 @@ class _RegisterFormState extends State<RegisterForm> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Checkbox(
-                                          activeColor: kColorGreen,
-                                          checkColor: kColorYellow,
-                                          side: MaterialStateBorderSide
-                                              .resolveWith(
-                                            (states) => BorderSide(
-                                              width: 1.4,
-                                              color: field.hasError
-                                                  ? kColorRed
-                                                  : kColorGreen,
+
+                                        Theme(
+                                          data: Theme.of(context).copyWith(
+                                            unselectedWidgetColor: Colors.red,
+                                          ),
+                                          child: Checkbox(
+                                            activeColor: kColorGreen,
+                                            checkColor: kColorYellow,
+                                            side: MaterialStateBorderSide.resolveWith(
+                                                  (states) => BorderSide(width: 1.4, color: field.hasError ? kColorRed : kColorGreen,
+                                              ),
                                             ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(4),
+                                            ),
+                                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                            value: _dataUsageAccepted,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _dataUsageAccepted = value!;
+                                                field.didChange(value);
+                                              });
+                                            },
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          materialTapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          value: _dataUsageAccepted,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _dataUsageAccepted = value!;
-                                              field.didChange(value);
-                                            });
-                                          },
                                         ),
                                       ],
                                     );
