@@ -3,12 +3,9 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 
-class HomeBloc extends StatelessWidget {
-  const HomeBloc({Key? key,required this.text, required this.buttonText , required this.route}) : super(key: key);
+class DayRepportHomeBloc extends StatelessWidget {
+  const DayRepportHomeBloc({Key? key, required this.text}) : super(key: key);
   final String text;
-  final String buttonText;
-  final String route;
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +28,14 @@ class HomeBloc extends StatelessWidget {
           ),
           Center(
             child: Button(
-              label: buttonText,
+              label: 'Remplir',
               onPressed: () {
-                Navigator.pushNamed(context, route);
+                Navigator.pushNamed(context, kDReportRoute);
               },
             ),
           )
         ],
       ),
-    );
+    );;
   }
 }

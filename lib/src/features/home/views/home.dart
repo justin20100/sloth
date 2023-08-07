@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/src/features/home/views/widgets/dayRepportHomeBloc.dart';
 import 'package:sloth/src/features/home/views/widgets/homeBloc.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
@@ -200,103 +201,26 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       top: kNormalVerticalSpacer),
                   children: [
                     // Day rapport box
-                    HomeBloc(
-                        text: AppLocalizations.of(context)!.home__boxDRepport),
+                    DayRepportHomeBloc(text: AppLocalizations.of(context)!.home__boxDRepport),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
+
                     // Week rapport box
-                    Container(
-                      decoration: kHomeBoxDecoration,
-                      padding: const EdgeInsets.only(
-                          top: kNormalVerticalSpacer,
-                          right: kNormalHorizontalSpacer,
-                          bottom: kNormalVerticalSpacer,
-                          left: kNormalHorizontalSpacer),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Le rapport hebdomadaire a été calculé pour vous',
-                            style: kHomeBoxesTextStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: kMicroVerticalSpacer * 3,
-                          ),
-                          Center(
-                            child: Button(
-                              label: 'Consulter',
-                              onPressed: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                            ),
-                          )
-                        ],
-                      ),
+                    const HomeBloc(
+                      text: 'Le rapport hebdomadaire a été calculé pour vous',
+                      buttonText: 'Consulter',
+                      route: kHomeRoute,
                     ),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
-                    // Symptomes box
-                    Container(
-                      decoration: kHomeBoxDecoration,
-                      padding: const EdgeInsets.only(
-                          top: kNormalVerticalSpacer,
-                          right: kNormalHorizontalSpacer,
-                          bottom: kNormalVerticalSpacer,
-                          left: kNormalHorizontalSpacer),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Vous vous sentez mal ? identifiez vos symptômes.',
-                            style: kHomeBoxesTextStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: kMicroVerticalSpacer * 3,
-                          ),
-                          Center(
-                            child: Button(
-                              label: 'identifier',
-                              onPressed: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: kSmallVerticalSpacer,
-                    ),
+
                     // Articles box
-                    Container(
-                      decoration: kHomeBoxDecoration,
-                      padding: const EdgeInsets.only(
-                          top: kNormalVerticalSpacer,
-                          right: kNormalHorizontalSpacer,
-                          bottom: kNormalVerticalSpacer,
-                          left: kNormalHorizontalSpacer),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Vous voulez en savoir plus sur la fatigue cognitive ?',
-                            style: kHomeBoxesTextStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: kMicroVerticalSpacer * 3,
-                          ),
-                          Center(
-                            child: Button(
-                              label: 'Voir les articles',
-                              onPressed: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                            ),
-                          )
-                        ],
-                      ),
+                    const HomeBloc(
+                      text: 'Vous voulez en savoir plus sur la fatigue cognitive ?',
+                      buttonText: 'Voir les articles',
+                      route: kHomeRoute,
                     ),
                     const SizedBox(
                       height: kNormalVerticalSpacer,
