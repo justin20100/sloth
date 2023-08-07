@@ -3,8 +3,8 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 
-class DayRepportHomeBloc extends StatelessWidget {
-  const DayRepportHomeBloc({Key? key, required this.text}) : super(key: key);
+class DayRepportHomeBlock extends StatelessWidget {
+  const DayRepportHomeBlock({Key? key, required this.text}) : super(key: key);
   final String text;
 
   @override

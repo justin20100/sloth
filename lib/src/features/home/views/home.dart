@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/src/features/home/views/widgets/dayRepportHomeBloc.dart';
-import 'package:sloth/src/features/home/views/widgets/homeBloc.dart';
+import 'package:sloth/src/features/home/views/widgets/dayRepportHomeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/homeBlock.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/burgerMenu/burgerMenu.dart';
@@ -201,13 +201,13 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       top: kNormalVerticalSpacer),
                   children: [
                     // Day rapport box
-                    DayRepportHomeBloc(text: AppLocalizations.of(context)!.home__boxDRepport),
+                    DayRepportHomeBlock(text: AppLocalizations.of(context)!.home__boxDRepport),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
 
                     // Week rapport box
-                    const HomeBloc(
+                    const HomeBlock(
                       text: 'Le rapport hebdomadaire a été calculé pour vous',
                       buttonText: 'Consulter',
                       route: kHomeRoute,
@@ -217,7 +217,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // Articles box
-                    const HomeBloc(
+                    const HomeBlock(
                       text: 'Vous voulez en savoir plus sur la fatigue cognitive ?',
                       buttonText: 'Voir les articles',
                       route: kHomeRoute,
