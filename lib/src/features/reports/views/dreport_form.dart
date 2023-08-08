@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:sloth/src/features/reports/controllers/DReportControllers.dart';
 import 'package:sloth/src/features/reports/models/DReportModel.dart';
 import 'package:sloth/src/features/reports/views/widgets/timePicker_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
@@ -14,14 +17,29 @@ class DReportForm extends StatefulWidget {
 }
 
 class _DReportFormState extends State<DReportForm> {
-  final EventsModel _eventsModel = EventsModel();
-  final TextEditingController _WakeUpController = TextEditingController();
-  final TextEditingController _SleepController = TextEditingController();
+  final TextEditingController pickerWakeUpController = TextEditingController();
+  final TextEditingController pickerSleepController = TextEditingController();
+
+  final WakeUpController wakeUpController = WakeUpController();
+  final SleepController sleepController = SleepController();
+
+  void _submitForm() {
+    bool isValid = true;
+    setState(() {
+      isValid = wakeUpController.validate(pickerWakeUpController.text) && isValid;
+      isValid = sleepController.validate(pickerSleepController.text) && isValid;
+    });
+
+    if (isValid) {
+      // Logique de soumission du formulaire
+    }
+  }
+
   final _dReportFormKey = GlobalKey<FormState>();
   late double _sleepevaluation = 2.5;
   late double _cognitiveevaluation = 2.5;
   late double _physiqueevaluation = 2.5;
-  late String _moreinfos;
+  late String? _moreinfos = '';
   late double _motivation = 2.5;
   late double _euphoria = 2.5;
   late double _state = 2.5;
@@ -32,8 +50,9 @@ class _DReportFormState extends State<DReportForm> {
   late DateTime _sleep;
   late DateTime _wakeup;
   String? _fellingLevel;
+
   bool _checkformdone = false;
-  String user_id = "";
+
   List<String> feelingLevelList = [
     'Extrêmement éveillé : 1',
     'Très éveillé : 2',
@@ -58,7 +77,7 @@ class _DReportFormState extends State<DReportForm> {
           pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
-        _WakeUpController.text = formattedTime;
+        pickerWakeUpController.text = formattedTime;
       });
     }
   }
@@ -74,14 +93,13 @@ class _DReportFormState extends State<DReportForm> {
           pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
-        _SleepController.text = formattedTime;
+        pickerSleepController.text = formattedTime;
       });
     }
   }
 
   @override
   void initState() {
-    user_id = getUserID();
     super.initState();
   }
 
@@ -111,10 +129,10 @@ class _DReportFormState extends State<DReportForm> {
                   getTheDateNM(),
                   style: kAppBarTextStyle,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'Rapport quotidien',
                   style: TextStyle(
                       fontSize: 12,
@@ -126,7 +144,8 @@ class _DReportFormState extends State<DReportForm> {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-                left: kNormalHorizontalSpacer, right: kNormalHorizontalSpacer),
+                left: kNormalHorizontalSpacer,
+                right: kNormalHorizontalSpacer),
             child: Form(
               key: _dReportFormKey,
               child: Column(
@@ -148,7 +167,14 @@ class _DReportFormState extends State<DReportForm> {
                   const SizedBox(
                     height: kSmallHorizontalSpacer,
                   ),
-                  TimePickerInput(controller: _WakeUpController,),
+                  TimePickerInput(
+                    controller: pickerWakeUpController,
+                  ),
+                  wakeUpController.error != null
+                      ? Text(wakeUpController.error!)
+                      : const SizedBox(
+                    height: 0,
+                  ),
 
                   // Sleep
                   const SizedBox(
@@ -161,7 +187,7 @@ class _DReportFormState extends State<DReportForm> {
                   const SizedBox(
                     height: kSmallHorizontalSpacer,
                   ),
-                  TimePickerInput(controller: _SleepController),
+                  TimePickerInput(controller: pickerSleepController),
 
                   // Sleep evaluation
                   const SizedBox(
@@ -197,7 +223,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -248,7 +274,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -299,7 +325,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -332,7 +358,7 @@ class _DReportFormState extends State<DReportForm> {
                     maxLines: 5,
                     decoration: InputDecoration(
                       contentPadding:
-                          const EdgeInsets.all(kSmallVerticalSpacer),
+                      const EdgeInsets.all(kSmallVerticalSpacer),
                       hintText: 'Exemple : une sieste de 20 minute a 14h.',
                       isDense: true,
                       border: OutlineInputBorder(
@@ -344,8 +370,8 @@ class _DReportFormState extends State<DReportForm> {
                       focusColor: kColorYellow,
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
-                        color: kColorYellow,
-                      )),
+                            color: kColorYellow,
+                          )),
                       errorStyle: TextStyle(),
                       fillColor: kColorWhite,
                       filled: true,
@@ -387,7 +413,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -430,7 +456,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -473,7 +499,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -516,7 +542,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -536,9 +562,9 @@ class _DReportFormState extends State<DReportForm> {
                   const SizedBox(
                     height: kNormalVerticalSpacer,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text('Stressé'),
                       Text('Relax'),
                     ],
@@ -559,7 +585,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -602,7 +628,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -645,7 +671,7 @@ class _DReportFormState extends State<DReportForm> {
                         pressedElevation: 0,
                       ),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 0.0),
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                       inactiveTickMarkColor: Colors.transparent,
                       activeTickMarkColor: Colors.transparent,
                     ),
@@ -730,18 +756,19 @@ class _DReportFormState extends State<DReportForm> {
                                 activeColor: kColorGreen,
                                 checkColor: kColorYellow,
                                 side: MaterialStateBorderSide.resolveWith(
-                                  (states) => BorderSide(
-                                    width: 1.4,
-                                    color: field.hasError
-                                        ? kColorRed
-                                        : kColorGreen,
-                                  ),
+                                      (states) =>
+                                      BorderSide(
+                                        width: 1.4,
+                                        color: field.hasError
+                                            ? kColorRed
+                                            : kColorGreen,
+                                      ),
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
+                                MaterialTapTargetSize.shrinkWrap,
                                 value: _checkformdone,
                                 onChanged: (value) {
                                   setState(() {
@@ -756,9 +783,9 @@ class _DReportFormState extends State<DReportForm> {
                       ),
                       const Expanded(
                           child: Text(
-                        "Je valide avoir bien rempli le formulaire avec attention",
-                        style: kLabelGreenText,
-                      ))
+                            "Je valide avoir bien rempli le formulaire avec attention",
+                            style: kLabelGreenText,
+                          ))
                     ],
                   ),
 
@@ -771,25 +798,7 @@ class _DReportFormState extends State<DReportForm> {
                     child: Button(
                         label: 'Enregistrer',
                         onPressed: () {
-                          if (_dReportFormKey.currentState != null &&
-                              _dReportFormKey.currentState!.validate()) {
-                            _eventsModel.createDReport(
-                                kToday,
-                                _anxiety,
-                                _cognitiveevaluation,
-                                _euphoria,
-                                _mood,
-                                _moreinfos,
-                                _motivation,
-                                _physiqueevaluation,
-                                _sleep,
-                                _sleepevaluation,
-                                _state,
-                                _stress,
-                                _wakeup,
-                                user_id);
-                            Navigator.pushNamed(context, kHomeRoute);
-                          }
+                          _submitForm();
                         }),
                   ),
                   SizedBox(
