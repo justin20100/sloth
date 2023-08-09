@@ -11,7 +11,7 @@ class TextError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      padding: EdgeInsets.only(left: kSmallHorizontalSpacer, top: kMicroVerticalSpacer),
+      padding: const EdgeInsets.only(left: kSmallHorizontalSpacer, top: kMicroVerticalSpacer),
       child: Text(text, style: kErrorStyle),
     );
   }

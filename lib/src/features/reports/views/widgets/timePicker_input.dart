@@ -18,7 +18,7 @@ class _TimePickerInputState extends State<TimePickerInput> {
       controller: widget.controller,
       onTap: () => _onTimeChange(context),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(kSmallVerticalSpacer),
+        contentPadding: const EdgeInsets.all(kSmallVerticalSpacer),
         hintText: '08:20',
         isDense: true,
         border: OutlineInputBorder(
