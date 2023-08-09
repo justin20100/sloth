@@ -94,6 +94,13 @@ const kTitleH1Style = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
+const kErrorStyle = TextStyle(
+  fontSize: 12.0,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.normal,
+  color: kColorRed,
+  decoration: TextDecoration.none,
+);
 //Calendar
 const kNumberDaysCalendarTextStyle = TextStyle(
   fontSize: 15.0,

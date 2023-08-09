@@ -82,5 +82,40 @@
     "home__boxSymptomes" : "Vous vous sentez vraiment mal? Identifiez vos symptomes",
     "home__boxSymptomesButton" : "Identifier",
     "home__boxArticles" : "Découvrez nos articles sur la fatigue cognitive",
-    "home__boxArticlesButton" : "Voir les articles"
-}
+    "home__boxArticlesButton" : "Voir les articles",
+
+
+
+    "dReport__title" : "Rapport quotidien",
+    "dReport__inText" : "Comme chaque jour ce formulaire rep'ésente votre ressebti sur votre journée d'hier. Remplissez ce rapport avec précaution.",
+    "dReport__wakeUpLabel" : "Heure de lever",
+    "dReport__wakeUpError" : "Veuillez remplir votre heure de lever",
+    "dReport__sleepLabel" : "Heure de coucher",
+    "dReport__sleepError" : "Veuillez remplir votre heure de coucher",
+    "dReport__sleepEvaluationLabel" : "Comment évaluriez-vous votre sommeil?",
+    "dReport__sleepEvaluationLeftChoice" : "Mauvais",
+    "dReport__sleepEvaluationRightChoice" : "Très bon",
+    "dReport__cognitiveEvaluationLabel" : "Comment évaluriez-vous votre niveau de fatigue cognitive?",
+    "dReport__cognitiveEvaluationLeftChoice" : "Faible",
+    "dReport__cognitiveEvaluationRightChoice" : "Èlevé",
+    "dReport__physiqueEvaluationLabel" : "Comment évaluriez-vous votre niveau de fatigue physique?",
+    "dReport__physiqueEvaluationLeftChoice" : "Faible",
+    "dReport__physiqueEvaluationRightChoice" : "Èlevé",
+    "dReport__moreInfosLabel" : "Autres informations (sieste, activité spéciale, consommation d'alcool ou de boisson énergisante, ...)",
+    "dReport__inGeneralLabel" : "De manière générale",
+    "dReport__motivationLeftChoice" : "Démotivé",
+    "dReport__motivationRightChoice" : "Motivé",
+    "dReport__euphoriaLeftChoice" : "Déprimé",
+    "dReport__euphoriaRightChoice" : "Euphorique",
+    "dReport__stateLeftChoice" : "Èpuisé",
+    "dReport__stateRightChoice" : "Frais",
+    "dReport__moodLeftChoice" : "Irritable",
+    "dReport__moodRightChoice" : "Amicale, facile",
+    "dReport__stressLeftChoice" : "Stressé",
+    "dReport__stressRightChoice" : "Relax",
+    "dReport__anxietyLeftChoice" : "Angoissé",
+    "dReport__anxietyRightChoice" : "Calme",
+    "dReport__feelingLevelLabel" : "Veuillez choisir le niveau correspondant à votre ressenti immédiat à l'aide du barème suivant.",
+    "dReport__feelingLevelError" : "Vous devez faire votre choix.",
+    "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention"
+ }

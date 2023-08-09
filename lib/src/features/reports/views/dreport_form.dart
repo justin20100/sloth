@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/reports/controllers/DReportControllers.dart';
 import 'package:sloth/src/features/reports/models/DReportModel.dart';
@@ -8,6 +6,7 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/button.dart';
+import 'package:sloth/src/widgets/textError.dart';
 
 class DReportForm extends StatefulWidget {
   const DReportForm({Key? key}) : super(key: key);
@@ -22,16 +21,38 @@ class _DReportFormState extends State<DReportForm> {
 
   final WakeUpController wakeUpController = WakeUpController();
   final SleepController sleepController = SleepController();
+  final FeelingLevelController feelingLevelController = FeelingLevelController();
+  final CheckFormDoneController checkFormDoneController = CheckFormDoneController();
 
-  void _submitForm() {
+  final DReportModel dReportModel = DReportModel();
+
+  Future<void> _submitForm() async {
     bool isValid = true;
     setState(() {
-      isValid = wakeUpController.validate(pickerWakeUpController.text) && isValid;
-      isValid = sleepController.validate(pickerSleepController.text) && isValid;
+      isValid = wakeUpController.validate(context, pickerWakeUpController.text) && isValid;
+      isValid = sleepController.validate(context, pickerSleepController.text) && isValid;
+      isValid = feelingLevelController.validate(context, _fellingLevel) && isValid;
+      isValid = checkFormDoneController.validate(context, _checkformdone) && isValid;
     });
 
     if (isValid) {
-      // Logique de soumission du formulaire
+      String userId = await getUserID();
+      dReportModel.createDReport(
+          kToday,
+          _anxiety,
+          _cognitiveevaluation,
+          _euphoria,
+          _mood,
+          _moreinfos!,
+          _motivation,
+          _physiqueevaluation,
+          _sleep,
+          _sleepevaluation,
+          _state,
+          _stress,
+          _wakeup,
+          userId);
+      Navigator.pushNamed(context, kHomeRoute);
     }
   }
 
@@ -46,7 +67,6 @@ class _DReportFormState extends State<DReportForm> {
   late double _mood = 2.5;
   late double _stress = 2.5;
   late double _anxiety = 2.5;
-  late double _fatigue = 2.5;
   late DateTime _sleep;
   late DateTime _wakeup;
   String? _fellingLevel;
@@ -73,11 +93,11 @@ class _DReportFormState extends State<DReportForm> {
     );
 
     if (pickedTime != null) {
-      _wakeup = DateTime(kToday.year, kToday.month, kToday.day - 1,
-          pickedTime.hour, pickedTime.minute);
+      _wakeup = DateTime(kToday.year, kToday.month, kToday.day - 1, pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
         pickerWakeUpController.text = formattedTime;
+        _wakeup;
       });
     }
   }
@@ -94,6 +114,7 @@ class _DReportFormState extends State<DReportForm> {
       String formattedTime = pickedTime.format(context);
       setState(() {
         pickerSleepController.text = formattedTime;
+        _sleep;
       });
     }
   }
@@ -171,7 +192,7 @@ class _DReportFormState extends State<DReportForm> {
                     controller: pickerWakeUpController,
                   ),
                   wakeUpController.error != null
-                      ? Text(wakeUpController.error!)
+                      ? TextError(text: wakeUpController.error!)
                       : const SizedBox(
                     height: 0,
                   ),
@@ -188,6 +209,11 @@ class _DReportFormState extends State<DReportForm> {
                     height: kSmallHorizontalSpacer,
                   ),
                   TimePickerInput(controller: pickerSleepController),
+                  sleepController.error != null
+                      ? TextError(text: sleepController.error!,)
+                      : const SizedBox(
+                    height: 0,
+                  ),
 
                   // Sleep evaluation
                   const SizedBox(
@@ -644,51 +670,8 @@ class _DReportFormState extends State<DReportForm> {
                       },
                     ),
                   ),
-                  // Fatigue
-                  const SizedBox(
-                    height: kNormalVerticalSpacer,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text('Èpuisé'),
-                      Text('Frais'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: kMicroVerticalSpacer,
-                  ),
-                  SliderTheme(
-                    data: SliderThemeData(
-                      thumbColor: kColorGreen,
-                      activeTrackColor: kColorGreen,
-                      inactiveTrackColor: kColorYellow,
-                      overlayColor: Colors.blue.withOpacity(0.3),
-                      trackHeight: 6.0,
-                      thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 12.0,
-                        elevation: 1.0,
-                        pressedElevation: 0,
-                      ),
-                      overlayShape:
-                      const RoundSliderOverlayShape(overlayRadius: 0.0),
-                      inactiveTickMarkColor: Colors.transparent,
-                      activeTickMarkColor: Colors.transparent,
-                    ),
-                    child: Slider(
-                      value: _fatigue,
-                      min: 0.0,
-                      max: 5.0,
-                      divisions: 10,
-                      onChanged: (double value) {
-                        setState(() {
-                          _fatigue = value;
-                        });
-                      },
-                    ),
-                  ),
 
-                  // Sleep
+                  // Feeling Level
                   const SizedBox(
                     height: kBigVerticalSpacer,
                   ),
@@ -735,7 +718,11 @@ class _DReportFormState extends State<DReportForm> {
                       ),
                     ),
                   ),
-
+                  feelingLevelController.error != null
+                      ? TextError(text: feelingLevelController.error!,)
+                      : const SizedBox(
+                    height: 0,
+                  ),
                   // check form done
                   const SizedBox(
                     height: kBigVerticalSpacer,
@@ -743,11 +730,6 @@ class _DReportFormState extends State<DReportForm> {
                   Row(
                     children: [
                       FormField<bool>(
-                        validator: (value) {
-                          if (_checkformdone == false) {
-                            return 'Required.';
-                          }
-                        },
                         builder: (FormFieldState<bool> field) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -759,7 +741,7 @@ class _DReportFormState extends State<DReportForm> {
                                       (states) =>
                                       BorderSide(
                                         width: 1.4,
-                                        color: field.hasError
+                                        color: checkFormDoneController.error
                                             ? kColorRed
                                             : kColorGreen,
                                       ),

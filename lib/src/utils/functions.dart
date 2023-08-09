@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 // Return as a string the id of the user connected
-String getUserID(){
+Future<String> getUserID() async{
   String id = FirebaseAuth.instance.currentUser!.uid;
   return id;
 }
