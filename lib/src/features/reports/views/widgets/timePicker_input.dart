@@ -73,7 +73,7 @@ class _TimePickerInputState extends State<TimePickerInput> {
               foregroundColor:
                   MaterialStateColor.resolveWith((states) => kColorGreen),
               overlayColor:
-                  MaterialStateColor.resolveWith((states) => Colors.pink),
+                  MaterialStateColor.resolveWith((states) => kColorGreen),
             )),
           ),
           child: child!,

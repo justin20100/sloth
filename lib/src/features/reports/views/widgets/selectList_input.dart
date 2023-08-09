@@ -5,9 +5,10 @@ class SelectListInput extends StatefulWidget {
   late final value;
   final String hintText;
   final List<String> list;
+  final ValueChanged<String?>? onChanged;
 
 
-  SelectListInput({Key? key, this.value, required this.hintText, required this.list}) : super(key: key);
+  SelectListInput({Key? key, this.value, required this.hintText, required this.list, this.onChanged}) : super(key: key);
 
   @override
   State<SelectListInput> createState() => _SelectListInputState();
@@ -35,11 +36,7 @@ class _SelectListInputState extends State<SelectListInput> {
           isExpanded: true,
           underline: const SizedBox(),
           hint: const Text('Sélectionnez une option'),
-          onChanged: (String? value) {
-            setState(() {
-              widget.value = value!;
-            });
-          },
+          onChanged: widget.onChanged,
           items: widget.list.map((String value) {
             return DropdownMenuItem<String>(
               value: value,

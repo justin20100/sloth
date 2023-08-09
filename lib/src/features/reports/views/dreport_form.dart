@@ -206,6 +206,8 @@ class _DReportFormState extends State<DReportForm> {
                   "Heure de lever",
                   style: kLabelGreenText,
                 ),
+
+                // Wake up
                 const SizedBox(
                   height: kSmallHorizontalSpacer,
                 ),
@@ -215,7 +217,6 @@ class _DReportFormState extends State<DReportForm> {
                     controller: pickerWakeUpController,
                   ),
                 ),
-
                 wakeUpController.error != null
                     ? TextError(text: wakeUpController.error!)
                     : const SizedBox(
@@ -237,7 +238,6 @@ class _DReportFormState extends State<DReportForm> {
                   key: sleepFormKey,
                   child: TimePickerInput(controller: pickerSleepController),
                 ),
-
                 sleepController.error != null
                     ? TextError(
                         text: sleepController.error!,
@@ -715,13 +715,17 @@ class _DReportFormState extends State<DReportForm> {
                 Form(
                   key: feelingLevelFormKey,
                   child: SelectListInput(
+                    onChanged: (String? value) {
+                      setState(() {
+                        _fellingLevel = value!;
+                      });
+                    },
                     value: _fellingLevel,
                     list: feelingLevelList,
                     hintText: AppLocalizations.of(context)!
                         .dReport__feelingLevelLabel,
                   ),
                 ),
-
                 feelingLevelController.error != null
                     ? TextError(
                         text: feelingLevelController.error!,
