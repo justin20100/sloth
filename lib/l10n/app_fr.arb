@@ -124,6 +124,7 @@
     "dReport__physiqueEvaluationLeftChoice" : "Faible",
     "dReport__physiqueEvaluationRightChoice" : "Èlevé",
     "dReport__moreInfosLabel" : "Autres informations (sieste, activité spéciale, consommation d'alcool ou de boisson énergisante, ...)",
+    "dReport__moreInfosHintText" : "Exemple : une sieste de 20 minute a 14h.",
     "dReport__inGeneralLabel" : "De manière générale",
     "dReport__motivationLeftChoice" : "Démotivé",
     "dReport__motivationRightChoice" : "Motivé",
@@ -139,5 +140,7 @@
     "dReport__anxietyRightChoice" : "Calme",
     "dReport__feelingLevelLabel" : "Veuillez choisir le niveau correspondant à votre ressenti immédiat à l'aide du barème suivant.",
     "dReport__feelingLevelError" : "Vous devez faire votre choix.",
-    "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention"
+    "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention",
+
+    "calendar__title" : "Calendrier"
  }

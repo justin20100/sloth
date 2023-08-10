@@ -1,10 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:spring/spring.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DayRepportHomeBlock extends StatefulWidget {
   DayRepportHomeBlock({Key? key, required this.text}) : super(key: key);
@@ -57,7 +57,7 @@ class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
               ),
               Center(
                 child: Button(
-                  label: 'Remplir',
+                  label: AppLocalizations.of(context)!.home__boxDRepportButton,
                   onPressed: () {
                     Navigator.pushNamed(context, kDReportRoute);
                   },

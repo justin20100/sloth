@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -33,8 +34,8 @@ class _CalendarState extends State<Calendar> {
               color: kColorGreen,
             ),
           ),
-          title: const Text(
-            'Calendrier',
+          title: Text(
+            AppLocalizations.of(context)!.calendar__title,
             style: kAppBarTextStyle,
           ),
         ),

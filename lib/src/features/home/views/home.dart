@@ -207,9 +207,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // Week rapport box
-                    const HomeBloc(
-                      text: 'Le rapport hebdomadaire a été calculé pour vous',
-                      buttonText: 'Consulter',
+                    HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxWRepport,
+                      buttonText: AppLocalizations.of(context)!.home__boxWRepportButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(
@@ -217,9 +217,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // Articles box
-                    const HomeBloc(
-                      text: 'Vous voulez en savoir plus sur la fatigue cognitive ?',
-                      buttonText: 'Voir les articles',
+                    HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxArticles,
+                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(

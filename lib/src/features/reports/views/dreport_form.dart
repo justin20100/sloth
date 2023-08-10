@@ -178,9 +178,9 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                  'Rapport quotidien',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.dReport__title,
+                  style: const TextStyle(
                       fontSize: 12,
                       color: kColorGreen,
                       fontWeight: FontWeight.bold),
@@ -197,17 +197,18 @@ class _DReportFormState extends State<DReportForm> {
               children: [
                 const SizedBox(height: kNormalVerticalSpacer),
                 //Text intro
-                const Text(
-                  "Comme chaque jour ce formulaire représente votre ressenti sur votre journée d'hier. Remplissez ce rapport avec précaution.",
+                Text(
+                  AppLocalizations.of(context)!.dReport__inText,
                   style: k16BasicTextStyle,
                 ),
-                const SizedBox(height: kNormalVerticalSpacer),
-                const Text(
-                  "Heure de lever",
-                  style: kLabelGreenText,
-                ),
+
 
                 // Wake up
+                const SizedBox(height: kNormalVerticalSpacer),
+                Text(
+                  AppLocalizations.of(context)!.dReport__wakeUpLabel,
+                  style: kLabelGreenText,
+                ),
                 const SizedBox(
                   height: kSmallHorizontalSpacer,
                 ),
@@ -227,8 +228,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Heure de couché",
+                Text(
+                  AppLocalizations.of(context)!.dReport__sleepLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -250,8 +251,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Comment évaluriez-vous votre sommeil ?",
+                Text(
+                  AppLocalizations.of(context)!.dReport__sleepEvaluationLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -259,9 +260,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Mauvais'),
-                    Text('Très bon'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__sleepEvaluationLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__sleepEvaluationRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -301,8 +302,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Comment évaluriez-vous votre niveau de fatigue cognitive",
+                Text(
+                  AppLocalizations.of(context)!.dReport__cognitiveEvaluationLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -310,9 +311,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Faible'),
-                    Text('Èlevé'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__cognitiveEvaluationLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__cognitiveEvaluationRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -352,8 +353,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Comment évaluriez-vous votre niveau de fatigue physique",
+                Text(
+                  AppLocalizations.of(context)!.dReport__physiqueEvaluationLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -361,9 +362,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Faible'),
-                    Text('Èlevé'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__physiqueEvaluationLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__physiqueEvaluationRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -403,8 +404,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Autres informations (sieste, activité spéciale, consommation d'alcool ou de boisson énergisante,...) ",
+                Text(
+                  AppLocalizations.of(context)!.dReport__moreInfosLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -415,7 +416,7 @@ class _DReportFormState extends State<DReportForm> {
                   maxLines: 5,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(kSmallVerticalSpacer),
-                    hintText: 'Exemple : une sieste de 20 minute a 14h.',
+                    hintText: AppLocalizations.of(context)!.dReport__moreInfosHintText,
                     isDense: true,
                     border: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -438,8 +439,8 @@ class _DReportFormState extends State<DReportForm> {
                 ),
 
                 // En generale
-                const Text(
-                  "De manière générale",
+                Text(
+                  AppLocalizations.of(context)!.dReport__inGeneralLabel,
                   style: kLabelGreenText,
                 ),
                 // Motivation
@@ -448,9 +449,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Démotivé'),
-                    Text('Motivé'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__motivationLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__motivationRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -491,9 +492,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Déprimé'),
-                    Text('Euphorique'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__euphoriaLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__euphoriaRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -534,9 +535,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Èpuisé'),
-                    Text('Frais'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__stateLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__stateRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -577,9 +578,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Irritable'),
-                    Text('Amicale, facile'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__moodLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__moodRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -618,11 +619,11 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kNormalVerticalSpacer,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Stressé'),
-                    Text('Relax'),
+                    Text(AppLocalizations.of(context)!.dReport__stressLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__stressRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -663,9 +664,9 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Angoissé'),
-                    Text('Calme'),
+                  children: [
+                    Text(AppLocalizations.of(context)!.dReport__anxietyLeftChoice),
+                    Text(AppLocalizations.of(context)!.dReport__anxietyRightChoice),
                   ],
                 ),
                 const SizedBox(
@@ -705,8 +706,8 @@ class _DReportFormState extends State<DReportForm> {
                 const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
-                const Text(
-                  "Veuillez choisir le niveau correspondant à votre ressenti immédiat à l'aide du barème suivant",
+                Text(
+                  AppLocalizations.of(context)!.dReport__feelingLevelLabel,
                   style: kLabelGreenText,
                 ),
                 const SizedBox(
@@ -772,9 +773,9 @@ class _DReportFormState extends State<DReportForm> {
                         );
                       },
                     ),
-                    const Expanded(
+                    Expanded(
                         child: Text(
-                      "Je valide avoir bien rempli le formulaire avec attention",
+                          AppLocalizations.of(context)!.dReport__checkFormDoneLabel,
                       style: kLabelGreenText,
                     ))
                   ],
