@@ -65,7 +65,11 @@
     "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
     "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
     "registerObjectifs__backButton": "Précédent",
-    "registerObjectifs__welcomeMessage": "Bonjour et bienvenue sur Sloth. Vos rapports quotidiens à remplir seront disponibles sur cette page chaque matin pour évaluer la veille. Nous espérons vous aider un maximum.",
+    "registerObjectifs__o1":"Me sentir plus heureux",
+    "registerObjectifs__o2":"Avoir une meilleure qualité de vie",
+    "registerObjectifs__o3":"Avoir plus d’énergie",
+    "registerObjectifs__o4":"Travailler de façon optimal",
+    "registerObjectifs__o5":"Avoir un meilleur sommeil",
     "registerObjectifs__internetError": "Vérifiez votre connection a internet.",
     "registerObjectifs__button": "Terminer",
 
@@ -89,6 +93,10 @@
 
     "changePassword__label":"Votre nouveau mot de passe",
     "changePassword__labelValidation":"Recopiez votre nouveau mot de passe",
+
+    "snackbar__welcomeMessage": "Bonjour et bienvenue sur Sloth. Vos rapports quotidiens à remplir seront disponibles sur cette page chaque matin pour évaluer la veille. Nous espérons vous aider un maximum.",
+    "snackBar__loginMessage":"Bonjour nous sommes contents de vous revoir sur Sloth. Nous espérons vous aider au maximum a nouveau.",
+    "snackBar__resetPasswordSuccess":"L'email de reinitialisation du mot de passe a été envoyé",
 
     "home__date" : "mercredi 21 juin",
     "home__boxDRepport" : "Remplissez votre rapport de la journée",

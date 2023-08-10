@@ -102,11 +102,11 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             borderRadius: BorderRadius.circular(10),
                             child: CheckboxListTile(
                               title: o1
-                                  ? const Text('Me sentir plus heureux',
-                                      style: TextStyle(
+                                  ? Text(AppLocalizations.of(context)!.registerObjectifs__o1,
+                                      style: const TextStyle(
                                           color: kColorWhite, fontSize: 14))
-                                  : const Text('Me sentir plus heureux',
-                                      style: TextStyle(
+                                  : Text(AppLocalizations.of(context)!.registerObjectifs__o1,
+                                      style: const TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o1 ? kColorGreen : kColorWhite,
                               value: o1,
@@ -140,13 +140,13 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             borderRadius: BorderRadius.circular(10),
                             child: CheckboxListTile(
                               title: o2
-                                  ? const Text(
-                                      'Avoir une meilleure qualité de vie',
-                                      style: TextStyle(
+                                  ? Text(
+                                  AppLocalizations.of(context)!.registerObjectifs__o2,
+                                      style: const TextStyle(
                                           color: kColorWhite, fontSize: 14))
-                                  : const Text(
-                                      'Avoir une meilleure qualité de vie',
-                                      style: TextStyle(
+                                  : Text(
+                                  AppLocalizations.of(context)!.registerObjectifs__o2,
+                                      style: const TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o2 ? kColorGreen : kColorWhite,
                               value: o2,
@@ -180,10 +180,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             borderRadius: BorderRadius.circular(10),
                             child: CheckboxListTile(
                               title: o3
-                                  ? const Text('Avoir plus d’énergie',
+                                  ? Text(AppLocalizations.of(context)!.registerObjectifs__o3,
                                       style: TextStyle(
                                           color: kColorWhite, fontSize: 14))
-                                  : const Text('Avoir plus d’énergie',
+                                  : Text(AppLocalizations.of(context)!.registerObjectifs__o3,
                                       style: TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o3 ? kColorGreen : kColorWhite,
@@ -218,10 +218,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             borderRadius: BorderRadius.circular(10),
                             child: CheckboxListTile(
                               title: o4
-                                  ? const Text('Travailler de façon optimal',
+                                  ? Text(AppLocalizations.of(context)!.registerObjectifs__o4,
                                       style: TextStyle(
                                           color: kColorWhite, fontSize: 14))
-                                  : const Text('Travailler de façon optimal',
+                                  : Text(AppLocalizations.of(context)!.registerObjectifs__o4,
                                       style: TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o4 ? kColorGreen : kColorWhite,
@@ -256,10 +256,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             borderRadius: BorderRadius.circular(10),
                             child: CheckboxListTile(
                               title: o5
-                                  ? const Text('Avoir un meilleur sommeil',
+                                  ? Text(AppLocalizations.of(context)!.registerObjectifs__o5,
                                       style: TextStyle(
                                           color: kColorWhite, fontSize: 14))
-                                  : const Text('Avoir un meilleur sommeil',
+                                  : Text(AppLocalizations.of(context)!.registerObjectifs__o5,
                                       style: TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o5 ? kColorGreen : kColorWhite,
@@ -345,7 +345,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                 },
                                 user_id,
                               );
-                              WelcomeSnackbar(message: AppLocalizations.of(context)!.registerObjectifs__welcomeMessage);
+                              WelcomeSnackbar(message: AppLocalizations.of(context)!.snackbar__welcomeMessage);
                               Navigator.pushNamed(context, kHomeRoute);
                             } else {
                               ErrorSnackbar.show(context, AppLocalizations.of(context)!.registerObjectifs__internetError);

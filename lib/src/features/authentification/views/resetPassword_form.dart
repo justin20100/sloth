@@ -82,8 +82,8 @@ class ResetPasswordForm extends StatelessWidget {
                                         .then((value) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(
-                                            content: Text("L'email de reinitialisation du mot de passe a été envoyé")),
+                                        SnackBar(
+                                            content: Text(AppLocalizations.of(context)!.snackBar__resetPasswordSuccess)),
                                       );
                                       Navigator.pushNamed(
                                           context, kLoginRoute);
