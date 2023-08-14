@@ -163,7 +163,7 @@ class _DReportFormState extends State<DReportForm> {
             toolbarHeight: 80,
             backgroundColor: kColorCream,
             leading: GestureDetector(
-              onTap: () => {Navigator.pop(context)},
+              onTap: () => {Navigator.popAndPushNamed(context,kHomeRoute)},
               child: const Icon(
                 Icons.arrow_back_ios_new_rounded,
                 color: kColorGreen,

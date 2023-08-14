@@ -43,6 +43,7 @@ dependencies:
     sdk: flutter
   connectivity_plus: ^4.0.2
   spring: ^2.0.2
+  widget_and_text_animator: ^1.1.5
 
 dev_dependencies:
   flutter_test:

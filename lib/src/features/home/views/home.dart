@@ -9,6 +9,7 @@ import 'package:sloth/src/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -194,39 +195,45 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
               ),
               // Boxes
               SliverFillRemaining(
-                child: ListView(
-                  padding: const EdgeInsets.only(
-                      left: kNormalHorizontalSpacer,
-                      right: kNormalHorizontalSpacer,
-                      top: kNormalVerticalSpacer),
-                  children: [
-                    // Day rapport box
-                    DayRepportHomeBlock(text: AppLocalizations.of(context)!.home__boxDRepport),
-                    const SizedBox(
-                      height: kSmallVerticalSpacer,
-                    ),
+                child: WidgetAnimator(
+                  incomingEffect: WidgetTransitionEffects.incomingSlideInFromBottom(
+                    curve: Curves.easeOutCirc,
+                    duration: const Duration(milliseconds: 1000)
+                  ),
+                  child: ListView(
+                    padding: const EdgeInsets.only(
+                        left: kNormalHorizontalSpacer,
+                        right: kNormalHorizontalSpacer,
+                        top: kNormalVerticalSpacer),
+                    children: [
+                      // Day rapport box
+                      DayRepportHomeBlock(text: AppLocalizations.of(context)!.home__boxDRepport),
+                      const SizedBox(
+                        height: kSmallVerticalSpacer,
+                      ),
 
-                    // Week rapport box
-                    HomeBloc(
-                      text: AppLocalizations.of(context)!.home__boxWRepport,
-                      buttonText: AppLocalizations.of(context)!.home__boxWRepportButton,
-                      route: kHomeRoute,
-                    ),
-                    const SizedBox(
-                      height: kSmallVerticalSpacer,
-                    ),
+                      // Week rapport box
+                      HomeBloc(
+                        text: AppLocalizations.of(context)!.home__boxWRepport,
+                        buttonText: AppLocalizations.of(context)!.home__boxWRepportButton,
+                        route: kHomeRoute,
+                      ),
+                      const SizedBox(
+                        height: kSmallVerticalSpacer,
+                      ),
 
-                    // Articles box
-                    HomeBloc(
-                      text: AppLocalizations.of(context)!.home__boxArticles,
-                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
-                      route: kHomeRoute,
-                    ),
-                    const SizedBox(
-                      height: kNormalVerticalSpacer,
-                    ),
-                  ],
-                ),
+                      // Articles box
+                      HomeBloc(
+                        text: AppLocalizations.of(context)!.home__boxArticles,
+                        buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
+                        route: kHomeRoute,
+                      ),
+                      const SizedBox(
+                        height: kNormalVerticalSpacer,
+                      ),
+                    ],
+                  ),
+                )
               )
             ],
           )),

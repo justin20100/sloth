@@ -5,9 +5,10 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class DayRepportHomeBlock extends StatefulWidget {
-  DayRepportHomeBlock({Key? key, required this.text}) : super(key: key);
+  const DayRepportHomeBlock({Key? key, required this.text}) : super(key: key);
   final String text;
 
   @override
@@ -15,30 +16,19 @@ class DayRepportHomeBlock extends StatefulWidget {
 }
 
 class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
-  final SpringController springController =
-      SpringController(initialAnim: Motion.play);
-  late Timer timer;
-
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 4), (Timer t) {
-      springController.play();
-    });
   }
 
   @override
   void dispose() {
-    timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Spring.shake(
-        springController: springController,
-        animDuration: const Duration(milliseconds: 450),
-        child: Container(
+    return Container(
           decoration: kHomeBoxDecoration,
           padding: const EdgeInsets.only(
               top: kNormalVerticalSpacer,
@@ -56,15 +46,20 @@ class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
                 height: kMicroVerticalSpacer * 3,
               ),
               Center(
-                child: Button(
-                  label: AppLocalizations.of(context)!.home__boxDRepportButton,
-                  onPressed: () {
-                    Navigator.pushNamed(context, kDReportRoute);
-                  },
-                ),
+                child: WidgetAnimator(
+                  atRestEffect: WidgetRestingEffects.bounce(
+                      duration: const Duration(milliseconds: 1500),
+                      effectStrength: 0.4
+                  ),
+                  child:Button(
+                    label: AppLocalizations.of(context)!.home__boxDRepportButton,
+                    onPressed: () {
+                      Navigator.pushNamed(context, kDReportRoute);
+                    },
+                  ),)
               ),
             ],
           ),
-        ));
+        );
   }
 }
