@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sloth/src/kdatas/variables.dart';
 
 class DReportModel {
   final CollectionReference dReportsRef = FirebaseFirestore.instance

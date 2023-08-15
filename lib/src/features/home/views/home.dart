@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/features/home/views/widgets/dayRepportHomeBlock.dart';
 import 'package:sloth/src/features/home/views/widgets/homeBlock.dart';
 import 'package:sloth/src/kdatas/constants.dart';
@@ -19,13 +20,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomePageState extends State<Home> with TickerProviderStateMixin {
+  bool isDReportAvailable = false;
   final DateTime _focusedDay = DateTime.now();
+  final HomeController homeController = HomeController();
 
   @override
-  void initState() {
-    super.initState();
-
+  initState() {
     initializeDateFormatting();
+    super.initState();
   }
 
   @override
@@ -195,46 +197,71 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
               ),
               // Boxes
               SliverFillRemaining(
-                child: WidgetAnimator(
-                  incomingEffect: WidgetTransitionEffects.incomingSlideInFromBottom(
-                    curve: Curves.easeOutCirc,
-                    duration: const Duration(milliseconds: 1000)
-                  ),
-                  child: ListView(
-                    padding: const EdgeInsets.only(
-                        left: kNormalHorizontalSpacer,
-                        right: kNormalHorizontalSpacer,
-                        top: kNormalVerticalSpacer),
-                    children: [
-                      // Day rapport box
-                      DayRepportHomeBlock(text: AppLocalizations.of(context)!.home__boxDRepport),
-                      const SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
+                  child: WidgetAnimator(
+                incomingEffect:
+                    WidgetTransitionEffects.incomingSlideInFromBottom(
+                        curve: Curves.easeOutCirc,
+                        duration: const Duration(milliseconds: 1000)),
+                child: ListView(
+                  padding: const EdgeInsets.only(
+                      left: kNormalHorizontalSpacer,
+                      right: kNormalHorizontalSpacer,
+                      top: kNormalVerticalSpacer),
+                  children: [
+                    // Day rapport box
+                    FutureBuilder<bool>(
+                      future: homeController.homeBlockVisibility(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox(height: 0);
+                        } else if (snapshot.hasError) {
+                          return Text('Erreur : ${snapshot.error}');
+                        } else {
+                          bool isDReportAvailable = snapshot.data ?? false;
+                          if (isDReportAvailable) {
+                            return Column(
+                              children: [
+                                DayRepportHomeBlock(
+                                  text: AppLocalizations.of(context)!
+                                      .home__boxDRepport,
+                                ),
+                                const SizedBox(
+                                  height: kSmallVerticalSpacer,
+                                )
+                              ],
+                            );
+                          } else {
+                            return const SizedBox(height: 0);
+                          }
+                        }
+                      },
+                    ),
 
-                      // Week rapport box
-                      HomeBloc(
-                        text: AppLocalizations.of(context)!.home__boxWRepport,
-                        buttonText: AppLocalizations.of(context)!.home__boxWRepportButton,
-                        route: kHomeRoute,
-                      ),
-                      const SizedBox(
-                        height: kSmallVerticalSpacer,
-                      ),
+                    // Week rapport box
+                    HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxWRepport,
+                      buttonText:
+                          AppLocalizations.of(context)!.home__boxWRepportButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kSmallVerticalSpacer,
+                    ),
 
-                      // Articles box
-                      HomeBloc(
-                        text: AppLocalizations.of(context)!.home__boxArticles,
-                        buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
-                        route: kHomeRoute,
-                      ),
-                      const SizedBox(
-                        height: kNormalVerticalSpacer,
-                      ),
-                    ],
-                  ),
-                )
-              )
+                    // Articles box
+                    HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxArticles,
+                      buttonText:
+                          AppLocalizations.of(context)!.home__boxArticlesButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kNormalVerticalSpacer,
+                    ),
+                  ],
+                ),
+              ))
             ],
           )),
     );

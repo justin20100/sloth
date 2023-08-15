@@ -101,6 +101,7 @@
     "home__date" : "mercredi 21 juin",
     "home__boxDRepport" : "Remplissez votre rapport de la journée",
     "home__boxDRepportButton" : "Remplir",
+    "home__boxDRepportInternetError" : "Il vous faut une connection a internet pour remplir ce rapport",
     "home__boxWRepport" : "La rapport hebdomadaire a été calculé pour vous",
     "home__boxWRepportButton" : "Consulter",
     "home__boxSymptomes" : "Vous vous sentez vraiment mal? Identifiez vos symptomes",
@@ -109,7 +110,7 @@
     "home__boxArticlesButton" : "Voir les articles",
 
     "dReport__title" : "Rapport quotidien",
-    "dReport__inText" : "Comme chaque jour ce formulaire rep'ésente votre ressebti sur votre journée d'hier. Remplissez ce rapport avec précaution.",
+    "dReport__inText" : "Comme chaque jour ce formulaire représente votre ressenti sur votre journée d'hier. Remplissez ce rapport avec précaution.",
     "dReport__wakeUpLabel" : "Heure de lever",
     "dReport__wakeUpError" : "Veuillez remplir votre heure de lever",
     "dReport__sleepLabel" : "Heure de coucher",
@@ -141,8 +142,6 @@
     "dReport__feelingLevelLabel" : "Veuillez choisir le niveau correspondant à votre ressenti immédiat à l'aide du barème suivant.",
     "dReport__feelingLevelError" : "Vous devez faire votre choix.",
     "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention",
-
-
 
     "calendar__title" : "Calendrier"
  }

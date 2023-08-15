@@ -111,6 +111,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                               tileColor: o1 ? kColorGreen : kColorWhite,
                               value: o1,
                               checkColor: kColorYellow,
+
                               activeColor: kColorGreen,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),

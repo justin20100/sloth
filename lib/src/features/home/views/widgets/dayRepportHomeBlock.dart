@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:sloth/src/utils/functions.dart';
+import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
 import 'package:spring/spring.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
@@ -53,8 +55,14 @@ class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
                   ),
                   child:Button(
                     label: AppLocalizations.of(context)!.home__boxDRepportButton,
-                    onPressed: () {
-                      Navigator.pushNamed(context, kDReportRoute);
+                    onPressed: () async {
+                      bool internetConnected = await checkInternetConnection();
+                      if(internetConnected){
+                        Navigator.pushNamed(context, kDReportRoute);
+                      }else{
+                        ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxDRepportInternetError);
+                      }
+
                     },
                   ),)
               ),
