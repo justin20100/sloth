@@ -3,8 +3,9 @@ import 'package:sloth/src/kdatas/constants.dart';
 
 class TimePickerInput extends StatefulWidget {
   final TextEditingController controller;
+  final onChange;
 
-  const TimePickerInput({Key? key, required this.controller}) : super(key: key);
+  const TimePickerInput({Key? key, required this.controller, required this.onChange}) : super(key: key);
 
   @override
   _TimePickerInputState createState() => _TimePickerInputState();
@@ -16,7 +17,7 @@ class _TimePickerInputState extends State<TimePickerInput> {
     return TextField(
       readOnly: true,
       controller: widget.controller,
-      onTap: () => _onTimeChange(context),
+      onTap: widget.onChange,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(kSmallVerticalSpacer),
         hintText: '08:20',

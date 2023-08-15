@@ -18,7 +18,7 @@ class DReportModel {
       num state,
       num stress,
       DateTime wakeup,
-      String user_id) {
+      String userId) {
     return dReportsRef
         .add({
           'date': date,
@@ -36,7 +36,7 @@ class DReportModel {
             'stress': stress,
             'wakeup': wakeup,
           },
-          'user_id': user_id,
+          'userId': userId,
         })
         .then((value) => print('Event added'))
         .catchError((error) => print('Failed to add event: $error'));

@@ -46,56 +46,9 @@ class CheckFormDoneController {
   bool validate(context, bool value) {
     if (value) {
       error = false;
-      return false;
+      return true;
     }
     error = true;
-    return true;
+    return false;
   }
 }
-
-// class DReportController {
-//   validateForm(
-//       context,
-//       dReportFormKey,
-//       anxiety,
-//       cognitiveevaluation,
-//       euphoria,
-//       mood,
-//       moreinfos,
-//       motivation,
-//       physiqueevaluation,
-//       sleep,
-//       sleepevaluation,
-//       state,
-//       stress,
-//       wakeup) {
-//     final DReportModel dReportModel = DReportModel();
-//     final userId = getUserID();
-//
-//     if(moreinfos){
-//     }
-//
-//
-//
-//
-//
-//     if (dReportFormKey.currentState != null && dReportFormKey.currentState!.validate()) {
-//       dReportModel.createDReport(
-//           kToday,
-//           anxiety,
-//           cognitiveevaluation,
-//           euphoria,
-//           mood,
-//           moreinfos,
-//           motivation,
-//           physiqueevaluation,
-//           sleep,
-//           sleepevaluation,
-//           state,
-//           stress,
-//           wakeup,
-//           userId);
-//       Navigator.pushNamed(context, kHomeRoute);
-//     }
-//   }
-// }

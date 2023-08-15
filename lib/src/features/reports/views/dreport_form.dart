@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DReportForm extends StatefulWidget {
   const DReportForm({Key? key}) : super(key: key);
-
   @override
   State<DReportForm> createState() => _DReportFormState();
 }
@@ -64,20 +63,15 @@ class _DReportFormState extends State<DReportForm> {
   Future<void> _submitForm() async {
     bool isValid = true;
     setState(() {
-      isValid =
-          wakeUpController.validate(context, pickerWakeUpController.text) &&
-              isValid;
-      isValid = sleepController.validate(context, pickerSleepController.text) &&
-          isValid;
-      isValid =
-          feelingLevelController.validate(context, _fellingLevel) && isValid;
-      isValid =
-          checkFormDoneController.validate(context, _checkformdone) && isValid;
+      isValid = wakeUpController.validate(context, pickerWakeUpController.text) && isValid;
+      isValid = sleepController.validate(context, pickerSleepController.text) && isValid;
+      isValid = feelingLevelController.validate(context, _fellingLevel) && isValid;
+      isValid = checkFormDoneController.validate(context, _checkformdone) && isValid;
     });
 
     if (isValid) {
       String userId = await getUserID();
-      dReportModel.createDReport(
+      await dReportModel.createDReport(
           kToday,
           _anxiety,
           _cognitiveevaluation,
@@ -114,15 +108,49 @@ class _DReportFormState extends State<DReportForm> {
     final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData(
+            timePickerTheme: TimePickerThemeData(
+                backgroundColor: kColorCream,
+                hourMinuteColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorYellow
+                    : kColorGreen),
+                hourMinuteTextColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorGreen
+                    : kColorCream),
+                dialHandColor: kColorGreen,
+                dialBackgroundColor: kColorYellow,
+                dialTextColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorYellow
+                    : kColorCream),
+                entryModeIconColor: kColorGreen),
+            textTheme: const TextTheme(
+              labelSmall: TextStyle(
+                color: kColorGreen,
+              ),
+            ),
+            textButtonTheme: TextButtonThemeData(
+                style: ButtonStyle(
+                  foregroundColor:
+                  MaterialStateColor.resolveWith((states) => kColorGreen),
+                  overlayColor:
+                  MaterialStateColor.resolveWith((states) => kColorGreen),
+                )),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (pickedTime != null) {
-      _wakeup = DateTime(kToday.year, kToday.month, kToday.day - 1,
-          pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
         pickerWakeUpController.text = formattedTime;
-        _wakeup;
+        _wakeup = DateTime(kToday.year, kToday.month, kToday.day - 1, pickedTime.hour, pickedTime.minute);
       });
     }
   }
@@ -131,15 +159,49 @@ class _DReportFormState extends State<DReportForm> {
     final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData(
+            timePickerTheme: TimePickerThemeData(
+                backgroundColor: kColorCream,
+                hourMinuteColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorYellow
+                    : kColorGreen),
+                hourMinuteTextColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorGreen
+                    : kColorCream),
+                dialHandColor: kColorGreen,
+                dialBackgroundColor: kColorYellow,
+                dialTextColor: MaterialStateColor.resolveWith((states) =>
+                states.contains(MaterialState.selected)
+                    ? kColorYellow
+                    : kColorCream),
+                entryModeIconColor: kColorGreen),
+            textTheme: const TextTheme(
+              labelSmall: TextStyle(
+                color: kColorGreen,
+              ),
+            ),
+            textButtonTheme: TextButtonThemeData(
+                style: ButtonStyle(
+                  foregroundColor:
+                  MaterialStateColor.resolveWith((states) => kColorGreen),
+                  overlayColor:
+                  MaterialStateColor.resolveWith((states) => kColorGreen),
+                )),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (pickedTime != null) {
-      _sleep = DateTime(kToday.year, kToday.month, kToday.day - 1,
-          pickedTime.hour, pickedTime.minute);
       String formattedTime = pickedTime.format(context);
       setState(() {
         pickerSleepController.text = formattedTime;
-        _sleep;
+        _sleep = DateTime(kToday.year, kToday.month, kToday.day - 1, pickedTime.hour, pickedTime.minute);
       });
     }
   }
@@ -216,6 +278,7 @@ class _DReportFormState extends State<DReportForm> {
                   key: wakeUpFormKey,
                   child: TimePickerInput(
                     controller: pickerWakeUpController,
+                      onChange: ()=>{_onWakeUpChange(context)},
                   ),
                 ),
                 wakeUpController.error != null
@@ -237,7 +300,7 @@ class _DReportFormState extends State<DReportForm> {
                 ),
                 Form(
                   key: sleepFormKey,
-                  child: TimePickerInput(controller: pickerSleepController),
+                  child: TimePickerInput(controller: pickerSleepController, onChange: ()=>{_onSleepChange(context)},),
                 ),
                 sleepController.error != null
                     ? TextError(
@@ -782,7 +845,7 @@ class _DReportFormState extends State<DReportForm> {
                 ),
 
                 // Button
-                SizedBox(
+                const SizedBox(
                   height: kBigVerticalSpacer,
                 ),
                 Align(
@@ -793,7 +856,7 @@ class _DReportFormState extends State<DReportForm> {
                         _submitForm();
                       }),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: kNormalVerticalSpacer,
                 ),
               ],
