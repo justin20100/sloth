@@ -7,14 +7,8 @@ class HomeController {
     final HomeModel homeModel = HomeModel();
     bool alreadyCompleted = await homeModel.checkIfReportAlreadyCompleted();
 
-    if (4<DateTime.now().hour && DateTime.now().hour<18 && !alreadyCompleted) {
-      if (kDebugMode) {
-        print('Afficher le bloc');
-      }
+    if (4<DateTime.now().hour && DateTime.now().hour<14 && !alreadyCompleted) {
       return true;
-    }
-    if (kDebugMode) {
-      print('Ne pas afficher le bloc');
     }
     return false;
   }
