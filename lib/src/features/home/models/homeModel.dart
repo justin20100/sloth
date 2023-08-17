@@ -15,8 +15,14 @@ class HomeModel {
         .where('date', isLessThan: kToday)
         .get();
     if (querySnapshot.docs.isEmpty) {
+      if (kDebugMode) {
+        print("il n'y a pas de rapport");
+      }
       return false;
     } else {
+      if (kDebugMode) {
+        print("il y a déja un rapport");
+      }
       return true;
     }
   }

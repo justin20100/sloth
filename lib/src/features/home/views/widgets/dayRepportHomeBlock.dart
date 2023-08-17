@@ -50,6 +50,7 @@ class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
               Center(
                 child: WidgetAnimator(
                   atRestEffect: WidgetRestingEffects.bounce(
+                    delay: const Duration(milliseconds: 2000),
                       duration: const Duration(milliseconds: 1500),
                       effectStrength: 0.4
                   ),

@@ -100,7 +100,7 @@ class _DReportFormState extends State<DReportForm> {
 
   void _scrollToFormField(formKey) {
     final RenderBox renderBox = formKey.currentContext!.findRenderObject() as RenderBox;
-    final offset = renderBox.localToGlobal(const Offset(0,1000));
+    final offset = renderBox.localToGlobal( Offset(0,MediaQuery.of(context).size.height+350));
     _scrollController.animateTo(offset.dy, duration: const Duration(milliseconds: 700), curve: Curves.easeInOutExpo);
   }
 
