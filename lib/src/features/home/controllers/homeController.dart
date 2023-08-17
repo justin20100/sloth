@@ -6,7 +6,7 @@ class HomeController {
   Future<bool> homeBlockVisibility() async {
     final HomeModel homeModel = HomeModel();
     bool alreadyCompleted = await homeModel.checkIfReportAlreadyCompleted();
-    if (4<DateTime.now().hour && DateTime.now().hour<19 && !alreadyCompleted) {
+    if (4<DateTime.now().hour && DateTime.now().hour<22 && !alreadyCompleted) {
       if (kDebugMode) {
         print("Il faut afficher le block");
       }

@@ -29,6 +29,7 @@ class _DReportFormState extends State<DReportForm> {
 
   final DReportModel dReportModel = DReportModel();
 
+  final GlobalKey _globalKey = GlobalKey();
   final GlobalKey<FormState> wakeUpFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> sleepFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> feelingLevelFormKey = GlobalKey<FormState>();
@@ -100,7 +101,8 @@ class _DReportFormState extends State<DReportForm> {
 
   void _scrollToFormField(formKey) {
     final RenderBox renderBox = formKey.currentContext!.findRenderObject() as RenderBox;
-    final offset = renderBox.localToGlobal( Offset(0,MediaQuery.of(context).size.height+350));
+    final offset = renderBox.localToGlobal( Offset(0,(MediaQuery.of(context).size.height)));
+    print(offset);
     _scrollController.animateTo(offset.dy, duration: const Duration(milliseconds: 700), curve: Curves.easeInOutExpo);
   }
 
@@ -214,6 +216,7 @@ class _DReportFormState extends State<DReportForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _globalKey,
         backgroundColor: kColorCream,
         appBar: AppBar(
             elevation: 2,
