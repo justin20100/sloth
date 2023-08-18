@@ -12,7 +12,8 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  final DateTime _focusedDay = DateTime.now();
+  late DateTime _focusedDay = DateTime.now();
+  late DateTime _selectedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,15 @@ class _CalendarState extends State<Calendar> {
             horizontal: kSmallHorizontalSpacer * 3,
           ),
           child: TableCalendar(
+            selectedDayPredicate: (day) {
+              return isSameDay(_selectedDay, day);
+            },
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay; // update `_focusedDay` here as well
+              });
+            },
             rowHeight: 70,
             daysOfWeekStyle: const DaysOfWeekStyle(
               weekdayStyle: kDaysCalendarTextStyle,
@@ -65,42 +75,93 @@ class _CalendarState extends State<Calendar> {
             calendarFormat: CalendarFormat.month,
             startingDayOfWeek: StartingDayOfWeek.monday,
             headerVisible: true,
-            calendarBuilders: CalendarBuilders(todayBuilder: (context, day, e) {
-              return GestureDetector(
-                onTap: () => {Navigator.pushNamed(context, kCalendarRoute)},
-                child: Container(
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+              titleTextStyle:kDateTextStyle,
+              rightChevronIcon: Icon(Icons.keyboard_arrow_right_rounded, color: kColorGreen,),
+              leftChevronIcon: Icon(Icons.keyboard_arrow_left_rounded, color: kColorGreen,)
+            ) ,
+            calendarBuilders: CalendarBuilders(
+
+
+                selectedBuilder: (context, day, e) {
+                  return Container(
+                      width: 35,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: kColorWhite,
+                              boxShadow: kBoxShadowItem,
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                day.day.toString(),
+                                style: kNumberDaysCalendarTextStyle,
+                              ),
+                            ],
+                          ),
+                          day.day == kToday.day?
+                          Positioned(
+                            bottom: 13,
+                            child: Container(
+                              width: 22,
+                              height: 4,
+                              decoration: BoxDecoration(
+                                color: kColorGreen,
+                                borderRadius:
+                                BorderRadius.circular(10),
+                              ),
+                            ),
+                          ):const SizedBox(height: 0,)
+                        ],
+                      ),
+                  );
+                },
+
+                todayBuilder: (context, day, e) {
+              return Container(
                   width: 35,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment:
+                        MainAxisAlignment.center,
                         children: [
                           Text(
                             day.day.toString(),
-                            style: kNumberDaysCalendarTextStyle,
+                            style:
+                            kNumberDaysCalendarTextStyle,
                           ),
                         ],
                       ),
                       Positioned(
-                        bottom: 7,
+                        bottom: 13,
                         child: Container(
-                          width: 35,
-                          height: 7,
+                          width: 22,
+                          height: 4,
                           decoration: BoxDecoration(
                             color: kColorGreen,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius:
+                            BorderRadius.circular(10),
                           ),
                         ),
                       )
                     ],
                   ),
-                ),
               );
-            }, defaultBuilder: (context, day, e) {
-              return GestureDetector(
-                onTap: () => {Navigator.pushNamed(context, kCalendarRoute)},
-                child: Column(
+            },
+                defaultBuilder: (context, day, e) {
+              return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -108,7 +169,6 @@ class _CalendarState extends State<Calendar> {
                       style: kNumberDaysCalendarTextStyle,
                     ),
                   ],
-                ),
               );
             }),
           ),
