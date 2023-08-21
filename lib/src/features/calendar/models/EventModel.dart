@@ -6,7 +6,7 @@ class EventModel {
   final CollectionReference eventsRef = FirebaseFirestore.instance
       .collection('events');
 
-  loadAllFirestoreEvents(
+  Future<Map<DateTime, List<Map<String, dynamic>>>> loadAllFirestoreEvents(
       DateTime kfirstDay, DateTime kLastDay) async {
     final userId = await getUserID();
     QuerySnapshot eventsSnapshot = await eventsRef
@@ -14,13 +14,22 @@ class EventModel {
         .where('date', isGreaterThanOrEqualTo: kfirstDay)
         .where('date', isLessThan: kLastDay)
         .get();
-
-    Map<DateTime, dynamic> eventsMap = {};
+    Map<DateTime, List<Map<String, dynamic>>> eventsMap = {};
     eventsSnapshot.docs.forEach((eventDoc) {
       DateTime eventDate = eventDoc.get('date').toDate();
+      eventDate = DateTime(eventDate.year, eventDate.month,eventDate.day);
+      final event = {
+        'date': eventDoc.get('date').toDate(),
+        'results': eventDoc.get('results'),
+        'type': eventDoc.get('type'),
+      };
 
+      if (eventsMap.containsKey(eventDate)) {
+        eventsMap[eventDate]!.add(event);
+      } else {
+        eventsMap[eventDate] = [event];
+      }
     });
-
     return eventsMap;
   }
 }
