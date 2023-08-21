@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:sloth/src/features/home/models/homeModel.dart';
-import 'package:sloth/src/utils/functions.dart';
 
 class HomeController {
   Future<bool> homeBlockVisibility() async {

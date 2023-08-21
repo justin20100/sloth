@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // colors
 const kColorDarkGreen = Color(0xFF2F4F4F);
@@ -226,8 +227,9 @@ const kIntroTitleTextStyle = TextStyle(
 
 // ------------- Dates Functions
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+final kCalendarReference = DateTime(DateTime.now().year, DateTime.now().month);
+final kFirstDay = DateTime(kCalendarReference.year, kCalendarReference.month -6);
+final kLastDay = DateTime(kCalendarReference.year, kCalendarReference.month + 7, 0);
 String getTheDate() {
   String day = '';
   String month = '';

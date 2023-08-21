@@ -75,7 +75,7 @@ class _CalendarState extends State<Calendar> {
             calendarFormat: CalendarFormat.month,
             startingDayOfWeek: StartingDayOfWeek.monday,
             headerVisible: true,
-            headerStyle: HeaderStyle(
+            headerStyle: const HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
               titleTextStyle:kDateTextStyle,
