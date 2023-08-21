@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/utils/functions.dart';
 
 class EventModel {
@@ -17,7 +16,7 @@ class EventModel {
     Map<DateTime, List<Map<String, dynamic>>> eventsMap = {};
     eventsSnapshot.docs.forEach((eventDoc) {
       DateTime eventDate = eventDoc.get('date').toDate();
-      eventDate = DateTime(eventDate.year, eventDate.month,eventDate.day);
+      eventDate = DateTime(eventDate.year, eventDate.month,eventDate.day).toUtc();
       final event = {
         'date': eventDoc.get('date').toDate(),
         'results': eventDoc.get('results'),

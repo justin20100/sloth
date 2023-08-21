@@ -36,7 +36,17 @@ class _CalendarState extends State<Calendar> {
   }
 
   List _getEventsForTheDay(DateTime day) {
-    return _events[day] ?? [];
+    List eventsForTheDay = [];
+
+    for (DateTime eventDate in _events.keys) {
+      if (eventDate.year == day.year &&
+          eventDate.month == day.month &&
+          eventDate.day == day.day) {
+        eventsForTheDay.addAll(_events[eventDate]!);
+      }
+    }
+
+    return eventsForTheDay;
   }
 
   @override
@@ -79,10 +89,6 @@ class _CalendarState extends State<Calendar> {
                         _selectedDay = selectedDay;
                         _focusedDay = focusedDay;
                       });
-                      print(_events[selectedDay]);
-                      print(_selectedDay);
-                      print(_focusedDay);
-
                     },
                     focusedDay: _focusedDay,
                     firstDay: kFirstDay,
@@ -207,7 +213,7 @@ class _CalendarState extends State<Calendar> {
                   ),
                   ListBody(
                     children: _getEventsForTheDay(_selectedDay).map((event) {
-                      String eventDate = event['date'];
+                      String eventDate = event['date'].toString();
                       return ListTile(
                         title: Text(
                           'Rapport quotidien du $eventDate',

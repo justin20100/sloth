@@ -73,7 +73,7 @@ class _DReportFormState extends State<DReportForm> {
     if (isValid) {
       String userId = await getUserID();
       await dReportModel.createDReport(
-          kToday,
+          DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day).toUtc(),
           _anxiety,
           _cognitiveevaluation,
           _euphoria,
