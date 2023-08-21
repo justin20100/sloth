@@ -3,7 +3,7 @@ import 'package:sloth/src/kdatas/variables.dart';
 
 class DReportModel {
   final CollectionReference dReportsRef = FirebaseFirestore.instance
-      .collection('events/WHYbK3b8jyIaKk2IXnwg/dreports');
+      .collection('events');
 
   Future<void> createDReport(
       DateTime date,
@@ -22,6 +22,7 @@ class DReportModel {
       String userId) {
     return dReportsRef
         .add({
+      'type':"d",
           'date': date,
           'results': {
             'anxiety': anxiety,

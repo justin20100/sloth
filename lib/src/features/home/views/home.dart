@@ -212,8 +212,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     FutureBuilder<bool>(
                       future: homeController.homeBlockVisibility(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           return const SizedBox(height: 0);
                         } else if (snapshot.hasError) {
                           return Text('Erreur : ${snapshot.error}');

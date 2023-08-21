@@ -5,7 +5,7 @@ import 'package:sloth/src/kdatas/variables.dart';
 
 class HomeModel {
   final CollectionReference dReportsRef = FirebaseFirestore.instance
-      .collection('events/WHYbK3b8jyIaKk2IXnwg/dreports');
+      .collection('events');
 
   Future<bool> checkIfReportAlreadyCompleted() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
