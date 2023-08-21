@@ -31,7 +31,7 @@ class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
   @override
   Widget build(BuildContext context) {
     return Container(
-          decoration: kHomeBoxDecoration,
+          decoration: kHomeDRepportBoxDecoration,
           padding: const EdgeInsets.only(
               top: kNormalVerticalSpacer,
               right: kNormalHorizontalSpacer,

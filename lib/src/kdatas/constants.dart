@@ -26,8 +26,10 @@ const double kBigHorizontalSpacer = 30;
 const double kNormalHorizontalSpacer = 20;
 const double kSmallHorizontalSpacer = 10;
 
-// Border radius & shadow
+// Border radius
 const BorderRadius kBorderRadiusItem = BorderRadius.all(Radius.circular(7));
+
+// Boxshadows
 List<BoxShadow> kBoxShadowItem = [
   BoxShadow(
     color: Colors.black.withOpacity(0.16),
@@ -35,6 +37,15 @@ List<BoxShadow> kBoxShadowItem = [
     offset: const Offset(1, 0),
   )
 ];
+List<BoxShadow> kDRepportBoxShadowItem = [
+  BoxShadow(
+    color: kColorYellow,
+    blurRadius: 5,
+    offset: const Offset(0, 0),
+  )
+];
+
+// BoxDecorations
 final kBoxDecoration = BoxDecoration(
     color: kColorWhite,
     boxShadow: kBoxShadowItem,
@@ -48,7 +59,11 @@ final kHomeBoxDecoration = BoxDecoration(
     boxShadow: kBoxShadowItem,
     borderRadius: const BorderRadius.all(Radius.circular(13))
 );
-
+final kHomeDRepportBoxDecoration = BoxDecoration(
+    color: kColorWhite,
+    boxShadow: kDRepportBoxShadowItem,
+    borderRadius: const BorderRadius.all(Radius.circular(13))
+);
 
 // ------------- Text Styles
 // Forms
