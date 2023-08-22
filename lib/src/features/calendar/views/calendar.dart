@@ -124,93 +124,117 @@ class _CalendarState extends State<Calendar> {
                           Icons.keyboard_arrow_left_rounded,
                           color: kColorGreen,
                         )),
-                    calendarBuilders:
-                        CalendarBuilders(selectedBuilder: (context, day, e) {
-                      return Container(
-                        width: 35,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              height: 60,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: kColorWhite,
-                                boxShadow: kBoxShadowItem,
+                    calendarBuilders: CalendarBuilders(
+                      selectedBuilder: (context, day, e) {
+                        return Container(
+                          width: 35,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: kColorWhite,
+                                  boxShadow: kBoxShadowItem,
+                                ),
                               ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  day.day.toString(),
-                                  style: kNumberDaysCalendarTextStyle,
-                                ),
-                              ],
-                            ),
-                            day.day == kToday.day
-                                ? Positioned(
-                                    bottom: 13,
-                                    child: Container(
-                                      width: 22,
-                                      height: 4,
-                                      decoration: BoxDecoration(
-                                        color: kColorGreen,
-                                        borderRadius: BorderRadius.circular(10),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: kSmallVerticalSpacer),
+                                  Text(
+                                    day.day.toString(),
+                                    style: kNumberDaysCalendarTextStyle,
+                                  ),
+                                ],
+                              ),
+                              day.day == kToday.day
+                                  ? Positioned(
+                                      bottom: 13,
+                                      child: Container(
+                                        width: 22,
+                                        height: 4,
+                                        decoration: BoxDecoration(
+                                          color: kColorGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                : const SizedBox(
-                                    height: 0,
-                                  )
-                          ],
-                        ),
-                      );
-                    }, todayBuilder: (context, day, e) {
-                      return Container(
-                        width: 35,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  day.day.toString(),
-                                  style: kNumberDaysCalendarTextStyle,
+                                    )
+                                  : const SizedBox(
+                                      height: 0,
+                                    )
+                            ],
+                          ),
+                        );
+                      },
+                      todayBuilder: (context, day, e) {
+                        return Container(
+                          width: 35,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: kSmallVerticalSpacer),
+                                  Text(
+                                    day.day.toString(),
+                                    style: kNumberDaysCalendarTextStyle,
+                                  ),
+                                ],
+                              ),
+                              Positioned(
+                                bottom: 13,
+                                child: Container(
+                                  width: 22,
+                                  height: 4,
+                                  decoration: BoxDecoration(
+                                    color: kColorGreen,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
-                              ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      defaultBuilder: (context, day,
+                        e,
+                      ) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: kSmallVerticalSpacer),
+                            Text(
+                              day.day.toString(),
+                              style: kNumberDaysCalendarTextStyle,
                             ),
-                            Positioned(
-                              bottom: 13,
+                          ],
+                        );
+                      },
+                      markerBuilder: (context, day, events) => events.isNotEmpty
+                          ? Positioned(
+                        bottom: 20,
                               child: Container(
                                 width: 22,
-                                height: 4,
+                                height: 15,
+                                alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   color: kColorGreen,
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Text(
+                                  '${events.length}',
+                                  style:
+                                      const TextStyle(color: kColorWhite, fontSize: 11),
                                 ),
                               ),
                             )
-                          ],
-                        ),
-                      );
-                    }, defaultBuilder: (
-                      context,
-                      day,
-                      e,
-                    ) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            day.day.toString(),
-                            style: kNumberDaysCalendarTextStyle,
-                          ),
-                        ],
-                      );
-                    }),
+                          : null,
+                    ),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -226,7 +250,7 @@ class _CalendarState extends State<Calendar> {
                         style: kDayDateCalendarTextStyle,
                       ),
                       const SizedBox(
-                        height: kMicroVerticalSpacer*2,
+                        height: kMicroVerticalSpacer * 2,
                       ),
                       ListBody(
                         children:
@@ -234,36 +258,34 @@ class _CalendarState extends State<Calendar> {
                           String eventDate = event['date'].toString();
                           return Padding(
                             padding: const EdgeInsets.symmetric(
-                              vertical: kMicroVerticalSpacer/2,
+                              vertical: kMicroVerticalSpacer / 2,
                             ),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: kColorGreen,
-                                borderRadius: BorderRadius.circular(10)
-                              ),
+                                  color: kColorGreen,
+                                  borderRadius: BorderRadius.circular(10)),
                               child: ListTile(
-                                onTap: ()=>{
-
-                                },
+                                onTap: () => {},
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100)),
-                                selectedTileColor: Colors.orange[100],
-                                title: event['type'] == 'd' ? const Text(
-                                    'Rapport quotidien',
-                                    style: TextStyle(color: kColorWhite)
-                                ) : event['type'] == 'a' ? const Text(
-                                    'Analyse de symptômes',
-                                    style: TextStyle(color: kColorWhite)
-                                ) : const Text(
-                                    'Rapport de la semaine',
-                                    style: TextStyle(color: kColorWhite)
-                                ),
+                                title: event['type'] == 'd'
+                                    ? const Text('Rapport quotidien',
+                                        style: TextStyle(color: kColorWhite))
+                                    : event['type'] == 'a'
+                                        ? const Text('Analyse de symptômes',
+                                            style:
+                                                TextStyle(color: kColorWhite))
+                                        : const Text('Rapport de la semaine',
+                                            style:
+                                                TextStyle(color: kColorWhite)),
                               ),
                             ),
                           );
                         }).toList(),
                       ),
-                      SizedBox(height: kNormalVerticalSpacer,)
+                      const SizedBox(
+                        height: kNormalVerticalSpacer,
+                      )
                     ],
                   )
                 ],
