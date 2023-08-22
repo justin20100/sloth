@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/controllers/CalendarController.dart';
@@ -20,12 +22,15 @@ class _CalendarState extends State<Calendar> {
   late Map<DateTime, List<Map<String, dynamic>>> _events;
   CalendarController calendarController = CalendarController();
   EventModel eventModel = EventModel();
+  late bool usedselectedDay;
 
   @override
   void initState() {
-    _events = {};
-    _loadEvents(kFirstDay, kLastDay);
     super.initState();
+    _selectedDay = DateTime.now();
+    _focusedDay = DateTime.now();
+    _events={};
+    usedselectedDay = false;
   }
 
   _loadEvents(kFirstDay, kLastDay) async {
@@ -51,6 +56,12 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    if (arguments != null && arguments['selectedDay'] != null && usedselectedDay != true) {
+      _selectedDay = arguments['selectedDay'];
+      _focusedDay = arguments['selectedDay'];
+      usedselectedDay = true;
+    }
     return Scaffold(
         backgroundColor: kColorCream,
         appBar: AppBar(
@@ -95,7 +106,7 @@ class _CalendarState extends State<Calendar> {
                     firstDay: kFirstDay,
                     lastDay: kLastDay,
                     rowHeight: 70,
-                    daysOfWeekHeight:30,
+                    daysOfWeekHeight: 30,
                     daysOfWeekStyle: const DaysOfWeekStyle(
                       weekdayStyle: kDaysCalendarTextStyle,
                       weekendStyle: kDaysCalendarTextStyle,
@@ -264,7 +275,9 @@ class _CalendarState extends State<Calendar> {
                         height: kSmallVerticalSpacer,
                       ),
                       Text(
-                        DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(_selectedDay),
+                        DateFormat.MMMMEEEEd(
+                                Localizations.localeOf(context).toString())
+                            .format(_selectedDay),
                         style: kDayDateCalendarTextStyle,
                       ),
                       const SizedBox(

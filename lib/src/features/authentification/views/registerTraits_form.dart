@@ -89,8 +89,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
         backgroundColor: kColorCream,
         body: SafeArea(

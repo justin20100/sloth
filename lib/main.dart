@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             initialRoute: FirebaseAuth.instance.currentUser == null
                 ? kIntersectionRoute
-                : kCalendarRoute,
+                : kHomeRoute,
             routes: router,
             theme: ThemeData(fontFamily: 'Inter'),
           );
