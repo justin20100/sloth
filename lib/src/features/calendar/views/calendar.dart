@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/controllers/CalendarController.dart';
 import 'package:sloth/src/features/calendar/models/EventModel.dart';
 import 'package:sloth/src/kdatas/constants.dart';
@@ -107,7 +108,7 @@ class _CalendarState extends State<Calendar> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    locale: 'fr_FR',
+                    locale: Localizations.localeOf(context).toString(),
                     calendarFormat: CalendarFormat.month,
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     headerVisible: true,
@@ -211,17 +212,59 @@ class _CalendarState extends State<Calendar> {
                       );
                     }),
                   ),
-                  ListBody(
-                    children: _getEventsForTheDay(_selectedDay).map((event) {
-                      String eventDate = event['date'].toString();
-                      return ListTile(
-                        title: Text(
-                          'Rapport quotidien du $eventDate',
-                          style: TextStyle(color: kColorRed),
-                        ),
-                        // Autres informations que vous souhaitez afficher pour chaque événement
-                      );
-                    }).toList(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: kSmallVerticalSpacer,
+                      ),
+                      Text(
+                        DateFormat.MMMEd(
+                                Localizations.localeOf(context).toString())
+                            .format(_selectedDay),
+                        style: kDayDateCalendarTextStyle,
+                      ),
+                      const SizedBox(
+                        height: kMicroVerticalSpacer*2,
+                      ),
+                      ListBody(
+                        children:
+                            _getEventsForTheDay(_selectedDay).map((event) {
+                          String eventDate = event['date'].toString();
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: kMicroVerticalSpacer/2,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: kColorGreen,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: ListTile(
+                                onTap: ()=>{
+
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100)),
+                                selectedTileColor: Colors.orange[100],
+                                title: event['type'] == 'd' ? const Text(
+                                    'Rapport quotidien',
+                                    style: TextStyle(color: kColorWhite)
+                                ) : event['type'] == 'a' ? const Text(
+                                    'Analyse de symptômes',
+                                    style: TextStyle(color: kColorWhite)
+                                ) : const Text(
+                                    'Rapport de la semaine',
+                                    style: TextStyle(color: kColorWhite)
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: kNormalVerticalSpacer,)
+                    ],
                   )
                 ],
               )),

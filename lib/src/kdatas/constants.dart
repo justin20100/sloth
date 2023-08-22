@@ -133,6 +133,14 @@ const kDaysCalendarTextStyle = TextStyle(
   color: kColorYellow,
   decoration: TextDecoration.none,
 );
+const kDayDateCalendarTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
 // Basic Text
 const k12BasicTextStyle = TextStyle(
   fontSize: 12.0,
