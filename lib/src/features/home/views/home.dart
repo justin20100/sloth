@@ -100,7 +100,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                               // Date of the day
                               Center(
                                   child: Text(
-                                getTheDate(),
+                                getTheDate(context),
                                 style: kDateTextStyle,
                               )),
                               const SizedBox(

@@ -237,7 +237,7 @@ class _DReportFormState extends State<DReportForm> {
             title: Column(
               children: [
                 Text(
-                  getTheDateNM(),
+                  getTheDate(context),
                   style: kAppBarTextStyle,
                 ),
                 const SizedBox(

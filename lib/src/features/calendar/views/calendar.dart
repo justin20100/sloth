@@ -32,7 +32,6 @@ class _CalendarState extends State<Calendar> {
     _events = await eventModel.loadAllFirestoreEvents(kFirstDay, kLastDay);
     setState(() {
       _events;
-      print(_events);
     });
   }
 
@@ -82,6 +81,7 @@ class _CalendarState extends State<Calendar> {
               ),
               child: Column(
                 children: [
+                  // Calendar
                   TableCalendar(
                     eventLoader: (day) => _getEventsForTheDay(day),
                     selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
@@ -95,6 +95,7 @@ class _CalendarState extends State<Calendar> {
                     firstDay: kFirstDay,
                     lastDay: kLastDay,
                     rowHeight: 70,
+                    daysOfWeekHeight:30,
                     daysOfWeekStyle: const DaysOfWeekStyle(
                       weekdayStyle: kDaysCalendarTextStyle,
                       weekendStyle: kDaysCalendarTextStyle,
@@ -201,7 +202,9 @@ class _CalendarState extends State<Calendar> {
                           ),
                         );
                       },
-                      defaultBuilder: (context, day,
+                      defaultBuilder: (
+                        context,
+                        day,
                         e,
                       ) {
                         return Column(
@@ -215,9 +218,25 @@ class _CalendarState extends State<Calendar> {
                           ],
                         );
                       },
+                      outsideBuilder: (
+                        context,
+                        day,
+                        e,
+                      ) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: kSmallVerticalSpacer),
+                            Text(
+                              day.day.toString(),
+                              style: kNumberOutsideDaysCalendarTextStyle,
+                            ),
+                          ],
+                        );
+                      },
                       markerBuilder: (context, day, events) => events.isNotEmpty
                           ? Positioned(
-                        bottom: 20,
+                              bottom: 20,
                               child: Container(
                                 width: 22,
                                 height: 15,
@@ -228,14 +247,15 @@ class _CalendarState extends State<Calendar> {
                                 ),
                                 child: Text(
                                   '${events.length}',
-                                  style:
-                                      const TextStyle(color: kColorWhite, fontSize: 11),
+                                  style: const TextStyle(
+                                      color: kColorWhite, fontSize: 11),
                                 ),
                               ),
                             )
                           : null,
                     ),
                   ),
+                  // Events list
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,45 +264,58 @@ class _CalendarState extends State<Calendar> {
                         height: kSmallVerticalSpacer,
                       ),
                       Text(
-                        DateFormat.MMMEd(
-                                Localizations.localeOf(context).toString())
-                            .format(_selectedDay),
+                        DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(_selectedDay),
                         style: kDayDateCalendarTextStyle,
                       ),
                       const SizedBox(
                         height: kMicroVerticalSpacer * 2,
                       ),
-                      ListBody(
-                        children:
-                            _getEventsForTheDay(_selectedDay).map((event) {
-                          String eventDate = event['date'].toString();
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: kMicroVerticalSpacer / 2,
+                      _getEventsForTheDay(_selectedDay).isEmpty
+                          ? Container(
+                              alignment: Alignment.topLeft,
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: kMicroVerticalSpacer / 2,
+                                ),
+                                child:
+                                    Text("Pas d'événements pour cette journée"),
+                              ))
+                          : ListBody(
+                              children: _getEventsForTheDay(_selectedDay)
+                                  .map((event) {
+                                String eventDate = event['date'].toString();
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: kMicroVerticalSpacer / 2,
+                                  ),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: kColorGreen,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: ListTile(
+                                      onTap: () => {},
+                                      title: event['type'] == 'd'
+                                          ? const Text('Rapport quotidien',
+                                              style:
+                                                  kEventsCardCalendarTextStyle)
+                                          : event['type'] == 'w'
+                                              ? const Text(
+                                                  'Analyse de symptômes',
+                                                  style:
+                                                      kEventsCardCalendarTextStyle)
+                                              : event['type'] == 'a'
+                                                  ? const Text(
+                                                      'Rapport de la semaine',
+                                                      style:
+                                                          kEventsCardCalendarTextStyle)
+                                                  : null,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: kColorGreen,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: ListTile(
-                                onTap: () => {},
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100)),
-                                title: event['type'] == 'd'
-                                    ? const Text('Rapport quotidien',
-                                        style: TextStyle(color: kColorWhite))
-                                    : event['type'] == 'a'
-                                        ? const Text('Analyse de symptômes',
-                                            style:
-                                                TextStyle(color: kColorWhite))
-                                        : const Text('Rapport de la semaine',
-                                            style:
-                                                TextStyle(color: kColorWhite)),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
                       const SizedBox(
                         height: kNormalVerticalSpacer,
                       )

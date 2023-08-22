@@ -125,6 +125,13 @@ const kNumberDaysCalendarTextStyle = TextStyle(
   color: kColorGrey,
   decoration: TextDecoration.none,
 );
+const kNumberOutsideDaysCalendarTextStyle = TextStyle(
+  fontSize: 15.0,
+  height: 1,
+  fontFamily: 'Inter',
+  color: kColorYellow,
+  decoration: TextDecoration.none,
+);
 const kDaysCalendarTextStyle = TextStyle(
   fontSize: 16.0,
   height: 1,
@@ -139,6 +146,14 @@ const kDayDateCalendarTextStyle = TextStyle(
   fontFamily: 'Inter',
   fontWeight: FontWeight.bold,
   color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+const kEventsCardCalendarTextStyle = TextStyle(
+  fontSize: 16.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.normal,
+  color: kColorWhite,
   decoration: TextDecoration.none,
 );
 // Basic Text
@@ -238,112 +253,6 @@ final kToday = DateTime.now();
 final kCalendarReference = DateTime(DateTime.now().year, DateTime.now().month);
 final kFirstDay = DateTime(kCalendarReference.year, kCalendarReference.month -6);
 final kLastDay = DateTime(kCalendarReference.year, kCalendarReference.month + 7, 0);
-String getTheDate() {
-  String day = '';
-  String month = '';
-  switch (kToday.weekday) {
-    case 1:
-      day = 'lundi';
-      break;
-    case 2:
-      day = 'mardi';
-      break;
-    case 3:
-      day = 'mercredi';
-      break;
-    case 4:
-      day = 'jeudi';
-      break;
-    case 5:
-      day = 'vendredi';
-      break;
-    case 6:
-      day = 'samedi';
-      break;
-    case 7:
-      day = 'dimanche';
-      break;
-  }
-  switch (kToday.month) {
-    case 1:
-      month = 'janvier';
-      break;
-    case 2:
-      month = 'février';
-      break;
-    case 3:
-      month = 'mars';
-      break;
-    case 4:
-      month = 'avril';
-      break;
-    case 5:
-      month = 'mai';
-      break;
-    case 6:
-      month = 'juin';
-      break;
-    case 7:
-      month = 'juillet';
-      break;
-    case 8:
-      month = 'aout';
-      break;
-    case 9:
-      month = 'septembre';
-      break;
-    case 10:
-      month = 'octobre';
-      break;
-    case 11:
-      month = 'novembre';
-      break;
-    case 12:
-      month = 'decembre';
-      break;
-  }
-  return day+' '+kToday.day.toString()+' '+month;
-}
-String getTheDateNM() {
-  String day = '';
-  String month = '';
-  switch (kToday.month) {
-    case 1:
-      month = 'janvier';
-      break;
-    case 2:
-      month = 'février';
-      break;
-    case 3:
-      month = 'mars';
-      break;
-    case 4:
-      month = 'avril';
-      break;
-    case 5:
-      month = 'mai';
-      break;
-    case 6:
-      month = 'juin';
-      break;
-    case 7:
-      month = 'juillet';
-      break;
-    case 8:
-      month = 'aout';
-      break;
-    case 9:
-      month = 'septembre';
-      break;
-    case 10:
-      month = 'octobre';
-      break;
-    case 11:
-      month = 'novembre';
-      break;
-    case 12:
-      month = 'decembre';
-      break;
-  }
-  return '${kToday.day} $month';
+String getTheDate(context) {
+  return DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(DateTime.now());
 }
