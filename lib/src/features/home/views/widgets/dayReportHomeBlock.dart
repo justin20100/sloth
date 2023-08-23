@@ -9,15 +9,15 @@ import 'package:sloth/src/widgets/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
-class DayRepportHomeBlock extends StatefulWidget {
-  const DayRepportHomeBlock({Key? key, required this.text}) : super(key: key);
+class DayReportHomeBlock extends StatefulWidget {
+  const DayReportHomeBlock({Key? key, required this.text}) : super(key: key);
   final String text;
 
   @override
-  State<DayRepportHomeBlock> createState() => _DayRepportHomeBlockState();
+  State<DayReportHomeBlock> createState() => _DayReportHomeBlockState();
 }
 
-class _DayRepportHomeBlockState extends State<DayRepportHomeBlock> {
+class _DayReportHomeBlockState extends State<DayReportHomeBlock> {
   @override
   void initState() {
     super.initState();

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
-import 'package:sloth/src/features/home/views/widgets/dayRepportHomeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/dayReportHomeBlock.dart';
 import 'package:sloth/src/features/home/views/widgets/homeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/weekReportHomeBloc.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/burgerMenu/burgerMenu.dart';
@@ -215,7 +216,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           if (isDReportAvailable) {
                             return Column(
                               children: [
-                                DayRepportHomeBlock(
+                                DayReportHomeBlock(
                                   text: AppLocalizations.of(context)!
                                       .home__boxDRepport,
                                 ),
@@ -230,16 +231,40 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
-
-                    // Week rapport box
-                    HomeBloc(
-                      text: AppLocalizations.of(context)!.home__boxWRepport,
-                      buttonText:
-                          AppLocalizations.of(context)!.home__boxWRepportButton,
-                      route: kHomeRoute,
-                    ),
-                    const SizedBox(
-                      height: kSmallVerticalSpacer,
+                    FutureBuilder<bool>(
+                      future: homeController.weekBlockVisibility(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox(height: 0);
+                        } else if (snapshot.hasError) {
+                          return Text('Erreur : ${snapshot.error}');
+                        } else {
+                          bool isDReportAvailable = snapshot.data ?? false;
+                          if (isDReportAvailable) {
+                            return const Column(
+                              children: [
+                                WeekReportHomeBloc(
+                                  text: 'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
+                                  buttonText: 'Calculer',
+                                  route: kHomeRoute,
+                                ),
+                                SizedBox(
+                                  height: kSmallVerticalSpacer,
+                                )
+                              ],
+                            );
+                          } else {
+                            return // Week rapport box
+                              HomeBloc(
+                                text: AppLocalizations.of(context)!.home__boxWRepport,
+                                buttonText:
+                                AppLocalizations.of(context)!.home__boxWRepportButton,
+                                route: kHomeRoute,
+                              );
+                          }
+                        }
+                      },
                     ),
 
                     // Articles box

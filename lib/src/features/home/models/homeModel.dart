@@ -13,6 +13,7 @@ class HomeModel {
         .where('userId', isEqualTo: userId)
         .where('date', isGreaterThanOrEqualTo: kYesterday)
         .where('date', isLessThan: kToday)
+        .where('type', isEqualTo: 'd')
         .get();
     if (querySnapshot.docs.isEmpty) {
       if (kDebugMode) {
@@ -26,4 +27,25 @@ class HomeModel {
       return true;
     }
   }
+  Future<bool> checkIfWReportAlreadyCalculated() async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+    QuerySnapshot querySnapshot = await dReportsRef
+        .where('userId', isEqualTo: userId)
+        .where('date', isGreaterThanOrEqualTo: kYesterday)
+        .where('date', isLessThan: kToday)
+        .where('type', isEqualTo: 'w')
+        .get();
+    if (querySnapshot.docs.isEmpty) {
+      if (kDebugMode) {
+        print("il n'y a pas de rapport hebdomadaire");
+      }
+      return false;
+    } else {
+      if (kDebugMode) {
+        print("il y a déja un rapport hebdomadaire");
+      }
+      return true;
+    }
+  }
+
 }
