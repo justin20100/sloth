@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/controllers/CalendarController.dart';
@@ -31,6 +29,7 @@ class _CalendarState extends State<Calendar> {
     _focusedDay = DateTime.now();
     _events={};
     usedselectedDay = false;
+    _loadEvents(kFirstDay, kLastDay);
   }
 
   _loadEvents(kFirstDay, kLastDay) async {
@@ -42,7 +41,6 @@ class _CalendarState extends State<Calendar> {
 
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
-
     for (DateTime eventDate in _events.keys) {
       if (eventDate.year == day.year &&
           eventDate.month == day.month &&
@@ -50,7 +48,6 @@ class _CalendarState extends State<Calendar> {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }
-
     return eventsForTheDay;
   }
 

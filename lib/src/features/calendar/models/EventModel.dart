@@ -22,13 +22,13 @@ class EventModel {
         'results': eventDoc.get('results'),
         'type': eventDoc.get('type'),
       };
-
       if (eventsMap.containsKey(eventDate)) {
         eventsMap[eventDate]!.add(event);
       } else {
         eventsMap[eventDate] = [event];
       }
     });
+    print(eventsMap);
     return eventsMap;
   }
 }
