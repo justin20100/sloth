@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/features/home/views/widgets/dayReportHomeBlock.dart';
 import 'package:sloth/src/features/home/views/widgets/homeBlock.dart';
-import 'package:sloth/src/features/home/views/widgets/weekReportHomeBloc.dart';
+import 'package:sloth/src/features/home/views/widgets/weekReportHomeBlock.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/burgerMenu/burgerMenu.dart';
@@ -202,7 +202,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       right: kNormalHorizontalSpacer,
                       top: kNormalVerticalSpacer),
                   children: [
-                    // Day rapport box
+                    // Day rapport bloc
                     FutureBuilder<bool>(
                       future: homeController.homeBlockVisibility(),
                       builder: (context, snapshot) {
@@ -244,7 +244,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           if (isDReportAvailable) {
                             return const Column(
                               children: [
-                                WeekReportHomeBloc(
+                                WeekReportHomeBlock(
                                   text:
                                       'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
                                   buttonText: 'Calculer',
@@ -263,8 +263,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
-
-                    HomeBloc(
+                    HomeBlock(
                       text: AppLocalizations.of(context)!.home__boxWRepport,
                       buttonText:
                           AppLocalizations.of(context)!.home__boxWRepportButton,
@@ -273,11 +272,21 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
-                    // Articles box
-                    HomeBloc(
-                      text: AppLocalizations.of(context)!.home__boxArticles,
+
+                    // analyse bloc
+                    HomeBlock(
+                      text: AppLocalizations.of(context)!.home__boxWRepport,
                       buttonText:
-                          AppLocalizations.of(context)!.home__boxArticlesButton,
+                      AppLocalizations.of(context)!.home__boxWRepportButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kSmallVerticalSpacer,
+                    ),
+                    // Articles box
+                    HomeBlock(
+                      text: AppLocalizations.of(context)!.home__boxArticles,
+                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(
