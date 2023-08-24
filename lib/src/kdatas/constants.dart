@@ -246,8 +246,6 @@ const kIntroTitleTextStyle = TextStyle(
   decoration: TextDecoration.none,
 );
 
-
-
 // ------------- Dates Functions
 final kToday = DateTime.now();
 final kCalendarReference = DateTime(DateTime.now().year, DateTime.now().month);

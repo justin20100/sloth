@@ -44,7 +44,7 @@ class _CalendarState extends State<Calendar> {
     for (DateTime eventDate in _events.keys) {
       if (eventDate.year == day.year &&
           eventDate.month == day.month &&
-          eventDate.day == day.day) {
+          eventDate.day+1 == day.day) {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }

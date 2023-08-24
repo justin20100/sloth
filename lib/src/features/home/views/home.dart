@@ -245,7 +245,8 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             return const Column(
                               children: [
                                 WeekReportHomeBloc(
-                                  text: 'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
+                                  text:
+                                      'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
                                   buttonText: 'Calculer',
                                   route: kHomeRoute,
                                 ),
@@ -255,18 +256,23 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                               ],
                             );
                           } else {
-                            return // Week rapport box
-                              HomeBloc(
-                                text: AppLocalizations.of(context)!.home__boxWRepport,
-                                buttonText:
-                                AppLocalizations.of(context)!.home__boxWRepportButton,
-                                route: kHomeRoute,
-                              );
+                            return const SizedBox(
+                              height: 0,
+                            );
                           }
                         }
                       },
                     ),
 
+                    HomeBloc(
+                      text: AppLocalizations.of(context)!.home__boxWRepport,
+                      buttonText:
+                          AppLocalizations.of(context)!.home__boxWRepportButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kSmallVerticalSpacer,
+                    ),
                     // Articles box
                     HomeBloc(
                       text: AppLocalizations.of(context)!.home__boxArticles,

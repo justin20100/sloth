@@ -17,12 +17,12 @@ class HomeModel {
         .get();
     if (querySnapshot.docs.isEmpty) {
       if (kDebugMode) {
-        print("il n'y a pas de rapport");
+        print("il n'y a pas encore de rapport journalier");
       }
       return false;
     } else {
       if (kDebugMode) {
-        print("il y a déja un rapport");
+        print("il y a déja un rapport journalier");
       }
       return true;
     }
