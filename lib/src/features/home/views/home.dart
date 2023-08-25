@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
-import 'package:sloth/src/features/home/views/widgets/dayReportHomeBlock.dart';
-import 'package:sloth/src/features/home/views/widgets/homeBlock.dart';
-import 'package:sloth/src/features/home/views/widgets/weekReportHomeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/burgerMenu/burgerMenu.dart';
+import 'package:sloth/src/features/home/views/widgets/burgerMenu/sidebar.dart';
+import 'package:sloth/src/features/home/views/widgets/dReportHomeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/defaultHomeBlock.dart';
+import 'package:sloth/src/features/home/views/widgets/wReportHomeBlock.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
-import 'package:sloth/src/widgets/burgerMenu/burgerMenu.dart';
-import 'package:sloth/src/widgets/burgerMenu/sidebar.dart';
-import 'package:sloth/src/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,13 +27,8 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
 
   @override
   initState() {
-    initializeDateFormatting();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    initializeDateFormatting();
   }
 
   @override
@@ -204,7 +198,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                   children: [
                     // Day rapport bloc
                     FutureBuilder<bool>(
-                      future: homeController.homeBlockVisibility(),
+                      future: homeController.dReportHomeBlockVisibility(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -216,7 +210,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           if (isDReportAvailable) {
                             return Column(
                               children: [
-                                DayReportHomeBlock(
+                                DReportHomeBlock(
                                   text: AppLocalizations.of(context)!
                                       .home__boxDRepport,
                                 ),
@@ -231,8 +225,10 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
+
+                    // week block
                     FutureBuilder<bool>(
-                      future: homeController.weekBlockVisibility(),
+                      future: homeController.wReportHomeBlockVisibility(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -244,7 +240,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           if (isDReportAvailable) {
                             return const Column(
                               children: [
-                                WeekReportHomeBlock(
+                                WReportHomeBlock(
                                   text:
                                       'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
                                   buttonText: 'Calculer',
@@ -263,7 +259,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
-                    HomeBlock(
+                    DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxWRepport,
                       buttonText:
                           AppLocalizations.of(context)!.home__boxWRepportButton,
@@ -273,8 +269,8 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       height: kSmallVerticalSpacer,
                     ),
 
-                    // analyse bloc
-                    HomeBlock(
+                    // analyse block
+                    DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxWRepport,
                       buttonText:
                       AppLocalizations.of(context)!.home__boxWRepportButton,
@@ -283,8 +279,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
+
                     // Articles box
-                    HomeBlock(
+                    DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxArticles,
                       buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
                       route: kHomeRoute,
@@ -301,8 +298,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   }
 }
 
-class CustomSliverPersistentHeaderDelegate
-    extends SliverPersistentHeaderDelegate {
+class CustomSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
 
   CustomSliverPersistentHeaderDelegate({required this.child});

@@ -5,7 +5,7 @@ import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class WakeUpController {
+class WakeUpInputController {
   late String? error = null;
   bool validate(context, value) {
     if (value.isEmpty) {
@@ -17,7 +17,7 @@ class WakeUpController {
   }
 }
 
-class SleepController {
+class SleepInputController {
   late String? error = null;
   bool validate(context, value) {
     if (value.isEmpty) {
@@ -29,7 +29,7 @@ class SleepController {
   }
 }
 
-class FeelingLevelController {
+class FeelingLevelSelectController {
   late String? error = null;
   bool validate(context, value) {
     if (value == null) {
@@ -41,7 +41,7 @@ class FeelingLevelController {
   }
 }
 
-class CheckFormDoneController {
+class FormDoneCheckboxController {
   late bool error = false;
   bool validate(context, bool value) {
     if (value) {

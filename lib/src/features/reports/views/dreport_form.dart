@@ -22,10 +22,10 @@ class _DReportFormState extends State<DReportForm> {
   final TextEditingController pickerWakeUpController = TextEditingController();
   final TextEditingController pickerSleepController = TextEditingController();
 
-  final WakeUpController wakeUpController = WakeUpController();
-  final SleepController sleepController = SleepController();
-  final FeelingLevelController feelingLevelController = FeelingLevelController();
-  final CheckFormDoneController checkFormDoneController = CheckFormDoneController();
+  final WakeUpInputController wakeUpController = WakeUpInputController();
+  final SleepInputController sleepController = SleepInputController();
+  final FeelingLevelSelectController feelingLevelController = FeelingLevelSelectController();
+  final FormDoneCheckboxController checkFormDoneController = FormDoneCheckboxController();
 
   final DReportModel dReportModel = DReportModel();
 
