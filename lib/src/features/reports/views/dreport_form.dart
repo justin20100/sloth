@@ -69,24 +69,9 @@ class _DReportFormState extends State<DReportForm> {
       isValid = feelingLevelController.validate(context, _fellingLevel) && isValid;
       isValid = checkFormDoneController.validate(context, _checkformdone) && isValid;
     });
-
     if (isValid) {
       String userId = await getUserID();
-      await dReportModel.createDReport(
-          DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1).toUtc(),
-          _anxiety,
-          _cognitiveevaluation,
-          _euphoria,
-          _mood,
-          _moreinfos!,
-          _motivation,
-          _physiqueevaluation,
-          _sleep,
-          _sleepevaluation,
-          _state,
-          _stress,
-          _wakeup,
-          userId);
+      await dReportModel.createDReport(DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1).toUtc(), _anxiety, _cognitiveevaluation, _euphoria, _mood, _moreinfos!, _motivation, _physiqueevaluation, _sleep, _sleepevaluation, _state, _stress, _wakeup, userId);
       Navigator.pushNamed(context, kHomeRoute);
     } else {
       if (wakeUpController.error != null) {

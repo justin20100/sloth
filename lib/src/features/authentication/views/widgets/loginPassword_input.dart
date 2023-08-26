@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/src/features/authentification/controllers/loginController.dart';
+import 'package:sloth/src/features/authentication/controllers/loginController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
 @immutable

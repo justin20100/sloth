@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sloth/src/features/authentification/views/widgets/registerPhone_input.dart';
+import 'package:sloth/src/features/authentication/views/widgets/registerPhone_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
-import 'package:sloth/src/features/authentification/views/widgets/registerFirstname_input.dart';
-import 'package:sloth/src/features/authentification/views/widgets/registerLastname_input.dart';
+import 'package:sloth/src/features/authentication/views/widgets/registerFirstname_input.dart';
+import 'package:sloth/src/features/authentication/views/widgets/registerLastname_input.dart';
 
 class RegisterMoreForm extends StatelessWidget {
   RegisterMoreForm({Key? key}) : super(key: key);

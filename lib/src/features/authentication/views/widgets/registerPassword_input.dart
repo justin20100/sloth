@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/src/features/authentification/controllers/registerController.dart';
+import 'package:sloth/src/features/authentication/controllers/registerController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
 @immutable
-class RegisterValidatePasswordInput extends StatefulWidget {
+class RegisterPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
-  final String password;
 
-   const RegisterValidatePasswordInput(
-      {this.onChanged, required this.password, Key? key})
+  RegisterPasswordInput(
+      {this.onChanged,
+        required String password,
+        Key? key})
       : super(key: key);
 
   @override
-  State<RegisterValidatePasswordInput> createState() =>
-      _RegisterValidatePasswordInputState();
+  State<RegisterPasswordInput> createState() => _RegisterPasswordInputState();
 }
 
-class _RegisterValidatePasswordInputState extends State<RegisterValidatePasswordInput> {
+class _RegisterPasswordInputState extends State<RegisterPasswordInput> {
   final RegisterController _registerController = RegisterController();
+  late String password = password;
   bool _isObscured = true;
 
   @override
@@ -26,9 +27,6 @@ class _RegisterValidatePasswordInputState extends State<RegisterValidatePassword
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ce champ ne peut pas être vide';
-        }
-        if (value != widget.password) {
-          return 'Vérifiez vos mots de passe';
         }
         return null;
       },
@@ -44,14 +42,8 @@ class _RegisterValidatePasswordInputState extends State<RegisterValidatePassword
           splashRadius: 10,
           padding: const EdgeInsetsDirectional.only(end: 12),
           icon: _isObscured
-              ? const Icon(
-                  Icons.visibility_rounded,
-                  color: kColorGreen,
-                )
-              : const Icon(
-                  Icons.visibility_off_rounded,
-                  color: kColorGreen,
-                ),
+              ? const Icon(Icons.visibility_rounded, color: kColorGreen,)
+              : const Icon(Icons.visibility_off_rounded, color: kColorGreen,),
           onPressed: () {
             setState(() {
               _isObscured = !_isObscured;
