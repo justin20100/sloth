@@ -116,15 +116,7 @@ class RegisterMoreForm extends StatelessWidget {
                                           null &&
                                       _registerMoreFormKey.currentState!
                                           .validate()) {
-                                    Navigator.pushNamed(
-                                        context, kRegisterTraitsRoute,
-                                        arguments: {
-                                          'email': arguments['email'],
-                                          'password': arguments['password'],
-                                          'firstname': _firstname,
-                                          'lastname': _lastname,
-                                          'phone': _phone ?? ''
-                                        });
+                                    Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: {'email': arguments['email'], 'password': arguments['password'], 'firstname': _firstname, 'lastname': _lastname, 'phone': _phone ?? ''});
                                   }
                             }),
                       ],

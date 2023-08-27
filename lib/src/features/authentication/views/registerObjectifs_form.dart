@@ -346,7 +346,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                 },
                                 user_id,
                               );
-                              WelcomeSnackbar(message: AppLocalizations.of(context)!.snackbar__welcomeMessage);
+                              Future.delayed(const Duration(seconds: 2)).then((value) => WelcomeSnackbar(message: AppLocalizations.of(context)!.snackbar__welcomeMessage));
                               Navigator.pushNamed(context, kHomeRoute);
                             } else {
                               ErrorSnackbar.show(context, AppLocalizations.of(context)!.registerObjectifs__internetError);

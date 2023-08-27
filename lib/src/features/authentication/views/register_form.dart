@@ -215,11 +215,7 @@ class _RegisterFormState extends State<RegisterForm> {
                               onPressed: () {
                                 if (_registerFormKey.currentState != null &&
                                     _registerFormKey.currentState!.validate()) {
-                                  Navigator.pushNamed(
-                                      context, kRegisterMoreRoute, arguments: {
-                                    'email': _email,
-                                    'password': _password
-                                  });
+                                  Navigator.pushNamed(context, kRegisterMoreRoute, arguments: {'email': _email, 'password': _password});
                                 }
                               }),
                         ],

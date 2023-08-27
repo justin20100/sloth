@@ -18,9 +18,9 @@ class _CalendarState extends State<Calendar> {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
   late Map<DateTime, List<Map<String, dynamic>>> _events;
+  late bool usedselectedDay;
   CalendarController calendarController = CalendarController();
   EventModel eventModel = EventModel();
-  late bool usedselectedDay;
 
   @override
   void initState() {
@@ -42,9 +42,7 @@ class _CalendarState extends State<Calendar> {
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
     for (DateTime eventDate in _events.keys) {
-      if (eventDate.year == day.year &&
-          eventDate.month == day.month &&
-          eventDate.day+1 == day.day) {
+      if (eventDate.year == day.year && eventDate.month == day.month && eventDate.day == day.day) {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }
@@ -71,7 +69,7 @@ class _CalendarState extends State<Calendar> {
           toolbarHeight: 80,
           backgroundColor: kColorCream,
           leading: GestureDetector(
-            onTap: () => {Navigator.pop(context)},
+            onTap: () => {Navigator.popAndPushNamed(context, kHomeRoute)},
             child: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: kColorGreen,
@@ -291,9 +289,7 @@ class _CalendarState extends State<Calendar> {
                                     Text("Pas d'événements pour cette journée"),
                               ))
                           : ListBody(
-                              children: _getEventsForTheDay(_selectedDay)
-                                  .map((event) {
-                                String eventDate = event['date'].toString();
+                              children: _getEventsForTheDay(_selectedDay).map((event) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: kMicroVerticalSpacer / 2,
@@ -312,12 +308,12 @@ class _CalendarState extends State<Calendar> {
                                                   kEventsCardCalendarTextStyle)
                                           : event['type'] == 'w'
                                               ? const Text(
-                                                  'Analyse de symptômes',
+                                                  'Rapport de la semaine',
                                                   style:
                                                       kEventsCardCalendarTextStyle)
                                               : event['type'] == 'a'
                                                   ? const Text(
-                                                      'Rapport de la semaine',
+                                                      'Analyse de symptômes',
                                                       style:
                                                           kEventsCardCalendarTextStyle)
                                                   : null,

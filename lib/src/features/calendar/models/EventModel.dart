@@ -12,11 +12,11 @@ class EventModel {
         .where('userId', isEqualTo: userId)
         .where('date', isGreaterThanOrEqualTo: kfirstDay)
         .where('date', isLessThan: kLastDay)
-        .get();
+        .get(const GetOptions(source: Source.serverAndCache));
     Map<DateTime, List<Map<String, dynamic>>> eventsMap = {};
     eventsSnapshot.docs.forEach((eventDoc) {
       DateTime eventDate = eventDoc.get('date').toDate();
-      eventDate = DateTime(eventDate.year, eventDate.month,eventDate.day).toUtc();
+      eventDate = DateTime(eventDate.year, eventDate.month,eventDate.day);
       final event = {
         'date': eventDoc.get('date').toDate(),
         'results': eventDoc.get('results'),
