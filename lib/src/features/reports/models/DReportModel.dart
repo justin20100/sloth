@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sloth/src/utils/functions.dart';
 
 class DReportModel {
-  final CollectionReference dReportsRef = FirebaseFirestore.instance.collection('events');
+  final CollectionReference dReportsRef =
+      FirebaseFirestore.instance.collection('events');
 
   Future<void> createDReport(
       DateTime date,
@@ -20,7 +22,8 @@ class DReportModel {
       num stress,
       DateTime wakeup,
       String userId) {
-    return dReportsRef.add({
+    return dReportsRef
+        .add({
           'type': "d",
           'date': date,
           'results': {
@@ -35,7 +38,7 @@ class DReportModel {
             'sleepEvaluation': sleepEvaluation,
             'state': state,
             'stress': stress,
-            'wakeup': wakeup,
+            'wakeUp': wakeup,
           },
           'userId': userId,
         })
@@ -47,7 +50,8 @@ class DReportModel {
     String userId = FirebaseAuth.instance.currentUser!.uid;
     QuerySnapshot querySnapshot = await dReportsRef
         .where('userId', isEqualTo: userId)
-        .where('date', isGreaterThanOrEqualTo: DateTime(day.year, day.month, day.day-1))
+        .where('date',
+            isGreaterThanOrEqualTo: DateTime(day.year, day.month, day.day - 1))
         .where('date', isLessThan: day)
         .where('type', isEqualTo: 'd')
         .get();
@@ -62,5 +66,22 @@ class DReportModel {
       }
       return true;
     }
+  }
+
+  Future getDReportInARange(DateTime startDay, DateTime LastDay) async {
+    final userId = await getUserID();
+    QuerySnapshot dReportSnapshot = await dReportsRef
+        .where('userId', isEqualTo: userId)
+        .where('date', isGreaterThanOrEqualTo: startDay)
+        .where('date', isLessThan: LastDay)
+        .where('type', isEqualTo: 'd')
+        .get();
+
+    List dReportList = [];
+
+    dReportSnapshot.docs.forEach((doc) {
+      dReportList.add(doc.data());
+    });
+    return dReportList;
   }
 }

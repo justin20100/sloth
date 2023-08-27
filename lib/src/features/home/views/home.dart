@@ -22,7 +22,6 @@ class Home extends StatefulWidget {
 class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
-  bool isDReportAvailable = false;
   final HomeController homeController = HomeController();
 
   @override
@@ -196,22 +195,15 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       right: kNormalHorizontalSpacer,
                       top: kNormalVerticalSpacer),
                   children: [
-                    // Day rapport bloc
+                    // Day rapport block
                     FutureBuilder<bool>(
                       future: homeController.dReportHomeBlockVisibility(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return const SizedBox(height: 0);
-                        } else if (snapshot.hasError) {
-                          return const SizedBox(height: 0);
-                        } else {
-                          bool isDReportAvailable = snapshot.data ?? false;
-                          if (isDReportAvailable) {
+                          if (snapshot.data ?? false) {
                             return Column(
                               children: [
                                 DReportHomeBlock(
-                                  text: AppLocalizations.of(context)!
-                                      .home__boxDRepport,
+                                  text: AppLocalizations.of(context)!.home__boxDRepport,
                                 ),
                                 const SizedBox(
                                   height: kSmallVerticalSpacer,
@@ -220,31 +212,17 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             );
                           } else {
                             return const SizedBox(height: 0);
-                          }
-                        }
-                      },
+                          }}
                     ),
 
-                    // week block
+                    // week report block
                     FutureBuilder<bool>(
                       future: homeController.wReportHomeBlockVisibility(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const SizedBox(height: 0);
-                        } else if (snapshot.hasError) {
-                          return Text('Erreur : ${snapshot.error}');
-                        } else {
-                          bool isDReportAvailable = snapshot.data ?? false;
-                          if (isDReportAvailable) {
-                            return const Column(
+                          if (snapshot.data ?? false) {
+                            return Column(
                               children: [
-                                WReportHomeBlock(
-                                  text:
-                                      'Nous sommes Lundi ! Calculez votre rapport hebdomadaire',
-                                  buttonText: 'Calculer',
-                                  route: kHomeRoute,
-                                ),
+                                WReportHomeBlock(),
                                 SizedBox(
                                   height: kSmallVerticalSpacer,
                                 )
@@ -255,13 +233,24 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                               height: 0,
                             );
                           }
-                        }
                       },
                     ),
+
+                    // Week details report
                     DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxWRepport,
+                      text: AppLocalizations.of(context)!.home__boxWRepportDetails,
                       buttonText:
-                          AppLocalizations.of(context)!.home__boxWRepportButton,
+                          AppLocalizations.of(context)!.home__boxWRepportDetailsButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kSmallVerticalSpacer,
+                    ),
+
+                    // Articles box
+                    DefaultHomeBlock(
+                      text: AppLocalizations.of(context)!.home__boxArticles,
+                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(
@@ -276,18 +265,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       route: kHomeRoute,
                     ),
                     const SizedBox(
-                      height: kSmallVerticalSpacer,
-                    ),
-
-                    // Articles box
-                    DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxArticles,
-                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
-                      route: kHomeRoute,
-                    ),
-                    const SizedBox(
                       height: kNormalVerticalSpacer,
                     ),
+
                   ],
                 ),
               ))

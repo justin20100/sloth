@@ -63,7 +63,6 @@ class _DReportHomeBlockState extends State<DReportHomeBlock> {
                       }else{
                         ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxDRepportInternetError);
                       }
-
                     },
                   ),)
               ),
