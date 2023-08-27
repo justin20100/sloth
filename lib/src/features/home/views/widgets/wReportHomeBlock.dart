@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
-import 'package:sloth/src/routing/routes.dart';
-import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/button.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WReportHomeBlock extends StatefulWidget {
-   WReportHomeBlock({Key? key}) : super(key: key);
+  const WReportHomeBlock({Key? key, required this.onPressed}) : super(key: key);
 
 
-
+  final VoidCallback onPressed;
   @override
   State<WReportHomeBlock> createState() => _WReportHomeBlockState();
 
@@ -20,6 +17,7 @@ class WReportHomeBlock extends StatefulWidget {
 
 class _WReportHomeBlockState extends State<WReportHomeBlock> {
   final HomeController homeController = HomeController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,17 +44,31 @@ class _WReportHomeBlockState extends State<WReportHomeBlock> {
                     duration: const Duration(milliseconds: 1500),
                     effectStrength: 0.4
                 ),
-                child:Button(
-                  label: AppLocalizations.of(context)!.home__boxWRepportButton,
-                  onPressed: () async {
-                    bool internetConnected = await checkInternetConnection();
-                    if(internetConnected){
-                      homeController.calculateWReport();
-                    }else{
-                      ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxDRepportInternetError);
-                    }
-                  },
-                ),)
+                child:ClipRRect(
+                  borderRadius: BorderRadius.circular(7),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: kColorGreen,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          alignment: Alignment.center,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.only(
+                              top: 10, bottom: 10, left: 15, right: 15),
+                          textStyle: kButtonTextStyle,
+                        ),
+                        onPressed: widget.onPressed,
+                        child: Text('label'),
+                      ),
+                    ],
+                  ),
+                ))
           ),
         ],
       ),
