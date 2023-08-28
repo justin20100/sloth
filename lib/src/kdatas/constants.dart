@@ -218,6 +218,15 @@ const kAppBarTextStyle = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
+// SnackBar
+const kSuccessSnackBarTextStyle = TextStyle(
+  fontSize: 14.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.normal,
+  color: kColorWhite,
+  decoration: TextDecoration.none,
+);
 
 // Home - page
 const kHomeBoxesTextStyle = TextStyle(

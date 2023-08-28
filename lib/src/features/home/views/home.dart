@@ -9,6 +9,7 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
+import 'package:sloth/src/widgets/snackbars/successSnackbar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
   final HomeController homeController = HomeController();
-  late ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
+  final ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
 
   @override
   initState() {
@@ -234,9 +235,10 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                           return Column(
                             children: [
                               WReportHomeBlock(
-                                onPressed: () {
-                                  homeController.calculateWReport();
+                                onPressed: () async {
+                                  await homeController.calculateWReport();
                                   _wReportVisibility.value = !_wReportVisibility.value;
+                                  SuccessSnackbar.show(context, 'Le rapport de la semaine a été ajouté a votre calendrier');
                                 }
                               ),
                               const SizedBox(
