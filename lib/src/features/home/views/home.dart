@@ -25,12 +25,20 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
   final HomeController homeController = HomeController();
+  late ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
 
   @override
   initState() {
     super.initState();
     initializeDateFormatting();
+    checkBlocksVisibility();
   }
+
+  checkBlocksVisibility() async {
+    _wReportVisibility.value = await homeController.wReportHomeBlockVisibility();
+    setState(() {_wReportVisibility.value;});
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +205,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       right: kNormalHorizontalSpacer,
                       top: kNormalVerticalSpacer),
                   children: [
+
                     // Day rapport block
                     FutureBuilder<bool>(
                       future: homeController.dReportHomeBlockVisibility(),
@@ -218,34 +227,31 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                     // week report block
-                    FutureBuilder<bool>(
-                      future: homeController.wReportHomeBlockVisibility(),
-                      builder: (context, snapshot) {
-                          if (snapshot.data ?? false) {
-                            return Column(
-                              children: [
-                                WReportHomeBlock(
-                                  onPressed: (){
-                                    homeController.calculateWReport();
-                                    Future.delayed(const Duration(seconds: 1), () {
-                                      setState(() {
-                                        // Trouver une solution pour actualiser le future builder
-                                      });
-                                    });
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: kSmallVerticalSpacer,
-                                )
-                              ],
-                            );
-                          } else {
-                            return const SizedBox(
-                              height: 0,
-                            );
-                          }
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _wReportVisibility,
+                      builder: (context, bool value, child) {
+                        if (value) {
+                          return Column(
+                            children: [
+                              WReportHomeBlock(
+                                onPressed: () {
+                                  homeController.calculateWReport();
+                                  _wReportVisibility.value = !_wReportVisibility.value;
+                                }
+                              ),
+                              const SizedBox(
+                                height: kSmallVerticalSpacer,
+                              )
+                            ],
+                          );
+                        } else {
+                          return const SizedBox(
+                            height: 0,
+                          );
+                        }
                       },
                     ),
+
 
                     // Week details report
                     DefaultHomeBlock(

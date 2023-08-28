@@ -28,7 +28,7 @@ class HomeController {
     bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day));
     if (DateTime.now().weekday == 1 &&
-        DateTime.now().hour > 12 &&
+        DateTime.now().hour < 12 &&
         !alreadyCalculated) {
       if (kDebugMode) {
         print("Il faut afficher le block w");
