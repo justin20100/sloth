@@ -238,7 +238,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                                 onPressed: () async {
                                   await homeController.calculateWReport();
                                   _wReportVisibility.value = !_wReportVisibility.value;
-                                  SuccessSnackbar.show(context, 'Le rapport de la semaine a été ajouté a votre calendrier');
+                                  SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
                                 }
                               ),
                               const SizedBox(
@@ -254,19 +254,18 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       },
                     ),
 
+                    // // Week details report
+                    // DefaultHomeBlock(
+                    //   text: AppLocalizations.of(context)!.home__boxWRepportDetails,
+                    //   buttonText:
+                    //       AppLocalizations.of(context)!.home__boxWRepportDetailsButton,
+                    //   route: kHomeRoute,
+                    // ),
+                    // const SizedBox(
+                    //   height: kSmallVerticalSpacer,
+                    // ),
 
-                    // Week details report
-                    DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxWRepportDetails,
-                      buttonText:
-                          AppLocalizations.of(context)!.home__boxWRepportDetailsButton,
-                      route: kHomeRoute,
-                    ),
-                    const SizedBox(
-                      height: kSmallVerticalSpacer,
-                    ),
-
-                    // Articles box
+                    // Articles block
                     DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxArticles,
                       buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
@@ -278,9 +277,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
 
                     // analyse block
                     DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxWRepport,
+                      text: AppLocalizations.of(context)!.home__boxSymptomes,
                       buttonText:
-                      AppLocalizations.of(context)!.home__boxWRepportButton,
+                      AppLocalizations.of(context)!.home__boxSymptomesButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(

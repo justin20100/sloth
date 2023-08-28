@@ -64,7 +64,7 @@ class _WReportHomeBlockState extends State<WReportHomeBlock> {
                           textStyle: kButtonTextStyle,
                         ),
                         onPressed: widget.onPressed,
-                        child: Text('label'),
+                        child: Text(AppLocalizations.of(context)!.home__boxWRepportButton),
                       ),
                     ],
                   ),

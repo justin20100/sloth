@@ -28,7 +28,7 @@ class HomeController {
     bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day));
     if (DateTime.now().weekday == 1 &&
-        DateTime.now().hour < 12 &&
+        DateTime.now().hour > 12 &&
         !alreadyCalculated) {
       if (kDebugMode) {
         print("Il faut afficher le block w");
@@ -46,17 +46,16 @@ class HomeController {
       return double.parse((value / divider).toStringAsFixed(2));
     }
 
-    // récuperer tous les rapport quotidiens
+    // récuperer
     DReportModel dreportModel = DReportModel();
     WReportModel wReportModel = WReportModel();
     DateTime startDay =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)
-            .subtract(const Duration(days: 7));
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(const Duration(days: 7));
     DateTime lastDay =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     List dReports = await dreportModel.getDReportInARange(startDay, lastDay);
 
-    // calculer la moyenne
+    // calculer
     num numberOfReportInAWeek = dReports.length;
     num anxiety = 0;
     num cognitiveEvaluation = 0;
@@ -118,9 +117,9 @@ class HomeController {
         averageHoursWakeUp,
         averageRemainingMinutesWakeUp);
 
-    // enregister le rapport
+    // enregister
     String userId = await getUserID();
-    wReportModel.createWReport(
+    await wReportModel.createWReport(
         DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),
         anxiety,
