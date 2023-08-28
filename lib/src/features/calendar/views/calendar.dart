@@ -27,7 +27,7 @@ class _CalendarState extends State<Calendar> {
     super.initState();
     _selectedDay = DateTime.now();
     _focusedDay = DateTime.now();
-    _events={};
+    _events = {};
     usedselectedDay = false;
     _loadEvents(kFirstDay, kLastDay);
   }
@@ -42,7 +42,9 @@ class _CalendarState extends State<Calendar> {
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
     for (DateTime eventDate in _events.keys) {
-      if (eventDate.year == day.year && eventDate.month == day.month && eventDate.day == day.day) {
+      if (eventDate.year == day.year &&
+          eventDate.month == day.month &&
+          eventDate.day == day.day) {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }
@@ -51,8 +53,11 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-    if (arguments != null && arguments['selectedDay'] != null && usedselectedDay != true) {
+    Map<String, dynamic>? arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    if (arguments != null &&
+        arguments['selectedDay'] != null &&
+        usedselectedDay != true) {
       _selectedDay = arguments['selectedDay'];
       _focusedDay = arguments['selectedDay'];
       usedselectedDay = true;
@@ -289,7 +294,8 @@ class _CalendarState extends State<Calendar> {
                                     Text("Pas d'événements pour cette journée"),
                               ))
                           : ListBody(
-                              children: _getEventsForTheDay(_selectedDay).map((event) {
+                              children: _getEventsForTheDay(_selectedDay)
+                                  .map((event) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: kMicroVerticalSpacer / 2,
@@ -301,11 +307,56 @@ class _CalendarState extends State<Calendar> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: ListTile(
-                                      onTap: () => {},
+                                      onTap: () => {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(32.0)),
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsets.only(top: 10.0),
+                                              content: Container(
+                                                width: 200,
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(kSmallVerticalSpacer),
+                                                  child: Column(
+                                                    children: [
+                                                      Text("Les données du rapport quotidien"),
+                                                      SizedBox(height: kSmallVerticalSpacer,),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      },
                                       title: event['type'] == 'd'
-                                          ? const Text('Rapport quotidien',
-                                              style:
-                                                  kEventsCardCalendarTextStyle)
+                                          ? GestureDetector(
+                                              onTap: () => {
+                                                AlertDialog(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      32.0))),
+                                                  contentPadding:
+                                                      EdgeInsets.only(
+                                                          top: 10.0),
+                                                  content: Container(
+                                                    width: 200,
+                                                    child: Text('coucou'),
+                                                  ),
+                                                )
+                                              },
+                                              child: Text('Rapport quotidien',
+                                                  style:
+                                                      kEventsCardCalendarTextStyle),
+                                            )
                                           : event['type'] == 'w'
                                               ? const Text(
                                                   'Rapport de la semaine',
