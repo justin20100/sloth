@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/controllers/CalendarController.dart';
 import 'package:sloth/src/features/calendar/models/EventModel.dart';
+import 'package:sloth/src/features/calendar/views/widgets/dReportDetails.dart';
+import 'package:sloth/src/features/calendar/views/widgets/wReportDetails.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
+import 'package:sloth/src/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -309,54 +312,25 @@ class _CalendarState extends State<Calendar> {
                                     child: ListTile(
                                       onTap: () => {
                                         showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(32.0)),
-                                              ),
-                                              contentPadding:
-                                                  EdgeInsets.only(top: 10.0),
-                                              content: Container(
-                                                width: 200,
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(kSmallVerticalSpacer),
-                                                  child: Column(
-                                                    children: [
-                                                      Text("Les données du rapport quotidien"),
-                                                      SizedBox(height: kSmallVerticalSpacer,),
-                                                    ],
+                                            context: context,
+                                            builder: (_) => AlertDialog(
+                                                  insetPadding:EdgeInsets.only(top: kBigVerticalSpacer, right: kBigHorizontalSpacer, bottom: kBigVerticalSpacer*3, left: kBigHorizontalSpacer),
+                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                                  content: Builder(
+                                                    builder: (context) {
+                                                      return Container(
+                                                        height: MediaQuery.of(context).size.height,
+                                                        width: MediaQuery.of(context).size.height,
+                                                        child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
+                                                      );
+                                                    },
                                                   ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        )
+                                                )),
                                       },
                                       title: event['type'] == 'd'
-                                          ? GestureDetector(
-                                              onTap: () => {
-                                                AlertDialog(
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      32.0))),
-                                                  contentPadding:
-                                                      EdgeInsets.only(
-                                                          top: 10.0),
-                                                  content: Container(
-                                                    width: 200,
-                                                    child: Text('coucou'),
-                                                  ),
-                                                )
-                                              },
-                                              child: Text('Rapport quotidien',
-                                                  style:
-                                                      kEventsCardCalendarTextStyle),
-                                            )
+                                          ? Text('Rapport quotidien',
+                                              style:
+                                                  kEventsCardCalendarTextStyle)
                                           : event['type'] == 'w'
                                               ? const Text(
                                                   'Rapport de la semaine',

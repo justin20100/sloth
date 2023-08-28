@@ -156,6 +156,15 @@ const kEventsCardCalendarTextStyle = TextStyle(
   color: kColorWhite,
   decoration: TextDecoration.none,
 );
+const kEventDetailsTitleTextStyle = TextStyle(
+  fontSize: 20.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+
 // Basic Text
 const k12BasicTextStyle = TextStyle(
   fontSize: 12.0,
