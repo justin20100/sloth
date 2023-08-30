@@ -26,18 +26,17 @@ class Home extends StatefulWidget {
 class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
-  final HomeController homeController = HomeController();
+  late Map<DateTime, List<Map<String, dynamic>>> _events = {};
   final ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
-  late Map<DateTime, List<Map<String, dynamic>>> _events;
+  final HomeController homeController = HomeController();
   EventModel eventModel = EventModel();
 
   @override
   initState() {
     super.initState();
+    _loadEvents(kFirstDay, kLastDay);
     initializeDateFormatting();
     checkBlocksVisibility();
-    _events = {};
-    _loadEvents(kFirstDay, kLastDay);
   }
 
   checkBlocksVisibility() async {
@@ -46,9 +45,6 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   }
   _loadEvents(kFirstDay, kLastDay) async {
     _events = await eventModel.loadAllFirestoreEvents(kFirstDay, kLastDay);
-    setState(() {
-      _events;
-    });
   }
 
   List _getEventsForTheDay(DateTime day) {

@@ -22,7 +22,6 @@ class _CalendarState extends State<Calendar> {
   late DateTime _selectedDay = DateTime.now();
   late Map<DateTime, List<Map<String, dynamic>>> _events;
   late bool usedSelectedDay;
-  CalendarController calendarController = CalendarController();
   EventModel eventModel = EventModel();
 
   @override
@@ -303,27 +302,38 @@ class _CalendarState extends State<Calendar> {
                                   ),
                                   child: Container(
                                     alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: kColorGreen,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(color: kColorGreen, borderRadius: BorderRadius.circular(10)),
                                     child: ListTile(
                                       onTap: () => {
                                         showDialog(
                                             context: context,
-                                            builder: (_) => AlertDialog(
-                                                  insetPadding:EdgeInsets.only(top: kBigVerticalSpacer, right: kBigHorizontalSpacer, bottom: kBigVerticalSpacer*3, left: kBigHorizontalSpacer),
-                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                                  content: Builder(
-                                                    builder: (context) {
-                                                      return Container(
-                                                        height: MediaQuery.of(context).size.height,
-                                                        width: MediaQuery.of(context).size.height,
-                                                        child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
+                                            builder: (context) {
+                                                      return Padding(
+                                                          padding: EdgeInsets.only(top:kBigVerticalSpacer ,right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                decoration: BoxDecoration(
+                                                                  color: kColorWhite,
+                                                                  borderRadius: BorderRadius.circular(10),
+                                                                ),
+                                                                height: MediaQuery.of(context).size.height-kBigVerticalSpacer*5,
+                                                                width: MediaQuery.of(context).size.height-kNormalHorizontalSpacer*2,
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.only(top:0 ,right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
+                                                                  child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
+                                                                )
+                                                              ),
+                                                              const SizedBox(height: kSmallVerticalSpacer,),
+                                                              Align(
+                                                                alignment: Alignment.bottomRight,
+                                                                child: Button(label: 'Fermer', onPressed:(){Navigator.pop(context);},),
+                                                              )
+                                                            ],
+                                                          )
                                                       );
                                                     },
-                                                  ),
-                                                )),
+                                                ),
                                       },
                                       title: event['type'] == 'd'
                                           ? Text('Rapport quotidien',
