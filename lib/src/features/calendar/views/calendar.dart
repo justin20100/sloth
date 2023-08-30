@@ -21,7 +21,7 @@ class _CalendarState extends State<Calendar> {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
   late Map<DateTime, List<Map<String, dynamic>>> _events;
-  late bool usedselectedDay;
+  late bool usedSelectedDay;
   CalendarController calendarController = CalendarController();
   EventModel eventModel = EventModel();
 
@@ -31,7 +31,7 @@ class _CalendarState extends State<Calendar> {
     _selectedDay = DateTime.now();
     _focusedDay = DateTime.now();
     _events = {};
-    usedselectedDay = false;
+    usedSelectedDay = false;
     _loadEvents(kFirstDay, kLastDay);
   }
 
@@ -56,14 +56,13 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
     if (arguments != null &&
         arguments['selectedDay'] != null &&
-        usedselectedDay != true) {
+        usedSelectedDay != true) {
       _selectedDay = arguments['selectedDay'];
       _focusedDay = arguments['selectedDay'];
-      usedselectedDay = true;
+      usedSelectedDay = true;
     }
     return Scaffold(
         backgroundColor: kColorCream,
@@ -293,8 +292,7 @@ class _CalendarState extends State<Calendar> {
                                 padding: EdgeInsets.symmetric(
                                   vertical: kMicroVerticalSpacer / 2,
                                 ),
-                                child:
-                                    Text("Pas d'événements pour cette journée"),
+                                child: Text("Pas de rapports pour cette journée"),
                               ))
                           : ListBody(
                               children: _getEventsForTheDay(_selectedDay)

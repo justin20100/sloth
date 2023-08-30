@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sloth/src/features/calendar/models/EventModel.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/features/home/views/widgets/burgerMenu/burgerMenu.dart';
 import 'package:sloth/src/features/home/views/widgets/burgerMenu/sidebar.dart';
@@ -27,17 +28,39 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late DateTime _selectedDay = DateTime.now();
   final HomeController homeController = HomeController();
   final ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
+  late Map<DateTime, List<Map<String, dynamic>>> _events;
+  EventModel eventModel = EventModel();
 
   @override
   initState() {
     super.initState();
     initializeDateFormatting();
     checkBlocksVisibility();
+    _events = {};
+    _loadEvents(kFirstDay, kLastDay);
   }
 
   checkBlocksVisibility() async {
     _wReportVisibility.value = await homeController.wReportHomeBlockVisibility();
     setState(() {_wReportVisibility.value;});
+  }
+  _loadEvents(kFirstDay, kLastDay) async {
+    _events = await eventModel.loadAllFirestoreEvents(kFirstDay, kLastDay);
+    setState(() {
+      _events;
+    });
+  }
+
+  List _getEventsForTheDay(DateTime day) {
+    List eventsForTheDay = [];
+    for (DateTime eventDate in _events.keys) {
+      if (eventDate.year == day.year &&
+          eventDate.month == day.month &&
+          eventDate.day == day.day) {
+        eventsForTheDay.addAll(_events[eventDate]!);
+      }
+    }
+    return eventsForTheDay;
   }
 
 
@@ -112,6 +135,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             ),
                             // Week calendar
                             TableCalendar(
+                              eventLoader: (day) => _getEventsForTheDay(day),
                               onDaySelected: (selectedDay, focusedDay) {
                                 setState(() {
                                   _selectedDay = selectedDay;
@@ -136,8 +160,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              locale:
-                                  Localizations.localeOf(context).toString(),
+                              locale: Localizations.localeOf(context).toString(),
                               firstDay: kFirstDay,
                               lastDay: kLastDay,
                               focusedDay: _focusedDay,
@@ -145,48 +168,89 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                               startingDayOfWeek: StartingDayOfWeek.monday,
                               headerVisible: false,
                               calendarBuilders: CalendarBuilders(
-                                  todayBuilder: (context, day, e) {
-                                return Container(
-                                  width: 35,
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            day.day.toString(),
-                                            style: kNumberDaysCalendarTextStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      Positioned(
-                                        bottom: 7,
-                                        child: Container(
-                                          width: 22,
-                                          height: 4,
-                                          decoration: BoxDecoration(
-                                            color: kColorGreen,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
+                                todayBuilder: (context, day, e) {
+                                  return Container(
+                                    width: 35,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(height: kSmallVerticalSpacer),
+                                            Text(
+                                              day.day.toString(),
+                                              style: kNumberDaysCalendarTextStyle,
+                                            ),
+                                          ],
                                         ),
+                                        Positioned(
+                                          bottom: 13,
+                                          child: Container(
+                                            width: 22,
+                                            height: 4,
+                                            decoration: BoxDecoration(
+                                              color: kColorGreen,
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                                defaultBuilder: (
+                                    context,
+                                    day,
+                                    e,
+                                    ) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: kSmallVerticalSpacer),
+                                      Text(
+                                        day.day.toString(),
+                                        style: kNumberDaysCalendarTextStyle,
                                       ),
                                     ],
-                                  ),
-                                );
-                              }, defaultBuilder: (context, day, e) {
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      day.day.toString(),
-                                      style: kNumberDaysCalendarTextStyle,
+                                  );
+                                },
+                                outsideBuilder: (
+                                    context,
+                                    day,
+                                    e,
+                                    ) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: kSmallVerticalSpacer),
+                                      Text(
+                                        day.day.toString(),
+                                        style: kNumberOutsideDaysCalendarTextStyle,
+                                      ),
+                                    ],
+                                  );
+                                },
+                                markerBuilder: (context, day, events) => events.isNotEmpty
+                                    ? Positioned(
+                                  bottom: 20,
+                                  child: Container(
+                                    width: 22,
+                                    height: 15,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: kColorGreen,
+                                      borderRadius: BorderRadius.circular(3),
                                     ),
-                                  ],
-                                );
-                              }),
+                                    child: Text(
+                                      '${events.length}',
+                                      style: const TextStyle(
+                                          color: kColorWhite, fontSize: 11),
+                                    ),
+                                  ),
+                                )
+                                    : null,
+                              ),
                             ),
                           ],
                         )),
