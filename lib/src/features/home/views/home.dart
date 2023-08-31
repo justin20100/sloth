@@ -35,10 +35,10 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
 
   @override
   initState() {
-    super.initState();
-    _loadEvents(kFirstDay, kLastDay);
     initializeDateFormatting();
     checkBlocksVisibility();
+    _loadEvents(kFirstDay, kLastDay);
+    super.initState();
   }
 
   checkBlocksVisibility() async {
@@ -84,16 +84,25 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                 toolbarHeight: 90,
                 backgroundColor: kColorCream,
                 elevation: 0,
-                leading: const BurgerMenu(),
-                title: Image.asset('assets/img/slothLogo.jpg', width: 210),
+                leading: WidgetAnimator(
+                  incomingEffect: WidgetTransitionEffects.incomingSlideInFromLeft(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 1000)),
+                  child: BurgerMenu(),
+                ) ,
+                title: WidgetAnimator(
+                  incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 1000)),
+                  child:Image.asset('assets/img/slothLogo.jpg', width: 210),
+                ),
                 actions: [
-                  GestureDetector(
-                    onTap: () =>
-                        {Navigator.pushNamed(context, kNotificationsRoute)},
-                    child: const Padding(
-                      padding: EdgeInsets.only(right: kSmallHorizontalSpacer),
-                      child: Icon(Icons.notifications_rounded,
-                          color: kColorGreen, size: 35),
+                  WidgetAnimator(
+                    incomingEffect: WidgetTransitionEffects.incomingSlideInFromRight(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 1000)),
+                    child: GestureDetector(
+                      onTap: () =>
+                      {Navigator.pushNamed(context, kNotificationsRoute)},
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: kSmallHorizontalSpacer),
+                        child: Icon(Icons.notifications_rounded,
+                            color: kColorGreen, size: 35),
+                      ),
                     ),
                   ),
                 ],

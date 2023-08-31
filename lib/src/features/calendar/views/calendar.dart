@@ -56,9 +56,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-    if (arguments != null &&
-        arguments['selectedDay'] != null &&
-        usedSelectedDay != true) {
+    if (arguments != null && arguments['selectedDay'] != null && usedSelectedDay != true) {
       _selectedDay = arguments['selectedDay'];
       _focusedDay = arguments['selectedDay'];
       usedSelectedDay = true;

@@ -10,7 +10,7 @@ class HomeController {
         DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day));
     if (4 < DateTime.now().hour &&
-        DateTime.now().hour < 12 &&
+        DateTime.now().hour > 12 &&
         !dReportAlreadyCompleted) {
       if (kDebugMode) {
         print("Il faut afficher le block d");
