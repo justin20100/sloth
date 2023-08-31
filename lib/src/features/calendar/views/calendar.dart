@@ -44,9 +44,7 @@ class _CalendarState extends State<Calendar> {
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
     for (DateTime eventDate in _events.keys) {
-      if (eventDate.year == day.year &&
-          eventDate.month == day.month &&
-          eventDate.day == day.day) {
+      if (eventDate.year == day.year && eventDate.month == day.month && eventDate.day == day.day) {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }
@@ -169,8 +167,7 @@ class _CalendarState extends State<Calendar> {
                                         height: 4,
                                         decoration: BoxDecoration(
                                           color: kColorGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(10),
                                         ),
                                       ),
                                     )
@@ -257,8 +254,7 @@ class _CalendarState extends State<Calendar> {
                                 ),
                                 child: Text(
                                   '${events.length}',
-                                  style: const TextStyle(
-                                      color: kColorWhite, fontSize: 11),
+                                  style: const TextStyle(color: kColorWhite, fontSize: 11),
                                 ),
                               ),
                             )
@@ -274,9 +270,7 @@ class _CalendarState extends State<Calendar> {
                         height: kSmallVerticalSpacer,
                       ),
                       Text(
-                        DateFormat.MMMMEEEEd(
-                                Localizations.localeOf(context).toString())
-                            .format(_selectedDay),
+                        DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(_selectedDay),
                         style: kDayDateCalendarTextStyle,
                       ),
                       const SizedBox(
@@ -292,8 +286,7 @@ class _CalendarState extends State<Calendar> {
                                 child: Text("Pas de rapports pour cette journée"),
                               ))
                           : ListBody(
-                              children: _getEventsForTheDay(_selectedDay)
-                                  .map((event) {
+                              children: _getEventsForTheDay(_selectedDay).map((event) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: kMicroVerticalSpacer / 2,
@@ -304,48 +297,51 @@ class _CalendarState extends State<Calendar> {
                                     child: ListTile(
                                       onTap: () => {
                                         showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                                      return Padding(
-                                                          padding: const EdgeInsets.only(top:kBigVerticalSpacer ,right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                  color: kColorWhite,
-                                                                  borderRadius: BorderRadius.circular(10),
-                                                                ),
-                                                                height: MediaQuery.of(context).size.height-(MediaQuery.of(context).size.height/3.5),
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets.only(top:0 ,right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
-                                                                  child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
-                                                                )
-                                                              ),
-                                                              const SizedBox(height: kSmallVerticalSpacer,),
-                                                              Align(
-                                                                alignment: Alignment.bottomRight,
-                                                                child: Button(label: 'Fermer', onPressed:(){Navigator.pop(context);},),
-                                                              )
-                                                            ],
-                                                          )
-                                                      );
-                                                    },
-                                                ),
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                                padding: const EdgeInsets.only(top: kBigVerticalSpacer, right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                        decoration: BoxDecoration(
+                                                          color: kColorWhite,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                        ),
+                                                        height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height / 3.5),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(top: 0, right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
+                                                          child: event["type"] == "d"
+                                                              ? DReportDetails(eventDetails: event)
+                                                              : event["type"] == "w"
+                                                                  ? WReportDetails(eventDetails: event)
+                                                                  : const SizedBox(
+                                                                      height: 0,
+                                                                    ),
+                                                        )),
+                                                    const SizedBox(
+                                                      height: kSmallVerticalSpacer,
+                                                    ),
+                                                    Align(
+                                                      alignment: Alignment.bottomRight,
+                                                      child: Button(
+                                                        label: 'Fermer',
+                                                        onPressed: () {
+                                                          Navigator.pop(context);
+                                                        },
+                                                      ),
+                                                    )
+                                                  ],
+                                                ));
+                                          },
+                                        ),
                                       },
                                       title: event['type'] == 'd'
-                                          ? Text('Rapport quotidien',
-                                              style:
-                                                  kEventsCardCalendarTextStyle)
+                                          ? Text('Rapport quotidien', style: kEventsCardCalendarTextStyle)
                                           : event['type'] == 'w'
-                                              ? const Text(
-                                                  'Rapport de la semaine',
-                                                  style:
-                                                      kEventsCardCalendarTextStyle)
+                                              ? const Text('Rapport de la semaine', style: kEventsCardCalendarTextStyle)
                                               : event['type'] == 'a'
-                                                  ? const Text(
-                                                      'Analyse de symptômes',
-                                                      style:
-                                                          kEventsCardCalendarTextStyle)
+                                                  ? const Text('Analyse de symptômes', style: kEventsCardCalendarTextStyle)
                                                   : null,
                                     ),
                                   ),
