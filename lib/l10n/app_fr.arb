@@ -99,6 +99,7 @@
     "snackBar__resetPasswordSuccess":"L'email de reinitialisation du mot de passe a été envoyé",
 
     "home__date" : "mercredi 21 juin",
+    "home__internetError" : "Il est préférable d'utiliser cette application avec une connection internet",
     "home__boxDRepport" : "Remplissez votre rapport sur la journée d'hier",
     "home__boxDRepportButton" : "Remplir le rapport quotidien",
     "home__boxDRepportInternetError" : "Il vous faut une connection a internet pour remplir ce rapport",

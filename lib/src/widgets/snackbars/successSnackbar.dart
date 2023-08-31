@@ -8,6 +8,7 @@ class SuccessSnackbar extends StatelessWidget {
   static void show(BuildContext context, String success) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+
         backgroundColor: kColorGreen,
         content: Text(success, style: kSuccessSnackBarTextStyle,),
       ),

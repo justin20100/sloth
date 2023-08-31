@@ -77,6 +77,7 @@ flutter:
     - assets/img/calendar.jpg
     - assets/img/symptomes.jpg
     - assets/img/objectifs.jpg
+    - assets/img/noConnection.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

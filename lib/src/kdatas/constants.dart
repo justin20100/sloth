@@ -245,6 +245,14 @@ const kSuccessSnackBarTextStyle = TextStyle(
   color: kColorWhite,
   decoration: TextDecoration.none,
 );
+const kSuccessSnackBarErrorTextStyle = TextStyle(
+  fontSize: 15.0,
+  height: 1.3,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorCream,
+  decoration: TextDecoration.none,
+);
 
 // Home - page
 const kHomeBoxesTextStyle = TextStyle(

@@ -41,9 +41,14 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
     initializeDateFormatting();
     _loadEvents(kFirstDay, kLastDay);
     checkBlocksVisibility();
+    checkInternetConnection();
   }
 
-
+  checkInternetConnection() async {
+    if( await tools.checkInternetConnection()==false){
+      ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__internetError);
+    }
+  }
 
   checkBlocksVisibility() async {
     _dReportVisibility.value = await homeController.dReportHomeBlockVisibility();
