@@ -27,7 +27,7 @@ class HomeController {
     final WReportModel wReportModel = WReportModel();
     bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    if (DateTime.now().weekday == 1 &&
+    if (DateTime.now().weekday == 3 &&
         DateTime.now().hour > 12 &&
         !alreadyCalculated) {
       if (kDebugMode) {
@@ -49,6 +49,7 @@ class HomeController {
     // récuperer
     DReportModel dreportModel = DReportModel();
     WReportModel wReportModel = WReportModel();
+    Tools tools = Tools();
     DateTime startDay =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(const Duration(days: 7));
     DateTime lastDay =
@@ -118,7 +119,7 @@ class HomeController {
         averageRemainingMinutesWakeUp);
 
     // enregister
-    String userId = await getUserID();
+    String userId = await tools.getUserID();
     await wReportModel.createWReport(
         DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),

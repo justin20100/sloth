@@ -108,6 +108,8 @@
     "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté a votre calendrier avec succès",
     "home__boxWRepportDetails" : "La rapport hebdomadaire de la semaine passée est disponnible",
     "home__boxWRepportDetailsButton" : "Consulter le rapport",
+    "home__boxPersonnalFile" : "Vous avez besoin de vos informations médicales ?",
+    "home__boxPersonnalFileButton" : "Consulter votre fiche",
     "home__boxSymptomes" : "Vous vous sentez mal? Identifiez vos symptomes",
     "home__boxSymptomesButton" : "Identifier",
     "home__boxArticles" : "Découvrez nos articles sur la fatigue cognitive",

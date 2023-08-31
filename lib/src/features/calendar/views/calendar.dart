@@ -309,7 +309,7 @@ class _CalendarState extends State<Calendar> {
                                             context: context,
                                             builder: (context) {
                                                       return Padding(
-                                                          padding: EdgeInsets.only(top:kBigVerticalSpacer ,right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
+                                                          padding: const EdgeInsets.only(top:kBigVerticalSpacer ,right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
                                                           child: Column(
                                                             children: [
                                                               Container(
@@ -317,10 +317,9 @@ class _CalendarState extends State<Calendar> {
                                                                   color: kColorWhite,
                                                                   borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                height: MediaQuery.of(context).size.height-kBigVerticalSpacer*5,
-                                                                width: MediaQuery.of(context).size.height-kNormalHorizontalSpacer*2,
+                                                                height: MediaQuery.of(context).size.height-(MediaQuery.of(context).size.height/3.5),
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(top:0 ,right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
+                                                                  padding: const EdgeInsets.only(top:0 ,right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
                                                                   child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
                                                                 )
                                                               ),

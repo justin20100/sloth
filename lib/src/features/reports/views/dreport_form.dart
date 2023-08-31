@@ -17,6 +17,8 @@ class DReportForm extends StatefulWidget {
 }
 
 class _DReportFormState extends State<DReportForm> {
+  final Tools tools = Tools();
+
   final ScrollController _scrollController = ScrollController();
 
   final TextEditingController pickerWakeUpController = TextEditingController();
@@ -70,7 +72,7 @@ class _DReportFormState extends State<DReportForm> {
       isValid = checkFormDoneController.validate(context, _checkformdone) && isValid;
     });
     if (isValid) {
-      String userId = await getUserID();
+      String userId = await tools.getUserID();
       await dReportModel.createDReport(DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1).toUtc(), _anxiety, _cognitiveevaluation, _euphoria, _mood, _moreinfos!, _motivation, _physiqueevaluation, _sleep, _sleepevaluation, _state, _stress, _wakeup, userId);
       Navigator.pushNamed(context, kHomeRoute);
     } else {

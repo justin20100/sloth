@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/calendar/models/EventModel.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
   late Map<DateTime, List<Map<String, dynamic>>> _events = {};
   final ValueNotifier<bool> _wReportVisibility = ValueNotifier(false);
   final HomeController homeController = HomeController();
+  final Tools tools = Tools();
   EventModel eventModel = EventModel();
 
   @override
@@ -100,157 +102,160 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: CustomSliverPersistentHeaderDelegate(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: kColorCream,
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(35),
-                            bottomRight: Radius.circular(35)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.4),
-                            blurRadius: 6,
-                            offset: const Offset(0, 0),
-                          ),
-                        ]),
-                    child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: kSmallHorizontalSpacer * 3,
-                            right: kSmallHorizontalSpacer * 3,
-                            top: kSmallVerticalSpacer),
-                        child: Column(
-                          children: [
-                            // Date of the day
-                            Center(
-                                child: Text(
-                              getTheDate(context),
-                              style: kDateTextStyle,
-                            )),
-                            const SizedBox(
-                              height: kSmallVerticalSpacer,
+                  child: WidgetAnimator(
+                    incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 1000)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: kColorCream,
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(35),
+                              bottomRight: Radius.circular(35)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.4),
+                              blurRadius: 6,
+                              offset: const Offset(0, 0),
                             ),
-                            // Week calendar
-                            TableCalendar(
-                              eventLoader: (day) => _getEventsForTheDay(day),
-                              onDaySelected: (selectedDay, focusedDay) {
-                                setState(() {
-                                  _selectedDay = selectedDay;
-                                  _focusedDay = focusedDay;
-                                });
-                                Navigator.pushNamed(context, kCalendarRoute,
-                                    arguments: {
-                                      'selectedDay': _selectedDay,
-                                    });
-                              },
-                              rowHeight: 70,
-                              daysOfWeekStyle: const DaysOfWeekStyle(
-                                weekdayStyle: kDaysCalendarTextStyle,
-                                weekendStyle: kDaysCalendarTextStyle,
+                          ]),
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: kSmallHorizontalSpacer * 3,
+                              right: kSmallHorizontalSpacer * 3,
+                              top: kSmallVerticalSpacer),
+                          child: Column(
+                            children: [
+                              // Date of the day
+                              Center(
+                                  child: Text(
+                                    getTheDate(context),
+                                    style: kDateTextStyle,
+                                  )),
+                              const SizedBox(
+                                height: kSmallVerticalSpacer,
                               ),
-                              calendarStyle: CalendarStyle(
-                                defaultTextStyle: kNumberDaysCalendarTextStyle,
-                                weekendTextStyle: kNumberDaysCalendarTextStyle,
-                                todayDecoration: BoxDecoration(
-                                  color: kColorGreen,
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(10),
+                              // Week calendar
+                              TableCalendar(
+                                eventLoader: (day) => _getEventsForTheDay(day),
+                                onDaySelected: (selectedDay, focusedDay) {
+                                  setState(() {
+                                    _selectedDay = selectedDay;
+                                    _focusedDay = focusedDay;
+                                  });
+                                  Navigator.pushNamed(context, kCalendarRoute,
+                                      arguments: {
+                                        'selectedDay': _selectedDay,
+                                      });
+                                },
+                                rowHeight: 70,
+                                daysOfWeekStyle: const DaysOfWeekStyle(
+                                  weekdayStyle: kDaysCalendarTextStyle,
+                                  weekendStyle: kDaysCalendarTextStyle,
+                                ),
+                                calendarStyle: CalendarStyle(
+                                  defaultTextStyle: kNumberDaysCalendarTextStyle,
+                                  weekendTextStyle: kNumberDaysCalendarTextStyle,
+                                  todayDecoration: BoxDecoration(
+                                    color: kColorGreen,
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                locale: Localizations.localeOf(context).toString(),
+                                firstDay: kFirstDay,
+                                lastDay: kLastDay,
+                                focusedDay: _focusedDay,
+                                calendarFormat: CalendarFormat.week,
+                                startingDayOfWeek: StartingDayOfWeek.monday,
+                                headerVisible: false,
+                                calendarBuilders: CalendarBuilders(
+                                  todayBuilder: (context, day, e) {
+                                    return Container(
+                                      width: 35,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              const SizedBox(height: kSmallVerticalSpacer),
+                                              Text(
+                                                day.day.toString(),
+                                                style: kNumberDaysCalendarTextStyle,
+                                              ),
+                                            ],
+                                          ),
+                                          Positioned(
+                                            bottom: 13,
+                                            child: Container(
+                                              width: 22,
+                                              height: 4,
+                                              decoration: BoxDecoration(
+                                                color: kColorGreen,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  defaultBuilder: (
+                                      context,
+                                      day,
+                                      e,
+                                      ) {
+                                    return Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: kSmallVerticalSpacer),
+                                        Text(
+                                          day.day.toString(),
+                                          style: kNumberDaysCalendarTextStyle,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                  outsideBuilder: (
+                                      context,
+                                      day,
+                                      e,
+                                      ) {
+                                    return Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: kSmallVerticalSpacer),
+                                        Text(
+                                          day.day.toString(),
+                                          style: kNumberOutsideDaysCalendarTextStyle,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                  markerBuilder: (context, day, events) => events.isNotEmpty
+                                      ? Positioned(
+                                    bottom: 20,
+                                    child: Container(
+                                      width: 22,
+                                      height: 15,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: kColorGreen,
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: Text(
+                                        '${events.length}',
+                                        style: const TextStyle(
+                                            color: kColorWhite, fontSize: 11),
+                                      ),
+                                    ),
+                                  )
+                                      : null,
                                 ),
                               ),
-                              locale: Localizations.localeOf(context).toString(),
-                              firstDay: kFirstDay,
-                              lastDay: kLastDay,
-                              focusedDay: _focusedDay,
-                              calendarFormat: CalendarFormat.week,
-                              startingDayOfWeek: StartingDayOfWeek.monday,
-                              headerVisible: false,
-                              calendarBuilders: CalendarBuilders(
-                                todayBuilder: (context, day, e) {
-                                  return Container(
-                                    width: 35,
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(height: kSmallVerticalSpacer),
-                                            Text(
-                                              day.day.toString(),
-                                              style: kNumberDaysCalendarTextStyle,
-                                            ),
-                                          ],
-                                        ),
-                                        Positioned(
-                                          bottom: 13,
-                                          child: Container(
-                                            width: 22,
-                                            height: 4,
-                                            decoration: BoxDecoration(
-                                              color: kColorGreen,
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                                defaultBuilder: (
-                                    context,
-                                    day,
-                                    e,
-                                    ) {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: kSmallVerticalSpacer),
-                                      Text(
-                                        day.day.toString(),
-                                        style: kNumberDaysCalendarTextStyle,
-                                      ),
-                                    ],
-                                  );
-                                },
-                                outsideBuilder: (
-                                    context,
-                                    day,
-                                    e,
-                                    ) {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: kSmallVerticalSpacer),
-                                      Text(
-                                        day.day.toString(),
-                                        style: kNumberOutsideDaysCalendarTextStyle,
-                                      ),
-                                    ],
-                                  );
-                                },
-                                markerBuilder: (context, day, events) => events.isNotEmpty
-                                    ? Positioned(
-                                  bottom: 20,
-                                  child: Container(
-                                    width: 22,
-                                    height: 15,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: kColorGreen,
-                                      borderRadius: BorderRadius.circular(3),
-                                    ),
-                                    child: Text(
-                                      '${events.length}',
-                                      style: const TextStyle(
-                                          color: kColorWhite, fontSize: 11),
-                                    ),
-                                  ),
-                                )
-                                    : null,
-                              ),
-                            ),
-                          ],
-                        )),
-                  ),
+                            ],
+                          )),
+                    ),
+                  )
                 ),
               ),
               // Boxes
@@ -296,10 +301,13 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             children: [
                               WReportHomeBlock(
                                 onPressed: () async {
-                                  await homeController.calculateWReport();
-                                  _wReportVisibility.value = !_wReportVisibility.value;
-                                  SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
-                                }
+                                  if(await tools.checkInternetConnection() == true){
+                                    await homeController.calculateWReport();
+                                    _wReportVisibility.value = !_wReportVisibility.value;
+                                    SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
+                                  }else{
+                                  ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportInternetError);
+                                }}
                               ),
                               const SizedBox(
                                 height: kSmallVerticalSpacer,
@@ -314,21 +322,20 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       },
                     ),
 
-                    // // Week details report
-                    // DefaultHomeBlock(
-                    //   text: AppLocalizations.of(context)!.home__boxWRepportDetails,
-                    //   buttonText:
-                    //       AppLocalizations.of(context)!.home__boxWRepportDetailsButton,
-                    //   route: kHomeRoute,
-                    // ),
-                    // const SizedBox(
-                    //   height: kSmallVerticalSpacer,
-                    // ),
-
                     // Articles block
                     DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxArticles,
                       buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
+                      route: kHomeRoute,
+                    ),
+                    const SizedBox(
+                      height: kSmallVerticalSpacer,
+                    ),
+
+                    // Articles block
+                    DefaultHomeBlock(
+                      text: AppLocalizations.of(context)!.home__boxPersonnalFile,
+                      buttonText: AppLocalizations.of(context)!.home__boxPersonnalFileButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(
@@ -345,7 +352,6 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     const SizedBox(
                       height: kNormalVerticalSpacer,
                     ),
-
                   ],
                 ),
               ))

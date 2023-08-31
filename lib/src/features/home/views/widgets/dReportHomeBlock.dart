@@ -18,6 +18,8 @@ class DReportHomeBlock extends StatefulWidget {
 }
 
 class _DReportHomeBlockState extends State<DReportHomeBlock> {
+  Tools tools = Tools();
+
   @override
   void initState() {
     super.initState();
@@ -57,7 +59,7 @@ class _DReportHomeBlockState extends State<DReportHomeBlock> {
                   child:Button(
                     label: AppLocalizations.of(context)!.home__boxDRepportButton,
                     onPressed: () async {
-                      bool internetConnected = await checkInternetConnection();
+                      bool internetConnected = await tools.checkInternetConnection();
                       if(internetConnected){
                         Navigator.pushNamed(context, kDReportRoute);
                       }else{

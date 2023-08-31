@@ -19,6 +19,7 @@ class RegisterObjectifsForm extends StatefulWidget {
 
 class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
   final UserModel _userModel = UserModel();
+  final Tools tools = Tools();
   final _registerObjectifsFormKey = GlobalKey<FormState>();
   bool o1 = false;
   bool o2 = false;
@@ -43,8 +44,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
         backgroundColor: kColorCream,
         body: SafeArea(
@@ -73,13 +73,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                   const SizedBox(
                     height: kSmallVerticalSpacer,
                   ),
-                  _selectedCount < 2
-                      ? Text(
-                          AppLocalizations.of(context)!
-                              .registerObjectifs__introText2,
+                  _selectedCount < 2 ? Text(
+                    "Il vous faut sélectionner encore ${(2-_selectedCount).toString()} objectifs minimum.",
                           style: k16BasicTextStyle,
-                        )
-                      : Text(
+                        ) : Text(
                           AppLocalizations.of(context)!
                               .registerObjectifs__introText2Valid,
                           style: k16BasicTextStyle,
@@ -314,7 +311,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                               _registerObjectifsFormKey.currentState!
                                   .validate() &&
                               _selectedCount >= 2) {
-                            if (await checkInternetConnection()) {
+                            if (await tools.checkInternetConnection()) {
                               await _userModel.addUserToFirebaseAuth(arguments['email'], arguments['password']);
                               final user_id = FirebaseAuth.instance.currentUser!.uid;
                               await _userModel.addUserToFirestore(
@@ -346,8 +343,8 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                 },
                                 user_id,
                               );
-                              Future.delayed(const Duration(seconds: 2)).then((value) => WelcomeSnackbar(message: AppLocalizations.of(context)!.snackbar__welcomeMessage));
                               Navigator.pushNamed(context, kHomeRoute);
+                              WelcomeSnackbar.show(context, AppLocalizations.of(context)!.snackbar__welcomeMessage);
                             } else {
                               ErrorSnackbar.show(context, AppLocalizations.of(context)!.registerObjectifs__internetError);
                             }
