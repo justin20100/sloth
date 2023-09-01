@@ -12,7 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationApi.init(initSheduled: true);
-  NotificationApi.periodicallyShowNotification(title: 'Rapport quotidien', body: "Vous avez jusqu'a midi pour remplir votre rapport du jour", scheduledDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 16, 15, 0));
+  NotificationApi.periodicallyShowNotification(title: 'Rapport quotidien disponible', body: "Vous avez jusqu'a midi pour remplir votre rapport du jour", scheduledDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 8, 0, 0));
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
   runApp(MyApp());
 }

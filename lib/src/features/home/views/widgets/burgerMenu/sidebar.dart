@@ -58,8 +58,6 @@ class _SidebarScreenState extends State<SidebarScreen> {
               isUserLoaded ? Text(user['firstname']+' '+user['lastname']+' est connecté', style: kBurgerMenuSmallTextStyle,):const Text(' ', style: kBurgerMenuSmallTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
               // Part 1
-              const Text('Objectifs et succès', style: kBurgerMenuTextStyle,),
-              const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Médicaments', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Fiche personnel', style: kBurgerMenuTextStyle,),
@@ -79,8 +77,6 @@ class _SidebarScreenState extends State<SidebarScreen> {
                 onTap: ()=>{Navigator.pushNamed(context, kProfileRoute)},
                 child: const Text('Compte', style: kBurgerMenuTextStyle,),
               ),
-              const SizedBox(height: kSmallVerticalSpacer,),
-              const Text('Paramètres', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
             ],
           ),
