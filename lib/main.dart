@@ -1,8 +1,8 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sloth/api/notification_api.dart';
 import 'package:sloth/src/routing/router.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/error.dart';
@@ -11,6 +11,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotificationApi.init(initSheduled: true);
+  NotificationApi.periodicallyShowNotification(title: 'Rapport quotidien', body: "Vous avez jusqu'a midi pour remplir votre rapport du jour", scheduledDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 16, 15, 0));
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
   runApp(MyApp());
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sloth/api/notification_api.dart';
 import 'package:sloth/src/features/calendar/models/EventModel.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/features/home/views/widgets/burgerMenu/burgerMenu.dart';
