@@ -14,13 +14,7 @@ class EmailInput extends StatelessWidget {
       autofocus: false,
       hintText: 'exemple@mail.com',
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        } else if (!EmailValidator.validate(value)) {
-          return "Ceci n'est pas une email valide";
-        }
-      },
+      validator: (value) {return '';},
       onChanged: onChanged,
     );
   }

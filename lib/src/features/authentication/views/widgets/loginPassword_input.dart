@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/src/features/authentication/controllers/loginController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
 @immutable
 class LoginPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
+  bool hasError = false;
 
   LoginPasswordInput(
       {this.onChanged,
-      required String email,
-      required String password,
+      required bool this.hasError,
       Key? key})
       : super(key: key);
 
@@ -18,20 +17,11 @@ class LoginPasswordInput extends StatefulWidget {
 }
 
 class _LoginPasswordInputState extends State<LoginPasswordInput> {
-  final RegisterController _loginController = RegisterController();
-  late String email = email;
-  late String password = password;
   bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        }
-        return null;
-      },
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
@@ -57,7 +47,7 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
         isDense: true,
         border: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: kColorGreen,
+            color: kColorRed,
           ),
           borderRadius: BorderRadius.circular(7),
         ),
@@ -67,11 +57,6 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
             color: kColorYellow,
           ),
           borderRadius: BorderRadius.circular(7),
-        ),
-        errorStyle: const TextStyle(
-          fontSize: 12,
-          color: kColorRed,
-          height: 0.6,
         ),
         fillColor: kColorWhite,
         filled: true,
