@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/views/widgets/detailsSlider.dart';
 import 'package:sloth/src/kdatas/constants.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class WReportDetails extends StatelessWidget {
   Map eventDetails;
 
   WReportDetails({Key? key, required this.eventDetails}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     DateTime startdate = eventDetails['date'].subtract(Duration(days: 6));
+    List<_ChartData> data = [
+      _ChartData('Motivé', eventDetails['results']['motivation']),
+      _ChartData('Euphorique', eventDetails['results']['euphoria']),
+      _ChartData('Frais (épuisement)', eventDetails['results']['state']),
+      _ChartData('Amicale et facile', eventDetails['results']['mood']),
+      _ChartData('Relaxé', eventDetails['results']['stress']),
+      _ChartData('Calme', eventDetails['results']['anxiety'])
+    ];
+    TooltipBehavior _tooltip = TooltipBehavior(enable: true);
     return ListView(
       children: [
         // Title
@@ -27,8 +36,10 @@ class WReportDetails extends StatelessWidget {
           height: kMicroVerticalSpacer * 2,
         ),
         Center(
-          child: Text(""
-              "Du ${DateFormat.MMMMd(Localizations.localeOf(context).toString()).format(startdate)} au ${DateFormat.MMMMd(Localizations.localeOf(context).toString()).format(eventDetails['date'])}", style: kEventDetailsDateTextStyle),
+          child: Text(
+              ""
+              "Du ${DateFormat.MMMMd(Localizations.localeOf(context).toString()).format(startdate)} au ${DateFormat.MMMMd(Localizations.localeOf(context).toString()).format(eventDetails['date'])}",
+              style: kEventDetailsDateTextStyle),
         ),
         const SizedBox(
           height: kBigVerticalSpacer,
@@ -52,7 +63,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Evaluation moyenne de votre sommeil', style: kLabelGreenText),
+        Text('Moyenne de qualité du sommeil', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -61,7 +72,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Evaluation moyenne du votre niveau de fatigue cognitive', style: kLabelGreenText),
+        Text('Moyenne du niveau de fatigue cognitive', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -70,7 +81,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Evaluation moyenne du votre niveau de fatigue physique', style: kLabelGreenText),
+        Text('Moyenne du niveau de fatigue physique', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -79,20 +90,28 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text("Dans l'ensemble sur cette semaine vous vous sentez", style: kLabelGreenText),
-        Text("Dans l'ensemble vous vous sentez pour ce jour", style: kLabelGreenText),
-        const SizedBox(height: kMicroVerticalSpacer*2,),
-        Text("Motivé à ${(eventDetails['results']['motivation'])}%", style: k16BasicTextStyle,),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Euphorique à ${(eventDetails['results']['euphoria'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Frais (épuisement) à ${(eventDetails['results']['state'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Amicale et facile à ${(eventDetails['results']['mood'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Relaxé à ${(eventDetails['results']['stress'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Calme à ${(eventDetails['results']['anxiety'])}%", style: k16BasicTextStyle),
+        Text("Dans l'ensemble pour cette semaine vous vous sentez", style: kLabelGreenText),
+        const SizedBox(
+          height: kMicroVerticalSpacer * 2,
+        ),
+
+        SfCartesianChart(
+            primaryXAxis: CategoryAxis(isVisible: false),
+            primaryYAxis: NumericAxis(minimum: 0, maximum: 100, interval: 10),
+            tooltipBehavior: _tooltip,
+            series: <ChartSeries<_ChartData, String>>[
+              BarSeries<_ChartData, String>(
+                isVisibleInLegend: false,
+                borderRadius: BorderRadius.circular(4),
+                  dataSource: data,
+                  dataLabelMapper: (_ChartData data, _) => data.x,
+                  dataLabelSettings: DataLabelSettings(
+                      isVisible: true
+                  ),
+                  xValueMapper: (_ChartData data, _) => data.x,
+                  yValueMapper: (_ChartData data, _) => data.y,
+                  name: "Résultat en %",
+                  color: kColorGreen)]),
 
         const SizedBox(
           height: kBigVerticalSpacer,
@@ -100,4 +119,11 @@ class WReportDetails extends StatelessWidget {
       ],
     );
   }
+}
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+
+  final String x;
+  final double y;
 }

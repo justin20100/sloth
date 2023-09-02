@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sloth/src/features/calendar/views/widgets/detailsSlider.dart';
 import 'package:sloth/src/kdatas/constants.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DReportDetails extends StatelessWidget {
 
@@ -11,6 +12,15 @@ class DReportDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<_ChartData> data = [
+      _ChartData('Motivé', eventDetails['results']['motivation']),
+      _ChartData('Euphorique', eventDetails['results']['euphoria']),
+      _ChartData('Frais (épuisement)', eventDetails['results']['state']),
+      _ChartData('Amicale et facile', eventDetails['results']['mood']),
+      _ChartData('Relaxé', eventDetails['results']['stress']),
+      _ChartData('Calme', eventDetails['results']['anxiety'])
+    ];
+    TooltipBehavior _tooltip = TooltipBehavior(enable: true);
     return ListView(
       children: [
         // Title
@@ -53,20 +63,34 @@ class DReportDetails extends StatelessWidget {
 
         Text("Dans l'ensemble vous vous sentez pour ce jour", style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
-        Text("Motivé à ${(eventDetails['results']['motivation'])}%", style: k16BasicTextStyle,),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Euphorique à ${(eventDetails['results']['euphoria'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Frais (épuisement) à ${(eventDetails['results']['state'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Amicale et facile à ${(eventDetails['results']['mood'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Relaxé à ${(eventDetails['results']['stress'])}%", style: k16BasicTextStyle),
-        const SizedBox(height: kMicroVerticalSpacer,),
-        Text("Calme à ${(eventDetails['results']['anxiety'])}%", style: k16BasicTextStyle),
+        SfCartesianChart(
+            primaryXAxis: CategoryAxis(isVisible: false),
+            primaryYAxis: NumericAxis(minimum: 0, maximum: 100, interval: 10),
+            tooltipBehavior: _tooltip,
+            series: <ChartSeries<_ChartData, String>>[
+              BarSeries<_ChartData, String>(
+                  isVisibleInLegend: false,
+                  borderRadius: BorderRadius.circular(4),
+                  dataSource: data,
+                  dataLabelMapper: (_ChartData data, _) => data.x,
+                  dataLabelSettings: DataLabelSettings(
+                      isVisible: true
+                  ),
+                  xValueMapper: (_ChartData data, _) => data.x,
+                  yValueMapper: (_ChartData data, _) => data.y,
+                  name: 'Résultat en %',
+                  color: kColorGreen)]),
 
         const SizedBox(height: kBigVerticalSpacer,),
       ],
     );
   }
+}
+
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+
+  final String x;
+  final double y;
 }
