@@ -7,10 +7,10 @@ import 'package:sloth/src/features/authentication/views/registerTraits_form.dart
 import 'package:sloth/src/features/authentication/views/register_form.dart';
 import 'package:sloth/src/features/authentication/views/resetPassword_form.dart';
 import 'package:sloth/src/features/calendar/views/calendar.dart';
+import 'package:sloth/src/features/history/views/history.dart';
 import 'package:sloth/src/features/home/views/home.dart';
 import 'package:sloth/src/features/introduction/views/intersection.dart';
 import 'package:sloth/src/features/introduction/views/introduction.dart';
-import 'package:sloth/src/features/notifications/views/notifications.dart';
 import 'package:sloth/src/features/profile/views/changePassword__form.dart';
 import 'package:sloth/src/features/profile/views/profile.dart';
 import 'package:sloth/src/features/reports/views/dreport_form.dart';
@@ -43,7 +43,7 @@ Map<String, WidgetBuilder> router = {
   kHomeRoute: (context) => const Home(),
 
   // notifications
-  kNotificationsRoute: (context) => const Notifications(),
+  kHistoryRoute: (context) => const History(),
 
   // calendar
   kCalendarRoute: (context) => const Calendar(),

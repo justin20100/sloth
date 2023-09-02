@@ -106,10 +106,10 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                   WidgetAnimator(
                     incomingEffect: WidgetTransitionEffects.incomingSlideInFromRight(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
                     child: GestureDetector(
-                      onTap: () => {Navigator.pushNamed(context, kNotificationsRoute)},
+                      onTap: () => {Navigator.pushNamed(context, kHistoryRoute)},
                       child: const Padding(
                         padding: EdgeInsets.only(right: kSmallHorizontalSpacer),
-                        child: Icon(Icons.notifications_rounded, color: kColorGreen, size: 35),
+                        child: Icon(Icons.history_rounded , color: kColorGreen, size: 35),
                       ),
                     ),
                   ),

@@ -17,7 +17,7 @@ const String kError = '/error';
 // pages
 const String kHomeRoute = '/';
 // Notifications
-const String kNotificationsRoute = '/notifications';
+const String kHistoryRoute = '/history';
 // Calendar
 const String kCalendarRoute = '/calendar';
 // Events

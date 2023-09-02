@@ -153,5 +153,7 @@
 
 
     "calendar__noRepports" : "Pas de rapports pour cette journée",
-    "calendar__title" : "Calendrier"
+    "calendar__title" : "Calendrier",
+
+    "history__title" : "Historique"
  }
