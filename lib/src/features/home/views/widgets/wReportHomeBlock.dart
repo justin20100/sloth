@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
-import 'package:sloth/src/widgets/button.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

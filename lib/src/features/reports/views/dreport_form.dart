@@ -8,7 +8,7 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/button.dart';
-import 'package:sloth/src/widgets/textError.dart';
+import 'package:sloth/src/widgets/error_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
@@ -260,7 +260,7 @@ class _DReportFormState extends State<DReportForm> {
                 ),
               ),
               wakeUpController.error != null
-                  ? TextError(text: wakeUpController.error!)
+                  ? ErrorText(text: wakeUpController.error!)
                   : const SizedBox(
                       height: 0,
                     ),
@@ -284,7 +284,7 @@ class _DReportFormState extends State<DReportForm> {
                 ),
               ),
               sleepController.error != null
-                  ? TextError(
+                  ? ErrorText(
                       text: sleepController.error!,
                     )
                   : const SizedBox(
@@ -585,7 +585,7 @@ class _DReportFormState extends State<DReportForm> {
                 ),
               ),
               feelingLevelController.error != null
-                  ? TextError(
+                  ? ErrorText(
                       text: feelingLevelController.error!,
                     )
                   : const SizedBox(

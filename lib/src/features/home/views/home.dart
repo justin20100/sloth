@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sloth/api/notification_api.dart';
 import 'package:sloth/src/features/calendar/models/EventModel.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/features/home/views/widgets/burgerMenu/burgerMenu.dart';
@@ -11,8 +9,8 @@ import 'package:sloth/src/features/home/views/widgets/wReportHomeBlock.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
-import 'package:sloth/src/widgets/snackbars/successSnackbar.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
+import 'package:sloth/src/widgets/snackbars/success_snackbar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -96,7 +94,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                 elevation: 0,
                 leading: WidgetAnimator(
                   incomingEffect: WidgetTransitionEffects.incomingSlideInFromLeft(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
-                  child: BurgerMenu(),
+                  child: const BurgerMenu(),
                 ),
                 title: WidgetAnimator(
                   incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),

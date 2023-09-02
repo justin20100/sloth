@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/utils/functions.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
-import 'package:spring/spring.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';

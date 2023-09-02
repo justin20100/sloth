@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sloth/src/kdatas/constants.dart';
@@ -6,7 +5,7 @@ import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 
 class RegisterTraitsForm extends StatefulWidget {
-  RegisterTraitsForm({Key? key}) : super(key: key);
+  const RegisterTraitsForm({Key? key}) : super(key: key);
 
   @override
   State<RegisterTraitsForm> createState() => _RegisterTraitsFormState();
@@ -124,11 +123,11 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                       height: kSmallVerticalSpacer,
                     ),
                     Row(children: [
-                      Text(
+                      const Text(
                         "\u2022",
                         style: k16BasicTextStyle,
                       ), //bullet text
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
@@ -139,11 +138,11 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                       height: kMicroVerticalSpacer / 2,
                     ),
                     Row(children: [
-                      Text(
+                      const Text(
                         "\u2022",
                         style: k16BasicTextStyle,
                       ), //bullet text
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
@@ -155,11 +154,11 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                       height: kMicroVerticalSpacer / 2,
                     ),
                     Row(children: [
-                      Text(
+                      const Text(
                         "\u2022",
                         style: k16BasicTextStyle,
                       ), //bullet text
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
@@ -171,11 +170,11 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                       height: kMicroVerticalSpacer / 2,
                     ),
                     Row(children: [
-                      Text(
+                      const Text(
                         "\u2022",
                         style: k16BasicTextStyle,
                       ), //bullet text
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ), //space between bullet and text
                       Expanded(
@@ -276,7 +275,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -324,7 +323,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -372,7 +371,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -437,7 +436,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -484,7 +483,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -531,7 +530,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -578,7 +577,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -643,7 +642,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -690,7 +689,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -737,7 +736,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -784,7 +783,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -849,7 +848,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -896,7 +895,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -943,7 +942,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -990,7 +989,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1055,7 +1054,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1102,7 +1101,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1149,7 +1148,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1196,7 +1195,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1261,7 +1260,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1308,7 +1307,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1355,7 +1354,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1402,7 +1401,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1467,7 +1466,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1514,7 +1513,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1561,7 +1560,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1608,7 +1607,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1673,7 +1672,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1720,7 +1719,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1767,7 +1766,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1814,7 +1813,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                                             checkColor: kColorYellow,
                                             side: MaterialStateBorderSide
                                                 .resolveWith(
-                                              (states) => BorderSide(
+                                              (states) => const BorderSide(
                                                   width: 0.8,
                                                   color: kColorGreen),
                                             ),
@@ -1906,7 +1905,7 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             }),
                       ],
                     ),
-                    SizedBox(height: kBigVerticalSpacer,)
+                    const SizedBox(height: kBigVerticalSpacer,)
                   ],
                 )),
           ),

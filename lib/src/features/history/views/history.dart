@@ -42,13 +42,13 @@ class _HistoryState extends State<History> {
               style: kAppBarTextStyle,
             ),),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: kNormalHorizontalSpacer, right: kNormalHorizontalSpacer),
+          padding: EdgeInsets.only(left: kNormalHorizontalSpacer, right: kNormalHorizontalSpacer),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: kNormalVerticalSpacer),
+              SizedBox(height: kNormalVerticalSpacer),
             ],
           ),
         ),

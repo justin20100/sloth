@@ -24,7 +24,7 @@ Map<String, WidgetBuilder> router = {
   // auth - register
   kRegisterRoute: (context) => const RegisterForm(),
   kRegisterMoreRoute: (context) => RegisterMoreForm(),
-  kRegisterTraitsRoute: (context) => RegisterTraitsForm(),
+  kRegisterTraitsRoute: (context) => const RegisterTraitsForm(),
   kRegisterObjectifsRoute: (context) => RegisterObjectifsForm(),
 
   // auth - login

@@ -45,7 +45,7 @@ class WReportDetails extends StatelessWidget {
           height: kBigVerticalSpacer,
         ),
 
-        Text('Heure moyenne de lever', style: kLabelGreenText),
+        const Text('Heure moyenne de lever', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer,
         ),
@@ -54,7 +54,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Heure moyenne de couché', style: kLabelGreenText),
+        const Text('Heure moyenne de couché', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer,
         ),
@@ -63,7 +63,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Moyenne de qualité du sommeil', style: kLabelGreenText),
+        const Text('Moyenne de qualité du sommeil', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -72,7 +72,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Moyenne du niveau de fatigue cognitive', style: kLabelGreenText),
+        const Text('Moyenne du niveau de fatigue cognitive', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -81,7 +81,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text('Moyenne du niveau de fatigue physique', style: kLabelGreenText),
+        const Text('Moyenne du niveau de fatigue physique', style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -90,7 +90,7 @@ class WReportDetails extends StatelessWidget {
           height: kNormalVerticalSpacer,
         ),
 
-        Text("Dans l'ensemble pour cette semaine vous vous sentez", style: kLabelGreenText),
+        const Text("Dans l'ensemble pour cette semaine vous vous sentez", style: kLabelGreenText),
         const SizedBox(
           height: kMicroVerticalSpacer * 2,
         ),
@@ -105,7 +105,7 @@ class WReportDetails extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
                   dataSource: data,
                   dataLabelMapper: (_ChartData data, _) => data.x,
-                  dataLabelSettings: DataLabelSettings(
+                  dataLabelSettings: const DataLabelSettings(
                       isVisible: true
                   ),
                   xValueMapper: (_ChartData data, _) => data.x,

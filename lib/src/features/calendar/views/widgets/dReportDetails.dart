@@ -30,38 +30,38 @@ class DReportDetails extends StatelessWidget {
         Center(child: Text(DateFormat.MMMMd(Localizations.localeOf(context).toString()).format(eventDetails['date']), style: kEventDetailsDateTextStyle),),
         const SizedBox(height: kBigVerticalSpacer,),
 
-        Text('Heure de lever', style: kLabelGreenText),
+        const Text('Heure de lever', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer,),
         Text(DateFormat.jm(Localizations.localeOf(context).toString()).format(eventDetails['results']['wakeUp'].toDate()), style: k16BasicTextStyle),
         const SizedBox(height: kNormalVerticalSpacer,),
 
-        Text('Heure de Couché', style: kLabelGreenText),
+        const Text('Heure de Couché', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer,),
         Text(DateFormat.jm(Localizations.localeOf(context).toString()).format(eventDetails['results']['sleep'].toDate()), style: k16BasicTextStyle),
         const SizedBox(height: kNormalVerticalSpacer,),
 
-        Text('Evaluation de votre sommeil', style: kLabelGreenText),
+        const Text('Evaluation de votre sommeil', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
         DetailsSlider(data: eventDetails['results']['sleepEvaluation']),
         const SizedBox(height: kNormalVerticalSpacer,),
 
-        Text('Evaluation du votre niveau de fatigue cognitive', style: kLabelGreenText),
+        const Text('Evaluation du votre niveau de fatigue cognitive', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
         DetailsSlider(data: eventDetails['results']['cognitiveEvaluation']),
         const SizedBox(height: kNormalVerticalSpacer,),
 
-        Text('Evaluation du votre niveau de fatigue physique', style: kLabelGreenText),
+        const Text('Evaluation du votre niveau de fatigue physique', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
         DetailsSlider(data: eventDetails['results']['physiqueEvaluation']),
         const SizedBox(height: kNormalVerticalSpacer,),
 
-        Text('Informations supplémentaires sur votre journée', style: kLabelGreenText),
+        const Text('Informations supplémentaires sur votre journée', style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
-        eventDetails['results']['moreInfos']!='' ? Text(eventDetails['results']['moreInfos'], style: k16BasicTextStyle): Text("Vous n'avez pas donné d'informations suplémentaires", style: k16BasicTextStyle),
+        eventDetails['results']['moreInfos']!='' ? Text(eventDetails['results']['moreInfos'], style: k16BasicTextStyle): const Text("Vous n'avez pas donné d'informations suplémentaires", style: k16BasicTextStyle),
         const SizedBox(height: kNormalVerticalSpacer,),
 
 
-        Text("Dans l'ensemble vous vous sentez pour ce jour", style: kLabelGreenText),
+        const Text("Dans l'ensemble vous vous sentez pour ce jour", style: kLabelGreenText),
         const SizedBox(height: kMicroVerticalSpacer*2,),
         SfCartesianChart(
             primaryXAxis: CategoryAxis(isVisible: false),
@@ -73,7 +73,7 @@ class DReportDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                   dataSource: data,
                   dataLabelMapper: (_ChartData data, _) => data.x,
-                  dataLabelSettings: DataLabelSettings(
+                  dataLabelSettings: const DataLabelSettings(
                       isVisible: true
                   ),
                   xValueMapper: (_ChartData data, _) => data.x,

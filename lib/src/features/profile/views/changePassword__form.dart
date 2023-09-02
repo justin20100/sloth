@@ -14,7 +14,7 @@ class ChangePasswordForm extends StatelessWidget {
     return Scaffold(
       backgroundColor: kColorCream,
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
                 padding: const EdgeInsets.only(

@@ -20,7 +20,7 @@ class RegisterMoreForm extends StatelessWidget {
     return Scaffold(
       backgroundColor: kColorCream,
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
                 padding: const EdgeInsets.only(
@@ -116,7 +116,7 @@ class RegisterMoreForm extends StatelessWidget {
                                           null &&
                                       _registerMoreFormKey.currentState!
                                           .validate()) {
-                                    Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: {'email': arguments['email'], 'password': arguments['password'], 'firstname': _firstname, 'lastname': _lastname, 'phone': _phone ?? ''});
+                                    Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: {'email': arguments['email'], 'password': arguments['password'], 'firstname': _firstname, 'lastname': _lastname, 'phone': _phone});
                                   }
                             }),
                       ],

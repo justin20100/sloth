@@ -1,17 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/authentication/controllers/loginController.dart';
-import 'package:sloth/src/features/authentication/models/UserModel.dart';
-import 'package:sloth/src/features/authentication/models/error_firebase_auth.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:sloth/src/widgets/forms/email_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sloth/src/features/authentication/views/widgets/loginPassword_input.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
-import 'package:sloth/src/widgets/snackbars/welcomeSnackbar.dart';
-import 'package:sloth/src/widgets/textError.dart';
+import 'package:sloth/src/widgets/snackbars/welcome_snackbar.dart';
+import 'package:sloth/src/widgets/error_text.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -24,8 +21,6 @@ class _LoginFormState extends State<LoginForm> {
   final ScrollController _scrollController = ScrollController();
   final EmailInputController emailInputController = EmailInputController();
   final PasswordInputController passwordInputController = PasswordInputController();
-
-  final UserModel _userModel = UserModel();
 
   final _loginFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
@@ -52,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
           Navigator.pushNamed(context, kHomeRoute);
           WelcomeSnackbar.show(context, AppLocalizations.of(context)!.snackBar__loginMessage);
         });
-      } on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException {
         setState(() {
           emailInputController.error = "Impossible, vérifiez votre email";
           passwordInputController.error = "Impossible, vérifiez votre mot de passe";
@@ -104,7 +99,7 @@ class _LoginFormState extends State<LoginForm> {
                               },
                             ),
                             emailInputController.error != null
-                                ? TextError(text: emailInputController.error!)
+                                ? ErrorText(text: emailInputController.error!)
                                 : const SizedBox(
                               height: 0,
                             ),
@@ -124,10 +119,10 @@ class _LoginFormState extends State<LoginForm> {
                                 onChanged: (value) {
                                   _password = value;
                                 },
-                                hasError: passwordInputController.error != null,
+                                hasError: passwordInputController.error != null?true:false,
                             ),
                             passwordInputController.error != null
-                                ? TextError(text: passwordInputController.error!)
+                                ? ErrorText(text: passwordInputController.error!)
                                 : const SizedBox(
                               height: 0,
                             ),

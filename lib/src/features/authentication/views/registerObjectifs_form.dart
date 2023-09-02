@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/authentication/models/UserModel.dart';
@@ -7,8 +6,8 @@ import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
-import 'package:sloth/src/widgets/snackbars/welcomeSnackbar.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
+import 'package:sloth/src/widgets/snackbars/welcome_snackbar.dart';
 
 class RegisterObjectifsForm extends StatefulWidget {
   RegisterObjectifsForm({Key? key}) : super(key: key);
@@ -179,10 +178,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             child: CheckboxListTile(
                               title: o3
                                   ? Text(AppLocalizations.of(context)!.registerObjectifs__o3,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorWhite, fontSize: 14))
                                   : Text(AppLocalizations.of(context)!.registerObjectifs__o3,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o3 ? kColorGreen : kColorWhite,
                               value: o3,
@@ -217,10 +216,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             child: CheckboxListTile(
                               title: o4
                                   ? Text(AppLocalizations.of(context)!.registerObjectifs__o4,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorWhite, fontSize: 14))
                                   : Text(AppLocalizations.of(context)!.registerObjectifs__o4,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o4 ? kColorGreen : kColorWhite,
                               value: o4,
@@ -255,10 +254,10 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                             child: CheckboxListTile(
                               title: o5
                                   ? Text(AppLocalizations.of(context)!.registerObjectifs__o5,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorWhite, fontSize: 14))
                                   : Text(AppLocalizations.of(context)!.registerObjectifs__o5,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: kColorGreen, fontSize: 14)),
                               tileColor: o5 ? kColorGreen : kColorWhite,
                               value: o5,
@@ -313,7 +312,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                               _selectedCount >= 2) {
                             if (await tools.checkInternetConnection()) {
                               await _userModel.addUserToFirebaseAuth(arguments['email'], arguments['password']);
-                              final user_id = FirebaseAuth.instance.currentUser!.uid;
+                              final userId = FirebaseAuth.instance.currentUser!.uid;
                               await _userModel.addUserToFirestore(
                                 arguments['firstname'],
                                 arguments['lastname'],
@@ -341,7 +340,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                                   'o9': o9,
                                   'o10': o10,
                                 },
-                                user_id,
+                                userId,
                               );
                               Navigator.pushNamed(context, kHomeRoute);
                               WelcomeSnackbar.show(context, AppLocalizations.of(context)!.snackbar__welcomeMessage);

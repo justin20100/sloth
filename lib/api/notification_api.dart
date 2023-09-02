@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
@@ -48,7 +48,9 @@ class NotificationApi {
       );
   static tz.TZDateTime _scheduleDaily(DateTime time) {
     final now = tz.TZDateTime.now(tz.local);
-    print(now);
+    if (kDebugMode) {
+      print(now);
+    }
     final scheduleDate = tz.TZDateTime(
       tz.local,
       now.year,
@@ -60,10 +62,14 @@ class NotificationApi {
     );
 
     if(scheduleDate.isBefore(now)){
-      print("notification date = ${scheduleDate.add(const Duration(days: 1))}");
+      if (kDebugMode) {
+        print("notification date = ${scheduleDate.add(const Duration(days: 1))}");
+      }
       return scheduleDate.add(const Duration(days: 1));
     }else{
-      print("notification date = ${scheduleDate}");
+      if (kDebugMode) {
+        print("notification date = $scheduleDate");
+      }
       return scheduleDate;
     }
 

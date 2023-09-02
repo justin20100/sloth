@@ -33,7 +33,7 @@ class _TimePickerInputState extends State<TimePickerInput> {
             borderSide: BorderSide(
           color: kColorYellow,
         )),
-        errorStyle: TextStyle(),
+        errorStyle: const TextStyle(),
         fillColor: kColorWhite,
         filled: true,
       ),

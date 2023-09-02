@@ -39,10 +39,10 @@ List<BoxShadow> kBoxShadowItem = [
   )
 ];
 List<BoxShadow> kDRepportBoxShadowItem = [
-  BoxShadow(
+  const BoxShadow(
     color: kColorYellow,
     blurRadius: 5,
-    offset: const Offset(0, 0),
+    offset: Offset(0, 0),
   )
 ];
 
@@ -52,7 +52,7 @@ final kBoxDecoration = BoxDecoration(
     boxShadow: kBoxShadowItem,
     borderRadius: kBorderRadiusItem
 );
-final kSnackbarBoxDecoration = BoxDecoration(
+const kSnackbarBoxDecoration = BoxDecoration(
     color: kColorGreen,
 );
 final kHomeBoxDecoration = BoxDecoration(

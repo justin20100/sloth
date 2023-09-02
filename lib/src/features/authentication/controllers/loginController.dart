@@ -1,9 +1,7 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EmailInputController {
-  late String? error = null;
+  late String? error;
 
   bool validate(context, email) {
     if (email.isNotEmpty) {
@@ -22,7 +20,7 @@ class EmailInputController {
 }
 
 class PasswordInputController {
-  late String? error = null;
+  late String? error;
   bool validate(context, password) {
     if (password.isNotEmpty) {
       if (RegExp(r'^(?=.*?[A-Z]).{8,}$').hasMatch(password)) {

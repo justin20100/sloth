@@ -8,7 +8,7 @@ class LoginPasswordInput extends StatefulWidget {
 
   LoginPasswordInput(
       {this.onChanged,
-      required bool this.hasError,
+      required this.hasError,
       Key? key})
       : super(key: key);
 

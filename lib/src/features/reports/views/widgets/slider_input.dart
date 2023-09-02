@@ -5,7 +5,7 @@ class Slider_input extends StatefulWidget {
   final ValueChanged<double>? onChanged;
   final value;
 
-  Slider_input({Key? key, required this.value, this.onChanged}) : super(key: key);
+  const Slider_input({Key? key, required this.value, this.onChanged}) : super(key: key);
 
   @override
   State<Slider_input> createState() => _Slider_inputState();
