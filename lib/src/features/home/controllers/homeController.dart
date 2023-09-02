@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:sloth/src/features/reports/models/DReportModel.dart';
 import 'package:sloth/src/features/reports/models/WReportModel.dart';
+import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/utils/functions.dart';
 
 class HomeController {
@@ -9,8 +10,8 @@ class HomeController {
     bool dReportAlreadyCompleted = await dReportModel.checkDReportForADay(
         DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    if (4 < DateTime.now().hour &&
-        DateTime.now().hour > 12 &&
+    if ( kDReportAvailableHour < DateTime.now().hour &&
+        DateTime.now().hour < kDReportNotAvailableHour &&
         !dReportAlreadyCompleted) {
       if (kDebugMode) {
         print("Il faut afficher le block d");
@@ -27,8 +28,8 @@ class HomeController {
     final WReportModel wReportModel = WReportModel();
     bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    if (DateTime.now().weekday == 3 &&
-        DateTime.now().hour > 12 &&
+    if (DateTime.now().weekday == kWReportAvailableDay &&
+        DateTime.now().hour > kWReportAvailableHour &&
         !alreadyCalculated) {
       if (kDebugMode) {
         print("Il faut afficher le block w");

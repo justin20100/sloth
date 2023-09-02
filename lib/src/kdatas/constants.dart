@@ -172,7 +172,6 @@ const kEventDetailsDateTextStyle = TextStyle(
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
-
 // Basic Text
 const k12BasicTextStyle = TextStyle(
   fontSize: 12.0,
@@ -289,3 +288,11 @@ final kLastDay = DateTime(kCalendarReference.year, kCalendarReference.month + 7,
 String getTheDate(context) {
   return DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(DateTime.now());
 }
+
+// ------------- Blocks visibility
+// Day block
+const kDReportAvailableHour = 3;
+const kDReportNotAvailableHour = 12;
+// Week block
+const kWReportAvailableHour = 12;
+const kWReportAvailableDay = 1;
