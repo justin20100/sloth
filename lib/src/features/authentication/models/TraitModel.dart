@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TraitModel {
-  final CollectionReference traitsRef =
-      FirebaseFirestore.instance.collection('users/traits');
+  final CollectionReference traitsRef = FirebaseFirestore.instance.collection('users/traits');
 
   Future<void> createBook(
       num q1, num q2, num q3, num q4, num q5, num q6, num q7, num q8) {
