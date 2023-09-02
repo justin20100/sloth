@@ -106,6 +106,7 @@
     "home__boxWRepport" : "Nous sommes Lundi! Calculez votre rapport hebdomadaire",
     "home__boxWRepportButton" : "Calculer le rapport",
     "home__boxWRepportInternetError" : "Il vous faut une connection a internet pour calculer ce rapport",
+    "home__boxWRepportFailedError" : "Une erreur est survenue durant le calcule de ce rapport",
     "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté a votre calendrier avec succès",
     "home__boxWRepportDetails" : "La rapport hebdomadaire de la semaine passée est disponnible",
     "home__boxWRepportDetailsButton" : "Consulter le rapport",
@@ -150,5 +151,7 @@
     "dReport__feelingLevelError" : "Vous devez faire votre choix.",
     "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention",
 
+
+    "calendar__noRepports" : "Pas de rapports pour cette journée",
     "calendar__title" : "Calendrier"
  }

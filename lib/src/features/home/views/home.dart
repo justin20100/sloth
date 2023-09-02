@@ -150,7 +150,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                                   _selectedDay = selectedDay;
                                   _focusedDay = focusedDay;
                                 });
-                                Navigator.pushNamed(context, kCalendarRoute, arguments: {
+                                Navigator.pushReplacementNamed(context, kCalendarRoute, arguments: {
                                   'selectedDay': _selectedDay,
                                 });
                               },
@@ -304,9 +304,14 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             children: [
                               WReportHomeBlock(onPressed: () async {
                                 if (await tools.checkInternetConnection() == true) {
-                                  await homeController.calculateWReport();
-                                  _wReportVisibility.value = !_wReportVisibility.value;
-                                  SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
+                                  try{
+                                    await homeController.calculateWReport();
+                                    _wReportVisibility.value = !_wReportVisibility.value;
+                                    SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
+                                    Navigator.pushReplacementNamed(context, kHomeRoute);
+                                  }catch(e){
+                                    ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportFailedError);
+                                  }
                                 } else {
                                   ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportInternetError);
                                 }

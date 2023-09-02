@@ -24,8 +24,7 @@ class DetailsSlider extends StatelessWidget {
         child: Slider(
           value: data,
           min: 0.0,
-          max: 5.0,
-          divisions: 10,
+          max: 100.0,
           onChanged: ( value) {},
         ),
       ),

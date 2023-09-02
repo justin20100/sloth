@@ -9,6 +9,7 @@ import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -70,16 +71,22 @@ class _CalendarState extends State<Calendar> {
           ),
           toolbarHeight: 80,
           backgroundColor: kColorCream,
-          leading: GestureDetector(
-            onTap: () => {Navigator.popAndPushNamed(context, kHomeRoute)},
-            child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: kColorGreen,
+          leading: WidgetAnimator(
+            incomingEffect: WidgetTransitionEffects.incomingSlideInFromLeft(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
+            child: GestureDetector(
+              onTap: () => {Navigator.popAndPushNamed(context, kHomeRoute)},
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: kColorGreen,
+              ),
             ),
           ),
-          title: Text(
-            AppLocalizations.of(context)!.calendar__title,
-            style: kAppBarTextStyle,
+          title: WidgetAnimator(
+            incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
+            child: Text(
+              AppLocalizations.of(context)!.calendar__title,
+              style: kAppBarTextStyle,
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -279,11 +286,11 @@ class _CalendarState extends State<Calendar> {
                       _getEventsForTheDay(_selectedDay).isEmpty
                           ? Container(
                               alignment: Alignment.topLeft,
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.symmetric(
                                   vertical: kMicroVerticalSpacer / 2,
                                 ),
-                                child: Text("Pas de rapports pour cette journée"),
+                                child: Text(AppLocalizations.of(context)!.calendar__noRepports),
                               ))
                           : ListBody(
                               children: _getEventsForTheDay(_selectedDay).map((event) {

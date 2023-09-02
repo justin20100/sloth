@@ -7,12 +7,8 @@ import 'package:sloth/src/utils/functions.dart';
 class HomeController {
   Future<bool> dReportHomeBlockVisibility() async {
     final DReportModel dReportModel = DReportModel();
-    bool dReportAlreadyCompleted = await dReportModel.checkDReportForADay(
-        DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    if ( kDReportAvailableHour < DateTime.now().hour &&
-        DateTime.now().hour < kDReportNotAvailableHour &&
-        !dReportAlreadyCompleted) {
+    bool dReportAlreadyCompleted = await dReportModel.checkDReportForADay(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    if (kDReportAvailableHour < DateTime.now().hour && DateTime.now().hour < kDReportNotAvailableHour && !dReportAlreadyCompleted) {
       if (kDebugMode) {
         print("Il faut afficher le block d");
       }
@@ -26,11 +22,8 @@ class HomeController {
 
   Future<bool> wReportHomeBlockVisibility() async {
     final WReportModel wReportModel = WReportModel();
-    bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(
-        DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    if (DateTime.now().weekday == kWReportAvailableDay &&
-        DateTime.now().hour > kWReportAvailableHour &&
-        !alreadyCalculated) {
+    bool alreadyCalculated = await wReportModel.checkWReportForAWeek(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    if (DateTime.now().weekday == kWReportAvailableDay && DateTime.now().hour > kWReportAvailableHour && !alreadyCalculated) {
       if (kDebugMode) {
         print("Il faut afficher le block w");
       }
@@ -51,10 +44,8 @@ class HomeController {
     DReportModel dreportModel = DReportModel();
     WReportModel wReportModel = WReportModel();
     Tools tools = Tools();
-    DateTime startDay =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(const Duration(days: 7));
-    DateTime lastDay =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    DateTime startDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(const Duration(days: 7));
+    DateTime lastDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     List dReports = await dreportModel.getDReportInARange(startDay, lastDay);
 
     // calculer
@@ -82,20 +73,16 @@ class HomeController {
       sleepEvaluation += element['results']['sleepEvaluation'];
       state += element['results']['state'];
       stress += element['results']['stress'];
-      totalMinutesSleep += element['results']['sleep'].toDate().hour * 60 +
-          element['results']['sleep'].toDate().minute;
-      totalMinutesWakeUp += element['results']['wakeUp'].toDate().hour * 60 +
-          element['results']['wakeUp'].toDate().minute;
+      totalMinutesSleep += element['results']['sleep'].toDate().hour * 60 + element['results']['sleep'].toDate().minute;
+      totalMinutesWakeUp += element['results']['wakeUp'].toDate().hour * 60 + element['results']['wakeUp'].toDate().minute;
     }
 
     anxiety = DivideAndFormat(anxiety, numberOfReportInAWeek);
-    cognitiveEvaluation =
-        DivideAndFormat(cognitiveEvaluation, numberOfReportInAWeek);
+    cognitiveEvaluation = DivideAndFormat(cognitiveEvaluation, numberOfReportInAWeek);
     euphoria = DivideAndFormat(euphoria, numberOfReportInAWeek);
     mood = DivideAndFormat(mood, numberOfReportInAWeek);
     motivation = DivideAndFormat(motivation, numberOfReportInAWeek);
-    physiqueEvaluation =
-        DivideAndFormat(physiqueEvaluation, numberOfReportInAWeek);
+    physiqueEvaluation = DivideAndFormat(physiqueEvaluation, numberOfReportInAWeek);
     sleepEvaluation = DivideAndFormat(sleepEvaluation, numberOfReportInAWeek);
     state = DivideAndFormat(state, numberOfReportInAWeek);
     stress = DivideAndFormat(stress, numberOfReportInAWeek);
@@ -103,39 +90,14 @@ class HomeController {
     int averageMinutesSleep = totalMinutesSleep ~/ numberOfReportInAWeek;
     int averageHoursSleep = averageMinutesSleep ~/ 60;
     int averageRemainingMinutesSleep = averageMinutesSleep % 60;
-    sleep = DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day - 1,
-        averageHoursSleep,
-        averageRemainingMinutesSleep);
+    sleep = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1, averageHoursSleep, averageRemainingMinutesSleep);
     int averageMinutesWakeUp = totalMinutesWakeUp ~/ numberOfReportInAWeek;
     int averageHoursWakeUp = averageMinutesWakeUp ~/ 60;
     int averageRemainingMinutesWakeUp = averageMinutesWakeUp % 60;
-    wakeUp = DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day - 1,
-        averageHoursWakeUp,
-        averageRemainingMinutesWakeUp);
+    wakeUp = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1, averageHoursWakeUp, averageRemainingMinutesWakeUp);
 
     // enregister
     String userId = await tools.getUserID();
-    await wReportModel.createWReport(
-        DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),
-        anxiety,
-        cognitiveEvaluation,
-        euphoria,
-        mood,
-        '',
-        motivation,
-        physiqueEvaluation,
-        sleep,
-        sleepEvaluation,
-        state,
-        stress,
-        wakeUp,
-        userId);
+    await wReportModel.createWReport(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1), anxiety, cognitiveEvaluation, euphoria, mood, '', motivation, physiqueEvaluation, sleep, sleepEvaluation, state, stress, wakeUp, userId);
   }
 }
