@@ -83,6 +83,14 @@ const kBigLabelTextStyle = TextStyle(
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
+const kMegaLabelTextStyle = TextStyle(
+  fontSize: 30.0,
+  height: 1.4,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
 const kLabelGreenText = TextStyle(
   fontFamily: 'Inter',
   fontSize: 16.0,

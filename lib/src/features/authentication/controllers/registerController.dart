@@ -11,7 +11,7 @@ class EmailInputController {
           error = null;
           return true;
         }else{
-          error = "Cet email est déja utilisé";
+          error = "Cet email est déja utilisée";
           return false;
         }
       } else {
