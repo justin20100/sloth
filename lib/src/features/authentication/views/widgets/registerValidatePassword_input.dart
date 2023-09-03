@@ -29,6 +29,7 @@ class _RegisterValidatePasswordInputState extends State<RegisterValidatePassword
       autocorrect: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
+      initialValue: widget.password,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         suffixIcon: IconButton(

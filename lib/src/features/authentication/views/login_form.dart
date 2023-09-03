@@ -114,7 +114,6 @@ class _LoginFormState extends State<LoginForm> {
                               onChanged: (value) {
                                 _password = value;
                               },
-                              hasError: passwordInputController.error != null ? true : false,
                             ),
                             passwordInputController.error != null
                                 ? ErrorText(text: passwordInputController.error!)

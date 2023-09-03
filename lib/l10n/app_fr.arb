@@ -61,8 +61,8 @@
     "registerTraits__button": "Ètape suivante",
 
     "registerObjectifs__title": "Objectifs",
-    "registerObjectifs__introText1": "Qu'est ce que vous aimeriez accomplir avec Sloth ? Quels sont vos objectifs ? Cochez les objectifs qui correspondent aux votres.",
-    "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
+    "registerObjectifs__introText1": "Sloth vous permet de vous fixer des objectifs, en espérant vous aider à les accomplir.",
+    "registerObjectifs__introText2": "Nous aimerions que vous en choisissez minimum deux.",
     "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
     "registerObjectifs__backButton": "Précédent",
     "registerObjectifs__o1":"Me sentir plus heureux",
@@ -70,7 +70,8 @@
     "registerObjectifs__o3":"Avoir plus d’énergie",
     "registerObjectifs__o4":"Travailler de façon optimal",
     "registerObjectifs__o5":"Avoir un meilleur sommeil",
-    "registerObjectifs__internetError": "Vérifiez votre connection a internet.",
+    "registerObjectifs__internetError": "Vérifiez votre connection a internet",
+    "registerObjectifs__error": "Erreur lors de l'enregistrement du compte",
     "registerObjectifs__button": "Terminer",
 
     "dataUsage__title":"Confidentialité",

@@ -5,10 +5,11 @@ import 'package:sloth/src/kdatas/constants.dart';
 @immutable
 class RegisterPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
+  final String password;
 
   RegisterPasswordInput(
       {this.onChanged,
-        required String password,
+        required this.password,
         Key? key})
       : super(key: key);
 
@@ -29,6 +30,7 @@ class _RegisterPasswordInputState extends State<RegisterPasswordInput> {
       autofocus: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
+      initialValue: widget.password,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         suffixIcon: IconButton(

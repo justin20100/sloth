@@ -287,6 +287,15 @@ const kIntroTitleTextStyle = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
+// Register - pages
+const kObjectifsErrorStyle = TextStyle(
+  fontSize: 16.0,
+  height: 1.4,
+  fontWeight: FontWeight.normal,
+  fontFamily: 'Inter',
+  color: kColorRed,
+  decoration: TextDecoration.none,
+);
 
 // ------------- Dates Functions
 final kToday = DateTime.now();

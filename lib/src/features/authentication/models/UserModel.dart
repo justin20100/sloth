@@ -30,7 +30,7 @@ class UserModel {
     String email,
     String phone,
     Map traits,
-    Map objectifs,
+    List objectifs,
     String userId,
   ) async {
     try {

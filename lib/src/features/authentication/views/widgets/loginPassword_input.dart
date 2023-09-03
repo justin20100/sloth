@@ -5,11 +5,9 @@ import 'package:sloth/src/kdatas/constants.dart';
 class LoginPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final initialValue;
-  bool hasError = false;
 
   LoginPasswordInput(
       {this.onChanged,
-      required this.hasError,
       Key? key, String? this.initialValue})
       : super(key: key);
 
