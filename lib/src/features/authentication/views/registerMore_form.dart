@@ -18,8 +18,6 @@ class RegisterMoreForm extends StatefulWidget {
 
 class _RegisterMoreFormState extends State<RegisterMoreForm> {
 
-
-
   final FirstnameInputController firstnameInputController = FirstnameInputController();
   final LastnameInputController lastnameInputController = LastnameInputController();
   final PhoneInputController phoneInputController = PhoneInputController();

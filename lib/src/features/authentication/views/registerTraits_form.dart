@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sloth/src/features/authentication/views/widgets/registerMoreQuestion_checkboxes.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
@@ -200,201 +201,57 @@ class _RegisterTraitsFormState extends State<RegisterTraitsForm> {
                             const SizedBox(
                               height: kSmallVerticalSpacer,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: 75,
-                                  height: 90,
-                                  padding: const EdgeInsets.only(
-                                      left: kSmallHorizontalSpacer,
-                                      top: kMicroVerticalSpacer * 2,
-                                      right: kSmallHorizontalSpacer),
-                                  decoration: kBoxDecoration,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(AppLocalizations.of(context)!.registerTraits__option1,
-                                          style: kCheckboxText, softWrap: true),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Transform.scale(
-                                        scale: 1.3,
-                                        child: Checkbox(
-                                            activeColor: kColorGreen,
-                                            checkColor: kColorYellow,
-                                            side: MaterialStateBorderSide
-                                                .resolveWith(
-                                              (states) => const BorderSide(
-                                                  width: 0.8,
-                                                  color: kColorGreen),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            value: q1c1,
-                                            onChanged: (bool? value) {
-                                              _q1 = 1;
-                                              setState(() {
-                                                q1c4 = false;
-                                                q1c2 = false;
-                                                q1c3 = false;
-                                                q1c1 = value!;
-                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
-                                              });
-                                            }),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 75,
-                                  height: 90,
-                                  padding: const EdgeInsets.only(
-                                      left: kSmallHorizontalSpacer,
-                                      top: kMicroVerticalSpacer * 2,
-                                      right: kSmallHorizontalSpacer),
-                                  decoration: kBoxDecoration,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(AppLocalizations.of(context)!.registerTraits__option2,
-                                          style: kCheckboxText,
-                                          softWrap: true,
-                                          textAlign: TextAlign.center),
-                                      Transform.scale(
-                                        scale: 1.3,
-                                        child: Checkbox(
-                                            activeColor: kColorGreen,
-                                            checkColor: kColorYellow,
-                                            side: MaterialStateBorderSide
-                                                .resolveWith(
-                                              (states) => const BorderSide(
-                                                  width: 0.8,
-                                                  color: kColorGreen),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            value: q1c2,
-                                            onChanged: (bool? value) {
-                                              _q1 = 2;
-                                              setState(() {
-                                                q1c1 = false;
-                                                q1c4 = false;
-                                                q1c3 = false;
-                                                q1c2 = value!;
-                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
-                                                _q1;
-                                              });
-                                            }),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 75,
-                                  height: 90,
-                                  padding: const EdgeInsets.only(
-                                      left: kSmallHorizontalSpacer,
-                                      top: kMicroVerticalSpacer * 2,
-                                      right: kSmallHorizontalSpacer),
-                                  decoration: kBoxDecoration,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(AppLocalizations.of(context)!.registerTraits__option3,
-                                          style: kCheckboxText,
-                                          softWrap: true,
-                                          textAlign: TextAlign.center),
-                                      Transform.scale(
-                                        scale: 1.3,
-                                        child: Checkbox(
-                                            activeColor: kColorGreen,
-                                            checkColor: kColorYellow,
-                                            side: MaterialStateBorderSide
-                                                .resolveWith(
-                                              (states) => const BorderSide(
-                                                  width: 0.8,
-                                                  color: kColorGreen),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            value: q1c3,
-                                            onChanged: (bool? value) {
-                                              _q1 = 3;
-                                              setState(() {
-                                                q1c1 = false;
-                                                q1c2 = false;
-                                                q1c4 = false;
-                                                q1c3 = value!;
-                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
-                                                _q1;
-                                              });
-                                            }),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 75,
-                                  height: 90,
-                                  padding: const EdgeInsets.only(
-                                      left: kSmallHorizontalSpacer,
-                                      top: kMicroVerticalSpacer * 2,
-                                      right: kSmallHorizontalSpacer),
-                                  decoration: kBoxDecoration,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(AppLocalizations.of(context)!.registerTraits__option4,
-                                          style: kCheckboxText,
-                                          softWrap: true,
-                                          textAlign: TextAlign.center),
-                                      Transform.scale(
-                                        scale: 1.3,
-                                        child: Checkbox(
-                                            activeColor: kColorGreen,
-                                            checkColor: kColorYellow,
-                                            side: MaterialStateBorderSide
-                                                .resolveWith(
-                                              (states) => const BorderSide(
-                                                  width: 0.8,
-                                                  color: kColorGreen),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            value: q1c4,
-                                            onChanged: (bool? value) {
-                                              _q1 = 4;
-                                              setState(() {
-                                                q1c1 = false;
-                                                q1c2 = false;
-                                                q1c3 = false;
-                                                q1c4 = value!;
-                                                resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
-                                              });
-                                            }),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
+                            RegisterTraitsQuestionCheckboxes(
+                              textOption1: AppLocalizations.of(context)!.registerTraits__option1,
+                              valueOption1: q1c1,
+                              onChangeOption1: (bool? value) {
+                                _q1 = 1;
+                                setState(() {
+                                  q1c4 = false;
+                                  q1c2 = false;
+                                  q1c3 = false;
+                                  q1c1 = value!;
+                                  resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                });
+                              },
+                              textOption2: AppLocalizations.of(context)!.registerTraits__option2,
+                              valueOption2: q1c2,
+                              onChangeOption2: (bool? value) {
+                                _q1 = 2;
+                                setState(() {
+                                  q1c1 = false;
+                                  q1c4 = false;
+                                  q1c3 = false;
+                                  q1c2 = value!;
+                                  resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                  _q1;
+                                });
+                              },
+                              textOption3: AppLocalizations.of(context)!.registerTraits__option3,
+                              valueOption3: q1c3,
+                              onChangeOption3: (bool? value) {
+                                _q1 = 3;
+                                setState(() {
+                                  q1c1 = false;
+                                  q1c2 = false;
+                                  q1c4 = false;
+                                  q1c3 = value!;
+                                  resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                  _q1;
+                                });
+                              },
+                              textOption4: AppLocalizations.of(context)!.registerTraits__option3,
+                              valueOption4: q1c4,
+                              onChangeOption4: (bool? value) {
+                                _q1 = 4;
+                                setState(() {
+                                  q1c1 = false;
+                                  q1c2 = false;
+                                  q1c3 = false;
+                                  q1c4 = value!;
+                                  resetIfChoiceCancel(q1c1, q1c2, q1c3, q1c4, "q1");
+                                });
+                              },
                             ),
                             const SizedBox(
                               height: kBigVerticalSpacer,
