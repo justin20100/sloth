@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/authentication/controllers/loginController.dart';
+import 'package:sloth/src/features/authentication/views/widgets/loginEmail_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
-import 'package:sloth/src/widgets/forms/email_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sloth/src/features/authentication/views/widgets/loginPassword_input.dart';
 import 'package:sloth/src/widgets/snackbars/welcome_snackbar.dart';
@@ -18,7 +18,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final ScrollController _scrollController = ScrollController();
   final EmailInputController emailInputController = EmailInputController();
   final PasswordInputController passwordInputController = PasswordInputController();
 
@@ -29,17 +28,11 @@ class _LoginFormState extends State<LoginForm> {
   String _email = "";
   String _password = "";
 
-  void _scrollToFormField(formKey) {
-    final RenderBox renderBox = formKey.currentContext!.findRenderObject() as RenderBox;
-    final offset = renderBox.localToGlobal(Offset(0, MediaQuery.of(context).size.height));
-    _scrollController.animateTo(offset.dy, duration: const Duration(milliseconds: 700), curve: Curves.easeInOutExpo);
-  }
-
   Future<void> _submitForm() async {
     bool isValid = true;
-    setState(()  {
-      isValid =  emailInputController.validate(context, _email) && isValid;
-      isValid =  passwordInputController.validate(context, _password) && isValid;
+    setState(() {
+      isValid = emailInputController.validate(context, _email) && isValid;
+      isValid = passwordInputController.validate(context, _password) && isValid;
     });
     if (isValid) {
       try {
@@ -47,7 +40,7 @@ class _LoginFormState extends State<LoginForm> {
           Navigator.pushNamed(context, kHomeRoute);
           WelcomeSnackbar.show(context, AppLocalizations.of(context)!.snackBar__loginMessage);
         });
-      } on FirebaseAuthException {
+      } catch (e) {
         setState(() {
           emailInputController.error = "Impossible, vérifiez votre email";
           passwordInputController.error = "Impossible, vérifiez votre mot de passe";
@@ -85,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Email
+                            // Email input
                             Text(
                               AppLocalizations.of(context)!.login__emailLabel,
                               style: kLabelGreenText,
@@ -93,7 +86,8 @@ class _LoginFormState extends State<LoginForm> {
                             const SizedBox(
                               height: kSmallHorizontalSpacer,
                             ),
-                            EmailInput(
+                            LoginEmailInput(
+                              initialValue: _email,
                               onChanged: (value) {
                                 _email = value;
                               },
@@ -101,13 +95,13 @@ class _LoginFormState extends State<LoginForm> {
                             emailInputController.error != null
                                 ? ErrorText(text: emailInputController.error!)
                                 : const SizedBox(
-                              height: 0,
-                            ),
+                                    height: 0,
+                                  ),
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
                             ),
 
-                            // Mot de passe
+                            // Password input
                             Text(
                               AppLocalizations.of(context)!.login__mdpLabel,
                               style: kLabelGreenText,
@@ -116,19 +110,21 @@ class _LoginFormState extends State<LoginForm> {
                               height: kSmallHorizontalSpacer,
                             ),
                             LoginPasswordInput(
-                                onChanged: (value) {
-                                  _password = value;
-                                },
-                                hasError: passwordInputController.error != null?true:false,
+                              initialValue: _password,
+                              onChanged: (value) {
+                                _password = value;
+                              },
+                              hasError: passwordInputController.error != null ? true : false,
                             ),
                             passwordInputController.error != null
                                 ? ErrorText(text: passwordInputController.error!)
                                 : const SizedBox(
-                              height: 0,
-                            ),
+                                    height: 0,
+                                  ),
                             const SizedBox(
                               height: kMicroVerticalSpacer * 2,
                             ),
+                            // Reset password link
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(context, kResetPasswordRoute);
@@ -157,7 +153,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           Button(
                               label: AppLocalizations.of(context)!.login__button,
-                              onPressed: () async {
+                              onPressed: () {
                                 _submitForm();
                               }),
                         ],

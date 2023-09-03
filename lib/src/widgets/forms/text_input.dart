@@ -30,6 +30,7 @@ class TextInput extends StatelessWidget {
       onChanged: onChanged,
       obscureText: obscureText,
       autofocus: autofocus,
+      autocorrect: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
       textInputAction: TextInputAction.next,

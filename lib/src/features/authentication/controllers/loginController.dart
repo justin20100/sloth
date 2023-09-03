@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 
 class EmailInputController {
-  late String? error;
+  late String? error = null;
 
   bool validate(context, email) {
     if (email.isNotEmpty) {
@@ -20,7 +20,7 @@ class EmailInputController {
 }
 
 class PasswordInputController {
-  late String? error;
+  late String? error = null;
   bool validate(context, password) {
     if (password.isNotEmpty) {
       if (RegExp(r'^(?=.*?[A-Z]).{8,}$').hasMatch(password)) {

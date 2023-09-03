@@ -4,12 +4,13 @@ import 'package:sloth/src/kdatas/constants.dart';
 @immutable
 class LoginPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
+  final initialValue;
   bool hasError = false;
 
   LoginPasswordInput(
       {this.onChanged,
       required this.hasError,
-      Key? key})
+      Key? key, String? this.initialValue})
       : super(key: key);
 
   @override
@@ -22,6 +23,7 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: widget.initialValue,
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
@@ -46,9 +48,7 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
         hintText: "Votre mot de passe",
         isDense: true,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: kColorRed,
-          ),
+          borderSide: const BorderSide(color: kColorRed),
           borderRadius: BorderRadius.circular(7),
         ),
         focusColor: kColorYellow,
