@@ -11,13 +11,7 @@ class FirstNameInput extends StatelessWidget {
     return TextInput(
       hintText: 'Julien',
       keyboardType: TextInputType.text,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        } else if (value.length < 2) {
-          return 'Ce champ doit contenir au moins 2 caractères';
-        }
-      },
+      validator: (value) {return null;},
       onChanged: onChanged,
     );
   }
