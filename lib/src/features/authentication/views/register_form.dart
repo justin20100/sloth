@@ -1,11 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sloth/src/features/authentication/controllers/registerController.dart';
+import 'package:sloth/src/features/authentication/views/widgets/registerEmail_input.dart';
 import 'package:sloth/src/features/authentication/views/widgets/registerPassword_input.dart';
 import 'package:sloth/src/features/authentication/views/widgets/registerValidatePassword_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
+import 'package:sloth/src/widgets/error_text.dart';
 import 'package:sloth/src/widgets/forms/email_input.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -16,11 +19,37 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final EmailInputController emailInputController = EmailInputController();
+  final PasswordInputController passwordInputController = PasswordInputController();
+  final ValidatedPasswordInputController validatePasswordInputController = ValidatedPasswordInputController();
+  final DataUsageCheckController dataUsageCheckController = DataUsageCheckController();
+
   final _registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
+
   static String _password = "";
   String _email = "";
-  String _validated_password = "";
+  String _validatedPassword = "";
   bool _dataUsageAccepted = false;
+
+  Future<void> _submitForm() async {
+    bool isValid = true;
+    isValid = await emailInputController.validate(context, _email) && isValid;
+    isValid = passwordInputController.validate(context, _password) && isValid;
+    isValid = validatePasswordInputController.validate(context, _password, _validatedPassword) && isValid;
+    isValid = dataUsageCheckController.validate(context, _dataUsageAccepted) && isValid;
+    setState(() {
+      emailInputController;
+      passwordInputController;
+      validatePasswordInputController;
+      dataUsageCheckController;
+      isValid;
+    });
+    if (isValid) {
+      Navigator.pushNamed(context, kRegisterMoreRoute, arguments: {'email': _email, 'password': _password});
+    }
+  }
 
   get recognizer => null;
 
@@ -46,10 +75,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           const Image(
                             image: AssetImage('assets/img/logo.png'),
                           ),
-                          Text(
-                              AppLocalizations.of(context)!.register__introText,
-                              style: kBigLabelTextStyle,
-                              textAlign: TextAlign.center),
+                          Text(AppLocalizations.of(context)!.register__introText, style: kBigLabelTextStyle, textAlign: TextAlign.center),
                         ],
                       ),
 
@@ -60,25 +86,27 @@ class _RegisterFormState extends State<RegisterForm> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Email
+                            // Email input
                             Text(
-                              AppLocalizations.of(context)!
-                                  .register__emailLabel,
+                              AppLocalizations.of(context)!.register__emailLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
                               height: kSmallHorizontalSpacer,
                             ),
-                            EmailInput(
-                              onChanged: (value) {
-                                _email = value;
-                              },
-                            ),
+                            RegisterEmailInput(initialValue: _email,onChanged: (value) {
+                              _email = value;
+                            },),
+                            emailInputController.error != null
+                                ? ErrorText(text: emailInputController.error!)
+                                : const SizedBox(
+                                    height: 0,
+                                  ),
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
                             ),
 
-                            // Mot de passe
+                            // Password input
                             Text(
                               AppLocalizations.of(context)!.register__mdpLabel,
                               style: kLabelGreenText,
@@ -94,14 +122,18 @@ class _RegisterFormState extends State<RegisterForm> {
                                   });
                                 },
                                 password: _password),
+                            passwordInputController.error != null
+                                ? ErrorText(text: passwordInputController.error!)
+                                : const SizedBox(
+                                    height: 0,
+                                  ),
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
                             ),
 
-                            // Confirmation du mot de passe
+                            // Validated password input
                             Text(
-                              AppLocalizations.of(context)!
-                                  .register__mdpValidationLabel,
+                              AppLocalizations.of(context)!.register__mdpValidationLabel,
                               style: kLabelGreenText,
                             ),
                             const SizedBox(
@@ -109,84 +141,71 @@ class _RegisterFormState extends State<RegisterForm> {
                             ),
                             RegisterValidatePasswordInput(
                                 onChanged: (value) {
-                                  _validated_password = value;
+                                  _validatedPassword = value;
                                   setState(() {
                                     _password;
-                                    _validated_password;
+                                    _validatedPassword;
                                   });
-                                }, password: _password),
+                                },
+                                password: _password),
+                            validatePasswordInputController.error != null
+                                ? ErrorText(text: validatePasswordInputController.error!)
+                                : const SizedBox(
+                                    height: 0,
+                                  ),
                             const SizedBox(
                               height: kSmallVerticalSpacer,
                             ),
 
-                            // Checkbox data infos
+                            // Data usage checkbox
                             Row(
                               children: [
-                                FormField<bool>(
-                                  validator: (value) {
-                                    if (_dataUsageAccepted == false) {
-                                      return 'Required.';
-                                    }
-                                  },
-                                  builder: (FormFieldState<bool> field) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-
-                                        Theme(
-                                          data: Theme.of(context).copyWith(
-                                            unselectedWidgetColor: Colors.red,
-                                          ),
-                                          child: Checkbox(
-                                            activeColor: kColorGreen,
-                                            checkColor: kColorYellow,
-                                            side: MaterialStateBorderSide.resolveWith(
-                                                  (states) => BorderSide(width: 1.4, color: field.hasError ? kColorRed : kColorGreen,
-                                              ),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(4),
-                                            ),
-                                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                            value: _dataUsageAccepted,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _dataUsageAccepted = value!;
-                                                field.didChange(value);
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    );
+                                Checkbox(
+                                  activeColor: kColorGreen,
+                                  checkColor: kColorYellow,
+                                  side: MaterialStateBorderSide.resolveWith(
+                                    (states) => BorderSide(
+                                      width: 1.4,
+                                      color: dataUsageCheckController.error != null ? kColorRed : kColorGreen,
+                                    ),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  value: _dataUsageAccepted,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _dataUsageAccepted = value!;
+                                    });
                                   },
                                 ),
                                 Expanded(
                                   child: RichText(
                                       text: TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .register__dataUsagePart1,
+                                    text: AppLocalizations.of(context)!.register__dataUsagePart1,
                                     style: k12BasicTextStyle,
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .register__dataUsagePart2,
+                                        text: AppLocalizations.of(context)!.register__dataUsagePart2,
                                         style: const TextStyle(
                                           color: kColorGreen,
                                           decoration: TextDecoration.underline,
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Navigator.pushNamed(
-                                                context, kDataUsageRoute);
+                                            Navigator.pushNamed(context, kDataUsageRoute);
                                           },
                                       ),
                                     ],
                                   )),
                                 ),
                               ],
+                            ),
+                            dataUsageCheckController.error != null
+                                ? ErrorText(text: dataUsageCheckController.error!)
+                                : const SizedBox(
+                              height: 0,
                             ),
                             const SizedBox(
                               height: kNormalHorizontalSpacer,
@@ -202,20 +221,15 @@ class _RegisterFormState extends State<RegisterForm> {
                               Navigator.pushNamed(context, kLoginRoute);
                             },
                             child: Text(
-                              AppLocalizations.of(context)!
-                                  .register__loginButton,
+                              AppLocalizations.of(context)!.register__loginButton,
                               style: kSmallLinkGreenText,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Button(
-                              label: AppLocalizations.of(context)!
-                                  .register__button,
+                              label: AppLocalizations.of(context)!.register__button,
                               onPressed: () {
-                                if (_registerFormKey.currentState != null &&
-                                    _registerFormKey.currentState!.validate()) {
-                                  Navigator.pushNamed(context, kRegisterMoreRoute, arguments: {'email': _email, 'password': _password});
-                                }
+                                _submitForm();
                               }),
                         ],
                       )

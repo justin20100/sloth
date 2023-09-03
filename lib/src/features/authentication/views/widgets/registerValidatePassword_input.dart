@@ -17,15 +17,11 @@ class RegisterValidatePasswordInput extends StatefulWidget {
 }
 
 class _RegisterValidatePasswordInputState extends State<RegisterValidatePasswordInput> {
-  final RegisterController _registerController = RegisterController();
   bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        return null;
-      },
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
