@@ -17,11 +17,14 @@ class SuccessSnackbar extends StatelessWidget {
         backgroundColor: kColorDarkGreen,
         content: Padding(
           padding: const EdgeInsets.only(top: kNormalVerticalSpacer, right: kNormalHorizontalSpacer ,bottom: kNormalVerticalSpacer, left: kNormalHorizontalSpacer),
-          child: Expanded(
-              child: Text(
-            success,
-            style: kSuccessSnackBarErrorTextStyle,
-          )),
+          child: Column(
+            children: [
+              Text(
+                    success,
+                    style: kSuccessSnackBarErrorTextStyle,
+                  ),
+            ],
+          )
         ),
       ),
     );

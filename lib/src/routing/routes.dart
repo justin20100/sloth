@@ -20,5 +20,7 @@ const String kHomeRoute = '/';
 const String kHistoryRoute = '/history';
 // Calendar
 const String kCalendarRoute = '/calendar';
+// Personnal sheet
+const String kPersonnalSheetRoute = '/personnalSheet';
 // Events
 const String kDReportRoute = '/dreport';

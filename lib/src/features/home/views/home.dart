@@ -297,14 +297,9 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                             children: [
                               WReportHomeBlock(onPressed: () async {
                                 if (await tools.checkInternetConnection() == true) {
-                                  try{
                                     await homeController.calculateWReport();
                                     _wReportVisibility.value = !_wReportVisibility.value;
-                                    SuccessSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportSuccessMessage);
-                                    Navigator.pushReplacementNamed(context, kHomeRoute);
-                                  }catch(e){
-                                    ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportFailedError);
-                                  }
+                                    SuccessSnackbar.show(context, "Le rapport de la semaine a été ajouté à votre calendrier avec succès");
                                 } else {
                                   ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxWRepportInternetError);
                                 }
@@ -335,7 +330,7 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                     DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxPersonnalFile,
                       buttonText: AppLocalizations.of(context)!.home__boxPersonnalFileButton,
-                      route: kHomeRoute,
+                      route: kPersonnalSheetRoute,
                     ),
                     const SizedBox(
                       height: kSmallVerticalSpacer,

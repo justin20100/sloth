@@ -311,5 +311,5 @@ String getTheDate(context) {
 const kDReportAvailableHour = 5;
 const kDReportNotAvailableHour = 12;
 // Week block
-const kWReportAvailableHour = 4;
+const kWReportAvailableHour = 12;
 const kWReportAvailableDay = 1;

@@ -11,6 +11,7 @@ import 'package:sloth/src/features/history/views/history.dart';
 import 'package:sloth/src/features/home/views/home.dart';
 import 'package:sloth/src/features/introduction/views/intersection.dart';
 import 'package:sloth/src/features/introduction/views/introduction.dart';
+import 'package:sloth/src/features/personnalSheet/views/personnalSheet.dart';
 import 'package:sloth/src/features/profile/views/changePassword__form.dart';
 import 'package:sloth/src/features/profile/views/profile.dart';
 import 'package:sloth/src/features/reports/views/dreport_form.dart';
@@ -47,4 +48,7 @@ Map<String, WidgetBuilder> router = {
 
   // calendar
   kCalendarRoute: (context) => const Calendar(),
+
+  // personnal sheet
+  kPersonnalSheetRoute: (context) => const PersonnalSheet(),
 };

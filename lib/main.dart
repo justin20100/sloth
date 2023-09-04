@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             initialRoute: FirebaseAuth.instance.currentUser == null
-                ? kRegisterRoute
+                ? kIntroductionRoute
                 : kHomeRoute,
             routes: router,
             theme: ThemeData(fontFamily: 'Inter'),
