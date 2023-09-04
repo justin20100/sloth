@@ -308,8 +308,8 @@ String getTheDate(context) {
 
 // ------------- Blocks visibility
 // Day block
-const kDReportAvailableHour = 3;
+const kDReportAvailableHour = 5;
 const kDReportNotAvailableHour = 12;
 // Week block
-const kWReportAvailableHour = 12;
+const kWReportAvailableHour = 4;
 const kWReportAvailableDay = 1;

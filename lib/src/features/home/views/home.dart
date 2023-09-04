@@ -48,16 +48,13 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
       ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__internetError);
     }
   }
-
   checkBlocksVisibility() async {
     _dReportVisibility.value = await homeController.dReportHomeBlockVisibility();
     _wReportVisibility.value = await homeController.wReportHomeBlockVisibility();
   }
-
   _loadEvents(kFirstDay, kLastDay) async {
     _events = await eventModel.loadAllFirestoreEvents(kFirstDay, kLastDay);
   }
-
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
     for (DateTime eventDate in _events.keys) {
@@ -291,8 +288,6 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
-
-
                     // week report block
                     ValueListenableBuilder<bool>(
                       valueListenable: _wReportVisibility,
@@ -326,18 +321,17 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                         }
                       },
                     ),
-
-                    // Articles block
+                    // Calendar block
                     DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxArticles,
-                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
-                      route: kHomeRoute,
+                      text: "Vous devez parcourir votre calendrier ?",
+                      buttonText: "Consulter le calendrier",
+                      route: kCalendarRoute,
                     ),
                     const SizedBox(
                       height: kSmallVerticalSpacer,
                     ),
 
-                    // Articles block
+                    // Personnal file block
                     DefaultHomeBlock(
                       text: AppLocalizations.of(context)!.home__boxPersonnalFile,
                       buttonText: AppLocalizations.of(context)!.home__boxPersonnalFileButton,
@@ -347,10 +341,10 @@ class _HomePageState extends State<Home> with TickerProviderStateMixin {
                       height: kSmallVerticalSpacer,
                     ),
 
-                    // analyse block
+                    // Articles block
                     DefaultHomeBlock(
-                      text: AppLocalizations.of(context)!.home__boxSymptomes,
-                      buttonText: AppLocalizations.of(context)!.home__boxSymptomesButton,
+                      text: AppLocalizations.of(context)!.home__boxArticles,
+                      buttonText: AppLocalizations.of(context)!.home__boxArticlesButton,
                       route: kHomeRoute,
                     ),
                     const SizedBox(

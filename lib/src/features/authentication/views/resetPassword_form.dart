@@ -6,6 +6,8 @@ import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:sloth/src/features/authentication/views/widgets/resetPasswordEmail_input.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
+import 'package:sloth/src/widgets/snackbars/success_snackbar.dart';
 
 class ResetPasswordForm extends StatelessWidget {
   ResetPasswordForm({Key? key}) : super(key: key);
@@ -80,25 +82,12 @@ class ResetPasswordForm extends StatelessWidget {
                                     await FirebaseAuth.instance
                                         .sendPasswordResetEmail(email: _email)
                                         .then((value) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                            content: Text(AppLocalizations.of(context)!.snackBar__resetPasswordSuccess)),
-                                      );
+                                          SuccessSnackbar.show(context, AppLocalizations.of(context)!.snackBar__resetPasswordSuccess);
                                       Navigator.pushNamed(
                                           context, kLoginRoute);
                                     });
                                   } on FirebaseAuthException catch (e) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                            errors[e.code]!,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                          backgroundColor: Colors.redAccent),
-                                    );
+                                    ErrorSnackbar.show(context, errors[e.code]!);
                                   }
                                 }
                               }),

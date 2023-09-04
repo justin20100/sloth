@@ -90,7 +90,7 @@
     "dataUsage__h7":"Modifications de la politique de confidentialité",
     "dataUsage__p7":"Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page et sera effective dès sa publication. Un mail de prévention vous sera envoyé si modifications il y a.",
 
-    "profile__linkPassword":"Changer le mot de passe",
+    "profile__linkPassword":"Modification du mot de passe par email",
 
     "changePassword__label":"Votre nouveau mot de passe",
     "changePassword__labelValidation":"Recopiez votre nouveau mot de passe",
@@ -108,7 +108,7 @@
     "home__boxWRepportButton" : "Calculer le rapport",
     "home__boxWRepportInternetError" : "Il vous faut une connection a internet pour calculer ce rapport",
     "home__boxWRepportFailedError" : "Une erreur est survenue durant le calcule de ce rapport",
-    "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté a votre calendrier avec succès",
+    "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté à votre calendrier avec succès",
     "home__boxWRepportDetails" : "La rapport hebdomadaire de la semaine passée est disponnible",
     "home__boxWRepportDetailsButton" : "Consulter le rapport",
     "home__boxPersonnalFile" : "Vous avez besoin de vos informations médicales ?",

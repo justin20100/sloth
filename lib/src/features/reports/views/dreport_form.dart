@@ -10,6 +10,8 @@ import 'package:sloth/src/utils/functions.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:sloth/src/widgets/error_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
+import 'package:sloth/src/widgets/snackbars/success_snackbar.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class DReportForm extends StatefulWidget {
@@ -168,9 +170,14 @@ class _DReportFormState extends State<DReportForm> {
       isValid = checkFormDoneController.validate(context, _checkformdone) && isValid;
     });
     if (isValid) {
-      String userId = await tools.getUserID();
-      await dReportModel.createDReport(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1).toUtc(), _anxiety, _cognitiveevaluation, _euphoria, _mood, _moreinfos!, _motivation, _physiqueevaluation, _sleep, _sleepevaluation, _state, _stress, _wakeup, userId);
-      Navigator.pushNamed(context, kHomeRoute);
+      try{
+        String userId = await tools.getUserID();
+        await dReportModel.createDReport(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1).toUtc(), _anxiety, _cognitiveevaluation, _euphoria, _mood, _moreinfos!, _motivation, _physiqueevaluation, _sleep, _sleepevaluation, _state, _stress, _wakeup, userId);
+        Navigator.pushNamed(context, kHomeRoute);
+        SuccessSnackbar.show(context, "Votre rapport quotidien a été enregistré dans la calendrier avec succès");
+      }catch(e){
+        ErrorSnackbar.show(context, "Une erreur est survenue lors de l'enregistrement de ce rapport");
+      }
     } else {
       if (wakeUpController.error != null) {
         _scrollToFormField(wakeUpFormKey);

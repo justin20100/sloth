@@ -74,4 +74,28 @@ class UserModel {
       return {};
     }
   }
+
+  Future<Map<String, dynamic>> getUserProfileInfos(String id) async {
+    try {
+      final querySnapshot = await usersRef
+          .where('user_id', isEqualTo: id)
+          .get(const GetOptions(source: Source.serverAndCache));
+      if (querySnapshot.size > 0) {
+        final userData =
+        querySnapshot.docs.first.data() as Map<String, dynamic>;
+        return {
+          'id': userData['id'],
+          'firstname': userData['firstname'],
+          'lastname': userData['lastname'],
+          'email': userData['email'],
+        };
+      } else {
+        return {};
+      }
+    } catch (error) {
+      print('Failed to get user: $error');
+      return {};
+    }
+  }
+
 }

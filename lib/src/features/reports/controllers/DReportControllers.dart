@@ -1,7 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WakeUpInputController {
-  late String? error;
+  late String? error = null;
   bool validate(context, value) {
     if (value.isEmpty) {
       error = AppLocalizations.of(context)?.dReport__wakeUpError;
@@ -13,7 +13,7 @@ class WakeUpInputController {
 }
 
 class SleepInputController {
-  late String? error;
+  late String? error = null;
   bool validate(context, value) {
     if (value.isEmpty) {
       error = AppLocalizations.of(context)?.dReport__sleepError;
@@ -25,7 +25,7 @@ class SleepInputController {
 }
 
 class FeelingLevelSelectController {
-  late String? error;
+  late String? error= null;
   bool validate(context, value) {
     if (value == null) {
       error = AppLocalizations.of(context)?.dReport__feelingLevelError;

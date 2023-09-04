@@ -37,7 +37,7 @@ class NotificationApi {
   }
 
 
-  static Future periodicallyShowNotification({int id = 0, String? title, String? body, String? payload, required DateTime scheduledDate}) async => flutterLocalNotificationsPlugin.zonedSchedule(
+  static Future periodicallyShowNotification({required int id, String? title, String? body, String? payload, required DateTime scheduledDate}) async => flutterLocalNotificationsPlugin.zonedSchedule(
         id,
         title,
         body,
@@ -60,7 +60,6 @@ class NotificationApi {
       time.minute,
       time.second,
     );
-
     if(scheduleDate.isBefore(now)){
       if (kDebugMode) {
         print("notification date = ${scheduleDate.add(const Duration(days: 1))}");

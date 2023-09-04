@@ -111,10 +111,7 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                     height: kSmallVerticalSpacer,
                   ),
                   _selectedCount >= 2
-                      ? Text(
-                    AppLocalizations.of(context)!.registerObjectifs__introText2Valid,
-                    style: k16BasicTextStyle,
-                  ) : Text(
+                      ? const SizedBox(height: 0,) : Text(
                     AppLocalizations.of(context)!.registerObjectifs__introText2,
                     style: k16BasicTextStyle,
                   ),
@@ -127,9 +124,8 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                           height: 0,
                         ),
                   const SizedBox(
-                    height: kBigVerticalSpacer,
+                    height: kNormalVerticalSpacer,
                   ),
-
                   // Form
                   Form(
                     key: _registerObjectifsFormKey,
@@ -169,13 +165,14 @@ class _RegisterObjectifsFormState extends State<RegisterObjectifsForm> {
                               ),
                             ),
                             const SizedBox(
-                              height: 16.0, // Ajustez la hauteur en fonction de vos besoins.
+                              height: kSmallVerticalSpacer,
                             ),
                           ],
                         );
                       }).toList(),
                     ),
                   ),
+                  SizedBox(height: kNormalVerticalSpacer,),
                   // Button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
