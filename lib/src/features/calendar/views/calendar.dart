@@ -9,6 +9,7 @@ import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -21,8 +22,7 @@ class _CalendarState extends State<Calendar> {
   late DateTime _focusedDay = DateTime.now();
   late DateTime _selectedDay = DateTime.now();
   late Map<DateTime, List<Map<String, dynamic>>> _events;
-  late bool usedselectedDay;
-  CalendarController calendarController = CalendarController();
+  late bool usedSelectedDay;
   EventModel eventModel = EventModel();
 
   @override
@@ -31,7 +31,7 @@ class _CalendarState extends State<Calendar> {
     _selectedDay = DateTime.now();
     _focusedDay = DateTime.now();
     _events = {};
-    usedselectedDay = false;
+    usedSelectedDay = false;
     _loadEvents(kFirstDay, kLastDay);
   }
 
@@ -45,9 +45,7 @@ class _CalendarState extends State<Calendar> {
   List _getEventsForTheDay(DateTime day) {
     List eventsForTheDay = [];
     for (DateTime eventDate in _events.keys) {
-      if (eventDate.year == day.year &&
-          eventDate.month == day.month &&
-          eventDate.day == day.day) {
+      if (eventDate.year == day.year && eventDate.month == day.month && eventDate.day == day.day) {
         eventsForTheDay.addAll(_events[eventDate]!);
       }
     }
@@ -56,14 +54,11 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-    if (arguments != null &&
-        arguments['selectedDay'] != null &&
-        usedselectedDay != true) {
+    Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    if (arguments != null && arguments['selectedDay'] != null && usedSelectedDay != true) {
       _selectedDay = arguments['selectedDay'];
       _focusedDay = arguments['selectedDay'];
-      usedselectedDay = true;
+      usedSelectedDay = true;
     }
     return Scaffold(
         backgroundColor: kColorCream,
@@ -76,16 +71,22 @@ class _CalendarState extends State<Calendar> {
           ),
           toolbarHeight: 80,
           backgroundColor: kColorCream,
-          leading: GestureDetector(
-            onTap: () => {Navigator.popAndPushNamed(context, kHomeRoute)},
-            child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: kColorGreen,
+          leading: WidgetAnimator(
+            incomingEffect: WidgetTransitionEffects.incomingSlideInFromLeft(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
+            child: GestureDetector(
+              onTap: () => {Navigator.popAndPushNamed(context, kHomeRoute)},
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: kColorGreen,
+              ),
             ),
           ),
-          title: Text(
-            AppLocalizations.of(context)!.calendar__title,
-            style: kAppBarTextStyle,
+          title: WidgetAnimator(
+            incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(curve: Curves.easeOutCirc, duration: const Duration(milliseconds: 700)),
+            child: Text(
+              AppLocalizations.of(context)!.calendar__title,
+              style: kAppBarTextStyle,
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -173,8 +174,7 @@ class _CalendarState extends State<Calendar> {
                                         height: 4,
                                         decoration: BoxDecoration(
                                           color: kColorGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(10),
                                         ),
                                       ),
                                     )
@@ -261,8 +261,7 @@ class _CalendarState extends State<Calendar> {
                                 ),
                                 child: Text(
                                   '${events.length}',
-                                  style: const TextStyle(
-                                      color: kColorWhite, fontSize: 11),
+                                  style: const TextStyle(color: kColorWhite, fontSize: 11),
                                 ),
                               ),
                             )
@@ -278,9 +277,7 @@ class _CalendarState extends State<Calendar> {
                         height: kSmallVerticalSpacer,
                       ),
                       Text(
-                        DateFormat.MMMMEEEEd(
-                                Localizations.localeOf(context).toString())
-                            .format(_selectedDay),
+                        DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(_selectedDay),
                         style: kDayDateCalendarTextStyle,
                       ),
                       const SizedBox(
@@ -289,58 +286,69 @@ class _CalendarState extends State<Calendar> {
                       _getEventsForTheDay(_selectedDay).isEmpty
                           ? Container(
                               alignment: Alignment.topLeft,
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.symmetric(
                                   vertical: kMicroVerticalSpacer / 2,
                                 ),
-                                child:
-                                    Text("Pas d'événements pour cette journée"),
+                                child: Text(AppLocalizations.of(context)!.calendar__noRepports),
                               ))
                           : ListBody(
-                              children: _getEventsForTheDay(_selectedDay)
-                                  .map((event) {
+                              children: _getEventsForTheDay(_selectedDay).map((event) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: kMicroVerticalSpacer / 2,
                                   ),
                                   child: Container(
                                     alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: kColorGreen,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(color: kColorGreen, borderRadius: BorderRadius.circular(10)),
                                     child: ListTile(
                                       onTap: () => {
                                         showDialog(
-                                            context: context,
-                                            builder: (_) => AlertDialog(
-                                                  insetPadding:EdgeInsets.only(top: kBigVerticalSpacer, right: kBigHorizontalSpacer, bottom: kBigVerticalSpacer*3, left: kBigHorizontalSpacer),
-                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                                  content: Builder(
-                                                    builder: (context) {
-                                                      return Container(
-                                                        height: MediaQuery.of(context).size.height,
-                                                        width: MediaQuery.of(context).size.height,
-                                                        child: event["type"] == "d" ? DReportDetails(eventDetails: event) : event["type"] == "w"? WReportDetails(eventDetails: event) : const SizedBox(height: 0,),
-                                                      );
-                                                    },
-                                                  ),
-                                                )),
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                                padding: const EdgeInsets.only(top: kBigVerticalSpacer, right: kNormalHorizontalSpacer, bottom: kBigVerticalSpacer, left: kNormalHorizontalSpacer),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                        decoration: BoxDecoration(
+                                                          color: kColorWhite,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                        ),
+                                                        height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height / 3.5),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(top: 0, right: kBigHorizontalSpacer, bottom: 0, left: kBigHorizontalSpacer),
+                                                          child: event["type"] == "d"
+                                                              ? DReportDetails(eventDetails: event)
+                                                              : event["type"] == "w"
+                                                                  ? WReportDetails(eventDetails: event)
+                                                                  : const SizedBox(
+                                                                      height: 0,
+                                                                    ),
+                                                        )),
+                                                    const SizedBox(
+                                                      height: kSmallVerticalSpacer,
+                                                    ),
+                                                    Align(
+                                                      alignment: Alignment.bottomRight,
+                                                      child: Button(
+                                                        label: 'Fermer',
+                                                        onPressed: () {
+                                                          Navigator.pop(context);
+                                                        },
+                                                      ),
+                                                    )
+                                                  ],
+                                                ));
+                                          },
+                                        ),
                                       },
                                       title: event['type'] == 'd'
-                                          ? Text('Rapport quotidien',
-                                              style:
-                                                  kEventsCardCalendarTextStyle)
+                                          ? Text('Rapport quotidien', style: kEventsCardCalendarTextStyle)
                                           : event['type'] == 'w'
-                                              ? const Text(
-                                                  'Rapport de la semaine',
-                                                  style:
-                                                      kEventsCardCalendarTextStyle)
+                                              ? const Text('Rapport de la semaine', style: kEventsCardCalendarTextStyle)
                                               : event['type'] == 'a'
-                                                  ? const Text(
-                                                      'Analyse de symptômes',
-                                                      style:
-                                                          kEventsCardCalendarTextStyle)
+                                                  ? const Text('Analyse de symptômes', style: kEventsCardCalendarTextStyle)
                                                   : null,
                                     ),
                                   ),

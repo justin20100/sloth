@@ -5,10 +5,11 @@ import 'package:sloth/src/kdatas/constants.dart';
 @immutable
 class RegisterPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
+  final String password;
 
   RegisterPasswordInput(
       {this.onChanged,
-        required String password,
+        required this.password,
         Key? key})
       : super(key: key);
 
@@ -17,25 +18,19 @@ class RegisterPasswordInput extends StatefulWidget {
 }
 
 class _RegisterPasswordInputState extends State<RegisterPasswordInput> {
-  final RegisterController _registerController = RegisterController();
   late String password = password;
   bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        }
-        return null;
-      },
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
       autofocus: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
+      initialValue: widget.password,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         suffixIcon: IconButton(

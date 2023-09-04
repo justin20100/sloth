@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class UserModel {
   final CollectionReference usersRef =
@@ -12,10 +13,14 @@ class UserModel {
         email: email,
         password: password,
       );
-      print('User created in Firebase Auth');
+      if (kDebugMode) {
+        print('User created in Firebase Auth');
+      }
     } catch (error) {
-      print('Failed to create user in Firebase Auth: $error');
-      throw error; // Rethrow the error to handle it in the calling code.
+      if (kDebugMode) {
+        print('Failed to create user in Firebase Auth: $error');
+      }
+      rethrow; // Rethrow the error to handle it in the calling code.
     }
   }
 
@@ -25,7 +30,7 @@ class UserModel {
     String email,
     String phone,
     Map traits,
-    Map objectifs,
+    List objectifs,
     String userId,
   ) async {
     try {
@@ -38,10 +43,14 @@ class UserModel {
         'objectifs': objectifs,
         'user_id': userId,
       });
-      print('User added to Firestore');
+      if (kDebugMode) {
+        print('User added to Firestore');
+      }
     } catch (error) {
-      print('Failed to add user to Firestore: $error');
-      throw error;
+      if (kDebugMode) {
+        print('Failed to add user to Firestore: $error');
+      }
+      rethrow;
     }
   }
 
@@ -65,4 +74,28 @@ class UserModel {
       return {};
     }
   }
+
+  Future<Map<String, dynamic>> getUserProfileInfos(String id) async {
+    try {
+      final querySnapshot = await usersRef
+          .where('user_id', isEqualTo: id)
+          .get(const GetOptions(source: Source.serverAndCache));
+      if (querySnapshot.size > 0) {
+        final userData =
+        querySnapshot.docs.first.data() as Map<String, dynamic>;
+        return {
+          'id': userData['id'],
+          'firstname': userData['firstname'],
+          'lastname': userData['lastname'],
+          'email': userData['email'],
+        };
+      } else {
+        return {};
+      }
+    } catch (error) {
+      print('Failed to get user: $error');
+      return {};
+    }
+  }
+
 }

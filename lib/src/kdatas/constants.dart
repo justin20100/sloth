@@ -39,10 +39,10 @@ List<BoxShadow> kBoxShadowItem = [
   )
 ];
 List<BoxShadow> kDRepportBoxShadowItem = [
-  BoxShadow(
+  const BoxShadow(
     color: kColorYellow,
     blurRadius: 5,
-    offset: const Offset(0, 0),
+    offset: Offset(0, 0),
   )
 ];
 
@@ -52,7 +52,7 @@ final kBoxDecoration = BoxDecoration(
     boxShadow: kBoxShadowItem,
     borderRadius: kBorderRadiusItem
 );
-final kSnackbarBoxDecoration = BoxDecoration(
+const kSnackbarBoxDecoration = BoxDecoration(
     color: kColorGreen,
 );
 final kHomeBoxDecoration = BoxDecoration(
@@ -77,6 +77,14 @@ const kButtonTextStyle = TextStyle(
 );
 const kBigLabelTextStyle = TextStyle(
   fontSize: 20.0,
+  height: 1.4,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorGreen,
+  decoration: TextDecoration.none,
+);
+const kMegaLabelTextStyle = TextStyle(
+  fontSize: 30.0,
   height: 1.4,
   fontFamily: 'Inter',
   fontWeight: FontWeight.bold,
@@ -157,14 +165,21 @@ const kEventsCardCalendarTextStyle = TextStyle(
   decoration: TextDecoration.none,
 );
 const kEventDetailsTitleTextStyle = TextStyle(
-  fontSize: 20.0,
+  fontSize: 22.0,
   height: 1,
   fontFamily: 'Inter',
   fontWeight: FontWeight.bold,
+  color: kColorYellow,
+  decoration: TextDecoration.none,
+);
+const kEventDetailsDateTextStyle = TextStyle(
+  fontSize: 18.0,
+  height: 1,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.normal,
   color: kColorGreen,
   decoration: TextDecoration.none,
 );
-
 // Basic Text
 const k12BasicTextStyle = TextStyle(
   fontSize: 12.0,
@@ -183,6 +198,7 @@ const k14BasicTextStyle = TextStyle(
 const k16BasicTextStyle = TextStyle(
   fontSize: 16.0,
   height: 1.4,
+  fontWeight: FontWeight.normal,
   fontFamily: 'Inter',
   color: kColorBlack,
   decoration: TextDecoration.none,
@@ -236,6 +252,14 @@ const kSuccessSnackBarTextStyle = TextStyle(
   color: kColorWhite,
   decoration: TextDecoration.none,
 );
+const kSuccessSnackBarErrorTextStyle = TextStyle(
+  fontSize: 15.0,
+  height: 1.3,
+  fontFamily: 'Inter',
+  fontWeight: FontWeight.bold,
+  color: kColorCream,
+  decoration: TextDecoration.none,
+);
 
 // Home - page
 const kHomeBoxesTextStyle = TextStyle(
@@ -263,6 +287,15 @@ const kIntroTitleTextStyle = TextStyle(
   color: kColorDarkGreen,
   decoration: TextDecoration.none,
 );
+// Register - pages
+const kObjectifsErrorStyle = TextStyle(
+  fontSize: 16.0,
+  height: 1.4,
+  fontWeight: FontWeight.normal,
+  fontFamily: 'Inter',
+  color: kColorRed,
+  decoration: TextDecoration.none,
+);
 
 // ------------- Dates Functions
 final kToday = DateTime.now();
@@ -272,3 +305,11 @@ final kLastDay = DateTime(kCalendarReference.year, kCalendarReference.month + 7,
 String getTheDate(context) {
   return DateFormat.MMMMEEEEd(Localizations.localeOf(context).toString()).format(DateTime.now());
 }
+
+// ------------- Blocks visibility
+// Day block
+const kDReportAvailableHour = 5;
+const kDReportNotAvailableHour = 12;
+// Week block
+const kWReportAvailableHour = 12;
+const kWReportAvailableDay = 1;

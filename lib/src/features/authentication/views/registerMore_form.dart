@@ -1,26 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sloth/src/features/authentication/controllers/RegisterMoreController.dart';
 import 'package:sloth/src/features/authentication/views/widgets/registerPhone_input.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 import 'package:sloth/src/features/authentication/views/widgets/registerFirstname_input.dart';
 import 'package:sloth/src/features/authentication/views/widgets/registerLastname_input.dart';
+import 'package:sloth/src/widgets/error_text.dart';
 
-class RegisterMoreForm extends StatelessWidget {
+class RegisterMoreForm extends StatefulWidget {
   RegisterMoreForm({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterMoreForm> createState() => _RegisterMoreFormState();
+}
+
+class _RegisterMoreFormState extends State<RegisterMoreForm> {
+
+  final FirstnameInputController firstnameInputController = FirstnameInputController();
+  final LastnameInputController lastnameInputController = LastnameInputController();
+  final PhoneInputController phoneInputController = PhoneInputController();
+
   final _registerMoreFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
+
   String _firstname = "";
   String _lastname = "";
   String _phone = "";
 
+  _submitForm() {
+    bool isValid = true;
+    setState(() {
+      isValid = firstnameInputController.validate(context, _firstname) && isValid;
+      isValid = lastnameInputController.validate(context, _lastname) && isValid;
+      isValid = phoneInputController.validate(context, _phone) && isValid;
+    });
+    if (isValid) {
+      Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      print(arguments);
+      Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: {'email': arguments['email'], 'password': arguments['password'], 'firstname': _firstname, 'lastname': _lastname, 'phone': _phone});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: kColorCream,
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
                 padding: const EdgeInsets.only(
@@ -47,7 +76,7 @@ class RegisterMoreForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Prénom
+                          // Firstname
                           Text(
                             AppLocalizations.of(context)!.registerMore__firstNameLabel,
                             style: kLabelGreenText,
@@ -60,11 +89,16 @@ class RegisterMoreForm extends StatelessWidget {
                               _firstname = value;
                             },
                           ),
+                          firstnameInputController.error != null
+                              ? ErrorText(text: firstnameInputController.error!)
+                              : const SizedBox(
+                            height: 0,
+                          ),
                           const SizedBox(
                             height: kNormalHorizontalSpacer,
                           ),
 
-                          // Nom
+                          // Lastname
                           Text(
                             AppLocalizations.of(context)!.registerMore__lastNameLabel,
                             style: kLabelGreenText,
@@ -75,11 +109,16 @@ class RegisterMoreForm extends StatelessWidget {
                           LastNameInput(onChanged: (value) {
                             _lastname = value;
                           }),
+                          lastnameInputController.error != null
+                              ? ErrorText(text: lastnameInputController.error!)
+                              : const SizedBox(
+                            height: 0,
+                          ),
                           const SizedBox(
                             height: kNormalHorizontalSpacer,
                           ),
 
-                          // Numéro de téléphone facultatif
+                          // Phone non required
                           Text(
                             AppLocalizations.of(context)!.registerMore__phoneLabel,
                             style: kLabelGreenText,
@@ -87,9 +126,15 @@ class RegisterMoreForm extends StatelessWidget {
                           const SizedBox(
                             height: kSmallHorizontalSpacer,
                           ),
-                          PhoneInput(onChanged: (value) {
+                          PhoneInput(
+                              onChanged: (value) {
                             _phone = value;
                           }),
+                          phoneInputController.error != null
+                              ? ErrorText(text: phoneInputController.error!)
+                              : const SizedBox(
+                            height: 0,
+                          ),
                           const SizedBox(
                             height: kNormalHorizontalSpacer,
                           ),
@@ -112,12 +157,7 @@ class RegisterMoreForm extends StatelessWidget {
                         Button(
                             label: AppLocalizations.of(context)!.registerMore__button,
                             onPressed: () {
-                              if (_registerMoreFormKey.currentState !=
-                                          null &&
-                                      _registerMoreFormKey.currentState!
-                                          .validate()) {
-                                    Navigator.pushNamed(context, kRegisterTraitsRoute, arguments: {'email': arguments['email'], 'password': arguments['password'], 'firstname': _firstname, 'lastname': _lastname, 'phone': _phone ?? ''});
-                                  }
+                              _submitForm();
                             }),
                       ],
                     )

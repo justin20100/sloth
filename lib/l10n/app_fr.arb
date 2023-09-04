@@ -1,12 +1,12 @@
 ﻿{
-    "introduction__title1": "Welcome to Sloth",
-    "introduction__body1": "Autoévaluez votre ressenti de fatigue cognitive au quotidien, tenez-vous informé sur cette fatigue et partagez vos rapports quotidiens avec une personne de confiance",
+    "introduction__title1": "Bienvenue sur Sloth",
+    "introduction__body1": "Autoévaluez votre ressenti de fatigue cognitive au quotidien, tenez-vous informé sur cette fatigue et améliorez votre suivi médicale",
     "introduction__title2": "Structurez vos analyses pour réduire votre fatigue cognitive",
-    "introduction__body2": "Un rapport sera disponible tous les matins pour évaluer la veille",
+    "introduction__body2": "Un rapport quotidien a remplir sera disponible tous les matins de 4h a 12h pour évaluer la veille",
     "introduction__title3": "Fixez vous des objectifs à accomplir",
     "introduction__body3": "Choisissez vos objectifs pendant votre inscription et nous vous aiderons à les réaliser",
-    "introduction__title4": "Analysez vos symptômes rapidement",
-    "introduction__body4": "Une analyse de symptômes est disponible par jour pour en savoir plus sur les éventuels symptômes que vos ressentez",
+    "introduction__title4": "Completez votre fiche médicale",
+    "introduction__body4": "Stocker vos informations médicales utilent lors d'une visite chez le médecin pour ne jamais les oublier",
     "introduction__skipb": "Passer",
     "introduction__doneb": "Continuer",
 
@@ -61,8 +61,8 @@
     "registerTraits__button": "Ètape suivante",
 
     "registerObjectifs__title": "Objectifs",
-    "registerObjectifs__introText1": "Qu'est ce que vous aimeriez accomplir avec Sloth ? Quels sont vos objectifs ? Cochez les objectifs qui correspondent aux votres.",
-    "registerObjectifs__introText2": "Il vous faut sélectionner encore 2-_selectedCount objectifs minimum.",
+    "registerObjectifs__introText1": "Sloth vous permet de vous fixer des objectifs, en espérant vous aider à les accomplir.",
+    "registerObjectifs__introText2": "Nous aimerions que vous en choisissez minimum deux.",
     "registerObjectifs__introText2Valid": "Vous avez sélectionné assez d'objectifs pour continuer.",
     "registerObjectifs__backButton": "Précédent",
     "registerObjectifs__o1":"Me sentir plus heureux",
@@ -70,7 +70,8 @@
     "registerObjectifs__o3":"Avoir plus d’énergie",
     "registerObjectifs__o4":"Travailler de façon optimal",
     "registerObjectifs__o5":"Avoir un meilleur sommeil",
-    "registerObjectifs__internetError": "Vérifiez votre connection a internet.",
+    "registerObjectifs__internetError": "Vérifiez votre connection a internet",
+    "registerObjectifs__error": "Erreur lors de l'enregistrement du compte",
     "registerObjectifs__button": "Terminer",
 
     "dataUsage__title":"Confidentialité",
@@ -89,7 +90,7 @@
     "dataUsage__h7":"Modifications de la politique de confidentialité",
     "dataUsage__p7":"Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page et sera effective dès sa publication. Un mail de prévention vous sera envoyé si modifications il y a.",
 
-    "profile__linkPassword":"Changer le mot de passe",
+    "profile__linkPassword":"Modification du mot de passe par email",
 
     "changePassword__label":"Votre nouveau mot de passe",
     "changePassword__labelValidation":"Recopiez votre nouveau mot de passe",
@@ -99,15 +100,20 @@
     "snackBar__resetPasswordSuccess":"L'email de reinitialisation du mot de passe a été envoyé",
 
     "home__date" : "mercredi 21 juin",
+    "home__internetError" : "Il est préférable d'utiliser cette application avec une connection internet",
     "home__boxDRepport" : "Remplissez votre rapport sur la journée d'hier",
     "home__boxDRepportButton" : "Remplir le rapport quotidien",
     "home__boxDRepportInternetError" : "Il vous faut une connection a internet pour remplir ce rapport",
-    "home__boxWRepport" : "Nous sommes Lundi! Calculez votre rapport hebdomadaire",
+    "home__boxDRepportSuccessMessage" : "Le rapport du jour a été ajouté à votre calendrier avec succès",
+    "home__boxWRepport" : "Nous sommes Lundi ! Calculez votre rapport hebdomadaire",
     "home__boxWRepportButton" : "Calculer le rapport",
     "home__boxWRepportInternetError" : "Il vous faut une connection a internet pour calculer ce rapport",
-    "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté a votre calendrier avec succès",
+    "home__boxWRepportFailedError" : "Une erreur est survenue durant le calcule de ce rapport",
+    "home__boxWRepportSuccessMessage" : "Le rapport de la semaine a été ajouté à votre calendrier avec succès",
     "home__boxWRepportDetails" : "La rapport hebdomadaire de la semaine passée est disponnible",
     "home__boxWRepportDetailsButton" : "Consulter le rapport",
+    "home__boxPersonnalFile" : "Vous avez besoin de vos informations médicales ?",
+    "home__boxPersonnalFileButton" : "Consulter votre fiche",
     "home__boxSymptomes" : "Vous vous sentez mal? Identifiez vos symptomes",
     "home__boxSymptomesButton" : "Identifier",
     "home__boxArticles" : "Découvrez nos articles sur la fatigue cognitive",
@@ -147,5 +153,11 @@
     "dReport__feelingLevelError" : "Vous devez faire votre choix.",
     "dReport__checkFormDoneLabel" : "Je valide avoir bien rempli le formulaire avec attention",
 
-    "calendar__title" : "Calendrier"
+
+    "calendar__noRepports" : "Pas de rapports pour cette journée",
+    "calendar__title" : "Calendrier",
+
+    "history__title" : "Historique",
+
+    "personnalSheet__title" : "Fiche personnelle"
  }

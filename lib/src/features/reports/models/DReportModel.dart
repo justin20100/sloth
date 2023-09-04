@@ -6,6 +6,7 @@ import 'package:sloth/src/utils/functions.dart';
 class DReportModel {
   final CollectionReference dReportsRef =
       FirebaseFirestore.instance.collection('events');
+  Tools tools = Tools();
 
   Future<void> createDReport(
       DateTime date,
@@ -69,7 +70,7 @@ class DReportModel {
   }
 
   Future getDReportInARange(DateTime startDay, DateTime LastDay) async {
-    final userId = await getUserID();
+    final userId = await tools.getUserID();
     QuerySnapshot dReportSnapshot = await dReportsRef
         .where('userId', isEqualTo: userId)
         .where('date', isGreaterThanOrEqualTo: startDay)

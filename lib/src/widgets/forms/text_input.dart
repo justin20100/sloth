@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
@@ -31,6 +30,7 @@ class TextInput extends StatelessWidget {
       onChanged: onChanged,
       obscureText: obscureText,
       autofocus: autofocus,
+      autocorrect: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
       textInputAction: TextInputAction.next,

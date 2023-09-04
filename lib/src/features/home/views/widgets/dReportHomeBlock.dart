@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sloth/src/utils/functions.dart';
-import 'package:sloth/src/widgets/snackbars/errorSnackbar.dart';
-import 'package:spring/spring.dart';
+import 'package:sloth/src/widgets/snackbars/error_snackbar.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
@@ -18,6 +16,8 @@ class DReportHomeBlock extends StatefulWidget {
 }
 
 class _DReportHomeBlockState extends State<DReportHomeBlock> {
+  Tools tools = Tools();
+
   @override
   void initState() {
     super.initState();
@@ -48,23 +48,23 @@ class _DReportHomeBlockState extends State<DReportHomeBlock> {
                 height: kMicroVerticalSpacer * 3,
               ),
               Center(
-                child: WidgetAnimator(
-                  atRestEffect: WidgetRestingEffects.bounce(
-                    delay: const Duration(milliseconds: 2000),
-                      duration: const Duration(milliseconds: 1500),
-                      effectStrength: 0.4
-                  ),
-                  child:Button(
-                    label: AppLocalizations.of(context)!.home__boxDRepportButton,
-                    onPressed: () async {
-                      bool internetConnected = await checkInternetConnection();
-                      if(internetConnected){
-                        Navigator.pushNamed(context, kDReportRoute);
-                      }else{
-                        ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxDRepportInternetError);
-                      }
-                    },
-                  ),)
+                    child: WidgetAnimator(
+                      atRestEffect: WidgetRestingEffects.bounce(
+                          duration: const Duration(milliseconds: 1500),
+                          effectStrength: 0.4
+                      ),
+                      child:Button(
+                        label: AppLocalizations.of(context)!.home__boxDRepportButton,
+                        onPressed: () async {
+                          bool internetConnected = await tools.checkInternetConnection();
+                          if(internetConnected){
+                            Navigator.pushNamed(context, kDReportRoute);
+                          }else{
+                            ErrorSnackbar.show(context, AppLocalizations.of(context)!.home__boxDRepportInternetError);
+                          }
+                        },
+                      ),
+                )
               ),
             ],
           ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
 @immutable
-class TextError extends StatelessWidget {
+class ErrorText extends StatelessWidget {
   final String text;
 
-  const TextError({required this.text, Key? key})
+  const ErrorText({required this.text, Key? key})
       : super(key: key);
 
   @override

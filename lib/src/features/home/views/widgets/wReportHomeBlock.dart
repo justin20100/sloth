@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/features/home/controllers/homeController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
-import 'package:sloth/src/widgets/button.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -59,8 +58,7 @@ class _WReportHomeBlockState extends State<WReportHomeBlock> {
                         style: TextButton.styleFrom(
                           alignment: Alignment.center,
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.only(
-                              top: 10, bottom: 10, left: 15, right: 15),
+                          padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
                           textStyle: kButtonTextStyle,
                         ),
                         onPressed: widget.onPressed,

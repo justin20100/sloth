@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sloth/src/features/authentication/controllers/loginController.dart';
 import 'package:sloth/src/kdatas/constants.dart';
 
 @immutable
 class LoginPasswordInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
+  final initialValue;
 
   LoginPasswordInput(
       {this.onChanged,
-      required String email,
-      required String password,
-      Key? key})
+      Key? key, String? this.initialValue})
       : super(key: key);
 
   @override
@@ -18,20 +16,12 @@ class LoginPasswordInput extends StatefulWidget {
 }
 
 class _LoginPasswordInputState extends State<LoginPasswordInput> {
-  final RegisterController _loginController = RegisterController();
-  late String email = email;
-  late String password = password;
   bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        }
-        return null;
-      },
+      initialValue: widget.initialValue,
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
@@ -56,9 +46,7 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
         hintText: "Votre mot de passe",
         isDense: true,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: kColorGreen,
-          ),
+          borderSide: const BorderSide(color: kColorRed),
           borderRadius: BorderRadius.circular(7),
         ),
         focusColor: kColorYellow,
@@ -67,11 +55,6 @@ class _LoginPasswordInputState extends State<LoginPasswordInput> {
             color: kColorYellow,
           ),
           borderRadius: BorderRadius.circular(7),
-        ),
-        errorStyle: const TextStyle(
-          fontSize: 12,
-          color: kColorRed,
-          height: 0.6,
         ),
         fillColor: kColorWhite,
         filled: true,

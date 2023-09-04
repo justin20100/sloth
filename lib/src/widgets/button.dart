@@ -25,7 +25,7 @@ class Button extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(
               alignment: Alignment.center,
-              foregroundColor: Colors.white,
+              foregroundColor: kColorWhite,
               padding: const EdgeInsets.only(
                   top: 10, bottom: 10, left: 15, right: 15),
               textStyle: kButtonTextStyle,

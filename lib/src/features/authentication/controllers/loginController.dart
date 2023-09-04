@@ -1,15 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:email_validator/email_validator.dart';
 
-class RegisterController {
-  checkPassword(email, password) async {
-    try {UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      if (e.code == 'wrong-password') {
+class EmailInputController {
+  late String? error = null;
+
+  bool validate(context, email) {
+    if (email.isNotEmpty) {
+      if (EmailValidator.validate(email)) {
+        error = null;
         return true;
       } else {
+        error = "L'email n'est pas valide";
         return false;
       }
+    } else {
+      error = "Il manque un email";
+      return false;
+    }
+  }
+}
+
+class PasswordInputController {
+  late String? error = null;
+  bool validate(context, password) {
+    if (password.isNotEmpty) {
+      if (RegExp(r'^(?=.*?[A-Z]).{8,}$').hasMatch(password)) {
+        error = null;
+        return true;
+      } else {
+        error = "Il faut 1 majuscule et 9 caractères";
+        return false;
+      }
+    } else {
+      error = "Il manque un mot de passe";
+      return false;
     }
   }
 }

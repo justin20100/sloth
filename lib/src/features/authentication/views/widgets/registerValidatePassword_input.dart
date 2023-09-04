@@ -17,27 +17,19 @@ class RegisterValidatePasswordInput extends StatefulWidget {
 }
 
 class _RegisterValidatePasswordInputState extends State<RegisterValidatePasswordInput> {
-  final RegisterController _registerController = RegisterController();
   bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Ce champ ne peut pas être vide';
-        }
-        if (value != widget.password) {
-          return 'Vérifiez vos mots de passe';
-        }
-        return null;
-      },
       keyboardType: TextInputType.visiblePassword,
       onChanged: widget.onChanged,
       obscureText: _isObscured,
       autofocus: false,
+      autocorrect: false,
       cursorColor: kMainTextColor,
       style: k14BasicTextStyle,
+      initialValue: widget.password,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         suffixIcon: IconButton(

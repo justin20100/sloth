@@ -58,16 +58,20 @@ class _SidebarScreenState extends State<SidebarScreen> {
               isUserLoaded ? Text(user['firstname']+' '+user['lastname']+' est connecté', style: kBurgerMenuSmallTextStyle,):const Text(' ', style: kBurgerMenuSmallTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
               // Part 1
-              const Text('Objectifs et succès', style: kBurgerMenuTextStyle,),
+              GestureDetector(
+                onTap: ()=>{Navigator.pushNamed(context, kPersonnalSheetRoute)},
+                child: const Text('Fiche personnel', style: kBurgerMenuTextStyle,),
+              ),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Médicaments', style: kBurgerMenuTextStyle,),
-              const SizedBox(height: kSmallVerticalSpacer,),
-              const Text('Fiche personnel', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Articles', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
               // Part 2
-              const Text('Chronologie', style: kBurgerMenuTextStyle,),
+              GestureDetector(
+                onTap: ()=>{Navigator.pushNamed(context, kHistoryRoute)},
+                child: const Text('Historique', style: kBurgerMenuTextStyle,) ,
+              ),
               const SizedBox(height: kSmallVerticalSpacer,),
               const Text('Statistiques', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kSmallVerticalSpacer,),
@@ -79,8 +83,6 @@ class _SidebarScreenState extends State<SidebarScreen> {
                 onTap: ()=>{Navigator.pushNamed(context, kProfileRoute)},
                 child: const Text('Compte', style: kBurgerMenuTextStyle,),
               ),
-              const SizedBox(height: kSmallVerticalSpacer,),
-              const Text('Paramètres', style: kBurgerMenuTextStyle,),
               const SizedBox(height: kBigVerticalSpacer,),
             ],
           ),

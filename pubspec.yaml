@@ -44,6 +44,10 @@ dependencies:
   connectivity_plus: ^4.0.2
   spring: ^2.0.2
   widget_and_text_animator: ^1.1.5
+  flutter_local_notifications: ^15.1.1
+  rxdart: ^0.27.7
+  flutter_native_timezone: ^2.0.0
+  syncfusion_flutter_charts: ^22.2.11
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +81,7 @@ flutter:
     - assets/img/calendar.jpg
     - assets/img/symptomes.jpg
     - assets/img/objectifs.jpg
+    - assets/img/noConnection.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

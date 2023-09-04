@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:sloth/src/features/reports/models/DReportModel.dart';
-import 'package:sloth/src/kdatas/constants.dart';
-import 'package:sloth/src/routing/routes.dart';
-import 'package:sloth/src/utils/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WakeUpInputController {
@@ -30,7 +25,7 @@ class SleepInputController {
 }
 
 class FeelingLevelSelectController {
-  late String? error = null;
+  late String? error= null;
   bool validate(context, value) {
     if (value == null) {
       error = AppLocalizations.of(context)?.dReport__feelingLevelError;

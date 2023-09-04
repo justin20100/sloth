@@ -4,10 +4,12 @@ import 'package:sloth/src/utils/functions.dart';
 class EventModel {
   final CollectionReference eventsRef = FirebaseFirestore.instance
       .collection('events');
+  Tools tools = Tools();
 
   Future<Map<DateTime, List<Map<String, dynamic>>>> loadAllFirestoreEvents(
+
       DateTime kfirstDay, DateTime kLastDay) async {
-    final userId = await getUserID();
+    final userId = await tools.getUserID();
     QuerySnapshot eventsSnapshot = await eventsRef
         .where('userId', isEqualTo: userId)
         .where('date', isGreaterThanOrEqualTo: kfirstDay)

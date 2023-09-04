@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sloth/src/kdatas/constants.dart';
-import 'package:sloth/src/routing/routes.dart';
 import 'package:sloth/src/widgets/button.dart';
 
 class DefaultHomeBlock extends StatelessWidget {
